@@ -1,0 +1,74 @@
+{
+  "aventuras": [
+    {
+      "bienvenida": "Mensaje de bienvenida",
+      "locacionInicial": "muelle",
+      "titulo": "Titulo ejemplo",
+      "locaciones": [
+        "muelle",
+        "taberna"
+      ],
+      "endgame": [
+        {
+          "condicion": "condicion",
+          "accion": "accion ejemplo",
+          "cosa": "espejo",
+          "descripcion": "des"
+        }
+      ]
+    }
+  ],
+  "locaciones": [
+    {
+      "nombre": "muelle",
+      "genero": "masculino",
+      "numero": "singular",
+      "lugares": [
+        {
+          "nombre": "suelo",
+          "genero": "masculino",
+          "numero": "singular",
+          "items": [
+            "item 1"
+          ]
+        }
+      ],
+      "npcs": [
+        "pirata fantasma"
+      ],
+      "conexiones": [
+        {
+          "direccion": "norte",
+          "locacionDestino": "taberna",
+          "obstaculos": []
+        }
+      ]
+    }
+  ],
+  "items": [
+    {
+      "nombre": "item 1",
+      "genero": "",
+      "numero": "singular",
+      "acciones": [
+        "usar",
+        "otro verbo"
+      ],
+      "efectosSobre": [
+        "npc",
+        "personaje",
+        "item"
+      ]
+    }
+  ],
+  "npcs": [
+    {
+      "nombre": "pirata fantasma",
+      "genero": "genero",
+      "numero": "singular",
+      "descripcion": "des",
+      "dialogo": "",
+      "trigger": []
+    }
+  ]
+}
