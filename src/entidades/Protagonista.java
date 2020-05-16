@@ -7,7 +7,11 @@ public class Protagonista {
 	private String nombre;
 	private List<Item> inventario;
 
-	public boolean añadirItem() {
+	public Protagonista() {
+
+	}
+
+	public boolean añadirItem(Item item) {
 		return false;
 
 	}
