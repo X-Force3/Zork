@@ -30,6 +30,5 @@ public class Ubicacion {
 
 	/// Deberia tener metodos donde pueda comprobar si los npc/ lugares/ o
 	/// conexiones figuran dentro de lo disponible dentro de la ubicacion
-	/// Y esto se podria llegar a manejar por ID's
 
 }
