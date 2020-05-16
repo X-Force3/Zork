@@ -7,6 +7,11 @@ public class Lugar {
 	private String nombre;
 	private String genero;
 	private String numero;
-	private List<String> items;
-	
+	private List<String> objetosDisponibles;
+
+	/// Se recorre la collection
+	public void describirObjetosDisponibles() {
+
+	}
+
 }
