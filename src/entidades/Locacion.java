@@ -21,5 +21,11 @@ public class Locacion {
 		this.npcs = npcs;
 		this.conexiones = conexiones;
 	}
+
+	public String getGenero() {
+		return genero;
+	}
+
+	
 	
 }

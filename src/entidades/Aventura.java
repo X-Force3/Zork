@@ -5,14 +5,21 @@ import java.util.List;
 public class Aventura {
 	
 	private String bienvenida;
-	private Locacion locacionInicial;
-	private List<Locacion> locaciones;
+	private String locacionInicial;
+	private String titulo;
+	private List<String> locaciones;
+	private List<Endgame> endgame;
+
 	
-	public Aventura(String welcome, Locacion locacionInicial, List<Locacion> locaciones) {
+
+	public Aventura(String bienvenida, String locacionInicial, String titulo, List<String> locaciones,
+			List<Endgame> endgame) {
 		super();
-		this.bienvenida = welcome;
+		this.bienvenida = bienvenida;
 		this.locacionInicial = locacionInicial;
+		this.titulo = titulo;
 		this.locaciones = locaciones;
+		this.endgame = endgame;
 	}
 
 	public void ejecutarAventura() {
@@ -23,11 +30,11 @@ public class Aventura {
 		return bienvenida;
 	}
 
-	public Locacion getLocacionInicial() {
+	public String getLocacionInicial() {
 		return locacionInicial;
 	}
 
-	public List<Locacion> getLocaciones() {
+	public List<String> getLocaciones() {
 		return locaciones;
 	}
 

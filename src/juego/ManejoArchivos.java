@@ -3,6 +3,8 @@ package juego;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.google.gson.Gson;
@@ -19,12 +21,31 @@ public class ManejoArchivos {
 	private static final String NPCS_JSON = RUTA + "npcs.json";
 	private static final String ITEMS_JSON = RUTA + "items.json";
 
+	/*private static <T> List<T> getObjetos(String ruta, Class<T> clase) {
+		ArrayList<T> objetos = null;
+		JsonReader reader = null;
+		try {
+			reader = new JsonReader(new FileReader(ruta));
+			objetos = (ArrayList<T>) Arrays.asList(new Gson().fromJson(reader,T[].class);
+			
+			java.lang.reflect.Type type = new TypeToken<List<T>>(){}.getType();
+			objetos = new Gson().fromJson(reader,type);
+			reader.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return objetos;
+	}*/
+	
 	private static <T> List<T> getObjetos(String ruta) {
 		List<T> objetos = null;
 		JsonReader reader = null;
 		try {
 			reader = new JsonReader(new FileReader(ruta));
-			objetos = new Gson().fromJson(reader,new TypeToken<List<T>>(){}.getType());
+			java.lang.reflect.Type type = new TypeToken<ArrayList<T>>(){}.getType();
+			objetos = new Gson().fromJson(reader,type);
 			reader.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
