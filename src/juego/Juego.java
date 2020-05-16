@@ -27,5 +27,38 @@ public class Juego {
 		return "Juego [aventuras=" + aventuras + ", locaciones=" + locaciones + ", items=" + items + ", npcs=" + npcs
 				+ "]";
 	}
+
+	public List<Aventura> getAventuras() {
+		return aventuras;
+	}
+
+	public void setAventuras(List<Aventura> aventuras) {
+		this.aventuras = aventuras;
+	}
+
+	public List<Locacion> getLocaciones() {
+		return locaciones;
+	}
+
+	public void setLocaciones(List<Locacion> locaciones) {
+		this.locaciones = locaciones;
+	}
+	
+	public List<Item> getItems() {
+		return items;
+	}
+
+	public void setItems(List<Item> items) {
+		this.items = items;
+	}
+
+	public List<Npc> getNpcs() {
+		return npcs;
+	}
+
+	public void setNpcs(List<Npc> npcs) {
+		this.npcs = npcs;
+	}
+	
 	
 }

@@ -1,0 +1,16 @@
+[
+    {
+      "nombre": "item 1",
+      "genero": "",
+      "numero": "singular",
+      "acciones": [
+        "usar",
+        "otro verbo"
+      ],
+      "efectosSobre": [
+        "npc",
+        "personaje",
+        "item"
+      ]
+    }
+]

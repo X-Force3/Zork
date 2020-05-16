@@ -2,45 +2,51 @@ package pruebas;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
 
+import entidades.*;
+import juego.Constantes;
 import juego.Juego;
+import juego.ManejoArchivos;
 
 public class PruebasJuego {
-	
-	/**
-	 * 
-		//agregar librería gson a eclipse
-		//link: https://medium.com/programmers-blockchain/importing-gson-into-eclipse-ec8cf678ad52
-		
-		//"interpretar" archivo json para instanciar nuestros objetos
-		//link: https://stackoverflow.com/questions/29965764/how-to-parse-json-file-with-gson
-		
-		//visulizador json online //pegás el texto y se visualiza mejor para el ser humano(?
-		//link: http://jsonviewer.stack.hu/
-		
-		//editor json que encontré por ahí
-		//link: https://jsoneditoronline.org/
-	 * */
+
+	/*
+	 * @Test public void describirDondeEstoy() { List locaciones = new
+	 * ArrayList<Locacion>(); locaciones.add(new Locacion("Muelle",
+	 * Constantes.MASCULINO, Constantes.SINGULAR, )) Aventura aventura = new
+	 * Aventura("Bienvenido",new Locacion(""), ); }
+	 */
+
+	Aventura aventura;
+	List<Locacion> locaciones;
+	List<Npc> npcs;
+	List<Item> items;
+
+	@Before
+	public void traerInformacion() {
+	//	aventura = ManejoArchivos.getAventuras().get(0);
+		locaciones = ManejoArchivos.getLocaciones();
+	//	npcs = ManejoArchivos.getNpcs();
+	//	items = ManejoArchivos.getItems();
+	}
 
 	@Test
-	public void leerJson() {
-		
-		Gson gson = new Gson();
-		Juego juego = null;
-		try {
-			JsonReader reader = new JsonReader(new FileReader("recursos/juego.json"));
-			juego = gson.fromJson(reader,Juego.class);
-			System.out.println(juego);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}finally {
-			Assert.assertEquals(true, juego != null);
-		}
+	public void describirAventura() {
+		//System.out.println(aventura.getBienvenida());
+		//Assert.assertEquals("Bienvenido", aventura.getBienvenida());
+	}
+	
+	@Test
+	public void describirLocacion() {
+		System.out.println(locaciones.get(0));
 	}
 }
