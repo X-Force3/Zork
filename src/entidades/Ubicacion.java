@@ -46,4 +46,13 @@ public class Ubicacion {
 		return conexiones;
 	}
 
+	/// Como se describiria? No deberia ser un atributo dentro de la class para asi
+	/// poder instanciar esa descripcion?
+	public void describirUbicacion() {
+
+	}
+
+	/// Deberia tener metodos donde pueda comprobar si los npc/ lugares/ o
+	/// conexiones figuran dentro de lo disponible dentro de la ubicacion
+
 }

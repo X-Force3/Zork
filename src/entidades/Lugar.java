@@ -9,4 +9,13 @@ public class Lugar {
 	private Numero numero;
 	private List<String> items;
 	
+	public Lugar() {
+
+	}
+
+	/// Se recorre la collection
+	public void describirObjetosDisponibles() {
+
+	}
+
 }

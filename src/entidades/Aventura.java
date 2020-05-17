@@ -26,5 +26,8 @@ public class Aventura {
 	public List<Item> getItems() {
 		return items;
 	}
-	
+
+	public void comenzar() {
+
+	}
 }
