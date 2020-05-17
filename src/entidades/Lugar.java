@@ -5,8 +5,8 @@ import java.util.List;
 public class Lugar {
 
 	private String nombre;
-	private String genero;
-	private String numero;
+	private Genero genero;
+	private Numero numero;
 	private List<String> items;
 	
 }

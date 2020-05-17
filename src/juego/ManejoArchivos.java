@@ -3,12 +3,8 @@ package juego;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 
 import entidades.*;
@@ -16,61 +12,7 @@ import entidades.*;
 public class ManejoArchivos {
 
 	private static final String RUTA = "recursos/";
-	private static final String AVENTURAS_JSON = RUTA + "aventuras.json";
-	private static final String LOCACIONES_JSON = RUTA + "locaciones.json";
-	private static final String NPCS_JSON = RUTA + "npcs.json";
-	private static final String ITEMS_JSON = RUTA + "items.json";
-
-	/*private static <T> List<T> getObjetos(String ruta, Class<T> clase) {
-		ArrayList<T> objetos = null;
-		JsonReader reader = null;
-		try {
-			reader = new JsonReader(new FileReader(ruta));
-			objetos = (ArrayList<T>) Arrays.asList(new Gson().fromJson(reader,T[].class);
-			
-			java.lang.reflect.Type type = new TypeToken<List<T>>(){}.getType();
-			objetos = new Gson().fromJson(reader,type);
-			reader.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return objetos;
-	}*/
-	
-	private static <T> List<T> getObjetos(String ruta) {
-		List<T> objetos = null;
-		JsonReader reader = null;
-		try {
-			reader = new JsonReader(new FileReader(ruta));
-			java.lang.reflect.Type type = new TypeToken<ArrayList<T>>(){}.getType();
-			objetos = new Gson().fromJson(reader,type);
-			reader.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return objetos;
-	}
-
-	public static List<Aventura> getAventuras() {
-		return getObjetos(AVENTURAS_JSON);
-	}
-
-	public static List<Locacion> getLocaciones() {
-		return getObjetos(LOCACIONES_JSON);
-	}
-
-	public static List<Npc> getNpcs() {
-		return getObjetos(NPCS_JSON);
-	}
-
-	public static List<Item> getItems() {
-		return getObjetos(ITEMS_JSON);
-	}
-	
+	private static final String AVENTURA_JSON = RUTA + "aventura.json";
 	
 	//agregar librería gson a eclipse
 	//link: https://medium.com/programmers-blockchain/importing-gson-into-eclipse-ec8cf678ad52
@@ -83,20 +25,19 @@ public class ManejoArchivos {
 		
 	//editor json que encontré por ahí
 	//link: https://jsoneditoronline.org/
-	/* *	
-	Juego juego = null;
-	@Before
-	public void leerJson() {
-		Gson gson = new Gson();
+	
+	public static Aventura getAventura() {
+		Aventura aventura = null;
 		try {
-			JsonReader reader = new JsonReader(new FileReader("recursos/juego.json"));
-			juego = gson.fromJson(reader,Juego.class);
-			System.out.println(juego);
+			JsonReader reader = new JsonReader(new FileReader(AVENTURA_JSON));
+			aventura = new Gson().fromJson(reader,Aventura.class);
+			reader.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-		}finally {
-			Assert.assertTrue(juego != null);
+		}catch (IOException e) {
+			e.printStackTrace();
 		}
+		return aventura;
 	}
-	 * */
+	
 }

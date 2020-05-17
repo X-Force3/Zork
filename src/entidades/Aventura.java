@@ -4,38 +4,27 @@ import java.util.List;
 
 public class Aventura {
 	
-	private String bienvenida;
-	private String locacionInicial;
-	private String titulo;
-	private List<String> locaciones;
-	private List<Endgame> endgame;
-
+	private Configuracion configuracion;
+	private List<Ubicacion> ubicaciones;
+	private List<Item> items;
 	
-
-	public Aventura(String bienvenida, String locacionInicial, String titulo, List<String> locaciones,
-			List<Endgame> endgame) {
+	public Aventura(Configuracion configuracion, List<Ubicacion> locaciones, List<Item> items) {
 		super();
-		this.bienvenida = bienvenida;
-		this.locacionInicial = locacionInicial;
-		this.titulo = titulo;
-		this.locaciones = locaciones;
-		this.endgame = endgame;
+		this.configuracion = configuracion;
+		this.ubicaciones = locaciones;
+		this.items = items;
 	}
 
-	public void ejecutarAventura() {
-		
+	public Configuracion getConfiguracion() {
+		return configuracion;
 	}
 
-	public String getBienvenida() {
-		return bienvenida;
+	public List<Ubicacion> getLocaciones() {
+		return ubicaciones;
 	}
 
-	public String getLocacionInicial() {
-		return locacionInicial;
+	public List<Item> getItems() {
+		return items;
 	}
-
-	public List<String> getLocaciones() {
-		return locaciones;
-	}
-
+	
 }
