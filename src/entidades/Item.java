@@ -11,7 +11,7 @@ public class Item {
 	private List<String> efectosSobre;
 	//private boolean usado;
 
-	public Item(String nombre, String genero, String numero, List<String> acciones, List<String> efectosSobre) {
+	public Item(String nombre, Genero genero, Numero numero, List<String> acciones, List<String> efectosSobre) {
 		super();
 		this.nombre = nombre;
 		this.genero = genero;

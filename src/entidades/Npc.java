@@ -8,36 +8,42 @@ public class Npc {
 	private Genero genero;
 	private Numero numero;
 	private String descripcion;
-	private List<String> dialogos;
+	private String dialogo;//private List<String> dialogos;
 	private List<Object> trigger;
 	
-	public String getNombre() {
-		return nombre;
-	}
-	public Genero getGenero() {
-		return genero;
-	}
-	public Numero getNumero() {
-		return numero;
-	}
-	public String getDescripcion() {
-		return descripcion;
-	}
-	public String getDialogo() {
-		return dialogo;
-	}
-	public List<Object> getTrigger() {
-		return trigger;
-
-	public Npc(String nombre, String genero, String numero, String descripcion, List<String> dialogos,
+	public Npc(String nombre, Genero genero, Numero numero, String descripcion, String dialogo,
 			List<Object> trigger) {
 		super();
 		this.nombre = nombre;
 		this.genero = genero;
 		this.numero = numero;
 		this.descripcion = descripcion;
-		this.dialogos = dialogos;
+		this.dialogo = dialogo;
 		this.trigger = trigger;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+	
+	public Genero getGenero() {
+		return genero;
+	}
+	
+	public Numero getNumero() {
+		return numero;
+	}
+	
+	public String getDescripcion() {
+		return descripcion;
+	}
+	
+	public String getDialogo() {
+		return dialogo;
+	}
+	
+	public List<Object> getTrigger() {
+		return trigger;
 	}
 
 	public void presentarse() {

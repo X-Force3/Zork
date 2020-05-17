@@ -8,11 +8,10 @@ public class Conexion {
 	private String locacionDestino;
 	private List<String> obstaculos;
 	
-	public Conexion(Direccion direccion, String locacionDestino, List<String> obstaculos) {
 	/// Podria haber un ID para asi diferenciar los puntos cardinales de una misma o
 	/// distinta ubicacion.
 
-	public Conexion(String direccion, String locacionDestino, List<String> obstaculos) {
+	public Conexion(Direccion direccion, String locacionDestino, List<String> obstaculos) {
 		super();
 		this.direccion = direccion;
 		this.locacionDestino = locacionDestino;
