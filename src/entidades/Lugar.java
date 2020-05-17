@@ -18,4 +18,9 @@ public class Lugar {
 
 	}
 
+	@Override
+	public String toString() {
+		return "Lugar [nombre=" + nombre + ", genero=" + genero + ", numero=" + numero + ", items=" + items + "]";
+	}
+
 }

@@ -8,10 +8,10 @@ public class Aventura {
 	private List<Ubicacion> ubicaciones;
 	private List<Item> items;
 	
-	public Aventura(Configuracion configuracion, List<Ubicacion> locaciones, List<Item> items) {
+	public Aventura(Configuracion configuracion, List<Ubicacion> ubicaciones, List<Item> items) {
 		super();
 		this.configuracion = configuracion;
-		this.ubicaciones = locaciones;
+		this.ubicaciones = ubicaciones;
 		this.items = items;
 	}
 
@@ -19,7 +19,7 @@ public class Aventura {
 		return configuracion;
 	}
 
-	public List<Ubicacion> getLocaciones() {
+	public List<Ubicacion> getUbicaciones() {
 		return ubicaciones;
 	}
 

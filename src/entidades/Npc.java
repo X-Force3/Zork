@@ -56,4 +56,10 @@ public class Npc {
 		/// lo que necesite decir
 	}
 
+	@Override
+	public String toString() {
+		return "Npc [nombre=" + nombre + ", genero=" + genero + ", numero=" + numero + ", descripcion=" + descripcion
+				+ ", dialogo=" + dialogo + ", trigger=" + trigger + "]";
+	}
+
 }

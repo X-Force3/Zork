@@ -6,18 +6,18 @@ public class Conexion {
 
 	private Direccion direccion;
 	private String locacionDestino;
-	private List<String> obstaculos;
+	private String obstaculo;
 	
 	/// Podria haber un ID para asi diferenciar los puntos cardinales de una misma o
 	/// distinta ubicacion.
 
-	public Conexion(Direccion direccion, String locacionDestino, List<String> obstaculos) {
+	public Conexion(Direccion direccion, String locacionDestino, String obstaculo) {
 		super();
 		this.direccion = direccion;
 		this.locacionDestino = locacionDestino;
-		this.obstaculos = obstaculos;
+		this.obstaculo = obstaculo;
 	}
-
+	
 	public Direccion getDireccion() {
 		return direccion;
 	}
@@ -26,8 +26,14 @@ public class Conexion {
 		return locacionDestino;
 	}
 
-	public List<String> getObstaculos() {
-		return obstaculos;
+	public String getObstaculo() {
+		return obstaculo;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Conexion [direccion=" + direccion + ", locacionDestino=" + locacionDestino + ", obstaculo=" + obstaculo
+				+ "]";
+	}
+
 }

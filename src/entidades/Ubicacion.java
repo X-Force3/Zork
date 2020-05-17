@@ -51,8 +51,15 @@ public class Ubicacion {
 	public void describirUbicacion() {
 
 	}
-
 	/// Deberia tener metodos donde pueda comprobar si los npc/ lugares/ o
 	/// conexiones figuran dentro de lo disponible dentro de la ubicacion
 
+
+	@Override
+	public String toString() {
+		return "Ubicacion [nombre=" + nombre + ", genero=" + genero + ", numero=" + numero + ", lugares=" + lugares
+				+ ", npcs=" + npcs + ", conexiones=" + conexiones + "]";
+	}
+
+	
 }
