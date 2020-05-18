@@ -1,5 +1,6 @@
 package entidades;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Item {
@@ -42,10 +43,17 @@ public class Item {
 		return efectosSobre;
 	}
 	
-	public void realizarAccion() {
-		// Deberia buscar en la lista de acciones y/o efectos sobre respecto a que va a
-		// actuar,
-
+	public boolean realizarAccion(Npc n) {
+		
+		boolean res = false;
+		for(String elemento: efectosSobre) {
+			
+			if(elemento.equals(n.getNombre())) {
+				res = true;
+			}
+		}
+		
+		return res;
 	}
 
 	@Override

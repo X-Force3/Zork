@@ -1,7 +1,5 @@
 package entidades;
 
-import java.util.List;
-
 public class Conexion {
 
 	private Direccion direccion;

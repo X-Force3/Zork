@@ -4,6 +4,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="test"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="lib" path="D:/ /Documents/GitHub/Zork/recursos/gson-2.8.6.jar"/>
+	<classpathentry kind="lib" path="G:/DOCUMENTOS/Luciano/ESCUELA/UNLAM/00_Programacion avanzada/Repositorios Git/Zork/recursos/gson-2.8.6.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

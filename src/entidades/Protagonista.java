@@ -23,7 +23,7 @@ public class Protagonista {
 	}
 
 	public void utilizarItem(Item item) {
-		item.realizarAccion();
+		//item.realizarAccion();
 	}
 
 ///Estaria bueno que se pueda especificar donde usar el item, asi dentro de la class item se podria	
