@@ -12,6 +12,21 @@ public class Lugar {
 	public Lugar() {
 
 	}
+	
+	//Luciano: Agrego constructor 
+	public Lugar(String nombre, Genero genero, Numero numero, List<String> items) {
+		this.nombre = nombre;
+		this.genero = genero;
+		this.numero = numero;
+		this.items = items;
+	}
+	
+	//Luciano: Agrego gete nombre
+	public String getNombre() {
+		return this.nombre;
+	}
+	
+	
 
 	/// Se recorre la collection
 	public void describirObjetosDisponibles() {

@@ -1,6 +1,5 @@
 package entidades;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Item {
@@ -10,9 +9,8 @@ public class Item {
 	private Numero numero;
 	private List<String> acciones;
 	private List<String> efectosSobre;
-	//private boolean usado;
-	
-	//Luz: puede ser que las acciones y los efectos sean enums? 
+	//private boolean usado; 
+	// Luz: puede ser que las acciones y los efectos sean enums?
 
 	public Item(String nombre, Genero genero, Numero numero, List<String> acciones, List<String> efectosSobre) {
 		super();
@@ -42,17 +40,40 @@ public class Item {
 	public List<String> getEfectosSobre() {
 		return efectosSobre;
 	}
-	
-	public boolean realizarAccion(Npc n) {
-		
+
+	public boolean realizarAccion(Npc npc, String accion) {
+
 		boolean res = false;
-		for(String elemento: efectosSobre) {
-			
-			if(elemento.equals(n.getNombre())) {
-				res = true;
+		for (String elemento : this.efectosSobre) {
+
+			if (elemento.equals(npc.getNombre())) {
+				for (String elemento2 : this.acciones) {
+
+					if (elemento2.contentEquals(accion)) {
+						res = true;
+					}
+				}
 			}
 		}
-		
+
+		return res;
+	}
+
+	public boolean realizarAccion(Lugar lugar, String accion) {
+
+		boolean res = false;
+		for (String elemento : efectosSobre) {
+
+			if (elemento.equals(lugar.getNombre())) {
+				for (String elemento2 : this.acciones) {
+
+					if (elemento2.contentEquals(accion)) {
+						res = true;
+					}
+				}
+			}
+		}
+
 		return res;
 	}
 
