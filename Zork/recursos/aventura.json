@@ -1,0 +1,121 @@
+{
+  "configuracion": {
+    "bienvenida": "Bienvenido",
+    "titulo": "Aventura 1: titulo de la aventura",
+    "endgame": [
+      {
+        "condicion": "ubicacion",
+        "accion": "mover",
+        "cosa": "taberna",
+        "descripcion": "¡Enhorabuena! Llegaste a la taberna, donde te espera una noche de borrachera con Grog y otros colegas piratas."
+      },
+      {
+        "condicion": "accion",
+        "accion": "ver",
+        "cosa": "espejo",
+        "descripcion": "¡Oh, no! Acabas de descubrir que tú también eres un pirata fantasma... ¡el horror!"
+      }
+    ]
+  },
+  "items": [
+    {
+      "nombre": "barreta",
+      "genero": "femenino",
+      "numero": "singular",
+      "acciones": [
+        "usar"
+      ],
+      "efectosSobre": [
+        "npc",
+        "personaje",
+        "item"
+      ]
+    },
+    {
+      "nombre": "rociador con cerveza de raiz",
+      "genero": "masculino",
+      "numero": "singular",
+      "acciones": [
+        "usar"
+      ],
+      "efectosSobre": [
+        "npc",
+        "personaje",
+        "item"
+      ]
+    },
+    {
+      "nombre": "espejo",
+      "genero": "masculino",
+      "numero": "singular",
+      "acciones": [
+        "usar",
+        "ver"
+      ],
+      "efectosSobre": [
+        "npcs",
+        "self",
+        "item"
+      ]
+    }
+  ],
+  "ubicaciones": [
+    {
+      "nombre": "muelle",
+      "genero": "masculino",
+      "numero": "singular",
+      "lugares": [
+        {
+          "nombre": "suelo",
+          "genero": "masculino",
+          "numero": "singular",
+          "items": [
+            "barreta",
+            "rociador con cerveza de raiz",
+            "espejo"
+          ]
+        }
+      ],
+      "npcs": [
+        {
+          "nombre": "pirata fantasma",
+          "genero": "masculino",
+          "numero": "singular",
+          "descripcion": "des",
+          "dialogo": "",
+          "trigger": []
+        }
+      ],
+      "conexiones": [
+        {
+          "direccion": "sur",
+          "locacionDestino": "taberna",
+          "obstaculos": "pirata fantasma"
+        }
+      ]
+    },
+    {
+      "nombre": "taberna",
+      "genero": "femenino",
+      "numero": "singular",
+      "lugares": [],
+      "npcs": [
+        {
+          "nombre": "pirata fantasma",
+          "genero": "masculino",
+          "numero": "singular",
+          "descripcion": "- '¡No puedes pasar!' El pirata fantasma no te dejará pasar",
+          "dialogo": "¡No hay nada que me digas que me haga cambiar de opinión!",
+          "trigger": []
+        }
+      ],
+      "conexiones": [
+        {
+          "direccion": "norte",
+          "locacionDestino": "muelle",
+          "obstaculo": null
+        }
+      ]
+    }
+  ]
+}
