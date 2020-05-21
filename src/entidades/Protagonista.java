@@ -7,23 +7,24 @@ public class Protagonista {
 
 	private String nombre;
 	private List<Item> inventario;
-	private Ubicacion ubicacion;
-	
-	
-	public Protagonista() {
-		nombre = "anonimo";
-		inventario = new ArrayList<Item>();
-		List<Lugar> lugares =new ArrayList<Lugar>();
-		
-		lugares.add(new Lugar());
-		ubicacion = new Ubicacion("Casa",Genero.FEMALE,Numero.SINGULAR,lugares, null, null);
-	}
+	private Ubicacion ubicacionActual;
 	
 	public Protagonista(String nombreJugador) {
 		nombre = nombreJugador;
 		inventario = new ArrayList<Item>();
+		///todo el resto es para poner la ubicacion actual
+		List<Lugar> lugares =new ArrayList<Lugar>();
+		List<Conexion> conexiones = new ArrayList<Conexion>();
+		
+		conexiones.add(new Conexion(Direccion.ESTE,"Muelle",""));
+		conexiones.add(new Conexion(Direccion.SUR,"Casa",""));
+		conexiones.add(new Conexion(Direccion.OESTE,"Barco Pirata","Minas explosivas"));
+		
+		lugares.add(new Lugar());
+		
+		ubicacionActual = new Ubicacion("Casa",Genero.FEMALE,Numero.SINGULAR,lugares, null, conexiones);
 	}
-
+	
 	public boolean añadirItem(Item item) {
 		boolean itemAñadido = false;
 		
@@ -41,6 +42,9 @@ public class Protagonista {
 		String respuesta;
 		
 		switch(dialogo) {
+			case "Presentacion" :
+				respuesta = "Hola! Mi nombre es " + nombre;
+			break;
 			
 			case "¡No hay nada que me digas que me haga cambiar de opinión!" :
 				respuesta = "Tengo que ir por otro camino";
@@ -48,7 +52,8 @@ public class Protagonista {
 			
 			case "Es la segunda ves que venís. Es hora de hablar sobre tus inquietudes..." :
 				respuesta = "Estoy buscando...";
-				
+			break;
+			
 			default : respuesta = "No te entiendo";
 		}
 		
@@ -59,7 +64,7 @@ public class Protagonista {
 		
 		item.realizarAccion();
 		///si se utiliza el item, ¿lo saco del inventario?
-		///inventario.remove(item);
+		inventario.remove(item);
 	}
 
 ///Estaria bueno que se pueda especificar donde usar el item, asi dentro de la class item se podria	
@@ -68,16 +73,23 @@ public class Protagonista {
 
 	/// El protagonista pide si puede desplazarse a un place, o a una conexion
 	/// dentro de la ubicacion
-	public boolean desplazarse(Lugar lugarDestino) {
+	public boolean desplazarse(Ubicacion lugarDestino) {
 		
-		
-		
-		return false;
-
+		if(this.ubicacionActual.equals(lugarDestino))
+			return false;
+		ubicacionActual = lugarDestino;
+		return true;
 	}
 
 	public boolean desplazarse(Conexion conexionDestino) {
-		return false;
-
+		boolean res= false;
+		
+		for(Conexion c : ubicacionActual.getConexiones()) {
+			
+			if(c.equals(conexionDestino))
+				return true;
+			
+		}
+		return res;
 	}
 }

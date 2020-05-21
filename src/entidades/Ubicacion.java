@@ -26,6 +26,10 @@ public class Ubicacion {
 		return nombre;
 	}
 
+	public void setNombre(String nombreUbicacion) {
+		nombre = nombreUbicacion;
+	}
+	
 	public Genero getGenero() {
 		return genero;
 	}
@@ -61,5 +65,41 @@ public class Ubicacion {
 				+ ", npcs=" + npcs + ", conexiones=" + conexiones + "]";
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Ubicacion other = (Ubicacion) obj;
+		if (conexiones == null) {
+			if (other.conexiones != null)
+				return false;
+		} else if (!conexiones.equals(other.conexiones))
+			return false;
+		if (genero != other.genero)
+			return false;
+		if (lugares == null) {
+			if (other.lugares != null)
+				return false;
+		} else if (!lugares.equals(other.lugares))
+			return false;
+		if (nombre == null) {
+			if (other.nombre != null)
+				return false;
+		} else if (!nombre.equals(other.nombre))
+			return false;
+		if (npcs == null) {
+			if (other.npcs != null)
+				return false;
+		} else if (!npcs.equals(other.npcs))
+			return false;
+		if (numero != other.numero)
+			return false;
+		return true;
+	}
+	
 	
 }
