@@ -51,10 +51,10 @@ public class Conexion {
 		Conexion other = (Conexion) obj;
 		if (direccion != other.direccion)
 			return false;
-		if (locacionDestino == null) {
-			if (other.locacionDestino != null)
+		if (ubicacionDestino == null) {
+			if (other.ubicacionDestino != null)
 				return false;
-		} else if (!locacionDestino.equals(other.locacionDestino))
+		} else if (!ubicacionDestino.equals(other.ubicacionDestino))
 			return false;
 		if (obstaculo == null) {
 			if (other.obstaculo != null)
