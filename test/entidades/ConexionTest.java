@@ -17,14 +17,14 @@ public class ConexionTest {
 	@Before
 	public void setup() {
 		npc = new Npc("Saku", Genero.FEMALE, Numero.SINGULAR, "Una señorita con un tapado rojo", " ", null, false);
-		ubicacionDestino = new Ubicacion("Tienda electronica", Genero.MALE, Numero.SINGULAR, null, null, null);
+		ubicacionDestino = new Ubicacion("Tienda electronica", Genero.MALE, Numero.SINGULAR, null, null, null, null);
 		conexion = new Conexion(Direccion.NORTE, ubicacionDestino, npc);
 
 		List<Npc> listaNpc = new ArrayList<Npc>();
 		listaNpc.add(npc);
 		List<Conexion> listaConexiones = new ArrayList<Conexion>();
 		listaConexiones.add(conexion);
-		ubicacionInicial = new Ubicacion("Bar cyberpunk", Genero.MALE, Numero.SINGULAR, null, listaNpc,
+		ubicacionInicial = new Ubicacion("Bar cyberpunk", Genero.MALE, Numero.SINGULAR, null, null, listaNpc,
 				listaConexiones);
 
 	}
