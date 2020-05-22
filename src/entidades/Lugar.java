@@ -36,6 +36,21 @@ public class Lugar {
 		}
 		return "En " + conjugar(genero, numero) + " " + queHay + ".";
 	}
+	
+	//Luciano: Agrego constructor 
+	public Lugar(String nombre, Genero genero, Numero numero, List<String> items) {
+		this.nombre = nombre;
+		this.genero = genero;
+		this.numero = numero;
+		this.items = items;
+	}
+	
+	//Luciano: Agrego gete nombre
+	public String getNombre() {
+		return this.nombre;
+	}
+	
+	
 
 	private String conjugar(Genero genero, Numero numero) {
 		String conjugacion= "";

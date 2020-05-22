@@ -62,9 +62,12 @@ public class Protagonista {
 
 	public void utilizarItem(Item item) {
 		
-		item.realizarAccion();
+//		item.realizarAccion();
 		///si se utiliza el item, ¿lo saco del inventario?
-		inventario.remove(item);
+//		inventario.remove(item);
+		//Luciano: Aca abria que agregar sobre que realiza la accion el item y que accion realiza y luego 
+		//deberia enmascarar la salida del metodo realizar accion.
+		//item.realizarAccion(); 
 	}
 
 ///Estaria bueno que se pueda especificar donde usar el item, asi dentro de la class item se podria	
