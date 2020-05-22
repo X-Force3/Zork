@@ -30,7 +30,7 @@ public class Conexion {
 
 	@Override
 	public String toString() {
-		return "direccion :" + " locacionDestino ";
+		return this.direccion + " :" + " locacionDestino ";
 	}
 
 	public Ubicacion irHaciaDestino() {
