@@ -1,7 +1,9 @@
 package entidades;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -25,7 +27,7 @@ public class NpcTest {
 
 		this.npc = new Npc("pirata fantasma", Genero.MALE, Numero.SINGULAR,
 				"- '¡No puedes pasar!' El pirata fantasma no te dejará pasar",
-				"¡No hay nada que me digas que me haga cambiar de opinión!", this.triggers);
+				"¡No hay nada que me digas que me haga cambiar de opinión!", this.triggers, false);
 
 		acciones = new ArrayList<String>();
 		efectosSobre = new ArrayList<String>();
