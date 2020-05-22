@@ -8,11 +8,12 @@ public class Npc {
 	private Genero genero;
 	private Numero numero;
 	private String descripcion;
-	private String dialogo;//private List<String> dialogos;
+	private String dialogo;// private List<String> dialogos;
 	private List<Object> trigger;
-	
-	public Npc(String nombre, Genero genero, Numero numero, String descripcion, String dialogo,
-			List<Object> trigger) {
+	private boolean condicionDeObstaculo;
+
+	public Npc(String nombre, Genero genero, Numero numero, String descripcion, String dialogo, List<Object> trigger,
+			boolean condicionDeObstaculo) {
 		super();
 		this.nombre = nombre;
 		this.genero = genero;
@@ -20,30 +21,35 @@ public class Npc {
 		this.descripcion = descripcion;
 		this.dialogo = dialogo;
 		this.trigger = trigger;
+		this.condicionDeObstaculo = condicionDeObstaculo;
 	}
 
 	public String getNombre() {
 		return nombre;
 	}
-	
+
 	public Genero getGenero() {
 		return genero;
 	}
-	
+
 	public Numero getNumero() {
 		return numero;
 	}
-	
+
 	public String getDescripcion() {
 		return descripcion;
 	}
-	
+
 	public String getDialogo() {
 		return dialogo;
 	}
-	
+
 	public List<Object> getTrigger() {
 		return trigger;
+	}
+
+	public boolean getCondicionDeObstaculo() {
+		return this.condicionDeObstaculo;
 	}
 
 	public void presentarse() {

@@ -3,35 +3,41 @@ package entidades;
 public class Conexion {
 
 	private Direccion direccion;
-	private String locacionDestino;
-	private String obstaculo;
-	
+	private Ubicacion ubicacionDestino;
+	private Npc obstaculo;
+
 	/// Podria haber un ID para asi diferenciar los puntos cardinales de una misma o
 	/// distinta ubicacion.
 
-	public Conexion(Direccion direccion, String locacionDestino, String obstaculo) {
+	public Conexion(Direccion direccion, Ubicacion locacionDestino, Npc obstaculo) {
 		super();
 		this.direccion = direccion;
-		this.locacionDestino = locacionDestino;
+		this.ubicacionDestino = locacionDestino;
 		this.obstaculo = obstaculo;
 	}
-	
+
 	public Direccion getDireccion() {
 		return direccion;
 	}
 
-	public String getLocacionDestino() {
-		return locacionDestino;
+	public Ubicacion getUbicacionDestino() {
+		return ubicacionDestino;
 	}
 
-	public String getObstaculo() {
+	public Npc getObstaculo() {
 		return obstaculo;
 	}
 
 	@Override
 	public String toString() {
-		return "Conexion [direccion=" + direccion + ", locacionDestino=" + locacionDestino + ", obstaculo=" + obstaculo
-				+ "]";
+		return this.direccion + " :" + " locacionDestino ";
+	}
+
+	public Ubicacion irHaciaDestino() {
+		if (obstaculo.getCondicionDeObstaculo()) {
+			return this.ubicacionDestino;
+		} else
+			return null;
 	}
 
 	@Override
