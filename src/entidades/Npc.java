@@ -9,10 +9,10 @@ public class Npc {
 	private Numero numero;
 	private String descripcion;
 	private String dialogo;// private List<String> dialogos;
-	private List<Object> trigger;
+	private List<Trigger> trigger;
 	private boolean condicionDeObstaculo;
 
-	public Npc(String nombre, Genero genero, Numero numero, String descripcion, String dialogo, List<Object> trigger,
+	public Npc(String nombre, Genero genero, Numero numero, String descripcion, String dialogo, List<Trigger> trigger,
 			boolean condicionDeObstaculo) {
 		super();
 		this.nombre = nombre;
@@ -44,7 +44,7 @@ public class Npc {
 		return dialogo;
 	}
 
-	public List<Object> getTrigger() {
+	public List<Trigger> getTrigger() {
 		return trigger;
 	}
 
@@ -52,20 +52,55 @@ public class Npc {
 		return this.condicionDeObstaculo;
 	}
 
-	public void presentarse() {
-		/// De donde saldria el texto que lo presente? Podria ser la variable
-		/// descripcion, o necesitar de otra variable
+	public String presentarse() { // cambiar diag de clase
+		return this.descripcion;
 	}
 
-	public void hablar() {
-		/// Buscaria algo en la lsita dialogos para responder acorde a la pregunta, o a
-		/// lo que necesite decir
+	public String hablar() { // cambiar diag de clase
+		return this.dialogo;
 	}
+
+	public String verificarTrigger(Item item) {
+		for (Trigger elemento : this.trigger) {
+			if (elemento.getType() == "item" && item.getNombre() == elemento.getThing()) {
+				this.ejecutarTrigger(elemento);
+				return elemento.getOn_trigger();
+			}
+		}
+		return "";
+	}
+
+	public void ejecutarTrigger(Trigger trigger) {
+		if (trigger.getAfter_trigger() == "remove")
+			this.nombre = "";
+		// le quita el nombre al npc, para no mostrarlo mas, y para que, si era un
+		// obstaculo de una coneccion, ya no lo encuentr
+		// este else if, podria ser otra ejemplo de que accion puede realizar ese
+		// trigger
+//		else if(trigger.getAfter_trigger() == "bajar vida") {
+//			this.vida -=50;
+//		}
+	}
+//	@Override
+//	public String toString() {
+//		return "Npc [nombre=" + nombre + ", genero=" + genero + ", numero=" + numero + ", descripcion=" + descripcion
+//				+ ", dialogo=" + dialogo + "]";
+//	}
 
 	@Override
 	public String toString() {
 		return "Npc [nombre=" + nombre + ", genero=" + genero + ", numero=" + numero + ", descripcion=" + descripcion
 				+ ", dialogo=" + dialogo + ", trigger=" + trigger + "]";
+	}
+
+	public String conjugarNpc() {
+		String articulo = "";
+		if (this.genero == Genero.FEMALE) {
+			articulo = this.numero == Numero.SINGULAR ? " una" : "";
+		} else {
+			articulo = this.numero == Numero.SINGULAR ? " un" : "";
+		}
+		return "Hay" + articulo + " " + this.nombre + ". ";
 	}
 
 }

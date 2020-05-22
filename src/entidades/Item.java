@@ -9,7 +9,7 @@ public class Item {
 	private Numero numero;
 	private List<String> acciones;
 	private List<String> efectosSobre;
-	//private boolean usado; 
+	// private boolean usado;
 	// Luz: puede ser que las acciones y los efectos sean enums?
 
 	public Item(String nombre, Genero genero, Numero numero, List<String> acciones, List<String> efectosSobre) {
@@ -39,6 +39,10 @@ public class Item {
 
 	public List<String> getEfectosSobre() {
 		return efectosSobre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
 	public boolean realizarAccion(Npc npc, String accion) {
@@ -81,6 +85,16 @@ public class Item {
 	public String toString() {
 		return "Item [nombre=" + nombre + ", genero=" + genero + ", numero=" + numero + ", acciones=" + acciones
 				+ ", efectosSobre=" + efectosSobre + "]";
+	}
+
+	public String conjugarItem() {
+		String conjugacion = "";
+		if (this.genero == Genero.FEMALE) {
+			conjugacion = this.numero == Numero.SINGULAR ? "una " : "";
+		} else {
+			conjugacion = this.numero == Numero.SINGULAR ? "un " : "";
+		}
+		return conjugacion + this.nombre;
 	}
 
 }

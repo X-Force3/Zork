@@ -40,6 +40,11 @@ public class Conexion {
 			return null;
 	}
 
+	public String conjugarConexion() {
+		return "Al " + this.direccion.getNombre() + " se puede ir hacia " + this.ubicacionDestino.conjugarUbicacion()
+				+ ". ";
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -63,7 +68,5 @@ public class Conexion {
 			return false;
 		return true;
 	}
-	
-	
 
 }

@@ -7,16 +7,20 @@ public class Ubicacion {
 	private String nombre;
 	private Genero genero;
 	private Numero numero;
+	private String descripcion;
 	private List<Lugar> lugares;
 	private List<Npc> npcs;
 	private List<Conexion> conexiones;
-	
-	public Ubicacion(String nombre, Genero genero, Numero numero, List<Lugar> lugares, List<Npc> npcs,
-			List<Conexion> conexiones) {
-		super();
+
+	public Ubicacion() {
+	}
+
+	public Ubicacion(String nombre, Genero genero, Numero numero, String descripcion, List<Lugar> lugares,
+			List<Npc> npcs, List<Conexion> conexiones) {
 		this.nombre = nombre;
 		this.genero = genero;
 		this.numero = numero;
+		this.descripcion = descripcion;
 		this.lugares = lugares;
 		this.npcs = npcs;
 		this.conexiones = conexiones;
@@ -29,7 +33,7 @@ public class Ubicacion {
 	public void setNombre(String nombreUbicacion) {
 		nombre = nombreUbicacion;
 	}
-	
+
 	public Genero getGenero() {
 		return genero;
 	}
@@ -50,14 +54,27 @@ public class Ubicacion {
 		return conexiones;
 	}
 
-	/// Como se describiria? No deberia ser un atributo dentro de la class para asi
-	/// poder instanciar esa descripcion?
-	public void describirUbicacion() {
+	// Estás en un muelle. En el suelo hay una barreta, un rociador con cerveza de
+	// raiz y un espejo.
+	// Hay un pirata fantasma.
+	// Al sur se puede ir hacia una taberna.
+	public String describirUbicacion() {
 
+		String cadena = this.descripcion + this.lugares.get(0).describirObjetosDisponibles()
+				+ this.npcs.get(0).conjugarNpc() + this.conexiones.get(0).conjugarConexion();
+
+		return cadena;
 	}
-	/// Deberia tener metodos donde pueda comprobar si los npc/ lugares/ o
-	/// conexiones figuran dentro de lo disponible dentro de la ubicacion
 
+	public String conjugarUbicacion() {
+		String articulo = "";
+		if (this.genero == Genero.FEMALE) {
+			articulo = this.numero == Numero.SINGULAR ? "una" : "las";
+		} else {
+			articulo = this.numero == Numero.SINGULAR ? "un" : "los";
+		}
+		return articulo + " " + this.nombre;
+	}
 
 	@Override
 	public String toString() {
@@ -100,6 +117,5 @@ public class Ubicacion {
 			return false;
 		return true;
 	}
-	
-	
+
 }
