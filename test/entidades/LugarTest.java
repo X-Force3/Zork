@@ -25,33 +25,33 @@ public class LugarTest {
 
 	@Test
 	public void queDescribaElLugarConUnItem() {
-		lugar.getItems().add(new Item("espejo",Genero.MALE, Numero.SINGULAR, Arrays.asList("usar"),Arrays.asList("npc")));
+		lugar.getItems()
+				.add(new Item("espejo", Genero.MALE, Numero.SINGULAR, Arrays.asList("usar"), Arrays.asList("npc")));
 		System.out.println(lugar.describirObjetosDisponibles());
 		Assert.assertEquals("En el muelle hay un espejo.", lugar.describirObjetosDisponibles());
 	}
-	
+
 	@Test
 	public void queDescribaElLugarConDosItems() {
-		lugar.getItems().add(new Item("piedras",Genero.FEMALE, Numero.PLURAL, Arrays.asList("usar"),Arrays.asList("npc")));
-		lugar.getItems().add(new Item("linterna",Genero.FEMALE, Numero.SINGULAR, Arrays.asList("usar"),Arrays.asList("npc")));
+		lugar.getItems()
+				.add(new Item("piedras", Genero.FEMALE, Numero.PLURAL, Arrays.asList("usar"), Arrays.asList("npc")));
+		lugar.getItems()
+				.add(new Item("linterna", Genero.FEMALE, Numero.SINGULAR, Arrays.asList("usar"), Arrays.asList("npc")));
 		System.out.println(lugar.describirObjetosDisponibles());
 		Assert.assertEquals("En el muelle hay piedras y una linterna.", lugar.describirObjetosDisponibles());
 	}
 
 	@Test
 	public void queDescribaElLugarConMuchosItems() {
-		lugar.getItems().add(new Item("espejo",Genero.MALE, Numero.SINGULAR, Arrays.asList("usar"),Arrays.asList("npc")));
-		lugar.getItems().add(new Item("martillo",Genero.MALE, Numero.SINGULAR, Arrays.asList("usar"),Arrays.asList("npc")));
-		lugar.getItems().add(new Item("linterna",Genero.FEMALE, Numero.SINGULAR, Arrays.asList("usar"),Arrays.asList("npc")));
+		lugar.getItems()
+				.add(new Item("espejo", Genero.MALE, Numero.SINGULAR, Arrays.asList("usar"), Arrays.asList("npc")));
+		lugar.getItems()
+				.add(new Item("martillo", Genero.MALE, Numero.SINGULAR, Arrays.asList("usar"), Arrays.asList("npc")));
+		lugar.getItems()
+				.add(new Item("linterna", Genero.FEMALE, Numero.SINGULAR, Arrays.asList("usar"), Arrays.asList("npc")));
 		System.out.println(lugar.describirObjetosDisponibles());
-		Assert.assertEquals("En el muelle hay un espejo, un martillo y una linterna.", lugar.describirObjetosDisponibles());
-	}
-
-	/// Se probara que un objeto disponible en el place, no siga disponible una vez
-	/// haya sido recogido
-	@Test
-	public void queNoEsteDisponibleUnObjetoAlAgarrarlo() {
-
+		Assert.assertEquals("En el muelle hay un espejo, un martillo y una linterna.",
+				lugar.describirObjetosDisponibles());
 	}
 
 }

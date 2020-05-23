@@ -6,9 +6,6 @@ public class Conexion {
 	private Ubicacion ubicacionDestino;
 	private Npc obstaculo;
 
-	/// Podria haber un ID para asi diferenciar los puntos cardinales de una misma o
-	/// distinta ubicacion.
-
 	public Conexion(Direccion direccion, Ubicacion locacionDestino, Npc obstaculo) {
 		super();
 		this.direccion = direccion;
@@ -68,7 +65,5 @@ public class Conexion {
 			return false;
 		return true;
 	}
-
-	
 
 }
