@@ -42,7 +42,7 @@ public class Conexion {
 
 	public String conjugarConexion() {
 		return "Al " + this.direccion.getNombre() + " se puede ir hacia " + this.ubicacionDestino.conjugarUbicacion()
-				+ ". ";
+				+ ".";
 	}
 
 	@Override

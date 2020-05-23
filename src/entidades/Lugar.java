@@ -23,37 +23,17 @@ public class Lugar {
 			queHay = "no hay nada. Prueba en otro lugar";
 		else {
 			if (items.size() == 1) {
-				queHay = "hay " + conjugarItem(this.items.get(0));
+				queHay = "hay " + items.get(0).conjugarItem();
 			} else {
 				for (int i = 0; i < items.size() - 2; i++) {
-					Item item = this.getItems().get(i);
-					queHay = queHay + conjugarItem(item) + ", ";
+					queHay = queHay + items.get(i).conjugarItem() + ", ";
 				}
-				Item anteultimoItem = this.items.get(items.size() - 2);
-				Item ultimoItem = this.items.get(items.size() - 1);
-				queHay = "hay " + queHay + conjugarItem(anteultimoItem) + " y " + conjugarItem(ultimoItem);
+				queHay = "hay " + queHay + items.get(items.size() - 2).conjugarItem() + " y "
+						+ items.get(items.size() - 1).conjugarItem();
 			}
 		}
-		return "En " + conjugar(genero, numero) + " " + queHay + ".";
+		return "En " + this.conjugar() + " " + queHay + ".";
 	}
-	// Adaptar
-//	 public String describirObjetosDisponibles() {
-//	        String queHay = "";
-//	        if (items.isEmpty())
-//	            queHay = "no hay nada. Prueba en otro lugar";
-//	        else {
-//	            if (items.size() == 1) {
-//	                queHay = "hay " + items.get(0).conjugarItem();
-//	            } else {
-//	                for (int i = 0; i < items.size() - 2; i++) {
-//	                    queHay = queHay + items.get(i).conjugarItem() + ", ";
-//	                }
-//	                queHay = "hay " + queHay + items.get(items.size() - 2).conjugarItem() + " y "
-//	                        + items.get(items.size() - 1).conjugarItem();
-//	            }
-//	        }
-//	        return "En " + this.conjugar() + " " + queHay + ". ";
-//	    }
 
 	private String conjugar() {
 		String conjugacion = "";
@@ -65,29 +45,8 @@ public class Lugar {
 		return conjugacion + " " + this.nombre;
 	}
 
-	// Luciano: Agrego gete nombre
 	public String getNombre() {
 		return this.nombre;
-	}
-
-	private String conjugar(Genero genero, Numero numero) {
-		String conjugacion = "";
-		if (this.genero == Genero.FEMALE) {
-			conjugacion = this.numero == Numero.SINGULAR ? "la" : "las";
-		} else {
-			conjugacion = this.numero == Numero.SINGULAR ? "el" : "los";
-		}
-		return conjugacion + " " + this.nombre;
-	}
-
-	private String conjugarItem(Item item) {
-		String conjugacion = "";
-		if (item.getGenero() == Genero.FEMALE) {
-			conjugacion = item.getNumero() == Numero.SINGULAR ? "una " : "";
-		} else {
-			conjugacion = item.getNumero() == Numero.SINGULAR ? "un " : "";
-		}
-		return conjugacion + item.getNombre();
 	}
 
 	public List<Item> getItems() {
