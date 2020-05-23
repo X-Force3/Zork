@@ -96,6 +96,11 @@ public class Ubicacion {
 				return false;
 		} else if (!conexiones.equals(other.conexiones))
 			return false;
+		if (descripcion == null) {
+			if (other.descripcion != null)
+				return false;
+		} else if (!descripcion.equals(other.descripcion))
+			return false;
 		if (genero != other.genero)
 			return false;
 		if (lugares == null) {
@@ -117,5 +122,7 @@ public class Ubicacion {
 			return false;
 		return true;
 	}
+
+	
 
 }

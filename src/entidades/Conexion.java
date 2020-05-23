@@ -56,17 +56,19 @@ public class Conexion {
 		Conexion other = (Conexion) obj;
 		if (direccion != other.direccion)
 			return false;
-		if (ubicacionDestino == null) {
-			if (other.ubicacionDestino != null)
-				return false;
-		} else if (!ubicacionDestino.equals(other.ubicacionDestino))
-			return false;
 		if (obstaculo == null) {
 			if (other.obstaculo != null)
 				return false;
 		} else if (!obstaculo.equals(other.obstaculo))
 			return false;
+		if (ubicacionDestino == null) {
+			if (other.ubicacionDestino != null)
+				return false;
+		} else if (!ubicacionDestino.equals(other.ubicacionDestino))
+			return false;
 		return true;
 	}
+
+	
 
 }

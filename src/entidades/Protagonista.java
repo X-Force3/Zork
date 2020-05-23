@@ -10,19 +10,39 @@ public class Protagonista {
 	private Ubicacion ubicacionActual;
 	
 	public Protagonista(String nombreJugador) {
-		nombre = nombreJugador;
-		inventario = new ArrayList<Item>();
-		///todo el resto es para poner la ubicacion actual
-		List<Lugar> lugares =new ArrayList<Lugar>();
-		List<Conexion> conexiones = new ArrayList<Conexion>();
-		
-		conexiones.add(new Conexion(Direccion.ESTE,"Muelle",""));
-		conexiones.add(new Conexion(Direccion.SUR,"Casa",""));
-		conexiones.add(new Conexion(Direccion.OESTE,"Barco Pirata","Minas explosivas"));
-		
-		lugares.add(new Lugar());
-		
-		ubicacionActual = new Ubicacion("Casa",Genero.FEMALE,Numero.SINGULAR,lugares, null, conexiones);
+	
+			nombre = nombreJugador;
+			inventario = new ArrayList<Item>();
+			///todo el resto es para poner la ubicacion actual
+			List<Lugar> lugares =new ArrayList<Lugar>();
+
+			List<String> efectosItemsSuelo = new ArrayList<String>();
+			efectosItemsSuelo.add("npcs");
+			efectosItemsSuelo.add("item");
+			efectosItemsSuelo.add("self");
+
+			List<String> accionItemsSuelo = new ArrayList<String>();
+			accionItemsSuelo.add("usar");
+
+			Item barreta = new Item("barreta", Genero.FEMALE, Numero.SINGULAR, accionItemsSuelo, efectosItemsSuelo);
+			Item espejo = new Item("espejo", Genero.MALE, Numero.SINGULAR, accionItemsSuelo, efectosItemsSuelo);
+			Item rociadorCervezaRaiz = new Item("rociador con cerveza de raíz", Genero.MALE, Numero.SINGULAR,
+			accionItemsSuelo, efectosItemsSuelo);
+			List<Item> itemsSuelo = new ArrayList<Item>();
+			itemsSuelo.add(barreta);
+			itemsSuelo.add(rociadorCervezaRaiz);
+			itemsSuelo.add(espejo);
+			///creado lista de items, se crea el lugar
+			lugares.add(new Lugar("Casa",Genero.FEMALE,Numero.SINGULAR,itemsSuelo));
+			///lugares HECHO - Falta conexiones
+
+			//Para crear una conexion -->
+			Ubicacion taberna = new Ubicacion("taberna", Genero.FEMALE, Numero.SINGULAR,"Taberna",lugares, null, null);
+			Conexion surMuelle = new Conexion(Direccion.SUR, taberna, new Npc("Messi", Genero.MALE, Numero.SINGULAR, "Messi, futbolista", "Hola, soy messi", null,false));
+			List<Conexion> conexionesMuelle = new ArrayList<Conexion>();
+			conexionesMuelle.add(surMuelle);
+			//En este caso, se crea la ubicacion "Casa" con los mismos parametros que "Taberna"
+			ubicacionActual = new Ubicacion("Casa",Genero.FEMALE,Numero.SINGULAR,"Casa",lugares, null, conexionesMuelle);
 	}
 	
 	public boolean añadirItem(Item item) {
@@ -54,25 +74,22 @@ public class Protagonista {
 				respuesta = "Estoy buscando...";
 			break;
 			
+			case "Hola, soy messi" : 
+				respuesta = "Hola messi!";
+			break;
+			
 			default : respuesta = "No te entiendo";
 		}
 		
 		return respuesta;
 	}
 
-	public void utilizarItem(Item item) {
+	public void utilizarItem(Item item, Npc npc, String accion) {
 		
-//		item.realizarAccion();
+		item.realizarAccion(npc, accion);
 		///si se utiliza el item, ¿lo saco del inventario?
-//		inventario.remove(item);
-		//Luciano: Aca abria que agregar sobre que realiza la accion el item y que accion realiza y luego 
-		//deberia enmascarar la salida del metodo realizar accion.
-		//item.realizarAccion(); 
+		inventario.remove(item); 
 	}
-
-///Estaria bueno que se pueda especificar donde usar el item, asi dentro de la class item se podria	
-// buscar si ese objetivo esta dentro de los limites que generarian un trigger en el destino
-// pienso que podria implicar metodos como estos, o una clase abstracta que este por encima de todo lo "interactuable"
 
 	/// El protagonista pide si puede desplazarse a un place, o a una conexion
 	/// dentro de la ubicacion
@@ -89,9 +106,10 @@ public class Protagonista {
 		
 		for(Conexion c : ubicacionActual.getConexiones()) {
 			
-			if(c.equals(conexionDestino))
+			if(c.equals(conexionDestino)) {
+				ubicacionActual = conexionDestino.getUbicacionDestino();
 				return true;
-			
+			}
 		}
 		return res;
 	}
