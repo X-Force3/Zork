@@ -16,19 +16,13 @@ public enum Direccion {
 	@SerializedName("oeste")
 	OESTE("oeste");
 
-	// constructor
-	Direccion(String string) {
+	private final String nombre;
 
+	Direccion(String nom) {
+		nombre = nom;
 	}
 
 	public String getNombre() {
-		if (this == SUR)
-			return "sur";
-		else if (this == NORTE)
-			return "norte";
-		else if (this == OESTE)
-			return "oeste";
-		else
-			return "este";
+		return nombre;
 	}
 }
