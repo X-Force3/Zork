@@ -60,7 +60,7 @@ public class Ubicacion {
 	// Al sur se puede ir hacia una taberna.
 	public String describirUbicacion() {
 
-		String cadena = this.descripcion + this.lugares.get(0).describirObjetosDisponibles()
+		String cadena = this.descripcion + this.lugares.get(0).describirObjetosDisponibles() + " "
 				+ this.npcs.get(0).conjugarNpc() + this.conexiones.get(0).conjugarConexion();
 
 		return cadena;

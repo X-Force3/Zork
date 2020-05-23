@@ -81,11 +81,6 @@ public class Npc {
 //			this.vida -=50;
 //		}
 	}
-//	@Override
-//	public String toString() {
-//		return "Npc [nombre=" + nombre + ", genero=" + genero + ", numero=" + numero + ", descripcion=" + descripcion
-//				+ ", dialogo=" + dialogo + "]";
-//	}
 
 	@Override
 	public String toString() {
