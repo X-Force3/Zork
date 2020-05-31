@@ -54,16 +54,22 @@ public class Ubicacion {
 		return conexiones;
 	}
 
-	// Estás en un muelle. En el suelo hay una barreta, un rociador con cerveza de
-	// raiz y un espejo.
-	// Hay un pirata fantasma.
-	// Al sur se puede ir hacia una taberna.
 	public String describirUbicacion() {
 
-		String cadena = this.descripcion + this.lugares.get(0).describirObjetosDisponibles() + " "
-				+ this.npcs.get(0).conjugarNpc() + this.conexiones.get(0).conjugarConexion();
+		String descripcion = this.descripcion + describirLugaresUbicacion() + this.npcs.get(0).conjugarNpc()
+				+ this.conexiones.get(0).conjugarConexion();
 
-		return cadena;
+		return descripcion;
+	}
+
+	public String describirLugaresUbicacion() {
+
+		String descripcion = "";
+
+		for (int i = 0; i < this.lugares.size(); i++)
+			descripcion += this.lugares.get(i).describirObjetosDisponibles() + " ";
+
+		return descripcion;
 	}
 
 	public String conjugarUbicacion() {
@@ -77,9 +83,44 @@ public class Ubicacion {
 	}
 
 	@Override
-	public String toString() {
-		return "Ubicacion [nombre=" + nombre + ", genero=" + genero + ", numero=" + numero + ", lugares=" + lugares
-				+ ", npcs=" + npcs + ", conexiones=" + conexiones + "]";
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Ubicacion other = (Ubicacion) obj;
+		if (conexiones == null) {
+			if (other.conexiones != null)
+				return false;
+		} else if (!conexiones.equals(other.conexiones))
+			return false;
+		if (descripcion == null) {
+			if (other.descripcion != null)
+				return false;
+		} else if (!descripcion.equals(other.descripcion))
+			return false;
+		if (genero != other.genero)
+			return false;
+		if (lugares == null) {
+			if (other.lugares != null)
+				return false;
+		} else if (!lugares.equals(other.lugares))
+			return false;
+		if (nombre == null) {
+			if (other.nombre != null)
+				return false;
+		} else if (!nombre.equals(other.nombre))
+			return false;
+		if (npcs == null) {
+			if (other.npcs != null)
+				return false;
+		} else if (!npcs.equals(other.npcs))
+			return false;
+		if (numero != other.numero)
+			return false;
+		return true;
 	}
 
 }

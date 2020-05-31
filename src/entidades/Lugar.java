@@ -20,7 +20,7 @@ public class Lugar {
 	public String describirObjetosDisponibles() {
 		String queHay = "";
 		if (items.isEmpty())
-			queHay = "no hay nada. Prueba en otro lugar";
+			queHay = "no hay nada";
 		else {
 			if (items.size() == 1) {
 				queHay = "hay " + items.get(0).conjugarItem();

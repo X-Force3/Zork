@@ -81,13 +81,52 @@ public class UbicacionTest {
 		List<Lugar> lugaresAulas = new ArrayList<Lugar>();
 		lugaresAulas.add(mesasAulas);
 
-		Trigger profesorasTrabajosPracticos = new Trigger("item", "apuntes de materias de Ingeniería", null, null);
+		List<String> efectosItemsMochila = new ArrayList<String>();
+		efectosItemsMochila.add("npcs");
+		efectosItemsMochila.add("item");
+		efectosItemsMochila.add("self");
+
+		List<String> accionesItemsMochila = new ArrayList<String>();
+		accionesItemsMochila.add("usar");
+
+		Item carpeta = new Item("carpeta", Genero.FEMALE, Numero.SINGULAR, accionesItemsMochila, efectosItemsMochila);
+		Item cartuchera = new Item("cartuchera", Genero.FEMALE, Numero.SINGULAR, accionesItemsMochila,
+				efectosItemsMochila);
+		List<Item> itemsMochila = new ArrayList<Item>();
+		itemsMochila.add(carpeta);
+		itemsMochila.add(cartuchera);
+
+		Lugar mochilaAulas = new Lugar("mochila", Genero.FEMALE, Numero.SINGULAR, itemsMochila);
+		lugaresAulas.add(mochilaAulas);
+
+		List<String> efectosItemsTechos = new ArrayList<String>();
+		efectosItemsTechos.add("npcs");
+		efectosItemsTechos.add("item");
+		efectosItemsTechos.add("self");
+
+		List<String> accionesItemsTechos = new ArrayList<String>();
+		accionesItemsTechos.add("usar");
+
+		Item acondicionadorDeAire = new Item("acondicionador de aire", Genero.MALE, Numero.SINGULAR,
+				accionesItemsTechos, efectosItemsTechos);
+
+		List<Item> itemsTechos = new ArrayList<Item>();
+		itemsTechos.add(acondicionadorDeAire);
+
+		Lugar techosAulas = new Lugar("techos", Genero.MALE, Numero.PLURAL, itemsTechos);
+		lugaresAulas.add(techosAulas);
+
+		List<Item> itemsSuelo = new ArrayList<Item>();
+
+		Lugar sueloAulas = new Lugar("suelo", Genero.MALE, Numero.SINGULAR, itemsSuelo);
+		lugaresAulas.add(sueloAulas);
+
+		Trigger profesorasTrabajosPracticos = new Trigger("item", "trabajos prácticos de Ingeniería", null, null);
 		List<Trigger> triggersAulas = new ArrayList<Trigger>();
 		triggersAulas.add(profesorasTrabajosPracticos);
 
-		Npc profesorasUniversitarias = new Npc("profesoras universitarias", Genero.FEMALE, Numero.PLURAL,
-				"- '¡No puedes pasar!' Las profesoras no te aprobarán la materia si no entregas los trabajos prácticos",
-				"¡No hay nada que nos digas que nos haga cambiar de opinión!", triggersAulas, true);
+		Npc profesorasUniversitarias = new Npc("profesoras universitarias", Genero.FEMALE, Numero.PLURAL, null, null,
+				triggersAulas, true);
 		List<Npc> npcsAulas = new ArrayList<Npc>();
 		npcsAulas.add(profesorasUniversitarias);
 
@@ -102,7 +141,9 @@ public class UbicacionTest {
 				lugaresAulas, npcsAulas, conexionesAulas);
 
 		Assert.assertEquals(
-				"Estás en las aulas de la UNLaM. En las mesas hay lapiceras, hojas y trabajos prácticos de Ingeniería. Hay profesoras universitarias. Al norte se puede ir hacia los pasillos.",
+				"Estás en las aulas de la UNLaM. En las mesas hay lapiceras, hojas y trabajos prácticos de Ingeniería. "
+						+ "En la mochila hay una carpeta y una cartuchera. En los techos hay un acondicionador de aire. "
+						+ "En el suelo no hay nada. Hay profesoras universitarias. Al norte se puede ir hacia los pasillos.",
 				aulas.describirUbicacion());
 	}
 }
