@@ -9,7 +9,7 @@ import org.junit.Test;
 
 public class ProtagonistaTest {
 
-	Protagonista protagonista = new Protagonista("Nahuel");
+	Protagonista protagonista;
 
 	Ubicacion ubicacion;
 	Ubicacion taberna;
@@ -61,6 +61,8 @@ public class ProtagonistaTest {
 		List<Trigger> triggersMuelle = new ArrayList<Trigger>();
 		triggersMuelle.add(pirataFantasmaRociador);
 
+		protagonista = new Protagonista("Nahuel", Genero.MALE, ubicacion);
+		
 		pirata = new Npc("pirata fantasma", Genero.MALE, Numero.SINGULAR,
 		"- '¡No puedes pasar!' El pirata fantasma no te dejará pasar",
 		"¡No hay nada que me digas que me haga cambiar de opinión!", triggersMuelle, false);
@@ -81,14 +83,14 @@ public class ProtagonistaTest {
 		Assert.assertEquals(false, protagonista.añadirItem(item));///si devuelve falso, quiere decir que ya lo tiene en el inventario
 		
 	}
-	/*
+	
 	@Test
 	public void queSeDesplazaCorrectamenteHaciaUnaConexion() {
 		
 		Conexion c = new Conexion(Direccion.SUR, taberna, new Npc("Messi", Genero.MALE, Numero.SINGULAR, "Messi, futbolista", "Hola, soy messi", null,false));
 		
 		Assert.assertEquals(protagonista.desplazarse(c), true);
-	}*/
+	}
 	
 	@Test
 	public void queUtilizaCorrectamenteUnItem() {

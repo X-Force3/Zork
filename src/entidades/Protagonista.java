@@ -9,40 +9,10 @@ public class Protagonista {
 	private List<Item> inventario;
 	private Ubicacion ubicacionActual;
 	
-	public Protagonista(String nombreJugador) {
-	
-			nombre = nombreJugador;
-			inventario = new ArrayList<Item>();
-			///todo el resto es para poner la ubicacion actual
-			List<Lugar> lugares =new ArrayList<Lugar>();
-
-			List<String> efectosItemsSuelo = new ArrayList<String>();
-			efectosItemsSuelo.add("npcs");
-			efectosItemsSuelo.add("item");
-			efectosItemsSuelo.add("self");
-
-			List<String> accionItemsSuelo = new ArrayList<String>();
-			accionItemsSuelo.add("usar");
-
-			Item barreta = new Item("barreta", Genero.FEMALE, Numero.SINGULAR, accionItemsSuelo, efectosItemsSuelo);
-			Item espejo = new Item("espejo", Genero.MALE, Numero.SINGULAR, accionItemsSuelo, efectosItemsSuelo);
-			Item rociadorCervezaRaiz = new Item("rociador con cerveza de raíz", Genero.MALE, Numero.SINGULAR,
-			accionItemsSuelo, efectosItemsSuelo);
-			List<Item> itemsSuelo = new ArrayList<Item>();
-			itemsSuelo.add(barreta);
-			itemsSuelo.add(rociadorCervezaRaiz);
-			itemsSuelo.add(espejo);
-			///creado lista de items, se crea el lugar
-			lugares.add(new Lugar("Casa",Genero.FEMALE,Numero.SINGULAR,itemsSuelo));
-			///lugares HECHO - Falta conexiones
-
-			//Para crear una conexion -->
-			Ubicacion taberna = new Ubicacion("taberna", Genero.FEMALE, Numero.SINGULAR,"Taberna",lugares, null, null);
-			Conexion surMuelle = new Conexion(Direccion.SUR, taberna, new Npc("Messi", Genero.MALE, Numero.SINGULAR, "Messi, futbolista", "Hola, soy messi", null,false));
-			List<Conexion> conexionesMuelle = new ArrayList<Conexion>();
-			conexionesMuelle.add(surMuelle);
-			//En este caso, se crea la ubicacion "Casa" con los mismos parametros que "Taberna"
-			ubicacionActual = new Ubicacion("Casa",Genero.FEMALE,Numero.SINGULAR,"Casa",lugares, null, conexionesMuelle);
+	public Protagonista(String nombreJugador, Genero genero, Ubicacion ubicacionInicial) {
+		nombre = nombreJugador;
+		ubicacionActual = ubicacionInicial;
+		inventario = new ArrayList<Item>();
 	}
 	
 	public boolean añadirItem(Item item) {
@@ -95,7 +65,7 @@ public class Protagonista {
 	/// dentro de la ubicacion
 	public boolean desplazarse(Ubicacion lugarDestino) {
 		
-		if(this.ubicacionActual.equals(lugarDestino))
+		if(ubicacionActual.getNombre() == lugarDestino.getNombre())
 			return false;
 		ubicacionActual = lugarDestino;
 		return true;
@@ -103,10 +73,11 @@ public class Protagonista {
 
 	public boolean desplazarse(Conexion conexionDestino) {
 		boolean res= false;
+		String nombreDestino = conexionDestino.getUbicacionDestino().getNombre();
 		
 		for(Conexion c : ubicacionActual.getConexiones()) {
 			
-			if(c.equals(conexionDestino)) {
+			if(c.getUbicacionDestino().getNombre() == nombreDestino) {
 				ubicacionActual = conexionDestino.getUbicacionDestino();
 				return true;
 			}
