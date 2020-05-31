@@ -9,7 +9,7 @@ public class Protagonista {
 	private List<Item> inventario;
 	private Ubicacion ubicacionActual;
 	
-	public Protagonista(String nombreJugador, Genero genero, Ubicacion ubicacionInicial) {
+	public Protagonista(String nombreJugador, Ubicacion ubicacionInicial) {
 		nombre = nombreJugador;
 		ubicacionActual = ubicacionInicial;
 		inventario = new ArrayList<Item>();

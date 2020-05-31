@@ -61,7 +61,7 @@ public class ProtagonistaTest {
 		List<Trigger> triggersMuelle = new ArrayList<Trigger>();
 		triggersMuelle.add(pirataFantasmaRociador);
 
-		protagonista = new Protagonista("Nahuel", Genero.MALE, ubicacion);
+		protagonista = new Protagonista("Nahuel", ubicacion);
 		
 		pirata = new Npc("pirata fantasma", Genero.MALE, Numero.SINGULAR,
 		"- '¡No puedes pasar!' El pirata fantasma no te dejará pasar",
@@ -80,16 +80,17 @@ public class ProtagonistaTest {
 			
 		protagonista.añadirItem(item);
 		
-		Assert.assertEquals(false, protagonista.añadirItem(item));///si devuelve falso, quiere decir que ya lo tiene en el inventario
-		
+		//Assert.assertEquals(false, protagonista.añadirItem(item));
+		//si devuelve falso, quiere decir que ya lo tiene en el inventario
+		Assert.assertFalse(protagonista.añadirItem(item));
 	}
 	
 	@Test
 	public void queSeDesplazaCorrectamenteHaciaUnaConexion() {
 		
 		Conexion c = new Conexion(Direccion.SUR, taberna, new Npc("Messi", Genero.MALE, Numero.SINGULAR, "Messi, futbolista", "Hola, soy messi", null,false));
-		
-		Assert.assertEquals(protagonista.desplazarse(c), true);
+		Assert.assertTrue(protagonista.desplazarse(c));
+		//Assert.assertEquals(protagonista.desplazarse(c), true);
 	}
 	
 	@Test
@@ -104,7 +105,8 @@ public class ProtagonistaTest {
 		
 		protagonista.añadirItem(item);
 		protagonista.utilizarItem(item, pirata, item.getAcciones().get(0));///si lo uso, el item queda descartado de su inventario
-		Assert.assertEquals(true, protagonista.añadirItem(item)); ///si lo añadio, quiere decir que no lo tenia en su inventario 
+		//Assert.assertEquals(true, protagonista.añadirItem(item)); ///si lo añadio, quiere decir que no lo tenia en su inventario
+		Assert.assertTrue(protagonista.añadirItem(item));
 	}
 
 	@Test
