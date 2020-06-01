@@ -55,5 +55,17 @@ public class AnalizadorDeTexto {
 		}
 		return null;		
 	}
+	
+	public Lugar contieneObstaculoLugar(String entrada, List<Lugar> lugares) {
+		for(Lugar elemento : lugares) {
+			if(entrada.contains(elemento.getNombre())) {
+				return elemento;		
+			}
+		}
+		return null;
+	}
+	
+	
+	
 
 }

@@ -8,13 +8,15 @@ public class Lugar {
 	private Genero genero;
 	private Numero numero;
 	private List<Item> items;
+	private List<Trigger> triggers;
 
-	public Lugar(String nombre, Genero genero, Numero numero, List<Item> items) {
+	public Lugar(String nombre, Genero genero, Numero numero, List<Item> items, List<Trigger> triggers) {
 		super();
 		this.nombre = nombre;
 		this.genero = genero;
 		this.numero = numero;
 		this.items = items;
+		this.triggers = triggers;
 	}
 
 	public String describirObjetosDisponibles() {
@@ -57,5 +59,32 @@ public class Lugar {
 	public String toString() {
 		return "Lugar [nombre=" + nombre + ", genero=" + genero + ", numero=" + numero + ", items=" + items + "]";
 	}
+	
+	public void eliminarTrigger(Trigger trigger) {
+		// codigo
+		
+	}
+	
+	public void agregarTrigger(Trigger trigger) {
+		// codigo
+		
+		
+	}
+	
+	public void ejecutarTrigger(Item item) {
+		// el trigger podria cambiar el nombre del lugar talvez. asi, cuando el jugador quiera cambiar de ubicacion,
+		// el metodo de buscar obstaculo no lo encuentre y lo deje
+		
+		
+		
+	}
+	
+	public void verificarTrigger(Item item) {
+		
+		
+		
+	}
+	
+	
 
 }

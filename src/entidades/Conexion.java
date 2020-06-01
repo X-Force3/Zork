@@ -4,12 +4,12 @@ public class Conexion {
 
 	private Direccion direccion;
 	private Ubicacion ubicacionDestino;
-	private Npc obstaculo;
+	private String obstaculo;
 
 	/// Podria haber un ID para asi diferenciar los puntos cardinales de una misma o
 	/// distinta ubicacion.
 
-	public Conexion(Direccion direccion, Ubicacion locacionDestino, Npc obstaculo) {
+	public Conexion(Direccion direccion, Ubicacion locacionDestino, String obstaculo) {
 		super();
 		this.direccion = direccion;
 		this.ubicacionDestino = locacionDestino;
@@ -24,20 +24,13 @@ public class Conexion {
 		return ubicacionDestino;
 	}
 
-	public Npc getObstaculo() {
+	public String getObstaculo() {
 		return obstaculo;
 	}
 
 	@Override
 	public String toString() {
 		return this.direccion + " :" + " locacionDestino ";
-	}
-
-	public Ubicacion irHaciaDestino() {
-		if (obstaculo.getCondicionDeObstaculo()) {
-			return this.ubicacionDestino;
-		} else
-			return null;
 	}
 
 	public String conjugarConexion() {

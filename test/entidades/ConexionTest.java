@@ -41,11 +41,3 @@ public class ConexionTest {
 
 		Assert.assertTrue(ubicacionInicial.getConexiones().contains(conexion));
 	}
-
-	@Test
-	public void queSeDesplazaCorrectamenteSegunObstaculo() {
-		/// El Npc esta obstaculizando la conexion
-		Assert.assertEquals(conexion.irHaciaDestino(), null);
-	}
-
-}

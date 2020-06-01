@@ -15,6 +15,11 @@ public class Protagonista {
 		inventario = new ArrayList<Item>();
 	}
 	
+	public Ubicacion getUbicacionActual() {
+		return this.ubicacionActual;
+	}
+	
+	
 	public boolean añadirItem(Item item) {
 		boolean itemAñadido = false;
 		
@@ -84,4 +89,13 @@ public class Protagonista {
 		}
 		return res;
 	}
+	
+	public void eliminarItem(Item item) {	// al accionar el trigger, deberiamos eliminar el item del inventario
+		this.inventario.remove(item);
+	}
+	
+	public List<Item> getInventario(){
+		return this.inventario;
+	}
+	
 }

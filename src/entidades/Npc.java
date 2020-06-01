@@ -10,10 +10,8 @@ public class Npc {
 	private String descripcion;
 	private String dialogo;// private List<String> dialogos;
 	private List<Trigger> trigger;
-	private boolean condicionDeObstaculo;
 
-	public Npc(String nombre, Genero genero, Numero numero, String descripcion, String dialogo, List<Trigger> trigger,
-			boolean condicionDeObstaculo) {
+	public Npc(String nombre, Genero genero, Numero numero, String descripcion, String dialogo, List<Trigger> trigger) {
 		super();
 		this.nombre = nombre;
 		this.genero = genero;
@@ -21,7 +19,6 @@ public class Npc {
 		this.descripcion = descripcion;
 		this.dialogo = dialogo;
 		this.trigger = trigger;
-		this.condicionDeObstaculo = condicionDeObstaculo;
 	}
 
 	public String getNombre() {
@@ -46,10 +43,6 @@ public class Npc {
 
 	public List<Trigger> getTrigger() {
 		return trigger;
-	}
-
-	public boolean getCondicionDeObstaculo() {
-		return this.condicionDeObstaculo;
 	}
 
 	public String presentarse() { // cambiar diag de clase

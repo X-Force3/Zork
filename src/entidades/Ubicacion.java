@@ -28,7 +28,7 @@ public class Ubicacion {
 
 	public String getNombre() {
 		return nombre;
-	}
+	}	
 
 	public void setNombre(String nombreUbicacion) {
 		nombre = nombreUbicacion;
@@ -81,5 +81,19 @@ public class Ubicacion {
 		return "Ubicacion [nombre=" + nombre + ", genero=" + genero + ", numero=" + numero + ", lugares=" + lugares
 				+ ", npcs=" + npcs + ", conexiones=" + conexiones + "]";
 	}
+	
+	public List<Item> getItems(){
+		// deberia devolver una lista con todos los items de la ubicacion
+		return null;
+	}	
+	
+	public void eliminarItem(Item item) {
+		// buscar cual es el lugar que tiene el item, y dereferenciarlo (creo que quitandolo de la lista ya esta)
+		
+	}
+	
+	
+	
+	
 
 }
