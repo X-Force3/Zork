@@ -1,5 +1,4 @@
 package juego;
-
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -13,17 +12,18 @@ import entidades.*;
 public class ManejoArchivosProbandoHashmaps {
 
 	private static final String RUTA = "recursos/";
-	public static final String RUTA_AVENTURA_1 = RUTA + "aventura.json";
+	//public static final String RUTA_AVENTURA_1 = RUTA + "aventura.json";
 	private Aventura aventura;
-
+	
+	/*
 	public ManejoArchivosProbandoHashmaps(String ruta) {
 		this.aventura = cargarAventura(ruta);
 	}
-
-	private static Aventura cargarAventura(String ruta) {
+	 */
+	public static Aventura cargarAventura(String ruta) {
 		Aventura aventura = null;
 		try {
-			JsonReader reader = new JsonReader(new FileReader(ruta));
+			JsonReader reader = new JsonReader(new FileReader(RUTA + ruta));
 			aventura = new Gson().fromJson(reader, Aventura.class);
 			reader.close();
 		} catch (FileNotFoundException e) {
@@ -41,7 +41,7 @@ public class ManejoArchivosProbandoHashmaps {
 		}
 		return ubicacionesHashMap;
 	}
-
+/*
 	public HashMap<String, Item> construirHashmapItems() {
 		HashMap<String, Item> itemsHashMap = new HashMap<String, Item>();
 		for (Item item : aventura.getItems()) {
@@ -49,9 +49,11 @@ public class ManejoArchivosProbandoHashmaps {
 		}
 		return itemsHashMap;
 	}
-
+*/
 	public Aventura getAventura() {
 		return aventura;
 	}
 
+	
+	
 }
