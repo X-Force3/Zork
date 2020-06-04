@@ -76,7 +76,7 @@ public class Menu {
 			}catch(Exception e){
 				System.out.println("Error! Ingrese un numero correcto de las opciones disponibles");
 			}
-		}while(this.opcion!=0);
+		}while(!this.nombreAventura.containsKey(this.opcion));
 		
 	}
 	
@@ -94,6 +94,7 @@ public class Menu {
 		this.nombreAventura.put(1, "Taberna");
 		this.nombreAventura.put(2, "Discoteca");
 		this.nombreAventura.put(3, "La isla");
+		this.nombreAventura.put(0, "Salir");
 	}
 	
 }
