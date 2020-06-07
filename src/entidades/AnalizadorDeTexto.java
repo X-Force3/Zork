@@ -1,6 +1,5 @@
 package entidades;
 
-
 import java.util.List;
 import java.util.Scanner;
 
@@ -64,7 +63,6 @@ public class AnalizadorDeTexto {
 		}
 		return null;
 	}
-	
 	
 	
 

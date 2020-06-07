@@ -59,13 +59,6 @@ public class Protagonista {
 		return respuesta;
 	}
 
-	public void utilizarItem(Item item, Npc npc, String accion) {
-		
-		item.realizarAccion(npc, accion);
-		///si se utiliza el item, ¿lo saco del inventario?
-		inventario.remove(item); 
-	}
-
 	/// El protagonista pide si puede desplazarse a un place, o a una conexion
 	/// dentro de la ubicacion
 	public boolean desplazarse(Ubicacion lugarDestino) {
@@ -96,6 +89,13 @@ public class Protagonista {
 	
 	public List<Item> getInventario(){
 		return this.inventario;
+	}
+	
+	public String describirInventario() {
+		// ejemplo de retorno: 
+		// "Tienes una barreta y un rociador con cerveza de raiz en tu inventario"
+		// podes adaptar el metodo describirObjetosDisponibles de Lugar 
+		return "";
 	}
 	
 }

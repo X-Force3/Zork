@@ -60,7 +60,7 @@ public class Npc {
 				return elemento.getOn_trigger();
 			}
 		}
-		return "";
+		return "eso no a servido de nada";
 	}
 
 	public void ejecutarTrigger(Trigger trigger) {

@@ -9,14 +9,16 @@ public class Lugar {
 	private Numero numero;
 	private List<Item> items;
 	private List<Trigger> triggers;
+	private String descripcion;	// este atributo solo lo tienen los lugares que actuan como obstaculos
 
-	public Lugar(String nombre, Genero genero, Numero numero, List<Item> items, List<Trigger> triggers) {
+	public Lugar(String nombre, Genero genero, Numero numero, List<Item> items, List<Trigger> triggers, String descripcion) {
 		super();
 		this.nombre = nombre;
 		this.genero = genero;
 		this.numero = numero;
 		this.items = items;
 		this.triggers = triggers;
+		this.descripcion = descripcion;
 	}
 
 	public String describirObjetosDisponibles() {
@@ -50,6 +52,10 @@ public class Lugar {
 	public String getNombre() {
 		return this.nombre;
 	}
+	
+	public String getDescripcion() {
+		return this.descripcion;
+	}
 
 	public List<Item> getItems() {
 		return items;
@@ -71,18 +77,24 @@ public class Lugar {
 		
 	}
 	
-	public void ejecutarTrigger(Item item) {
+	public void ejecutarTrigger(Trigger trigger) {
 		// el trigger podria cambiar el nombre del lugar talvez. asi, cuando el jugador quiera cambiar de ubicacion,
 		// el metodo de buscar obstaculo no lo encuentre y lo deje
-		
-		
+		if (trigger.getAfter_trigger() == "remove")
+			this.nombre = "";
+		if (trigger.getAfter_trigger() == "cambiar nombre")	// ver lo del posible atributo de trigger "descripcion"
+			this.nombre = "";
 		
 	}
 	
-	public void verificarTrigger(Item item) {
-		
-		
-		
+	public String verificarTrigger(Item item) {
+		for (Trigger elemento : this.triggers) {
+			if (elemento.getType() == "lugar" && item.getNombre() == elemento.getThing()) {
+				this.ejecutarTrigger(elemento);
+				return elemento.getOn_trigger();
+			}
+		}
+		return "eso no a servido de nada";
 	}
 	
 	
