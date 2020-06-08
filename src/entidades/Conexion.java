@@ -28,11 +28,6 @@ public class Conexion {
 		return obstaculo;
 	}
 
-	@Override
-	public String toString() {
-		return this.direccion + " :" + " locacionDestino ";
-	}
-
 	public String conjugarConexion() {
 		return "Al " + this.direccion.getNombre() + " se puede ir hacia " + this.ubicacionDestino.conjugarUbicacion()
 				+ ".";

@@ -81,12 +81,6 @@ public class Item {
 		return res;
 	}
 
-	@Override
-	public String toString() {
-		return "Item [nombre=" + nombre + ", genero=" + genero + ", numero=" + numero + ", acciones=" + acciones
-				+ ", efectosSobre=" + efectosSobre + "]";
-	}
-
 	public String conjugarItem() {
 		String conjugacion = "";
 		if (this.genero == Genero.FEMALE) {

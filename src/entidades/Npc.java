@@ -60,7 +60,7 @@ public class Npc {
 				return elemento.getOn_trigger();
 			}
 		}
-		return "eso no a servido de nada";
+		return "Eso no ha servido de nada...";
 	}
 
 	public void ejecutarTrigger(Trigger trigger) {
@@ -73,12 +73,6 @@ public class Npc {
 //		else if(trigger.getAfter_trigger() == "bajar vida") {
 //			this.vida -=50;
 //		}
-	}
-
-	@Override
-	public String toString() {
-		return "Npc [nombre=" + nombre + ", genero=" + genero + ", numero=" + numero + ", descripcion=" + descripcion
-				+ ", dialogo=" + dialogo + ", trigger=" + trigger + "]";
 	}
 
 	public String conjugarNpc() {

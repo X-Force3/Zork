@@ -27,7 +27,7 @@ public class NpcTest {
 
 		this.npc = new Npc("pirata fantasma", Genero.MALE, Numero.SINGULAR,
 				"- '¡No puedes pasar!' El pirata fantasma no te dejará pasar",
-				"¡No hay nada que me digas que me haga cambiar de opinión!", this.triggers, false);
+				"¡No hay nada que me digas que me haga cambiar de opinión!", this.triggers);
 
 		acciones = new ArrayList<String>();
 		efectosSobre = new ArrayList<String>();
@@ -62,7 +62,7 @@ public class NpcTest {
 	@Test
 	public void queNoEsAfectadoPorUnItem() {
 		this.item.setNombre("Este item no es un trigger del npc");
-		String respuestaEsperada = "";
+		String respuestaEsperada = "Eso no ha servido de nada...";
 		Assert.assertEquals(respuestaEsperada, this.npc.verificarTrigger(this.item));
 		Assert.assertEquals("pirata fantasma", this.npc.getNombre());
 	}

@@ -1,5 +1,6 @@
 package entidades;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Ubicacion {
@@ -28,7 +29,7 @@ public class Ubicacion {
 
 	public String getNombre() {
 		return nombre;
-	}	
+	}
 
 	public void setNombre(String nombreUbicacion) {
 		nombre = nombreUbicacion;
@@ -54,10 +55,6 @@ public class Ubicacion {
 		return conexiones;
 	}
 
-	// Estás en un muelle. En el suelo hay una barreta, un rociador con cerveza de
-	// raiz y un espejo.
-	// Hay un pirata fantasma.
-	// Al sur se puede ir hacia una taberna.
 	public String describirUbicacion() {
 
 		String cadena = this.descripcion + this.lugares.get(0).describirObjetosDisponibles() + " "
@@ -76,22 +73,38 @@ public class Ubicacion {
 		return articulo + " " + this.nombre;
 	}
 
-	@Override
-	public String toString() {
-		return "Ubicacion [nombre=" + nombre + ", genero=" + genero + ", numero=" + numero + ", lugares=" + lugares
-				+ ", npcs=" + npcs + ", conexiones=" + conexiones + "]";
+	public List<Item> getItems() {
+
+		List<Item> itemsUbicacion = new ArrayList<Item>();
+
+		for (Lugar lugar : this.lugares) {
+			for (Item item : lugar.getItems())
+				itemsUbicacion.add(item);
+		}
+
+		return itemsUbicacion;
 	}
-	
-	public List<Item> getItems(){
-		// deberia devolver una lista con todos los items de la ubicacion
-		return null;
-	}	
-	
-	public void eliminarItem(Item item) {
-		// buscar cual es el lugar que tiene el item, y dereferenciarlo (creo que quitandolo de la lista ya esta)
-		
+
+	public void eliminarItemUbicacion(Item item) {
+
+		for (Lugar lugar : this.lugares) {
+			lugar.eliminarItemLugar(item);
+		}
+
 	}
-	
-	
+
+	public boolean equals(Object obj) {
+
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Ubicacion other = (Ubicacion) obj;
+		if (other.nombre.equals(this.nombre))
+			return true;
+		return false;
+	}
 
 }

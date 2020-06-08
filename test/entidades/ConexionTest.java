@@ -16,9 +16,9 @@ public class ConexionTest {
 
 	@Before
 	public void setup() {
-		npc = new Npc("Saku", Genero.FEMALE, Numero.SINGULAR, "Una señorita con un tapado rojo", " ", null, false);
-		ubicacionDestino = new Ubicacion("Tienda electronica", Genero.MALE, Numero.SINGULAR, null, null, null, null);
-		conexion = new Conexion(Direccion.NORTE, ubicacionDestino, npc);
+		npc = new Npc("Saku", Genero.FEMALE, Numero.SINGULAR, "Una señorita con un tapado rojo. ", " ", null);
+		ubicacionDestino = new Ubicacion("Tienda electrónica", Genero.MALE, Numero.SINGULAR, null, null, null, null);
+		conexion = new Conexion(Direccion.NORTE, ubicacionDestino, "Saku");
 
 		List<Npc> listaNpc = new ArrayList<Npc>();
 		listaNpc.add(npc);
@@ -41,3 +41,5 @@ public class ConexionTest {
 
 		Assert.assertTrue(ubicacionInicial.getConexiones().contains(conexion));
 	}
+
+}

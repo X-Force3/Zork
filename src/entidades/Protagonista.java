@@ -8,94 +8,107 @@ public class Protagonista {
 	private String nombre;
 	private List<Item> inventario;
 	private Ubicacion ubicacionActual;
-	
+
 	public Protagonista(String nombreJugador, Ubicacion ubicacionInicial) {
 		nombre = nombreJugador;
 		ubicacionActual = ubicacionInicial;
 		inventario = new ArrayList<Item>();
 	}
-	
+
 	public Ubicacion getUbicacionActual() {
 		return this.ubicacionActual;
 	}
-	
-	
+
 	public boolean añadirItem(Item item) {
 		boolean itemAñadido = false;
-		
-		if(inventario.contains(item) == false) {
+
+		if (inventario.contains(item) == false) {
 			inventario.add(item);
 			itemAñadido = true;
 		}
-		
-		return itemAñadido;
 
+		return itemAñadido;
 	}
 
 	public String hablar(String dialogo) {
 
 		String respuesta;
-		
-		switch(dialogo) {
-			case "Presentacion" :
-				respuesta = "Hola! Mi nombre es " + nombre;
+
+		switch (dialogo) {
+		case "Presentacion":
+			respuesta = "Hola! Mi nombre es " + nombre;
 			break;
-			
-			case "¡No hay nada que me digas que me haga cambiar de opinión!" :
-				respuesta = "Tengo que ir por otro camino";
+
+		case "¡No hay nada que me digas que me haga cambiar de opinión!":
+			respuesta = "Tengo que ir por otro camino";
 			break;
-			
-			case "Es la segunda ves que venís. Es hora de hablar sobre tus inquietudes..." :
-				respuesta = "Estoy buscando...";
+
+		case "Es la segunda ves que venís. Es hora de hablar sobre tus inquietudes...":
+			respuesta = "Estoy buscando...";
 			break;
-			
-			case "Hola, soy messi" : 
-				respuesta = "Hola messi!";
+
+		case "Hola, soy Messi. ":
+			respuesta = "Hola Messi!";
 			break;
-			
-			default : respuesta = "No te entiendo";
+
+		default:
+			respuesta = "No te entiendo...";
 		}
-		
+
 		return respuesta;
 	}
 
 	/// El protagonista pide si puede desplazarse a un place, o a una conexion
 	/// dentro de la ubicacion
-	public boolean desplazarse(Ubicacion lugarDestino) {
-		
-		if(ubicacionActual.getNombre() == lugarDestino.getNombre())
-			return false;
-		ubicacionActual = lugarDestino;
-		return true;
-	}
+	public boolean desplazarse(Ubicacion ubicacionDestino) {
 
-	public boolean desplazarse(Conexion conexionDestino) {
-		boolean res= false;
-		String nombreDestino = conexionDestino.getUbicacionDestino().getNombre();
-		
-		for(Conexion c : ubicacionActual.getConexiones()) {
-			
-			if(c.getUbicacionDestino().getNombre() == nombreDestino) {
-				ubicacionActual = conexionDestino.getUbicacionDestino();
+		for (Conexion conexion : this.getUbicacionActual().getConexiones()) {
+			if (conexion.getUbicacionDestino().equals(ubicacionDestino)) {
+				this.ubicacionActual = ubicacionDestino;
 				return true;
 			}
 		}
-		return res;
+
+		return false;
 	}
-	
-	public void eliminarItem(Item item) {	// al accionar el trigger, deberiamos eliminar el item del inventario
+
+	public boolean desplazarse(Conexion conexionDestino) {
+
+		for (Conexion conexion : this.ubicacionActual.getConexiones()) {
+			if (conexion.getUbicacionDestino().equals(conexionDestino.getUbicacionDestino())) {
+				this.ubicacionActual = conexionDestino.getUbicacionDestino();
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	public void eliminarItem(Item item) { // al accionar el trigger, deberiamos eliminar el item del inventario
 		this.inventario.remove(item);
 	}
-	
-	public List<Item> getInventario(){
+
+	public List<Item> getInventario() {
 		return this.inventario;
 	}
-	
+
 	public String describirInventario() {
-		// ejemplo de retorno: 
-		// "Tienes una barreta y un rociador con cerveza de raiz en tu inventario"
-		// podes adaptar el metodo describirObjetosDisponibles de Lugar 
-		return "";
+
+		String queHay = "";
+		if (inventario.isEmpty())
+			queHay = "no hay nada. Está vacío...";
+		else {
+			if (inventario.size() == 1) {
+				queHay = "hay " + inventario.get(0).conjugarItem();
+			} else {
+				for (int i = 0; i < inventario.size() - 2; i++) {
+					queHay = queHay + inventario.get(i).conjugarItem() + ", ";
+				}
+				queHay = "hay " + queHay + inventario.get(inventario.size() - 2).conjugarItem() + " y "
+						+ inventario.get(inventario.size() - 1).conjugarItem();
+			}
+		}
+		return "En tu inventario " + queHay + ".";
 	}
-	
+
 }

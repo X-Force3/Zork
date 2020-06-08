@@ -7,37 +7,35 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class AnalizadorDeTextoTest {	
+public class AnalizadorDeTextoTest {
 	public AnalizadorDeTexto analizador;
-	
+
 	List<String> efectosItemsSuelo;
 	Item barreta;
 	Item espejo;
 	Item rociadorCervezaRaiz;
 	List<Item> itemsSuelo;
-	
+
 	List<String> accionItemsSuelo;
-	
+
 	Lugar sueloMuelle;
 	List<Lugar> lugaresMuelle;
-	
+
 	Trigger pirataFantasmaRociador;
 	List<Trigger> triggersMuelle;
-	
+
 	Npc pirataFantasma;
 	List<Npc> npcsMuelle;
-	
+
 	Ubicacion taberna;
 	Conexion surMuelle;
 	Ubicacion muelle;
 	List<Conexion> conexionesMuelle;
-	
-	
-	
+
 	@Before
 	public void setup() {
 		this.analizador = new AnalizadorDeTexto();
-		
+
 		this.efectosItemsSuelo = new ArrayList<String>();
 		this.efectosItemsSuelo.add("npcs");
 		this.efectosItemsSuelo.add("item");
@@ -55,7 +53,7 @@ public class AnalizadorDeTextoTest {
 		this.itemsSuelo.add(rociadorCervezaRaiz);
 		this.itemsSuelo.add(espejo);
 
-		this.sueloMuelle = new Lugar("suelo", Genero.MALE, Numero.SINGULAR, itemsSuelo);
+		this.sueloMuelle = new Lugar("suelo", Genero.MALE, Numero.SINGULAR, itemsSuelo, null, null);
 		this.lugaresMuelle = new ArrayList<Lugar>();
 		this.lugaresMuelle.add(sueloMuelle);
 
@@ -65,14 +63,14 @@ public class AnalizadorDeTextoTest {
 
 		this.pirataFantasma = new Npc("pirata fantasma", Genero.MALE, Numero.SINGULAR,
 				"- '¡No puedes pasar!' El pirata fantasma no te dejará pasar",
-				"¡No hay nada que me digas que me haga cambiar de opinión!", triggersMuelle, true);
+				"¡No hay nada que me digas que me haga cambiar de opinión!", triggersMuelle);
 		this.npcsMuelle = new ArrayList<Npc>();
 		this.npcsMuelle.add(pirataFantasma);
 
-		this.taberna = new Ubicacion("taberna", Genero.FEMALE, Numero.SINGULAR, "Estás en una taberna. ", null,
-				null, null);
+		this.taberna = new Ubicacion("taberna", Genero.FEMALE, Numero.SINGULAR, "Estás en una taberna. ", null, null,
+				null);
 
-		this.surMuelle = new Conexion(Direccion.SUR, taberna, pirataFantasma);
+		this.surMuelle = new Conexion(Direccion.SUR, taberna, "pirata fantasma");
 		this.conexionesMuelle = new ArrayList<Conexion>();
 		this.conexionesMuelle.add(surMuelle);
 
@@ -84,28 +82,60 @@ public class AnalizadorDeTextoTest {
 				muelle.describirUbicacion());
 
 	}
-	
-	
+
 //	@Test
 //	public void queRecibeEntrada() {
-//		Assert.assertEquals("entrada esperada", analizador.recibirEntrada());
+//
+//		String entrada = analizador.recibirEntrada();
+//		Assert.assertFalse(entrada.contentEquals(""));
 //	}
-	
-	
-	
+	// Es un test de nuestra clase o estamos probando la funcionalidad del Scanner?
+
 	@Test
-	public void queDetectaItem() {	// ingresar %barreta%
-		String entrada = analizador.recibirEntrada();
+	public void queDetectaItem() { // ingresar %barreta%
+
+		String entrada = "barreta";
 		Item itemDevuelto = analizador.contieneItem(entrada, this.itemsSuelo);
-		Assert.assertEquals(this.barreta , itemDevuelto);
+		Assert.assertEquals(this.barreta, itemDevuelto);
 	}
-	
+
 	@Test
-	public void queDetectaConexion() {	// ingresar %taberna%  o  %sur%
-		String entrada = analizador.recibirEntrada();
+	public void queDetectaConexionPuntoCardinal() { // ingresar %taberna% o %sur%
+
+		String entrada = "sur";
 		Conexion conexionDevuelta = analizador.contieneConexion(entrada, this.muelle.getConexiones());
 		Assert.assertEquals(this.surMuelle, conexionDevuelta);
-	}	
+	}
 
+	@Test
+	public void queDetectaConexionUbicacion() { // ingresar %taberna% o %sur%
+
+		String entrada = "taberna";
+		Conexion conexionDevuelta = analizador.contieneConexion(entrada, this.muelle.getConexiones());
+		Assert.assertEquals(this.surMuelle, conexionDevuelta);
+	}
+
+	@Test
+	public void queDetectaAccion() {
+
+		String entrada = "usar";
+		String accionDevuelta = analizador.contieneAccion(entrada, this.accionItemsSuelo);
+		Assert.assertEquals(entrada, accionDevuelta);
+	}
+
+	@Test
+	public void queDetectaNpc() {
+
+		String entrada = "pirata fantasma";
+		Npc npcDevuelto = analizador.contieneObstaculoNpc(entrada, npcsMuelle);
+		Assert.assertEquals(entrada, npcDevuelto.getNombre());
+	}
+
+	@Test
+	public void queDetectaLugar() {
+
+		String entrada = "suelo";
+		Lugar lugarDevuelto = analizador.contieneObstaculoLugar(entrada, lugaresMuelle);
+		Assert.assertEquals(entrada, lugarDevuelto.getNombre());
+	}
 }
-

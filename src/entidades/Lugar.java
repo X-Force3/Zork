@@ -9,9 +9,10 @@ public class Lugar {
 	private Numero numero;
 	private List<Item> items;
 	private List<Trigger> triggers;
-	private String descripcion;	// este atributo solo lo tienen los lugares que actuan como obstaculos
+	private String descripcion; // este atributo solo lo tienen los lugares que actuan como obstaculos
 
-	public Lugar(String nombre, Genero genero, Numero numero, List<Item> items, List<Trigger> triggers, String descripcion) {
+	public Lugar(String nombre, Genero genero, Numero numero, List<Item> items, List<Trigger> triggers,
+			String descripcion) {
 		super();
 		this.nombre = nombre;
 		this.genero = genero;
@@ -24,7 +25,7 @@ public class Lugar {
 	public String describirObjetosDisponibles() {
 		String queHay = "";
 		if (items.isEmpty())
-			queHay = "no hay nada. Prueba en otro lugar";
+			queHay = "no hay nada";
 		else {
 			if (items.size() == 1) {
 				queHay = "hay " + items.get(0).conjugarItem();
@@ -39,7 +40,7 @@ public class Lugar {
 		return "En " + this.conjugar() + " " + queHay + ".";
 	}
 
-	private String conjugar() {
+	public String conjugar() {
 		String conjugacion = "";
 		if (this.genero == Genero.FEMALE) {
 			conjugacion = this.numero == Numero.SINGULAR ? "la" : "las";
@@ -52,7 +53,7 @@ public class Lugar {
 	public String getNombre() {
 		return this.nombre;
 	}
-	
+
 	public String getDescripcion() {
 		return this.descripcion;
 	}
@@ -61,32 +62,27 @@ public class Lugar {
 		return items;
 	}
 
-	@Override
-	public String toString() {
-		return "Lugar [nombre=" + nombre + ", genero=" + genero + ", numero=" + numero + ", items=" + items + "]";
-	}
-	
 	public void eliminarTrigger(Trigger trigger) {
 		// codigo
-		
+
 	}
-	
+
 	public void agregarTrigger(Trigger trigger) {
 		// codigo
-		
-		
+
 	}
-	
+
 	public void ejecutarTrigger(Trigger trigger) {
-		// el trigger podria cambiar el nombre del lugar talvez. asi, cuando el jugador quiera cambiar de ubicacion,
+		// el trigger podria cambiar el nombre del lugar talvez. asi, cuando el jugador
+		// quiera cambiar de ubicacion,
 		// el metodo de buscar obstaculo no lo encuentre y lo deje
 		if (trigger.getAfter_trigger() == "remove")
 			this.nombre = "";
-		if (trigger.getAfter_trigger() == "cambiar nombre")	// ver lo del posible atributo de trigger "descripcion"
+		if (trigger.getAfter_trigger() == "cambiar nombre") // ver lo del posible atributo de trigger "descripcion"
 			this.nombre = "";
-		
+
 	}
-	
+
 	public String verificarTrigger(Item item) {
 		for (Trigger elemento : this.triggers) {
 			if (elemento.getType() == "lugar" && item.getNombre() == elemento.getThing()) {
@@ -94,9 +90,13 @@ public class Lugar {
 				return elemento.getOn_trigger();
 			}
 		}
-		return "eso no a servido de nada";
+		return "Eso no ha servido de nada...";
 	}
-	
-	
+
+	public void eliminarItemLugar(Item item) {
+
+		if (this.items.contains(item))
+			this.items.remove(item);
+	}
 
 }
