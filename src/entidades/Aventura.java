@@ -16,21 +16,24 @@ public class Aventura {
 		this.analizador = new AnalizadorDeTexto();
 		this.protagonista = new Protagonista(nombreJugador, ubicaciones.get(0));
 	}
-
 	public Configuracion getConfiguracion() {
 		return configuracion;
 	}
-
 	public List<Ubicacion> getUbicaciones() {
 		return ubicaciones;
+	}
+	public AnalizadorDeTexto getAnalizador() {
+		return this.analizador;
+	}
+	public Protagonista getPortagonista() {
+		return this.protagonista;
 	}
 
 	public void comenzar() {
 		String entrada;
 		String salida;
-		Conexion conexion = new Conexion(null, null, null); // tuve que iniciarlizarlo porque sino tira errores mas
-															// adelante
-		Item item = new Item(null, null, null, null, null); // same
+		Conexion conexion;
+		Item item;
 
 		this.describirContexto();
 		entrada = analizador.recibirEntrada();
@@ -40,12 +43,12 @@ public class Aventura {
 			// habria que verificar condicion de endgame
 		}
 
-		else if (this.quiereMoverseDeUbicacion(entrada, conexion) == true) {
+		else if ((conexion = this.quiereMoverseDeUbicacion(entrada)) != null) {
 			salida = this.tratarObstaculo(conexion);
 			// habria que verificar condicion de endgame
 		}
 
-		else if (this.quiereRealizarAccionConItem(entrada, item) == true) {
+		else if ((item = this.quiereRealizarAccionConItem(entrada)) != null) {
 			salida = this.realizarAccionConItem(entrada, item);
 			// no hace falta verificar condicion de endgame
 		}
@@ -61,38 +64,29 @@ public class Aventura {
 	}
 
 	public void describirContexto() {
-		// mostrar por pantalla donde esta el personaje, places, conexiones, npcs
+		System.out.println(this.protagonista.getUbicacionActual().describirUbicacion());
 	}
 
 	public boolean quiereAgarrarItem(String entrada) {
 		boolean condicion = false;
 		Item objeto;
 		objeto = analizador.contieneItem(entrada, this.protagonista.getUbicacionActual().getItems());
-		// desarroyar getItems de ubicacion
 		if (objeto != null) {
-			this.protagonista.añadirItem(objeto); // se añade al inventario9
+			this.protagonista.añadirItem(objeto); // se añade al inventario
 			this.protagonista.getUbicacionActual().eliminarItemUbicacion(objeto); // se quita del place
 			condicion = true;
 		}
 		return condicion;
 	}
 
-	public boolean quiereMoverseDeUbicacion(String entrada, Conexion conexionDestino) {
-		boolean condicion = false;
-		conexionDestino = analizador.contieneConexion(entrada, this.protagonista.getUbicacionActual().getConexiones());
-		if (conexionDestino != null) {
-			condicion = true;
-		}
-		return condicion;
+	public Conexion quiereMoverseDeUbicacion(String entrada) {
+		Conexion conexionDestino = analizador.contieneConexion(entrada, this.protagonista.getUbicacionActual().getConexiones());
+		return conexionDestino;
 	}
 
-	public boolean quiereRealizarAccionConItem(String entrada, Item item) {
-		boolean condicion = false;
-		item = analizador.contieneItem(entrada, this.protagonista.getInventario());
-		if (item != null) {
-			condicion = true;
-		}
-		return condicion;
+	public Item quiereRealizarAccionConItem(String entrada) {
+		Item item = analizador.contieneItem(entrada, this.protagonista.getInventario());
+		return item;
 	}
 
 	public boolean quiereVerAlrededor(String entrada) {
@@ -110,7 +104,7 @@ public class Aventura {
 	 * obstaculo (lugar o npc) en caso que el obstaculo ya haya sido removido,
 	 * desplaza al protagonista
 	 */
-	private String tratarObstaculo(Conexion conexion) {
+	public String tratarObstaculo(Conexion conexion) {
 		String salida;
 		String obstaculo = conexion.getObstaculo();
 		Npc obstaculoNpc;
@@ -126,6 +120,7 @@ public class Aventura {
 					salida = obstaculoLugar.getDescripcion();
 				} else {
 					this.protagonista.desplazarse(conexion);
+					System.out.println(this.protagonista.getUbicacionActual().getNombre());
 					salida = this.protagonista.getUbicacionActual().describirUbicacion();
 				}
 			}
@@ -140,7 +135,7 @@ public class Aventura {
 	 * se fija si hay una accion con ese item, y si la hay busca si hay un NPC o un
 	 * LUGAR en la entrada si encuentra, verifica y ejecuta el trigger
 	 */
-	private String realizarAccionConItem(String entrada, Item item) {
+	public String realizarAccionConItem(String entrada, Item item) {
 		Npc npc;
 		Lugar lugar;
 		String salida;

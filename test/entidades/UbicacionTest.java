@@ -10,7 +10,7 @@ public class UbicacionTest {
 
 	@Test
 	public void mostrarDescripcionCompletaMuelle() {
-
+		
 		List<String> efectosItemsSuelo = new ArrayList<String>();
 		efectosItemsSuelo.add("npcs");
 		efectosItemsSuelo.add("item");

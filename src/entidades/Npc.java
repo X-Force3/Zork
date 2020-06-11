@@ -65,7 +65,7 @@ public class Npc {
 
 	public void ejecutarTrigger(Trigger trigger) {
 		if (trigger.getAfter_trigger() == "remove")
-			this.nombre = "";
+			this.nombre = "borrado";
 		// le quita el nombre al npc, para no mostrarlo mas, y para que, si era un
 		// obstaculo de una coneccion, ya no lo encuentr
 		// este else if, podria ser otra ejemplo de que accion puede realizar ese
@@ -77,12 +77,16 @@ public class Npc {
 
 	public String conjugarNpc() {
 		String articulo = "";
-		if (this.genero == Genero.FEMALE) {
-			articulo = this.numero == Numero.SINGULAR ? " una" : "";
-		} else {
-			articulo = this.numero == Numero.SINGULAR ? " un" : "";
+		if(this.nombre != "borrado") {
+			if (this.genero == Genero.FEMALE) {
+				articulo = this.numero == Numero.SINGULAR ? " una" : "";
+			} else {
+				articulo = this.numero == Numero.SINGULAR ? " un" : "";
+			}
+			return "Hay" + articulo + " " + this.nombre + ". ";
 		}
-		return "Hay" + articulo + " " + this.nombre + ". ";
+		else
+			return "";
 	}
 
 }

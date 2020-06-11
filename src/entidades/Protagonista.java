@@ -72,16 +72,18 @@ public class Protagonista {
 		return false;
 	}
 
-	public boolean desplazarse(Conexion conexionDestino) {
-
+	public void desplazarse(Conexion conexionDestino) {
+		this.ubicacionActual = conexionDestino.getUbicacionDestino();
+		
+		// no hace falta chequear que sea una conexion, se hace en la clase aventura
+		/**
 		for (Conexion conexion : this.ubicacionActual.getConexiones()) {
 			if (conexion.getUbicacionDestino().equals(conexionDestino.getUbicacionDestino())) {
 				this.ubicacionActual = conexionDestino.getUbicacionDestino();
 				return true;
 			}
 		}
-
-		return false;
+		 */
 	}
 
 	public void eliminarItem(Item item) { // al accionar el trigger, deberiamos eliminar el item del inventario

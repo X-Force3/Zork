@@ -94,7 +94,6 @@ public class Lugar {
 	}
 
 	public void eliminarItemLugar(Item item) {
-
 		if (this.items.contains(item))
 			this.items.remove(item);
 	}

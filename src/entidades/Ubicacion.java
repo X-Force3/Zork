@@ -56,10 +56,9 @@ public class Ubicacion {
 	}
 
 	public String describirUbicacion() {
-
 		String cadena = this.descripcion + this.lugares.get(0).describirObjetosDisponibles() + " "
 				+ this.npcs.get(0).conjugarNpc() + this.conexiones.get(0).conjugarConexion();
-
+		// arreglar como mostrar si la ubicacion no tiene items o lugares o conexiones
 		return cadena;
 	}
 
@@ -74,23 +73,19 @@ public class Ubicacion {
 	}
 
 	public List<Item> getItems() {
-
 		List<Item> itemsUbicacion = new ArrayList<Item>();
 
 		for (Lugar lugar : this.lugares) {
 			for (Item item : lugar.getItems())
 				itemsUbicacion.add(item);
 		}
-
 		return itemsUbicacion;
 	}
 
 	public void eliminarItemUbicacion(Item item) {
-
 		for (Lugar lugar : this.lugares) {
 			lugar.eliminarItemLugar(item);
 		}
-
 	}
 
 	public boolean equals(Object obj) {
