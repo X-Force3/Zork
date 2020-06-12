@@ -83,7 +83,7 @@ public class Npc {
 			} else {
 				articulo = this.numero == Numero.SINGULAR ? " un" : "";
 			}
-			return "Hay" + articulo + " " + this.nombre + ". ";
+			return "Hay" + articulo + " " + this.nombre + ".";
 		}
 		else
 			return "";

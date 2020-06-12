@@ -55,12 +55,39 @@ public class Ubicacion {
 		return conexiones;
 	}
 
+	/**
+	 
 	public String describirUbicacion() {
 		String cadena = this.descripcion + this.lugares.get(0).describirObjetosDisponibles() + " "
 				+ this.npcs.get(0).conjugarNpc() + this.conexiones.get(0).conjugarConexion();
 		// arreglar como mostrar si la ubicacion no tiene items o lugares o conexiones
 		return cadena;
 	}
+	 */
+	
+	public String describirUbicacion2() {
+		String cadena = this.descripcion;
+		
+		if(this.lugares != null)
+		for(Lugar lugar : this.lugares) {
+			if(lugar.getNombre() != "borrado")
+			cadena += " " + lugar.describirObjetosDisponibles();
+		}
+		
+		if(this.npcs != null)
+		for(Npc npc : this.npcs) {
+			if(npc.getNombre() != "borrado")
+			cadena += " " + npc.conjugarNpc();
+		}
+		
+		if(this.conexiones != null)
+		for(Conexion conexion : this.conexiones) {
+			cadena += " " + conexion.conjugarConexion();
+		}
+		return cadena;
+	}
+	
+	
 
 	public String conjugarUbicacion() {
 		String articulo = "";
@@ -76,6 +103,7 @@ public class Ubicacion {
 		List<Item> itemsUbicacion = new ArrayList<Item>();
 
 		for (Lugar lugar : this.lugares) {
+			if(lugar.getItems() != null)
 			for (Item item : lugar.getItems())
 				itemsUbicacion.add(item);
 		}

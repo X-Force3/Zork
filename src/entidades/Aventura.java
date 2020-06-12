@@ -54,7 +54,7 @@ public class Aventura {
 		}
 
 		else if (this.quiereVerAlrededor(entrada) == true) {
-			salida = this.protagonista.getUbicacionActual().describirUbicacion();
+			salida = this.protagonista.getUbicacionActual().describirUbicacion2();
 
 		} else {
 			salida = "No entendí lo que me dijiste...";
@@ -64,7 +64,7 @@ public class Aventura {
 	}
 
 	public void describirContexto() {
-		System.out.println(this.protagonista.getUbicacionActual().describirUbicacion());
+		System.out.println(this.protagonista.getUbicacionActual().describirUbicacion2());
 	}
 
 	public boolean quiereAgarrarItem(String entrada) {
@@ -120,13 +120,14 @@ public class Aventura {
 					salida = obstaculoLugar.getDescripcion();
 				} else {
 					this.protagonista.desplazarse(conexion);
-					System.out.println(this.protagonista.getUbicacionActual().getNombre());
-					salida = this.protagonista.getUbicacionActual().describirUbicacion();
+					//System.out.println(this.protagonista.getUbicacionActual().getNombre());
+					//salida = this.protagonista.getUbicacionActual().describirUbicacion();
+					salida = this.protagonista.getUbicacionActual().describirUbicacion2();
 				}
 			}
 		} else {
 			this.protagonista.desplazarse(conexion);
-			salida = this.protagonista.getUbicacionActual().describirUbicacion();
+			salida = this.protagonista.getUbicacionActual().describirUbicacion2();
 		}
 		return salida;
 	}

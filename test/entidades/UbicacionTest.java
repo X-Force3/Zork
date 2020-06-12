@@ -55,6 +55,7 @@ public class UbicacionTest {
 		Assert.assertEquals(
 				"Estás en un muelle. En el suelo hay una barreta, un rociador con cerveza de raíz y un espejo. Hay un pirata fantasma. Al sur se puede ir hacia una taberna.",
 				muelle.describirUbicacion());
+		
 	}
 
 	@Test
