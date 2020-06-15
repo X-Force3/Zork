@@ -6,13 +6,13 @@ public class Configuracion {
 
 	private String bienvenida;
 	private String titulo;
-	private List<Endgame> endgame;
+	private List<Endgame> endgames;
 
-	public Configuracion(String bienvenida,String titulo, List<Endgame> endgame) {
+	public Configuracion(String bienvenida,String titulo, List<Endgame> endgames) {
 		super();
 		this.bienvenida = bienvenida;
 		this.titulo = titulo;
-		this.endgame = endgame;
+		this.endgames = endgames;
 	}
 
 	public String getBienvenida() {
@@ -23,7 +23,7 @@ public class Configuracion {
 		return titulo;
 	}
 
-	public List<Endgame> getEndgame() {
+	public List<Endgame> getEndgames() {
 		return endgame;
 	}
 

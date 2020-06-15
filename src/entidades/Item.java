@@ -45,42 +45,6 @@ public class Item {
 		this.nombre = nombre;
 	}
 
-	public boolean realizarAccion(Npc npc, String accion) {
-
-		boolean res = false;
-		for (String elemento : this.efectosSobre) {
-
-			if (elemento.equals(npc.getNombre())) {
-				for (String elemento2 : this.acciones) {
-
-					if (elemento2.contentEquals(accion)) {
-						res = true;
-					}
-				}
-			}
-		}
-
-		return res;
-	}
-
-	public boolean realizarAccion(Lugar lugar, String accion) {
-
-		boolean res = false;
-		for (String elemento : efectosSobre) {
-
-			if (elemento.equals(lugar.getNombre())) {
-				for (String elemento2 : this.acciones) {
-
-					if (elemento2.contentEquals(accion)) {
-						res = true;
-					}
-				}
-			}
-		}
-
-		return res;
-	}
-
 	public String conjugarItem() {
 		String conjugacion = "";
 		if (this.genero == Genero.FEMALE) {

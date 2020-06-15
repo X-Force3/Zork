@@ -2,6 +2,8 @@ package entidades;
 
 import java.util.List;
 
+import org.hamcrest.core.IsNull;
+
 public class Aventura {
 
 	private Configuracion configuracion;
@@ -59,7 +61,8 @@ public class Aventura {
 		} else {
 			salida = "No entendí lo que me dijiste...";
 		}
-
+		
+		this.verificarEndgame(this.configuracion.getEndgames());
 		System.out.println(salida);
 	}
 
@@ -162,5 +165,37 @@ public class Aventura {
 		}
 		return salida;
 	}
+	
+	public String verificarEndgame(List<Endgame> endgames) {
+		String salida;
+		String condicion;
+		for(Endgame endgame : endgames) {
+			condicion = endgame.getCondicion();
+			if(condicion == "item") {
+				List<Item> inventario = this.protagonista.getInventario();
+//				Item item = analizador.contieneItem(endgame.getCosa(), this.ubicaciones.get);
+				if(item != null) {
+					salida = endgame.getDescripcion();
+					break;
+				}
+			}
+			else if(endgame.getCondicion() == "ubicacion") {
+				
+				
+				
+			}
+			
+			
+			
+			
+		}
+		
+		
+		
+		return "";
+	}
+	
+	
+	
 
 }

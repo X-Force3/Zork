@@ -131,6 +131,7 @@ public class AventuraTest {
 			salida = aventura.getPortagonista().describirInventario();
 		}
 		Assert.assertEquals("En tu inventario hay un rociador con cerveza de raiz.", salida);
+		// agregar que no este mas en el lugar
 	}
 	
 	@Test

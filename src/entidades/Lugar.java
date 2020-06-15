@@ -7,11 +7,12 @@ public class Lugar {
 	private String nombre;
 	private Genero genero;
 	private Numero numero;
+	private String segundoNombre;
 	private List<Item> items;
 	private List<Trigger> triggers;
 	private String descripcion; // este atributo solo lo tienen los lugares que actuan como obstaculos
 
-	public Lugar(String nombre, Genero genero, Numero numero, List<Item> items, List<Trigger> triggers,
+	public Lugar(String nombre, String segundoNombre, Genero genero, Numero numero, List<Item> items, List<Trigger> triggers,
 			String descripcion) {
 		super();
 		this.nombre = nombre;
@@ -20,6 +21,7 @@ public class Lugar {
 		this.items = items;
 		this.triggers = triggers;
 		this.descripcion = descripcion;
+		this.segundoNombre = segundoNombre;
 	}
 
 	public String describirObjetosDisponibles() {
