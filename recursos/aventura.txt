@@ -1,7 +1,7 @@
 {
   "configuracion": {
     "bienvenida": "Bienvenido",
-    "titulo": "titulo...",
+    "titulo": "ti tu lo...",
     "endgames": [
       {
         "condicion": "ubicacion",
@@ -102,7 +102,7 @@
       "nombre": "taberna",
       "genero": "femenino",
       "numero": "singular",
-      "descipcion": "des...",
+      "descripcion": "des...",
       "lugares": [],
       "npcs": [
         {

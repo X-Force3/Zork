@@ -55,4 +55,12 @@ public class Item {
 		return conjugacion + this.nombre;
 	}
 
+	@Override
+	public String toString() {
+		return "Item [nombre=" + nombre + ", gen=" + genero + ", num=" + numero + ", acciones=" + acciones
+				+ ", efectosSobre=" + efectosSobre + "]";
+	}
+	
+	
+
 }

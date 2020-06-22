@@ -7,7 +7,7 @@ public class Lugar {
 	private String nombre;
 	private Genero genero;
 	private Numero numero;
-	private String segundoNombre;
+	private String segundoNombre;//para que?
 	private List<Item> items;
 	private List<Trigger> triggers;
 	private String descripcion; // este atributo solo lo tienen los lugares que actuan como obstaculos

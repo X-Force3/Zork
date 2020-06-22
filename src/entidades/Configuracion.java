@@ -24,7 +24,12 @@ public class Configuracion {
 	}
 
 	public List<Endgame> getEndgames() {
-		return endgame;
+		return null;
 	}
 
+	@Override
+	public String toString() {
+		return "Configuracion [bienvenida=" + bienvenida + ", titulo=" + titulo + ", endgames=" + endgames + "]";
+	}
+	
 }
