@@ -65,7 +65,7 @@ public class Ubicacion {
 	}
 	 */
 	
-	public String describirUbicacion2() {
+	public String describirUbicacion() {
 		String cadena = this.descripcion;
 		
 		if(this.lugares != null)

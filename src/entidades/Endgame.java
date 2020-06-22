@@ -57,14 +57,4 @@ public class Endgame {
 		return ubicacion;
 	}
 
-
-	public String getDescripcion() {
-		return descripcion;
-	}
-	
-	
-	
-	
-	
-
 }

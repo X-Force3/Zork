@@ -53,7 +53,7 @@ public class AnalizadorDeTextoTest {
 		this.itemsSuelo.add(rociadorCervezaRaiz);
 		this.itemsSuelo.add(espejo);
 
-		this.sueloMuelle = new Lugar("suelo", Genero.MALE, Numero.SINGULAR, itemsSuelo, null, null);
+		this.sueloMuelle = new Lugar("suelo", null, Genero.MALE, Numero.SINGULAR, itemsSuelo, null, null);
 		this.lugaresMuelle = new ArrayList<Lugar>();
 		this.lugaresMuelle.add(sueloMuelle);
 

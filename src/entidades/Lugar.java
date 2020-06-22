@@ -7,10 +7,10 @@ public class Lugar {
 	private String nombre;
 	private Genero genero;
 	private Numero numero;
-	private String segundoNombre;
+	private String segundoNombre;// Juani: Este atributo sólo lo tienen los lugares que actúan como obstáculos.
 	private List<Item> items;
 	private List<Trigger> triggers;
-	private String descripcion; // este atributo solo lo tienen los lugares que actuan como obstaculos
+	private String descripcion;// Este atributo lo tienen todos los lugares. 
 
 	public Lugar(String nombre, String segundoNombre, Genero genero, Numero numero, List<Item> items, List<Trigger> triggers,
 			String descripcion) {
@@ -94,7 +94,8 @@ public class Lugar {
 		if (trigger.getAfter_trigger() == "remove")
 			this.nombre = "borrado";
 		if (trigger.getAfter_trigger() == "cambiar nombre") // ver lo del posible atributo de trigger "descripcion"
-			this.nombre = "";
+			this.nombre = this.segundoNombre;// Juani: Reemplacé la línea que le asignaba "" por esta que le asigna el segundo nombre...
+//		O sea, el nombre del lugar luego de ejecutar el Trigger.
 
 	}
 
@@ -105,7 +106,7 @@ public class Lugar {
 				return elemento.getOn_trigger();
 			}
 		}
-		return "Eso no ha servido de nada...";
+		return "Eso no ha dado ningún resultado...";
 	}
 
 	public void eliminarItemLugar(Item item) {

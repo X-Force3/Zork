@@ -32,7 +32,7 @@ public class UbicacionTest {
 		List<Trigger> triggersMuelle = new ArrayList<Trigger>();
 		triggersMuelle.add(pirataFantasmaRociador);
 
-		Lugar sueloMuelle = new Lugar("suelo", Genero.MALE, Numero.SINGULAR, itemsSuelo, triggersMuelle, null);
+		Lugar sueloMuelle = new Lugar("suelo", null, Genero.MALE, Numero.SINGULAR, itemsSuelo, triggersMuelle, null);
 		List<Lugar> lugaresMuelle = new ArrayList<Lugar>();
 		lugaresMuelle.add(sueloMuelle);
 
@@ -82,7 +82,7 @@ public class UbicacionTest {
 		List<Trigger> triggersAulas = new ArrayList<Trigger>();
 		triggersAulas.add(profesorasTrabajosPracticos);
 
-		Lugar mesasAulas = new Lugar("mesas", Genero.FEMALE, Numero.PLURAL, itemsMesas, triggersAulas, null);
+		Lugar mesasAulas = new Lugar("mesas", null, Genero.FEMALE, Numero.PLURAL, itemsMesas, triggersAulas, null);
 		List<Lugar> lugaresAulas = new ArrayList<Lugar>();
 		lugaresAulas.add(mesasAulas);
 

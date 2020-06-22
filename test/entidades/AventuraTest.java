@@ -85,8 +85,8 @@ public class AventuraTest {
 		triggersMuelle = new ArrayList<Trigger>();
 		triggersMuelle.add(triggerCuboHielo);
 
-		sueloMuelle = new Lugar("suelo", Genero.MALE, Numero.SINGULAR, itemsSuelo, null, null);
-		cuboHielo = new Lugar("cubo de hielo", Genero.MALE, Numero.SINGULAR, null, triggersMuelle, "no puedes pasar, el cubo de hielo te impide el paso!");
+		sueloMuelle = new Lugar("suelo", null, Genero.MALE, Numero.SINGULAR, itemsSuelo, null, null);
+		cuboHielo = new Lugar("cubo de hielo", "charco de agua", Genero.MALE, Numero.SINGULAR, null, triggersMuelle, "no puedes pasar, el cubo de hielo te impide el paso!");
 		lugaresMuelle = new ArrayList<Lugar>();
 		lugaresMuelle.add(sueloMuelle);
 		lugaresMuelle.add(cuboHielo);
@@ -208,7 +208,7 @@ public class AventuraTest {
 			salida = aventura.realizarAccionConItem(entrada, item);
 		}
 		Assert.assertEquals("- '¡Me encanta la cerveza de raiz!' El pirata fantasma se veía entusiasmado por tu ofrecimiento... sin embargo, cuando lo rociaste comenzó a desintegrarse. La mitad de arriba de su cuerpo se desvaneció, y las piernas inmediatamente echaron a correr.", salida);
-		Assert.assertEquals("Estás en un muelle. En el suelo hay una barreta y un espejo. hay un cubo de hielo. Al sur se puede ir hacia una taberna. Al este se puede ir hacia una playa.", aventura.getPortagonista().getUbicacionActual().describirUbicacion2());
+		Assert.assertEquals("Estás en un muelle. En el suelo hay una barreta y un espejo. hay un cubo de hielo. Al sur se puede ir hacia una taberna. Al este se puede ir hacia una playa.", aventura.getPortagonista().getUbicacionActual().describirUbicacion());
 	}
 	
 	@Test
@@ -224,7 +224,7 @@ public class AventuraTest {
 		//System.out.println(salida);
 		//System.out.println(aventura.getPortagonista().getUbicacionActual().describirUbicacion2());
 		Assert.assertEquals("el hielo se esta derritiendo!", salida);
-		Assert.assertEquals("Estás en un muelle. En el suelo hay una barreta. Hay un pirata fantasma. Al sur se puede ir hacia una taberna. Al este se puede ir hacia una playa.", aventura.getPortagonista().getUbicacionActual().describirUbicacion2());
+		Assert.assertEquals("Estás en un muelle. En el suelo hay una barreta. Hay un pirata fantasma. Al sur se puede ir hacia una taberna. Al este se puede ir hacia una playa.", aventura.getPortagonista().getUbicacionActual().describirUbicacion());
 	}
 
 }

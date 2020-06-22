@@ -2,8 +2,6 @@ package entidades;
 
 import java.util.List;
 
-import org.hamcrest.core.IsNull;
-
 public class Aventura {
 
 	private Configuracion configuracion;
@@ -18,15 +16,19 @@ public class Aventura {
 		this.analizador = new AnalizadorDeTexto();
 		this.protagonista = new Protagonista(nombreJugador, ubicaciones.get(0));
 	}
+
 	public Configuracion getConfiguracion() {
 		return configuracion;
 	}
+
 	public List<Ubicacion> getUbicaciones() {
 		return ubicaciones;
 	}
+
 	public AnalizadorDeTexto getAnalizador() {
 		return this.analizador;
 	}
+
 	public Protagonista getPortagonista() {
 		return this.protagonista;
 	}
@@ -56,18 +58,18 @@ public class Aventura {
 		}
 
 		else if (this.quiereVerAlrededor(entrada) == true) {
-			salida = this.protagonista.getUbicacionActual().describirUbicacion2();
+			salida = this.protagonista.getUbicacionActual().describirUbicacion();
 
 		} else {
-			salida = "No entendí lo que me dijiste...";
+			salida = "No comprendí lo que quieres, intenta ser más preciso...";
 		}
-		
-		this.verificarEndgame(this.configuracion.getEndgames());
+
+		this.verificarEndgame(entrada);
 		System.out.println(salida);
 	}
 
 	public void describirContexto() {
-		System.out.println(this.protagonista.getUbicacionActual().describirUbicacion2());
+		System.out.println(this.protagonista.getUbicacionActual().describirUbicacion());
 	}
 
 	public boolean quiereAgarrarItem(String entrada) {
@@ -83,7 +85,8 @@ public class Aventura {
 	}
 
 	public Conexion quiereMoverseDeUbicacion(String entrada) {
-		Conexion conexionDestino = analizador.contieneConexion(entrada, this.protagonista.getUbicacionActual().getConexiones());
+		Conexion conexionDestino = analizador.contieneConexion(entrada,
+				this.protagonista.getUbicacionActual().getConexiones());
 		return conexionDestino;
 	}
 
@@ -123,14 +126,14 @@ public class Aventura {
 					salida = obstaculoLugar.getDescripcion();
 				} else {
 					this.protagonista.desplazarse(conexion);
-					//System.out.println(this.protagonista.getUbicacionActual().getNombre());
-					//salida = this.protagonista.getUbicacionActual().describirUbicacion();
-					salida = this.protagonista.getUbicacionActual().describirUbicacion2();
+					// System.out.println(this.protagonista.getUbicacionActual().getNombre());
+					// salida = this.protagonista.getUbicacionActual().describirUbicacion();
+					salida = this.protagonista.getUbicacionActual().describirUbicacion();
 				}
 			}
 		} else {
 			this.protagonista.desplazarse(conexion);
-			salida = this.protagonista.getUbicacionActual().describirUbicacion2();
+			salida = this.protagonista.getUbicacionActual().describirUbicacion();
 		}
 		return salida;
 	}
@@ -157,45 +160,53 @@ public class Aventura {
 					this.protagonista.eliminarItem(item);// Luego de que el protagonista utiliza el ítem, se elimina de
 															// su inventario.
 				} else {
-					salida = "No entiendo cómo quieres realizar esa accion con ese ítem..."; // u otra cosa
+					salida = "La accion que realizaste con ese ítem no dió ningún resultado..."; // Juani: Lo modifiqué porque me pareció mas preciso esto.
 				}
 			}
 		} else {
-			salida = "No entiendo qué quieres hacer con ese ítem...";
+			salida = "No entiendo qué acción quieres realizar con ese ítem...";// Juani: Idem.
 		}
 		return salida;
 	}
-	
-	public String verificarEndgame(List<Endgame> endgames) {
-		String salida;
-		String condicion;
-		for(Endgame endgame : endgames) {
-			condicion = endgame.getCondicion();
-			if(condicion == "item") {
-				List<Item> inventario = this.protagonista.getInventario();
-//				Item item = analizador.contieneItem(endgame.getCosa(), this.ubicaciones.get);
-				if(item != null) {
-					salida = endgame.getDescripcion();
-					break;
-				}
-			}
-			else if(endgame.getCondicion() == "ubicacion") {
-				
-				
-				
-			}
-			
-			
-			
-			
+
+	public String verificarEndgame(String entrada) {
+
+		String salida = "";
+
+		for (Endgame endgame : this.configuracion.getEndgames()) {
+
+			if ((endgame.getCondicion().contentEquals("item") && this.verificarItemEndgame(endgame))
+					|| (endgame.getCondicion().contentEquals("ubicacion") && this.verificarUbicacionEndgame(endgame))
+					|| (endgame.getCondicion().contentEquals("itemEnUbicacion") && this.verificarItemEndgame(endgame)
+							&& this.verificarUbicacionEndgame(endgame))
+					|| endgame.getCondicion().contentEquals("accion") && this.verificarItemEndgame(endgame)
+							&& this.verificarAccionEndgame(endgame, entrada))
+				salida = endgame.ejecutarFinal();
 		}
-		
-		
-		
-		return "";
+
+		return salida;
+	}
+
+	private boolean verificarItemEndgame(Endgame endgame) {
+
+		Item item = analizador.contieneItem(endgame.getCosa(), this.protagonista.getInventario());
+		if (item != null)
+			return true;
+		return false;
+	}
+
+	private boolean verificarUbicacionEndgame(Endgame endgame) {
+
+		if ((this.protagonista.getUbicacionActual().getNombre()).equals(endgame.getUbicacion()))
+			return true;
+		return false;
+	}
+
+	private boolean verificarAccionEndgame(Endgame endgame, String entrada) {
+
+		if (entrada.contains(endgame.getAccion()))
+			return true;
+		return false;
 	}
 	
-	
-	
-
 }
