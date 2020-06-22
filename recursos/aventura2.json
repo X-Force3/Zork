@@ -1,0 +1,478 @@
+{
+  "configuracion": 
+		{
+   			"bienvenida": "Bienvenido",
+  			"titulo": "Aventura 1: La Isla Peligrosa",
+    			"endgame": 
+			[
+      				{
+       					"condicion": "accion",
+        				"accion": "Encender",
+        				"cosa": "Lancha",
+        				"descripcion": "¡Felicidades! Pudiste encender la lancha y escapar de la isla peligrosa"
+      				},
+      				{
+        				"condicion": "accion",
+        				"accion": "agarrar",
+        				"cosa": "serpiente",
+        				"descripcion": "Has sido mordido y envenenado por la serpiente, estas fuera de juego"
+      				},
+				{
+        				"condicion": "accion",
+        				"accion": "quitar",
+        				"cosa": "llave",
+        				"descripcion": "Has sido mordido por el lobo, estas fuera de juego"
+      				},
+				{
+        				"condicion": "accion",
+        				"accion": "atrapar",
+        				"cosa": "lobo",
+        				"descripcion": "Has sido mordido por el lobo, estas fuera de juego"
+      				}
+   			]
+  		},
+  "items": 
+	[
+    		{
+   		  	"nombre": "cartel",
+    		  	"genero": "masculino",
+      			"numero": "singular",
+		      	"acciones": 	[
+       						"ver"
+   					],
+    			"efectosSobre": 
+					[
+      						
+					]
+ 		},
+    		{
+     			"nombre": "buzon",
+   			"genero": "masculino",
+      			"numero": "singular",
+      			"acciones":	[
+        					"abrir",
+						"ver"
+      					],
+      			"efectosSobre": [
+       						"buzon"
+      					]
+    		},
+    		{
+   			"nombre": "casa",
+     			"genero": "femenino",
+    			"numero": "singular",
+      			"acciones": 	[
+       					 	"ver"
+      					],
+      			"efectosSobre": [
+       						 
+      					]
+    		},
+		{
+   			"nombre": "puerta",
+     			"genero": "femenino",
+    			"numero": "singular",
+      			"acciones": 	[
+       					 	"ver",
+						"gopear",
+						"romper",
+      					],
+      			"efectosSobre": [
+       						 
+      					]
+    		},
+		{
+   			"nombre": "lancha",
+     			"genero": "femenino",
+    			"numero": "singular",
+      			"acciones": 	[
+       					 	"ver",
+						"encender",
+						"arrancar",
+						"escapar"
+      					],
+      			"efectosSobre": [
+       						"lancha"	 
+      					]
+    		},
+		{
+   			"nombre": "chimenea",
+     			"genero": "femenino",
+    			"numero": "singular",
+      			"acciones": 	[
+       					 	"ver",
+						"acceder",
+						"entrar",
+						"salir"
+      					],
+      			"efectosSobre": [
+       						"chimenea"	 
+      					]
+    		},
+		{
+   			"nombre": "navaja",
+     			"genero": "femenino",
+    			"numero": "singular",
+      			"acciones": 	[
+       					 	"tomar",
+						"guardar",
+						"atacar",
+						"tirar"
+      					],
+      			"efectosSobre": [
+       						"navaja"	 
+      					]
+    		},
+		{
+   			"nombre": "botella",
+     			"genero": "femenino",
+    			"numero": "singular",
+      			"acciones": 	[
+       					 	"tomar",
+						"guardar",
+						"romper",
+						"tirar"
+      					],
+      			"efectosSobre": [
+       						"botella"	 
+      					]
+    		},
+		{
+   			"nombre": "caja",
+     			"genero": "femenino",
+    			"numero": "singular",
+      			"acciones": 	[
+       					 	"abrir",
+						"ver"
+      					],
+      			"efectosSobre": [
+       						"caja"	 
+      					]
+    		},
+		{
+   			"nombre": "inodoro de metal",
+     			"genero": "masculino",
+    			"numero": "singular",
+      			"acciones": 	[
+       					 	"hacer",
+						"utilizar"
+      					],
+      			"efectosSobre": [
+       						"inodoro de metal"	 
+      					]
+    		},
+		{
+   			"nombre": "botiquin",
+     			"genero": "masculino",
+    			"numero": "singular",
+      			"acciones": 	[
+       					 	"abrir",
+						"cerrar"
+      					],
+      			"efectosSobre": [
+       						"botiquin"	 
+      					]
+    		},
+		{
+   			"nombre": "llave",
+     			"genero": "femenino",
+    			"numero": "singular",
+      			"acciones": 	[
+       					 	"tomar"
+						
+      					],
+      			"efectosSobre": [
+       						"llave"	 
+      					]
+    		},
+		{
+   			"nombre": "barrote",
+     			"genero": "masculino",
+    			"numero": "singular",
+      			"acciones": 	[
+       					 	"agarrar",
+						"soltar"
+						
+      					],
+      			"efectosSobre": [
+       						"barrote"	 
+      					]
+    		}
+  	]
+  "ubicaciones": 
+	[
+    		{
+     			"nombre": "oeste",
+     			"genero": "masculino",
+      			"numero": "singular",
+   			"lugares": [
+        				{
+          					"nombre": "entrada",
+          					"genero": "femenino",
+  					        "numero": "singular",
+         					 "items": [
+            							"buzon"
+      							    
+          						  ]
+       					},
+					{
+          					"nombre": "costa",
+          					"genero": "femenino",
+  					        "numero": "singular",
+         					 "items": [
+            							"lancha"
+      							    
+          						  ]
+       					}
+     				   ]
+  			"npcs": [
+        				{
+          					"nombre": "loro",
+          					"genero": "masculino",
+          					"numero": "singular",
+          					"descripcion": "Peligro! Peligro!",
+          					"dialogo": "Huye de aqui, huye de aqui!",
+          					"trigger": []
+        				}
+      				]
+      			"conexiones": 
+				[
+        				{
+          					"direccion": "este",
+          					"locacionDestino": "patio de la casa",
+          					"obstaculos": ""
+        				},
+					{
+          					"direccion": "norte",
+          					"locacionDestino": "norte de la casa",
+          					"obstaculos": ""
+        				},
+					{
+          					"direccion": "sur",
+          					"locacionDestino": "sur de la casa",
+          					"obstaculos": ""
+        				}
+      				]
+    		},
+    		{
+      			"nombre": "este",
+     			"genero": "masculino",
+     			"numero": "singular",
+      			"lugares": [
+        				{
+          					"nombre": "parte trasera de la casa",
+          					"genero": "femenino",
+  					        "numero": "singular",
+         					 "items": [
+            							"puerta",
+      							    	"ventana",
+          						  ]
+       					},
+					{
+          					"nombre": "techo",
+          					"genero": "masculino",
+  					        "numero": "singular",
+         					 "items": [
+            							"chimenea"
+      							    
+          						  ]
+       					},
+					{
+          					"nombre": "bolsillo",
+          					"genero": "masculino",
+  					        "numero": "singular",
+         					 "items": [
+            							"navaja"
+      							    
+          						  ]
+       					}
+     				   ]
+      			"npcs": [
+        				{
+          					"nombre": "serpiente",
+   					       	"genero": "femenino",
+         					"numero": "singular",
+  					        "descripcion": "En el pasto hay una peligrosa serpiente que viene en tu dirección",
+          					"dialogo": "",
+          					"trigger": []
+        				}
+      				]
+      			"conexiones": 
+				[
+        				
+					{
+          					"direccion": "norte",
+          					"locacionDestino": "norte de la casa",
+          					"obstaculos": "null"
+        				},
+					{
+          					"direccion": "sur",
+          					"locacionDestino": "sur de la casa",
+          					"obstaculos": "null"
+        				},
+					{
+          					"direccion": "living",
+          					"locacionDestino": "Ingresa por chimenea al living de la casa",
+          					"obstaculos": "serpiente"
+        				}
+      				]
+    		},
+		{
+      			"nombre": "living de la casa",
+     			"genero": "masculino",
+     			"numero": "singular",
+      			"lugares": [
+        				{
+          					"nombre": "mesa",
+          					"genero": "femenino",
+  					        "numero": "singular",
+         					 "items": [
+            							"caja"      							    	
+          						  ]
+       					},
+					{
+          					"nombre": "suelo",
+          					"genero": "masculino",
+  					        "numero": "singular",
+         					 "items": [
+            							"botella"
+      							    
+          						  ]
+       					},
+					{
+          					"nombre": "bolsillo",
+          					"genero": "masculino",
+  					        "numero": "singular",
+         					 "items": [
+            							"navaja"
+      							    
+          						  ]
+       					}
+     				   ]
+      			"npcs": [
+        				{
+          					"nombre": "comadreja",
+   					       	"genero": "femenino",
+         					"numero": "singular",
+  					        "descripcion": "Una fea comadreja esta frente a ti, parece estar rabiosa y hambrienta",
+          					"dialogo": "",
+          					"trigger": []
+        				}
+      				],
+      			"conexiones": 
+				[
+        				{
+          					"direccion": "este",
+          					"locacionDestino": "patio de la casa",
+          					"obstaculos": "null"
+        				},
+					{
+          					"direccion": "baño",
+          					"locacionDestino": "baño de la casa",
+          					"obstaculos": "comadreja"
+        				},
+					{
+          					"direccion": "habitacion",
+          					"locacionDestino": "habitacion de la casa",
+          					"obstaculos": "comadreja"
+        				}
+      				]
+    		},
+		{
+      			"nombre": "baño de la casa",
+     			"genero": "masculino",
+     			"numero": "singular",
+      			"lugares": [
+        				{
+          					"nombre": "pared",
+          					"genero": "masculino",
+  					        "numero": "singular",
+         					 "items": [
+            							"botiquin"      							    	
+          						  ]
+       					},
+					{
+          					"nombre": "rincon",
+          					"genero": "masculino",
+  					        "numero": "singular",
+         					 "items": [
+            							"inodoro"
+      							    
+          						  ]
+       					}		
+     				   ]
+      			"npcs": [
+        				{
+          					"nombre": "araña",
+   					       	"genero": "femenino",
+         					"numero": "singular",
+  					        "descripcion": "Una Araña enorme camina sobre la pared y complica tu salida del baño",
+          					"dialogo": "",
+          					"trigger": []
+        				}
+      				],
+      			"conexiones": 
+				[
+        				
+					{
+          					"direccion": "living",
+          					"locacionDestino": "living de la casa",
+          					"obstaculos": "araña"
+        				},
+					{
+          					"direccion": "habitacion",
+          					"locacionDestino": "habitacion de la casa",
+          					"obstaculos": "araña"
+        				}
+      				]
+    		},
+		{
+      			"nombre": "habitacion de la casa",
+     			"genero": "femenino",
+     			"numero": "singular",
+      			"lugares": [
+        				{
+          					"nombre": "colchon",
+          					"genero": "masculino",
+  					        "numero": "singular",
+         					 "items": [
+            							"llave"      							    	
+          						  ]
+       					},
+					{
+          					"nombre": "piso",
+          					"genero": "masculino",
+  					        "numero": "singular",
+         					 "items": [
+            							"barrote"
+      							    
+          						  ]
+       					}		
+     				   ]
+      			"npcs": [
+        				{
+          					"nombre": "lobo",
+   					       	"genero": "masculino",
+         					"numero": "singular",
+  					        "descripcion": "Cuidado! hay un lobo durmiendo sobre el colchon",
+          					"dialogo": "",
+          					"trigger": []
+        				}
+      				],
+      			"conexiones": 
+				[
+        				
+					{
+          					"direccion": "baño",
+          					"locacionDestino": "baño de la casa",
+          					"obstaculos": "lobo"
+        				},
+					{
+          					"direccion": "living",
+          					"locacionDestino": "living de la casa",
+          					"obstaculos": "lobo"
+        				}
+      				]
+    		}
+  	]
+}
