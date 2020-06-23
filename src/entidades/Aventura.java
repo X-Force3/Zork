@@ -203,7 +203,7 @@ public class Aventura {
 
 	@Override
 	public String toString() {
-		return "Aventura [\nconfiguracion=\n" + configuracion + ", \nubicaciones=\n" + ubicaciones + "]";
+		return "Aventura \n[" + configuracion + ", \n" + ubicaciones + "]";
 	}
 
 }

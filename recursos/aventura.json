@@ -94,7 +94,7 @@
         {
           "direccion": "sur",
           "ubicacionDestino": "taberna",
-          "obstaculos": "pirata fantasma"
+          "obstaculo": "pirata fantasma"
         }
       ]
     },
@@ -102,7 +102,7 @@
       "nombre": "taberna",
       "genero": "femenino",
       "numero": "singular",
-      "descipcion": "des...",
+      "descripcion": "des...",
       "lugares": [],
       "npcs": [
         {

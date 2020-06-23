@@ -16,19 +16,6 @@ public class Ubicacion {
 	public Ubicacion() {
 	}
 
-
-
-	public Ubicacion(String nombre, Genero genero, Numero numero, String descripcion, List<Lugar> lugares) {
-		super();
-		this.nombre = nombre;
-		this.genero = genero;
-		this.numero = numero;
-		this.descripcion = descripcion;
-		this.lugares = lugares;
-	}
-
-
-
 	public Ubicacion(String nombre, Genero genero, Numero numero, String descripcion, List<Lugar> lugares,
 			List<Npc> npcs, List<Conexion> conexiones) {
 		this.nombre = nombre;
@@ -143,13 +130,13 @@ public class Ubicacion {
 		return false;
 	}
 
-
-
 	@Override
 	public String toString() {
-		return "Ubicacion [nombre=" + nombre + ", genero=" + genero + ", numero=" + numero + ", descripcion="
-				+ descripcion + ", lugares=" + lugares + "]";
+		return "Ubi [nombre=" + nombre + ", gen=" + genero + ", num=" + numero + ", descripcion="
+				+ descripcion + ", lugares=" + lugares + ", conex=" + conexiones + "]";
 	}
+
+
 
 	
 }
