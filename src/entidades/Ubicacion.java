@@ -134,4 +134,13 @@ public class Ubicacion {
 		return false;
 	}
 
+	@Override
+	public String toString() {
+		return "Ubi [nombre=" + nombre + ", gen=" + genero + ", num=" + numero + ", descripcion="
+				+ descripcion + ", lugares=" + lugares + ", conex=" + conexiones + "]";
+	}
+
+
+
+	
 }

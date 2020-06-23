@@ -71,7 +71,7 @@
           "genero": "masculino",
           "numero": "singular",
           "segundoNombre": "segundo nombre...",
-          "items": [
+          "itemsNombre": [
             "barreta",
             "rociador con cerveza de raiz",
             "espejo"

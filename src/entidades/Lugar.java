@@ -114,4 +114,16 @@ public class Lugar {
 			this.items.remove(item);
 	}
 
+	@Override
+	public String toString() {
+		return "Lugar [nombre=" + nombre + ", genero=" + genero + ", numero=" + numero + ", segundoNombre="
+				+ segundoNombre + ", items=" + items + ", triggers=" + triggers + ", descripcion=" + descripcion + "]";
+	}
+
+	public void setItems(List<Item> items) {
+		this.items = items;
+	}
+	
+	
+
 }

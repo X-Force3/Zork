@@ -8,7 +8,13 @@ public class Aventura {
 	private List<Ubicacion> ubicaciones;
 	private AnalizadorDeTexto analizador;
 	private Protagonista protagonista;
-
+	
+	public Aventura(Configuracion configuracion, List<Ubicacion> ubicaciones) {
+		super();
+		this.configuracion = configuracion;
+		this.ubicaciones = ubicaciones;
+	}
+	
 	public Aventura(Configuracion configuracion, List<Ubicacion> ubicaciones, String nombreJugador) {
 		super();
 		this.configuracion = configuracion;
@@ -207,4 +213,8 @@ public class Aventura {
 		return salida;
 	}
 
+	@Override
+	public String toString() {
+		return "Aventura \n[" + configuracion + ", \n" + ubicaciones + "]";
+	}
 }

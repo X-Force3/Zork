@@ -3,13 +3,13 @@ package entidades;
 public class Conexion {
 
 	private Direccion direccion;
-	private Ubicacion ubicacionDestino;
+	private String ubicacionDestino;
 	private String obstaculo;
 
 	/// Podria haber un ID para asi diferenciar los puntos cardinales de una misma o
 	/// distinta ubicacion.
 
-	public Conexion(Direccion direccion, Ubicacion locacionDestino, String obstaculo) {
+	public Conexion(Direccion direccion, String locacionDestino, String obstaculo) {
 		super();
 		this.direccion = direccion;
 		this.ubicacionDestino = locacionDestino;
@@ -20,7 +20,7 @@ public class Conexion {
 		return direccion;
 	}
 
-	public Ubicacion getUbicacionDestino() {
+	public String getUbicacionDestino() {
 		return ubicacionDestino;
 	}
 
@@ -31,6 +31,12 @@ public class Conexion {
 	public String conjugarConexion() {
 		return "Al " + this.direccion.getNombre() + " se puede ir hacia " + this.ubicacionDestino.conjugarUbicacion()
 				+ ".";
+	}
+
+	@Override
+	public String toString() {
+		return "Conexion [dir=" + direccion + ", ubiDestino=" + ubicacionDestino + ", obstaculo="
+				+ obstaculo + "]";
 	}
 
 }

@@ -58,4 +58,14 @@ public class Endgame {
 		return ubicacion;
 	}
 
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Endgame [condicion=" + condicion + ", accion=" + accion + ", cosa=" + cosa + ", descripcion=" + descripcion + "]";
+	}
+
 }

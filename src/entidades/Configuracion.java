@@ -27,4 +27,9 @@ public class Configuracion {
 		return endgames;
 	}
 
+	@Override
+	public String toString() {
+		return "Configuracion [bienvenida=" + bienvenida + ", titulo=" + titulo + ", endgames=" + endgames + "]";
+	}
+	
 }
