@@ -523,12 +523,12 @@
         				
 					{
           					"direccion": "baño",
-          					"locacionDestino": "baño de la casa",
+          					"locacionDestino": "baño",
           					"obstaculos": "lobo"
         				},
 					{
           					"direccion": "living",
-          					"locacionDestino": "living de la casa",
+          					"locacionDestino": "living",
           					"obstaculos": "lobo"
         				}
       				]
