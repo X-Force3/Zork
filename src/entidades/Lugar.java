@@ -10,7 +10,7 @@ public class Lugar {
 	private String segundoNombre;// Juani: Este atributo sólo lo tienen los lugares que actúan como obstáculos.
 	private List<Item> items;
 	private List<Trigger> triggers;
-	private String descripcion;// Este atributo lo tienen todos los lugares. 
+	private String descripcion;// Juani: Idem. 
 
 	public Lugar(String nombre, String segundoNombre, Genero genero, Numero numero, List<Item> items, List<Trigger> triggers,
 			String descripcion) {
@@ -27,7 +27,7 @@ public class Lugar {
 	public String describirObjetosDisponibles() {
 		String queHay = "";
 		if(this.triggers != null && this.descripcion != null) {
-			return "hay " + this.conjugar() + ".";
+			return "Hay " + this.conjugar() + ".";
 		}
 		
 		if (items == null || items.isEmpty())

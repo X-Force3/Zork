@@ -54,6 +54,10 @@ public class Ubicacion {
 	public List<Conexion> getConexiones() {
 		return conexiones;
 	}
+	
+	public String getDescripcion() {
+		return descripcion;
+	}
 
 	/**
 	 

@@ -49,7 +49,7 @@ public class UbicacionTest {
 		List<Conexion> conexionesMuelle = new ArrayList<Conexion>();
 		conexionesMuelle.add(surMuelle);
 
-		Ubicacion muelle = new Ubicacion("muelle", Genero.MALE, Numero.SINGULAR, "Estás en un muelle. ", lugaresMuelle,
+		Ubicacion muelle = new Ubicacion("muelle", Genero.MALE, Numero.SINGULAR, "Estás en un muelle.", lugaresMuelle,
 				npcsMuelle, conexionesMuelle);
 
 		Assert.assertEquals(
@@ -93,13 +93,13 @@ public class UbicacionTest {
 		npcsAulas.add(profesorasUniversitarias);
 
 		Ubicacion pasillos = new Ubicacion("pasillos", Genero.MALE, Numero.PLURAL,
-				"Estás en los pasillos de la UNLaM. ", null, null, null);
+				"Estás en los pasillos de la UNLaM.", null, null, null);
 
 		Conexion norteAulas = new Conexion(Direccion.NORTE, pasillos, "profesoras universitarias");
 		List<Conexion> conexionesAulas = new ArrayList<Conexion>();
 		conexionesAulas.add(norteAulas);
 
-		Ubicacion aulas = new Ubicacion("aulas", Genero.FEMALE, Numero.PLURAL, "Estás en las aulas de la UNLaM. ",
+		Ubicacion aulas = new Ubicacion("aulas", Genero.FEMALE, Numero.PLURAL, "Estás en las aulas de la UNLaM.",
 				lugaresAulas, npcsAulas, conexionesAulas);
 
 		Assert.assertEquals(

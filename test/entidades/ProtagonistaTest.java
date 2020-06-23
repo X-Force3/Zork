@@ -85,13 +85,14 @@ public class ProtagonistaTest {
 		Assert.assertFalse(protagonista.añadirItem(item));
 	}
 
-	@Test
-	public void queSeDesplazaCorrectamenteHaciaUnaConexion() {
-
-		Conexion c = new Conexion(Direccion.SUR, taberna, "Messi");
-
-		Assert.assertEquals(protagonista.getUbicacionActual(), c.getUbicacionDestino());
-	}
+//	@Test
+//	public void queSeDesplazaCorrectamenteHaciaUnaConexion() {
+//
+//		Conexion c = new Conexion(Direccion.SUR, taberna, "Messi");
+//
+//		Assert.assertEquals(protagonista.getUbicacionActual(), c.getUbicacionDestino());
+//	} 
+// Juani: El test reemplazado por "cambiaDeUbicacionCorrectamente" de la clase AventuraTest.
 
 	@Test
 	public void queRecogeUnItemDeManeraCorrecta() {

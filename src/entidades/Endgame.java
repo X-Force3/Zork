@@ -16,42 +16,43 @@ public class Endgame {
 		this.descripcion = descripcion;
 	}
 
-	
-	/**
-	 * posibles finales:
-	 *  - obtener un objeto
-	 *  - llegar a un lugar
-	 *  - llegar a un lugar con un objeto
-	 *  - acciones
-	 */
-	
-//	  "condition": "location",
-//      "action": "move",
-//      "thing": "taberna",
-//      "description": "¡Enhorabuena! Llegaste a la taberna, donde te espera una noche de borrachera con Grog y otros colegas piratas."
-//    
-	
-	
-	
+	public boolean verificarItemEndgame(AnalizadorDeTexto analizador, Protagonista protagonista) {
+
+		Item item = analizador.contieneItem(this.getCosa(), protagonista.getInventario());
+		if (item != null)
+			return true;
+		return false;
+	}
+
+	public boolean verificarUbicacionEndgame(Protagonista protagonista) {
+
+		if ((protagonista.getUbicacionActual().getNombre()).equals(this.getUbicacion()))
+			return true;
+		return false;
+	}
+
+	public boolean verificarAccionEndgame(String entrada) {
+
+		if (entrada.contains(this.getAccion()))
+			return true;
+		return false;
+	}    
+		
 	public String ejecutarFinal() {
 		return this.descripcion;	
 	}
-
 
 	public String getCondicion() {
 		return condicion;
 	}
 
-
 	public String getAccion() {
 		return accion;
 	}
 
-
 	public String getCosa() {
 		return cosa;
 	}
-
 
 	public String getUbicacion() {
 		return ubicacion;

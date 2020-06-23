@@ -29,17 +29,20 @@ public class Aventura {
 		return this.analizador;
 	}
 
-	public Protagonista getPortagonista() {
+	public Protagonista getProtagonista() {
 		return this.protagonista;
 	}
 
 	public void comenzar() {
 		String entrada;
 		String salida;
+		String descripcionEndgame;
 		Conexion conexion;
 		Item item;
+		boolean fin = false;
 
-		this.describirContexto();
+//		this.describirContexto(); Juani: Si hubiera un while desde la línea 45 hasta la 76..
+//		Cada vez que se ejecute el método "comenzar" el porgrama va a mostrar la descripción de la ubicación actual?
 		entrada = analizador.recibirEntrada();
 
 		if (this.quiereAgarrarItem(entrada) == true) {
@@ -64,14 +67,26 @@ public class Aventura {
 			salida = "No comprendí lo que quieres, intenta ser más preciso...";
 		}
 
-		this.verificarEndgame(entrada);
+		descripcionEndgame = this.verificarEndgame(entrada);
+
+		if (descripcionEndgame != "") {
+			salida = descripcionEndgame;
+			fin = true;
+		}
+
 		System.out.println(salida);
 	}
 
-	public void describirContexto() {
-		System.out.println(this.protagonista.getUbicacionActual().describirUbicacion());
-	}
+//	public void describirContexto() {
+//		System.out.println(this.protagonista.getUbicacionActual().describirUbicacion());
+//	} 
+//	Juani: Modifico el método para que devuelva un String en lugar de mostrar la descripción en la consola.
 
+	public String describirContexto() {
+		
+		return this.protagonista.getUbicacionActual().describirUbicacion();
+	}
+	
 	public boolean quiereAgarrarItem(String entrada) {
 		boolean condicion = false;
 		Item objeto;
@@ -160,7 +175,8 @@ public class Aventura {
 					this.protagonista.eliminarItem(item);// Luego de que el protagonista utiliza el ítem, se elimina de
 															// su inventario.
 				} else {
-					salida = "La accion que realizaste con ese ítem no dió ningún resultado..."; // Juani: Lo modifiqué porque me pareció mas preciso esto.
+					salida = "No entiendo por qué quieres realizar eso..."; // Juani: Lo modifiqué porque me pareció mas
+																			// preciso esto.
 				}
 			}
 		} else {
@@ -175,38 +191,20 @@ public class Aventura {
 
 		for (Endgame endgame : this.configuracion.getEndgames()) {
 
-			if ((endgame.getCondicion().contentEquals("item") && this.verificarItemEndgame(endgame))
-					|| (endgame.getCondicion().contentEquals("ubicacion") && this.verificarUbicacionEndgame(endgame))
-					|| (endgame.getCondicion().contentEquals("itemEnUbicacion") && this.verificarItemEndgame(endgame)
-							&& this.verificarUbicacionEndgame(endgame))
-					|| endgame.getCondicion().contentEquals("accion") && this.verificarItemEndgame(endgame)
-							&& this.verificarAccionEndgame(endgame, entrada))
+			if ((endgame.getCondicion().contentEquals("item")
+					&& endgame.verificarItemEndgame(this.analizador, this.protagonista))
+					|| (endgame.getCondicion().contentEquals("ubicacion")
+							&& endgame.verificarUbicacionEndgame(this.protagonista))
+					|| (endgame.getCondicion().contentEquals("itemEnUbicacion")
+							&& endgame.verificarItemEndgame(this.analizador, this.protagonista)
+							&& endgame.verificarUbicacionEndgame(this.protagonista))
+					|| endgame.getCondicion().contentEquals("accion")
+							&& endgame.verificarItemEndgame(this.analizador, this.protagonista)
+							&& endgame.verificarAccionEndgame(entrada))
 				salida = endgame.ejecutarFinal();
 		}
 
 		return salida;
 	}
 
-	private boolean verificarItemEndgame(Endgame endgame) {
-
-		Item item = analizador.contieneItem(endgame.getCosa(), this.protagonista.getInventario());
-		if (item != null)
-			return true;
-		return false;
-	}
-
-	private boolean verificarUbicacionEndgame(Endgame endgame) {
-
-		if ((this.protagonista.getUbicacionActual().getNombre()).equals(endgame.getUbicacion()))
-			return true;
-		return false;
-	}
-
-	private boolean verificarAccionEndgame(Endgame endgame, String entrada) {
-
-		if (entrada.contains(endgame.getAccion()))
-			return true;
-		return false;
-	}
-	
 }
