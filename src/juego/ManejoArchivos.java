@@ -58,22 +58,6 @@ public class ManejoArchivos {
 			itemsMap.put(item.getNombre(), item);
 		}
 		
-		//lugares
-		/*Type typeLugares = new TypeToken<ArrayList<Lugar>>() {}.getType();
-		JsonDeserializer<Lugar> desLugar = new JsonDeserializer<Lugar>() {
-
-			@Override
-			public Lugar deserialize(JsonElement jsonElement, Type arg1, JsonDeserializationContext arg2)
-					throws JsonParseException {
-				return deserializarLugar(jsonElement.getAsJsonObject());
-			}
-
-		};
-		GsonBuilder gsonBuilder2 = new GsonBuilder();
-		gsonBuilder2.registerTypeAdapter(Lugar.class, desLugar);
-		Gson gson2 = gsonBuilder2.create();
-		ArrayList<Ubicacion> lugaresss = gson2.fromJson(jo.get("ubicaciones"), typeLugares);*/
-
 		// ubicaciones
 		Type listTypeUbicaciones = new TypeToken<ArrayList<Ubicacion>>() {}.getType();
 		JsonDeserializer<Ubicacion> desUbicacion = new JsonDeserializer<Ubicacion>() {
@@ -85,12 +69,10 @@ public class ManejoArchivos {
 			}
 
 		};
-		GsonBuilder gsonBuilder = new GsonBuilder();
-		gsonBuilder.registerTypeAdapter(Ubicacion.class, desUbicacion);
-		Gson gson1 = gsonBuilder.create();
-		ArrayList<Ubicacion> ubicacionesss = gson1.fromJson(jo.get("ubicaciones"), listTypeUbicaciones);
-
 		
+		Gson gsonUbicaciones = new GsonBuilder().registerTypeAdapter(Ubicacion.class, desUbicacion).create();
+		ArrayList<Ubicacion> ubicacionesss = gsonUbicaciones.fromJson(jo.get("ubicaciones"), listTypeUbicaciones);
+
 		return new Aventura(config, ubicacionesss);
 	}
 	
@@ -118,8 +100,6 @@ public class ManejoArchivos {
 		List<Lugar> lugares = deserializeLugaresObjeto(jo.getAsJsonArray("lugares"));
 		List<Npc> npcs = deserealizarNpcs(jo.get("npcs").getAsJsonArray());
 		List<Conexion> conexiones = deserealizarConexiones(jo.get("conexiones").getAsJsonArray());
-		//String nombre, Genero genero, Numero numero, String descripcion, List<Lugar> lugares,
-		//List<Npc> npcs, List<Conexion> conexiones
 		Ubicacion ubi = new Ubicacion(
 				/*nombre*/jo.get("nombre").getAsString(),
 				/*genero*/new Gson().fromJson(jo.get("genero"), Genero.class),
@@ -135,42 +115,6 @@ public class ManejoArchivos {
 	private List<Conexion> deserealizarConexiones(JsonArray array) {
 		Type listType = new TypeToken<ArrayList<Conexion>>() {}.getType();
 		return new Gson().fromJson(array, listType);
-		/*List<Conexion> conexiones = new ArrayList<Conexion>();
-		Gson g = new Gson();
-		for(int i = 0; i < array.size() ; i++) {
-			JsonObject jo = array.get(i).getAsJsonObject();
-			String destino = jo.get("ubicacionDestino").getAsString();
-			JsonElement jeObstaculo = jo.get("obstaculo");
-			String obstaculo = jeObstaculo.toString();
-			conexiones.add( new Conexion(g.fromJson(jo.get("direccion"), Direccion.class), null, obstaculo ));
-		}
-		return conexiones;*/
-
-		/*JsonDeserializer<Conexion> deserializationConexion = new JsonDeserializer<Conexion>() {
-
-			@Override
-			public Conexion deserialize(JsonElement je, Type arg1, JsonDeserializationContext arg2)
-					throws JsonParseException {
-				return deserealizarConexion(je.getAsJsonObject());
-			}
-			
-		};
-		Gson gson = new Gson();
-		Type listType = new TypeToken<ArrayList<Conexion>>() {}.getType();
-		GsonBuilder gsonBuilder = new GsonBuilder();
-		gsonBuilder.registerTypeAdapter(Conexion.class, deserializationConexion);
-		Gson gson1 = gsonBuilder.create();
-		ArrayList<Conexion> conexiones = gson1.fromJson(array, listType);
-		return conexiones;*/
-	}
-
-	protected Conexion deserealizarConexion(JsonObject jo) {
-		Gson gson = new Gson();
-		return new Conexion(
-				/*direccion*/gson.fromJson(jo, Direccion.class),
-				/*ubicacionDestino*/null,//ubicacionesMap.get(jo.get("ubicacionDestino")),
-				/*obstaculo*/jo.get("obstaculo").getAsString()
-				);
 	}
 
 	private List<Npc> deserealizarNpcs(JsonArray array) {
@@ -191,7 +135,6 @@ public class ManejoArchivos {
 		};
 
 		Gson gsonType = new GsonBuilder().registerTypeAdapter(Lugar.class, deserializationPerson).create();
-
 		for (int i = 0; i < array.size(); i++) {
 			lugares.add(gsonType.fromJson(array.get(i), Lugar.class));
 		}

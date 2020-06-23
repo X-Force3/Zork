@@ -119,4 +119,10 @@ public class Lugar {
 				+ segundoNombre + ", items=" + items + ", triggers=" + triggers + ", descripcion=" + descripcion + "]";
 	}
 
+	public void setItems(List<Item> items) {
+		this.items = items;
+	}
+	
+	
+
 }
