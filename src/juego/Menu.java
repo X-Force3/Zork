@@ -6,7 +6,6 @@ import java.util.Scanner;
 
 import entidades.Aventura;
 
-
 public class Menu {
 	
 	private Scanner scanner;

@@ -24,7 +24,7 @@ public class Configuracion {
 	}
 
 	public List<Endgame> getEndgames() {
-		return null;
+		return endgames;
 	}
 
 	@Override

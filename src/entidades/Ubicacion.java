@@ -54,6 +54,10 @@ public class Ubicacion {
 	public List<Conexion> getConexiones() {
 		return conexiones;
 	}
+	
+	public String getDescripcion() {
+		return descripcion;
+	}
 
 	/**
 	 
@@ -65,7 +69,7 @@ public class Ubicacion {
 	}
 	 */
 	
-	public String describirUbicacion2() {
+	public String describirUbicacion() {
 		String cadena = this.descripcion;
 		
 		if(this.lugares != null)

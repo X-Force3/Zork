@@ -56,7 +56,7 @@ public class NpcTest {
 				+ "sin embargo, cuando lo rociaste comenzó a desintegrarse. La mitad de arriba de su cuerpo se desvaneció, y las piernas "
 				+ "inmediatamente echaron a correr.";
 		Assert.assertEquals(respuestaEsperada, this.npc.verificarTrigger(this.item));
-		Assert.assertEquals("", this.npc.getNombre());
+		Assert.assertEquals("borrado", this.npc.getNombre());
 	}
 
 	@Test

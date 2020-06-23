@@ -14,7 +14,7 @@ public class LugarTest {
 	@Before
 	public void setup() {
 		ArrayList<Item> items = new ArrayList<Item>();
-		lugar = new Lugar("muelle", Genero.MALE, Numero.SINGULAR, items, null, null);
+		lugar = new Lugar("muelle", null, Genero.MALE, Numero.SINGULAR, items, null, null);
 	}
 
 	@Test

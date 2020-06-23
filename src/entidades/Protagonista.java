@@ -60,17 +60,17 @@ public class Protagonista {
 
 	/// El protagonista pide si puede desplazarse a un place, o a una conexion
 	/// dentro de la ubicacion
-	public boolean desplazarse(Ubicacion ubicacionDestino) {
-
-		for (Conexion conexion : this.getUbicacionActual().getConexiones()) {
-			if (conexion.getUbicacionDestino().equals(ubicacionDestino)) {
-				this.ubicacionActual = ubicacionDestino;
-				return true;
-			}
-		}
-
-		return false;
-	}
+//	public boolean desplazarse(Ubicacion ubicacionDestino) {
+//
+//		for (Conexion conexion : this.getUbicacionActual().getConexiones()) {
+//			if (conexion.getUbicacionDestino().equals(ubicacionDestino)) {
+//				this.ubicacionActual = ubicacionDestino;
+//				return true;
+//			}
+//		}
+//
+//		return false;
+//	} No se utiliza en la clase Aventura el desplazarse según la Ubicacion, pero sí el desplazarse según la Conexion.
 
 	public void desplazarse(Conexion conexionDestino) {
 		this.ubicacionActual = conexionDestino.getUbicacionDestino();

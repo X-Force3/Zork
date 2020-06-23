@@ -37,7 +37,7 @@ public class ProtagonistaTest {
 		itemsSuelo.add(rociadorCervezaRaiz);
 		itemsSuelo.add(espejo);
 		/// creado lista de items, se crea el lugar
-		lugares.add(new Lugar("Casa", Genero.FEMALE, Numero.SINGULAR, itemsSuelo, null, null));
+		lugares.add(new Lugar("Casa", null, Genero.FEMALE, Numero.SINGULAR, itemsSuelo, null, null));
 		/// lugares HECHO - Falta conexiones
 
 		// Para crear una conexion -->
@@ -85,13 +85,14 @@ public class ProtagonistaTest {
 		Assert.assertFalse(protagonista.añadirItem(item));
 	}
 
-	@Test
-	public void queSeDesplazaCorrectamenteHaciaUnaConexion() {
-
-		Conexion c = new Conexion(Direccion.SUR, taberna, "Messi");
-
-		Assert.assertTrue(protagonista.desplazarse(c));
-	}
+//	@Test
+//	public void queSeDesplazaCorrectamenteHaciaUnaConexion() {
+//
+//		Conexion c = new Conexion(Direccion.SUR, taberna, "Messi");
+//
+//		Assert.assertEquals(protagonista.getUbicacionActual(), c.getUbicacionDestino());
+//	} 
+// Juani: El test reemplazado por "cambiaDeUbicacionCorrectamente" de la clase AventuraTest.
 
 	@Test
 	public void queRecogeUnItemDeManeraCorrecta() {

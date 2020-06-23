@@ -53,7 +53,7 @@ public class AnalizadorDeTextoTest {
 		this.itemsSuelo.add(rociadorCervezaRaiz);
 		this.itemsSuelo.add(espejo);
 
-		this.sueloMuelle = new Lugar("suelo", Genero.MALE, Numero.SINGULAR, itemsSuelo, null, null);
+		this.sueloMuelle = new Lugar("suelo", null, Genero.MALE, Numero.SINGULAR, itemsSuelo, null, null);
 		this.lugaresMuelle = new ArrayList<Lugar>();
 		this.lugaresMuelle.add(sueloMuelle);
 
@@ -74,7 +74,7 @@ public class AnalizadorDeTextoTest {
 		this.conexionesMuelle = new ArrayList<Conexion>();
 		this.conexionesMuelle.add(surMuelle);
 
-		this.muelle = new Ubicacion("muelle", Genero.MALE, Numero.SINGULAR, "Estás en un muelle. ", lugaresMuelle,
+		this.muelle = new Ubicacion("muelle", Genero.MALE, Numero.SINGULAR, "Estás en un muelle.", lugaresMuelle,
 				npcsMuelle, conexionesMuelle);
 
 		Assert.assertEquals(
