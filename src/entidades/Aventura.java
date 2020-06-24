@@ -161,7 +161,7 @@ public class Aventura {
 		if (accion != null) {
 			npc = analizador.contieneObstaculoNpc(entrada, this.protagonista.getUbicacionActual().getNpcs());
 			if (npc != null) {
-				salida = npc.verificarTrigger(item);
+				salida = npc.verificarTrigger(item, this.protagonista);
 				this.protagonista.eliminarItem(item);// Luego de que el protagonista utiliza el ítem, se elimina de su
 														// inventario.
 			} else {
@@ -187,16 +187,18 @@ public class Aventura {
 
 		for (Endgame endgame : this.configuracion.getEndgames()) {
 
-			if ((endgame.getCondicion().contentEquals("item")
+			if ((endgame.getCondicion().contentEquals("item")// Endgame de obtener un Item.
 					&& endgame.verificarItemEndgame(this.analizador, this.protagonista))
-					|| (endgame.getCondicion().contentEquals("ubicacion")
+					|| (endgame.getCondicion().contentEquals("ubicacion")// Endgame de llegar a una Ubicacion.
 							&& endgame.verificarUbicacionEndgame(this.protagonista))
-					|| (endgame.getCondicion().contentEquals("itemEnUbicacion")
+					|| (endgame.getCondicion().contentEquals("itemEnUbicacion")// Endgame de obtener un Item y llegar a una Ubicacion.
 							&& endgame.verificarItemEndgame(this.analizador, this.protagonista)
 							&& endgame.verificarUbicacionEndgame(this.protagonista))
-					|| endgame.getCondicion().contentEquals("accion")
+					|| endgame.getCondicion().contentEquals("accion")// Endgame de realizar una acción con un Item.
 							&& endgame.verificarItemEndgame(this.analizador, this.protagonista)
-							&& endgame.verificarAccionEndgame(entrada))
+							&& endgame.verificarAccionEndgame(entrada)
+					|| endgame.getCondicion().contentEquals("muerte")// Endgame de muerte del Protagonista.
+							&& endgame.verificarVidaEndgame(this.protagonista))
 				salida = endgame.ejecutarFinal();
 		}
 

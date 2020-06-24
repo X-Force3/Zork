@@ -19,6 +19,7 @@ public class EndgameTest {
 	Endgame item;
 	Endgame ubicacion;
 	Endgame accion;
+	Endgame muerte;
 	List<Endgame> endgamesAventura;
 
 	Ubicacion muelle;
@@ -92,13 +93,16 @@ public class EndgameTest {
 				"Felicitaciones! Has ganado el juego, lograste llegar a la playa...", playa.getNombre());
 		accion = new Endgame("accion", "beber", rociadorCervezaRaiz.getNombre(),
 				"Felicitaciones! Has ganado el juego, bebiste la cerveza de raíz...", "");
+		muerte = new Endgame("muerte", "", "",
+				"El animal te atacó causándote heridas mortales. Has muerto...", "");
 
 		endgamesAventura = new ArrayList<Endgame>();
 		endgamesAventura.add(item);
 		endgamesAventura.add(itemEnUbicacion);
 		endgamesAventura.add(accion);
 		endgamesAventura.add(ubicacion);
-
+		endgamesAventura.add(muerte);
+		
 		configuracionAventura = new Configuracion(null, null, endgamesAventura);
 		aventura = new Aventura(configuracionAventura, ubicacionesAventura, "X-Force");
 	}
@@ -147,6 +151,16 @@ public class EndgameTest {
 		aventura.realizarAccionConItem(entrada, aventura.quiereRealizarAccionConItem(entrada));
 
 		Assert.assertEquals("Felicitaciones! Has ganado el juego, bebiste la cerveza de raíz...",
+				aventura.verificarEndgame(entrada));
+	}
+	
+	@Test
+	public void ejecutarEndgameMuerte() {
+
+		String entrada = "random";
+		aventura.getProtagonista().morir();
+
+		Assert.assertEquals("El animal te atacó causándote heridas mortales. Has muerto...",
 				aventura.verificarEndgame(entrada));
 	}
 }

@@ -15,6 +15,7 @@ public class NpcTest {
 	private Item item;
 	private List<String> acciones;
 	private List<String> efectosSobre;
+	private Aventura aventura;
 
 	@Before
 	public void setup() {
@@ -37,7 +38,8 @@ public class NpcTest {
 		efectosSobre.add("Suelo");
 		efectosSobre.add("Clavo");
 		item = new Item("ociador con cerveza de raiz", Genero.MALE, Numero.SINGULAR, acciones, efectosSobre);
-
+		
+		aventura = new Aventura(null, null, "X-Force");
 	}
 
 	@Test
@@ -55,7 +57,7 @@ public class NpcTest {
 		String respuestaEsperada = "- '¡Me encanta la cerveza de raiz!' El pirata fantasma se veía entusiasmado por tu ofrecimiento... "
 				+ "sin embargo, cuando lo rociaste comenzó a desintegrarse. La mitad de arriba de su cuerpo se desvaneció, y las piernas "
 				+ "inmediatamente echaron a correr.";
-		Assert.assertEquals(respuestaEsperada, this.npc.verificarTrigger(this.item));
+		Assert.assertEquals(respuestaEsperada, this.npc.verificarTrigger(this.item, aventura.getProtagonista()));
 		Assert.assertEquals("borrado", this.npc.getNombre());
 	}
 
@@ -63,7 +65,7 @@ public class NpcTest {
 	public void queNoEsAfectadoPorUnItem() {
 		this.item.setNombre("Este item no es un trigger del npc");
 		String respuestaEsperada = "Eso no ha servido de nada...";
-		Assert.assertEquals(respuestaEsperada, this.npc.verificarTrigger(this.item));
+		Assert.assertEquals(respuestaEsperada, this.npc.verificarTrigger(this.item, aventura.getProtagonista()));
 		Assert.assertEquals("pirata fantasma", this.npc.getNombre());
 	}
 }

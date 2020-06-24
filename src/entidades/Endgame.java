@@ -37,7 +37,12 @@ public class Endgame {
 			return true;
 		return false;
 	}    
-		
+	
+	public boolean verificarVidaEndgame(Protagonista protagonista) {
+
+		return !protagonista.isEstaVivo();
+	}  
+	
 	public String ejecutarFinal() {
 		return this.descripcion;	
 	}

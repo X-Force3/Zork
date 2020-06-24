@@ -8,13 +8,23 @@ public class Protagonista {
 	private String nombre;
 	private List<Item> inventario;
 	private Ubicacion ubicacionActual;
+	private boolean estaVivo;
 
 	public Protagonista(String nombreJugador, Ubicacion ubicacionInicial) {
 		nombre = nombreJugador;
 		ubicacionActual = ubicacionInicial;
 		inventario = new ArrayList<Item>();
+		estaVivo = true;
 	}
 
+	public boolean isEstaVivo() {
+		return estaVivo;
+	}
+
+	public void morir() {
+		this.estaVivo = false;
+	}
+	
 	public Ubicacion getUbicacionActual() {
 		return this.ubicacionActual;
 	}
