@@ -69,7 +69,7 @@ public class Ubicacion {
 	}
 	 */
 	
-	public String describirUbicacion() {
+	public String describirUbicacion(List<Ubicacion> ubicaciones) {
 		String cadena = this.descripcion;
 		
 		if(this.lugares != null)
@@ -86,7 +86,7 @@ public class Ubicacion {
 		
 		if(this.conexiones != null)
 		for(Conexion conexion : this.conexiones) {
-			cadena += " " + conexion.conjugarConexion();
+			cadena += " " + conexion.conjugarConexion(ubicaciones);
 		}
 		return cadena;
 	}

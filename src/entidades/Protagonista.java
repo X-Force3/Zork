@@ -72,18 +72,10 @@ public class Protagonista {
 //		return false;
 //	} No se utiliza en la clase Aventura el desplazarse según la Ubicacion, pero sí el desplazarse según la Conexion.
 
-	public void desplazarse(Conexion conexionDestino) {
-		this.ubicacionActual = conexionDestino.getUbicacionDestino();
-		
-		// no hace falta chequear que sea una conexion, se hace en la clase aventura
-		/**
-		for (Conexion conexion : this.ubicacionActual.getConexiones()) {
-			if (conexion.getUbicacionDestino().equals(conexionDestino.getUbicacionDestino())) {
-				this.ubicacionActual = conexionDestino.getUbicacionDestino();
-				return true;
-			}
-		}
-		 */
+	public void desplazarse(String nombreUbicacionDestino, List<Ubicacion> ubicaciones) {
+		AnalizadorDeTexto analizador = new AnalizadorDeTexto();
+		Ubicacion ubicacionDestino = analizador.devolverObjetoUbicacion(nombreUbicacionDestino, ubicaciones);
+		this.ubicacionActual = ubicacionDestino;
 	}
 
 	public void eliminarItem(Item item) { // al accionar el trigger, deberiamos eliminar el item del inventario

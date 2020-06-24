@@ -1,5 +1,7 @@
 package entidades;
 
+import java.util.List;
+
 public class Conexion {
 
 	private Direccion direccion;
@@ -28,8 +30,10 @@ public class Conexion {
 		return obstaculo;
 	}
 
-	public String conjugarConexion() {
-		return "Al " + this.direccion.getNombre() + " se puede ir hacia " + this.ubicacionDestino.conjugarUbicacion()
+	public String conjugarConexion(List<Ubicacion> ubicaciones) {
+		AnalizadorDeTexto analizador = new AnalizadorDeTexto();
+		Ubicacion ubicacion = analizador.devolverObjetoUbicacion(this.ubicacionDestino, ubicaciones);
+		return "Al " + this.direccion.getNombre() + " se puede ir hacia " + ubicacion.conjugarUbicacion()
 				+ ".";
 	}
 

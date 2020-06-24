@@ -45,16 +45,19 @@ public class UbicacionTest {
 		Ubicacion taberna = new Ubicacion("taberna", Genero.FEMALE, Numero.SINGULAR, "Estás en una taberna. ", null,
 				null, null);
 
-		Conexion surMuelle = new Conexion(Direccion.SUR, taberna, "pirata fantasma");
+		Conexion surMuelle = new Conexion(Direccion.SUR, "taberna", "pirata fantasma");
 		List<Conexion> conexionesMuelle = new ArrayList<Conexion>();
 		conexionesMuelle.add(surMuelle);
 
 		Ubicacion muelle = new Ubicacion("muelle", Genero.MALE, Numero.SINGULAR, "Estás en un muelle.", lugaresMuelle,
 				npcsMuelle, conexionesMuelle);
+		List<Ubicacion> listaDeUbicaciones = new ArrayList<Ubicacion>();
+		listaDeUbicaciones.add(muelle);
+		listaDeUbicaciones.add(taberna);
 
 		Assert.assertEquals(
 				"Estás en un muelle. En el suelo hay una barreta, un rociador con cerveza de raíz y un espejo. Hay un pirata fantasma. Al sur se puede ir hacia una taberna.",
-				muelle.describirUbicacion());
+				muelle.describirUbicacion(listaDeUbicaciones));
 		
 	}
 
@@ -95,16 +98,19 @@ public class UbicacionTest {
 		Ubicacion pasillos = new Ubicacion("pasillos", Genero.MALE, Numero.PLURAL,
 				"Estás en los pasillos de la UNLaM.", null, null, null);
 
-		Conexion norteAulas = new Conexion(Direccion.NORTE, pasillos, "profesoras universitarias");
+		Conexion norteAulas = new Conexion(Direccion.NORTE, "pasillos", "profesoras universitarias");
 		List<Conexion> conexionesAulas = new ArrayList<Conexion>();
 		conexionesAulas.add(norteAulas);
 
 		Ubicacion aulas = new Ubicacion("aulas", Genero.FEMALE, Numero.PLURAL, "Estás en las aulas de la UNLaM.",
 				lugaresAulas, npcsAulas, conexionesAulas);
 
+		List<Ubicacion> listaDeUbicaciones = new ArrayList<Ubicacion>();
+		listaDeUbicaciones.add(pasillos);
+		listaDeUbicaciones.add(aulas);
 		Assert.assertEquals(
 				"Estás en las aulas de la UNLaM. En las mesas hay lapiceras, hojas y trabajos prácticos de Ingeniería. Hay profesoras universitarias. Al norte se puede ir hacia los pasillos.",
-				aulas.describirUbicacion());
+				aulas.describirUbicacion(listaDeUbicaciones));
 	}
 
 }

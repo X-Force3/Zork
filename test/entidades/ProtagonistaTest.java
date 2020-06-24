@@ -42,7 +42,7 @@ public class ProtagonistaTest {
 
 		// Para crear una conexion -->
 		taberna = new Ubicacion("taberna", Genero.FEMALE, Numero.SINGULAR, "Taberna", lugares, null, null);
-		Conexion surMuelle = new Conexion(Direccion.SUR, taberna, "Messi");
+		Conexion surMuelle = new Conexion(Direccion.SUR, "taberna", "Messi");
 		List<Conexion> conexionesMuelle = new ArrayList<Conexion>();
 		conexionesMuelle.add(surMuelle);
 		/// se creo una lista de conexiones donde tiene una ubicacion destino a

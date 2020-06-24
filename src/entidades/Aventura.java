@@ -67,7 +67,7 @@ public class Aventura {
 		}
 
 		else if (this.quiereVerAlrededor(entrada) == true) {
-			salida = this.protagonista.getUbicacionActual().describirUbicacion();
+			salida = this.describirUbicacion();
 
 		} else {
 			salida = "No comprendí lo que quieres, intenta ser más preciso...";
@@ -81,16 +81,6 @@ public class Aventura {
 		}
 
 		System.out.println(salida);
-	}
-
-//	public void describirContexto() {
-//		System.out.println(this.protagonista.getUbicacionActual().describirUbicacion());
-//	} 
-//	Juani: Modifico el método para que devuelva un String en lugar de mostrar la descripción en la consola.
-
-	public String describirContexto() {
-		
-		return this.protagonista.getUbicacionActual().describirUbicacion();
 	}
 	
 	public boolean quiereAgarrarItem(String entrada) {
@@ -146,15 +136,15 @@ public class Aventura {
 				if (obstaculoLugar != null) {
 					salida = obstaculoLugar.getDescripcion();
 				} else {
-					this.protagonista.desplazarse(conexion);
+					this.protagonista.desplazarse(conexion.getUbicacionDestino(), this.ubicaciones);
 					// System.out.println(this.protagonista.getUbicacionActual().getNombre());
 					// salida = this.protagonista.getUbicacionActual().describirUbicacion();
-					salida = this.protagonista.getUbicacionActual().describirUbicacion();
+					salida = this.describirUbicacion();
 				}
 			}
 		} else {
-			this.protagonista.desplazarse(conexion);
-			salida = this.protagonista.getUbicacionActual().describirUbicacion();
+			this.protagonista.desplazarse(conexion.getUbicacionDestino(), this.ubicaciones);
+			salida = this.describirUbicacion();
 		}
 		return salida;
 	}
@@ -217,4 +207,10 @@ public class Aventura {
 	public String toString() {
 		return "Aventura \n[" + configuracion + ", \n" + ubicaciones + "]";
 	}
+	
+	public String describirUbicacion() {
+		return this.protagonista.getUbicacionActual().describirUbicacion(this.ubicaciones);
+		
+	}
+	
 }

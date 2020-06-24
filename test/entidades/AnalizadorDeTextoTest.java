@@ -70,16 +70,19 @@ public class AnalizadorDeTextoTest {
 		this.taberna = new Ubicacion("taberna", Genero.FEMALE, Numero.SINGULAR, "Estás en una taberna. ", null, null,
 				null);
 
-		this.surMuelle = new Conexion(Direccion.SUR, taberna, "pirata fantasma");
+		this.surMuelle = new Conexion(Direccion.SUR, "taberna", "pirata fantasma");
 		this.conexionesMuelle = new ArrayList<Conexion>();
 		this.conexionesMuelle.add(surMuelle);
 
 		this.muelle = new Ubicacion("muelle", Genero.MALE, Numero.SINGULAR, "Estás en un muelle.", lugaresMuelle,
 				npcsMuelle, conexionesMuelle);
+		List<Ubicacion> listaDeUbicaciones = new ArrayList<Ubicacion>();
+		listaDeUbicaciones.add(muelle);
+		listaDeUbicaciones.add(taberna);
 
 		Assert.assertEquals(
 				"Estás en un muelle. En el suelo hay una barreta, un rociador con cerveza de raíz y un espejo. Hay un pirata fantasma. Al sur se puede ir hacia una taberna.",
-				muelle.describirUbicacion());
+				muelle.describirUbicacion(listaDeUbicaciones));
 
 	}
 

@@ -29,7 +29,7 @@ public class AnalizadorDeTexto {
 	// cadena
 	public Conexion contieneConexion(String entrada, List<Conexion> conexiones) {
 		for (Conexion elemento : conexiones) {
-			if (entrada.contains(elemento.getUbicacionDestino().getNombre())
+			if (entrada.contains(elemento.getUbicacionDestino())
 					|| entrada.contains(elemento.getDireccion().getNombre())) {
 				return elemento;
 			}
@@ -58,6 +58,15 @@ public class AnalizadorDeTexto {
 
 	public Lugar contieneObstaculoLugar(String entrada, List<Lugar> lugares) {
 		for (Lugar elemento : lugares) {
+			if (entrada.contains(elemento.getNombre())) {
+				return elemento;
+			}
+		}
+		return null;
+	}
+	
+	public Ubicacion devolverObjetoUbicacion(String entrada, List<Ubicacion> ubicaciones) {
+		for (Ubicacion elemento : ubicaciones) {
 			if (entrada.contains(elemento.getNombre())) {
 				return elemento;
 			}

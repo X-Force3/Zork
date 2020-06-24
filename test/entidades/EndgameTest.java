@@ -68,8 +68,8 @@ public class EndgameTest {
 		taberna = new Ubicacion("taberna", Genero.FEMALE, Numero.SINGULAR, "Estás en una taberna.", null, null, null);
 		playa = new Ubicacion("playa", Genero.FEMALE, Numero.SINGULAR, "Estás en la playa.", null, null, null);
 
-		surMuelle = new Conexion(Direccion.SUR, taberna, null);
-		esteMuelle = new Conexion(Direccion.ESTE, playa, null);
+		surMuelle = new Conexion(Direccion.SUR, "taberna", null);
+		esteMuelle = new Conexion(Direccion.ESTE, "playa", null);
 		
 		conexionesMuelle = new ArrayList<Conexion>();
 		conexionesMuelle.add(surMuelle);
