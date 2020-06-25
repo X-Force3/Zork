@@ -123,7 +123,21 @@ public class Lugar {
 	public void setItems(List<Item> items) {
 		this.items = items;
 	}
-	
-	
 
+	public Genero getGenero() {
+		return genero;
+	}
+
+	public Numero getNumero() {
+		return numero;
+	}
+
+	public String getSegundoNombre() {
+		return segundoNombre;
+	}
+
+	public List<Trigger> getTriggers() {
+		return triggers;
+	}
+	
 }

@@ -10,7 +10,6 @@ public class Item {
 	private List<String> acciones;
 	private List<String> efectosSobre;
 	// private boolean usado;
-	// Luz: puede ser que las acciones y los efectos sean enums?
 
 	public Item(String nombre, Genero genero, Numero numero, List<String> acciones, List<String> efectosSobre) {
 		super();
