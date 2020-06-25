@@ -9,16 +9,16 @@ public class Npc {
 	private Numero numero;
 	private String descripcion;
 	private String dialogo;// private List<String> dialogos;
-	private List<Trigger> trigger;
+	private List<Trigger> triggers;
 
-	public Npc(String nombre, Genero genero, Numero numero, String descripcion, String dialogo, List<Trigger> trigger) {
+	public Npc(String nombre, Genero genero, Numero numero, String descripcion, String dialogo, List<Trigger> triggers) {
 		super();
 		this.nombre = nombre;
 		this.genero = genero;
 		this.numero = numero;
 		this.descripcion = descripcion;
 		this.dialogo = dialogo;
-		this.trigger = trigger;
+		this.triggers = triggers;
 	}
 
 	public String getNombre() {
@@ -42,7 +42,7 @@ public class Npc {
 	}
 
 	public List<Trigger> getTrigger() {
-		return trigger;
+		return triggers;
 	}
 
 	public String presentarse() { // cambiar diag de clase
@@ -54,7 +54,7 @@ public class Npc {
 	}
 
 	public String verificarTrigger(Item item, Protagonista protagonista) {
-		for (Trigger elemento : this.trigger) {
+		for (Trigger elemento : this.triggers) {
 			if (elemento.getType() == "item" && item.getNombre() == elemento.getThing()) {
 				this.ejecutarTrigger(elemento, protagonista);
 				return elemento.getOn_trigger();

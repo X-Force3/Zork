@@ -281,17 +281,17 @@
         {
           "direccion": "este",
           "ubicacionDestino": "este",
-          "obstaculos": "loro"
+          "obstaculo": "loro"
         },
         {
           "direccion": "norte",
           "ubicacionDestino": "norte",
-          "obstaculos": "loro"
+          "obstaculo": "loro"
         },
         {
           "direccion": "sur",
           "ubicacionDestino": "sur",
-          "obstaculos": "loro"
+          "obstaculo": "loro"
         }
       ]
     },
@@ -354,22 +354,22 @@
         {
           "direccion": "oeste",
           "ubicacionDestino": "oeste",
-          "obstaculos": "null"
+          "obstaculo": "null"
         },
         {
           "direccion": "norte",
           "ubicacionDestino": "norte",
-          "obstaculos": "null"
+          "obstaculo": "null"
         },
         {
           "direccion": "sur",
           "ubicacionDestino": "sur",
-          "obstaculos": "null"
+          "obstaculo": "null"
         },
         {
           "direccion": "living",
           "ubicacionDestino": "living",
-          "obstaculos": "serpiente"
+          "obstaculo": "serpiente"
         }
       ]
     },
@@ -422,17 +422,17 @@
         {
           "direccion": "este",
           "ubicacionDestino": "este",
-          "obstaculos": "null"
+          "obstaculo": "null"
         },
         {
           "direccion": "baño",
-          "ubicacionDestinoo": "baño",
-          "obstaculos": "comadreja"
+          "ubicacionDestino": "baño",
+          "obstaculo": "comadreja"
         },
         {
           "direccion": "habitacion",
           "ubicacionDestino": "habitacion",
-          "obstaculos": "comadreja"
+          "obstaculo": "comadreja"
         }
       ]
     },
@@ -484,12 +484,12 @@
         {
           "direccion": "living",
           "ubicacionDestino": "living",
-          "obstaculos": "araña"
+          "obstaculo": "araña"
         },
         {
           "direccion": "habitacion",
           "ubicacionDestino": "habitacion",
-          "obstaculos": "araña"
+          "obstaculo": "araña"
         }
       ]
     },
@@ -541,12 +541,12 @@
         {
           "direccion": "baño",
           "ubicacionDestino": "baño",
-          "obstaculos": "lobo"
+          "obstaculo": "lobo"
         },
         {
           "direccion": "living",
           "ubicacionDestino": "living",
-          "obstaculos": "lobo"
+          "obstaculo": "lobo"
         }
       ]
     }
