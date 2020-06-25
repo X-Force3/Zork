@@ -7,11 +7,16 @@ import java.util.Scanner;
 import entidades.Aventura;
 
 public class Menu {
+
+	private static final String RUTA = "recursos/";
+	private static final String AVENTURA_1 = RUTA + "aventura.json";
+	private static final String AVENTURA_2 = RUTA + "aventura2.json";
+	private static final String AVENTURA_3 = RUTA + "aventura3.json";
 	
 	private Scanner scanner;
 	private int opcion;
 	private Map<Integer,String> nombreAventura; //Variables
-	
+	ManejoArchivos manejoArchivos;
 	
 	public static void main(String[] args) {
 		
@@ -48,19 +53,15 @@ public class Menu {
 			
 				switch(this.opcion){
 				case 1: 
-					
-					ManejoArchivosProbandoHashmaps.cargarAventura("Aventura1.json");		
-					
+					manejoArchivos = new ManejoArchivos(AVENTURA_1);
 					System.out.println("selecciono la opcion 1");
 					break;
 				case 2: 
-					
-					ManejoArchivosProbandoHashmaps.cargarAventura("Aventura2.json");
+					manejoArchivos = new ManejoArchivos(AVENTURA_2);
 					System.out.println("selecciono la opcion 2");
 					break;
 				case 3: 
-					
-					ManejoArchivosProbandoHashmaps.cargarAventura("Aventura3.json");
+					manejoArchivos = new ManejoArchivos(AVENTURA_3);
 					System.out.println ("selecciono la opcion 3");
 					break;
 				case 0: 
