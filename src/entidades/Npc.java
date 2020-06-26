@@ -55,7 +55,7 @@ public class Npc {
 
 	public String verificarTrigger(Item item, Protagonista protagonista) {
 		for (Trigger elemento : this.triggers) {
-			if (elemento.getType() == "item" && item.getNombre() == elemento.getThing()) {
+			if ( elemento.getType().equals("item") && ( item.getNombre().equals( elemento.getThing() ) ) ) {
 				this.ejecutarTrigger(elemento, protagonista);
 				return elemento.getOn_trigger();
 			}
