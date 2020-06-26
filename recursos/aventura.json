@@ -50,7 +50,7 @@
     },
     {
       "nombre": "piedra",
-      "genero": "masculino",
+      "genero": "femenino",
       "numero": "singular",
       "acciones": [
         "agarrar",
