@@ -55,7 +55,8 @@
       "acciones": [
         "agarrar",
         "ver",
-        "tirar"
+        "tirar", 
+        "guardar"
       ],
       "efectosSobre": [
         "item",
@@ -135,7 +136,8 @@
         "tomar",
         "guardar",
         "atacar",
-        "tirar"
+        "tirar",
+        "agarrar"
       ],
       "efectosSobre": [
         "item",
@@ -148,6 +150,7 @@
       "numero": "singular",
       "acciones": [
         "tomar",
+        "agarrar",
         "guardar",
         "romper",
         "tirar"
@@ -163,6 +166,7 @@
       "acciones": [
         "tomar",
         "guardar",
+        "agarrar",
         "tirar"
       ],
       "efectosSobre": [
@@ -199,7 +203,8 @@
       "numero": "singular",
       "acciones": [
         "tomar",
-        "soltar"
+		"agarrar",
+        "guardar"
       ],
       "efectosSobre": [
         "item",
@@ -211,7 +216,9 @@
       "genero": "femenino",
       "numero": "singular",
       "acciones": [
-        "tomar"
+        "tomar",
+        "agarrar",
+        "guardar"
       ],
       "efectosSobre": [
         "item"
@@ -222,8 +229,10 @@
       "genero": "masculino",
       "numero": "singular",
       "acciones": [
+        "tomar",
         "agarrar",
-        "soltar"
+        "guardar",
+        "golpear"
       ],
       "efectosSobre": [
         "item",
