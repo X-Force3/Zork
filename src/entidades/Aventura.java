@@ -46,24 +46,22 @@ public class Aventura {
 		Conexion conexion;
 		Item item;
 		boolean fin = false;
-
-//		this.describirContexto(); Juani: Si hubiera un while desde la línea 45 hasta la 76..
-//		Cada vez que se ejecute el método "comenzar" el porgrama va a mostrar la descripción de la ubicación actual?
+		
+		System.out.println(this.configuracion.getBienvenida());
+		this.describirUbicacion();
+		while(fin == false) {
 		entrada = analizador.recibirEntrada();
 
 		if (this.quiereAgarrarItem(entrada) == true) {
 			salida = this.protagonista.describirInventario();
-			// habria que verificar condicion de endgame
 		}
 
 		else if ((conexion = this.quiereMoverseDeUbicacion(entrada)) != null) {
 			salida = this.tratarObstaculo(conexion);
-			// habria que verificar condicion de endgame
 		}
 
 		else if ((item = this.quiereRealizarAccionConItem(entrada)) != null) {
 			salida = this.realizarAccionConItem(entrada, item);
-			// no hace falta verificar condicion de endgame
 		}
 
 		else if (this.quiereVerAlrededor(entrada) == true) {
@@ -81,6 +79,7 @@ public class Aventura {
 		}
 
 		System.out.println(salida);
+		}
 	}
 	
 	public boolean quiereAgarrarItem(String entrada) {

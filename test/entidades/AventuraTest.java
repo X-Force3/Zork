@@ -45,6 +45,7 @@ public class AventuraTest {
 	Lugar cuboHielo;
 	Conexion esteMuelle;
 	Trigger triggerCuboHielo;
+	Trigger triggerCuboHieloCambiaNombre;
 	List<Trigger> triggersMuelle;
 	List<String> accionesEspejo;
 	
@@ -59,6 +60,7 @@ public class AventuraTest {
 
 		accionItemsSuelo = new ArrayList<String>();
 		accionItemsSuelo.add("usar");
+		accionItemsSuelo.add("derretir");
 		
 		accionesEspejo = new ArrayList<String>();
 		accionesEspejo.add("derretir");
@@ -82,8 +84,10 @@ public class AventuraTest {
 		triggersPirataFantasma.add(pirataFantasmaRociador);
 		
 		triggerCuboHielo = new Trigger("item", "espejo", "El hielo se está derritiendo!", "remove");
+		triggerCuboHieloCambiaNombre = new Trigger("item", "barreta", "El hielo se está derritiendo!", "cambiar nombre");
 		triggersMuelle = new ArrayList<Trigger>();
 		triggersMuelle.add(triggerCuboHielo);
+		triggersMuelle.add(triggerCuboHieloCambiaNombre);
 
 		sueloMuelle = new Lugar("suelo", null, Genero.MALE, Numero.SINGULAR, itemsSuelo, null, null);
 		cuboHielo = new Lugar("cubo de hielo", "charco de agua", Genero.MALE, Numero.SINGULAR, null, triggersMuelle, "No puedes pasar! El cubo de hielo te impide el paso...");
@@ -347,6 +351,32 @@ public class AventuraTest {
 		
 		Assert.assertEquals("No entiendo por qué quieres realizar eso...", salida);
 		Assert.assertEquals("Estás en un muelle. En el suelo hay una barreta. Hay un cubo de hielo. Hay un pirata fantasma. Al sur se puede ir hacia una taberna. Al este se puede ir hacia una playa.", aventura.describirUbicacion());
+	}
+	
+	@Test
+	public void cambiaNombreDeLugarCorrectamente() {
+		setup();
+		System.out.println(aventura.describirUbicacion());
+		String entrada = "agarrar barreta";
+		String salida = null;
+		if (aventura.quiereAgarrarItem(entrada) == true) {
+			salida = aventura.getProtagonista().describirInventario();
+		}
+		Assert.assertEquals("En tu inventario hay una barreta.", salida);
+
+		entrada = "derretir el cubo de hielo con la barreta";
+		salida = null;
+		Item item;
+		if ((item = aventura.quiereRealizarAccionConItem(entrada)) != null) {
+			salida = aventura.realizarAccionConItem(entrada, item);
+		}
+		System.out.println(salida);
+		System.out.println(aventura.describirUbicacion());
+		
+		Assert.assertEquals("El hielo se está derritiendo!", salida);
+		Assert.assertEquals("Estás en un muelle. En el suelo hay un rociador con cerveza de raiz y un espejo. Hay un charco de agua. "
+				+ "Hay un pirata fantasma. Al sur se puede ir hacia una taberna."
+				+ " Al este se puede ir hacia una playa.", aventura.describirUbicacion());
 	}
 	
 }
