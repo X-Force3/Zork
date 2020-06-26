@@ -30,9 +30,13 @@ public class ManejoArchivos {
 
 	private Map<String, Ubicacion> ubicacionesMap = new HashMap<String, Ubicacion>();
 	private Map<String, Item> itemsMap = new HashMap<String, Item>();
-	private Aventura aventura;
 	
-	private Gson simpleGson = new Gson();
+	//variables que necesitamos para construir la aventura
+	private Configuracion configuracion;
+	private List<Ubicacion> ubicaciones;
+	
+	//para no instanciar gson multiples veces
+	private Gson simpleGson = new Gson(); 
 
 	public ManejoArchivos(String aventuraPath) {
 		JsonObject o = convertFileToJSON(aventuraPath);
@@ -54,21 +58,21 @@ public class ManejoArchivos {
 	}
 
 	protected void construir(JsonObject jo) {
-		Configuracion config = simpleGson.fromJson(jo.get("configuracion"), Configuracion.class);
+		this.configuracion = simpleGson.fromJson(jo.get("configuracion"), Configuracion.class);
 
 		// items
 		Type listTypeItem = new TypeToken<ArrayList<Item>>() {}.getType();
-		ArrayList<Item> items = new Gson().fromJson(jo.get("items"), listTypeItem);
+		ArrayList<Item> items = simpleGson.fromJson(jo.get("items"), listTypeItem);
 		for (Item item : items) {
 			itemsMap.put(item.getNombre(), item);
 		}
 		
 		// ubicaciones
 		Type listTypeUbicacion = new TypeToken<ArrayList<Ubicacion>>() {}.getType();
-		ArrayList<Ubicacion> ubicaciones = new Gson().fromJson(jo.get("ubicaciones"), listTypeUbicacion);
+		ArrayList<Ubicacion> ubicaciones = simpleGson.fromJson(jo.get("ubicaciones"), listTypeUbicacion);
 		contruirItemsDeLugares(jo.getAsJsonArray("ubicaciones"),ubicaciones);
-		
-		this.aventura = new Aventura(config, ubicaciones);
+
+		this.ubicaciones = ubicaciones;
 	}
 	
 	public static JsonObject convertFileToJSON(String path) {
@@ -92,14 +96,17 @@ public class ManejoArchivos {
 	public Map<String, Item> getItemsMap() {
 		return itemsMap;
 	}
+	
+	public Configuracion getConfiguracion() {
+		return configuracion;
+	}
 
-	public Aventura getAventura() {
-		return aventura;
+	public List<Ubicacion> getUbicaciones() {
+		return ubicaciones;
 	}
 
 	public static void main(String[] args) {
 		ManejoArchivos m = new ManejoArchivos("recursos/aventura.json");
-		 System.out.println(m.getAventura());
 		
 		System.out.println("\n\nUbicaciones: ");
 		for (Map.Entry<String, Ubicacion> entry : m.getUbicacionesMap().entrySet()) {

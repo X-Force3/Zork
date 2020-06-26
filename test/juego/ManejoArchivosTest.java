@@ -25,13 +25,8 @@ public class ManejoArchivosTest {
 	}
 	
 	@Test
-	public void queDevuelvaLaEnAventura() {
-		Assert.assertNotNull(m.getAventura());
-	}
-	
-	@Test
 	public void queLaConfiguracionSeaValida() {
-		Configuracion c = m.getAventura().getConfiguracion();
+		Configuracion c = m.getConfiguracion();
 		Assert.assertNotNull(c);
 		Assert.assertNotNull(c.getBienvenida());
 		Assert.assertNotNull(c.getTitulo());
@@ -51,7 +46,7 @@ public class ManejoArchivosTest {
 	
 	@Test
 	public void queLasUbicacionesSeanValidas() {
-		List<Ubicacion> ubicaciones = m.getAventura().getUbicaciones();
+		List<Ubicacion> ubicaciones = m.getUbicaciones();
 		Assert.assertNotNull(ubicaciones);
 		Assert.assertFalse(ubicaciones.isEmpty());
 		for (Ubicacion u : ubicaciones) {
@@ -106,7 +101,7 @@ public class ManejoArchivosTest {
 			
 			for (Conexion c : u.getConexiones()) {
 				System.out.println(u.getNombre() + " conexion " + c);
-				//Assert.assertNotNull(c.getDireccion());  //NOTA: La direccion siempre debe ser Este, Sur, ... ----------------------
+				Assert.assertNotNull(c.getDireccion());  //NOTA: La direccion siempre debe ser Este, Sur, ... ----------------------
 				Assert.assertFalse(c.getUbicacionDestino().isEmpty());
 				Assert.assertNotNull(c.getObstaculo());
 			}
@@ -116,7 +111,7 @@ public class ManejoArchivosTest {
 	@Test
 	public void queElMapaDeUbicacionesFuncione() {
 		Map<String, Ubicacion> ubis = m.getUbicacionesMap();
-		Ubicacion aBuscar = m.getAventura().getUbicaciones().get(0);
+		Ubicacion aBuscar = m.getUbicaciones().get(0);
 		Assert.assertNotNull(ubis.get(aBuscar.getNombre()));
 		Assert.assertEquals(aBuscar, ubis.get(aBuscar.getNombre()));
 	}
@@ -124,7 +119,7 @@ public class ManejoArchivosTest {
 	@Test
 	public void queElMapaDeItemsFuncione() {
 		Map<String, Item> items = m.getItemsMap();
-		Item aBuscar = m.getAventura().getUbicaciones().get(0).getItems().get(0);
+		Item aBuscar = m.getUbicaciones().get(0).getItems().get(0);
 		Assert.assertNotNull(items.get(aBuscar.getNombre()));
 		Assert.assertEquals(aBuscar, items.get(aBuscar.getNombre()));
 	}

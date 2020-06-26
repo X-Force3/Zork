@@ -69,28 +69,27 @@ public class Ubicacion {
 	}
 	 */
 	
-	public String describirUbicacion(List<Ubicacion> ubicaciones) {
+	public String describirUbicacion(List<Ubicacion> ubicacionesConectadas) {
 		String cadena = this.descripcion;
+
+		if (this.lugares != null)
+			for (Lugar lugar : this.lugares) {
+				if (lugar.getNombre() != "borrado")
+					cadena += " " + lugar.describirObjetosDisponibles();
+			}
+
+		if (this.npcs != null)
+			for (Npc npc : this.npcs) {
+				if (npc.getNombre() != "borrado")
+					cadena += " " + npc.conjugarNpc();
+			}
 		
-		if(this.lugares != null)
-		for(Lugar lugar : this.lugares) {
-			if(lugar.getNombre() != "borrado")
-			cadena += " " + lugar.describirObjetosDisponibles();
-		}
-		
-		if(this.npcs != null)
-		for(Npc npc : this.npcs) {
-			if(npc.getNombre() != "borrado")
-			cadena += " " + npc.conjugarNpc();
-		}
-		
-		if(this.conexiones != null)
-		for(Conexion conexion : this.conexiones) {
-			cadena += " " + conexion.conjugarConexion(ubicaciones);
-		}
+		if (this.conexiones != null)
+			for (int i = 0; i < conexiones.size(); i++) {
+				cadena +=  "\n" + conexiones.get(i).conjugarConexion(ubicacionesConectadas.get(i) );
+			}
 		return cadena;
 	}
-	
 	
 
 	public String conjugarUbicacion() {

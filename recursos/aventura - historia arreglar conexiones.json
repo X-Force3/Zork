@@ -233,7 +233,7 @@
   ],
   "ubicaciones": [
     {
-      "nombre": "bosque",
+      "nombre": "oeste",
       "genero": "masculino",
       "numero": "singular",
       "descripcion": "Estás en una isla pequeña donde habitan algunos animales muy peligrosos. Precisamente estas ubicado al lado oeste de una casa con puerta delantera a la vista. Un Cartel en la puerta dice ¡Prohibido Pasar!. Hay un buzón en la entrada y una piedra. En la Costa de esta parte de la isla se puede ver una lancha",
@@ -280,23 +280,23 @@
       "conexiones": [
         {
           "direccion": "este",
-          "ubicacionDestino": "jardin",
+          "ubicacionDestino": "este",
           "obstaculo": "loro"
         },
         {
           "direccion": "norte",
-          "ubicacionDestino": "habitacion",
+          "ubicacionDestino": "norte",
           "obstaculo": "loro"
         },
         {
           "direccion": "sur",
-          "ubicacionDestino": "living",
+          "ubicacionDestino": "sur",
           "obstaculo": "loro"
         }
       ]
     },
     {
-      "nombre": "jardin",
+      "nombre": "este",
       "genero": "masculino",
       "numero": "singular",
       "descripcion": "Estás en jardín de la casa. Se puede observar una ventana y otra puerta totalmente blindadas y cerradas. En el techo se llega a ver una linda chimenea por la que puedes acceder al living de la casa",
@@ -353,16 +353,21 @@
       "conexiones": [
         {
           "direccion": "oeste",
-          "ubicacionDestino": "bosque",
+          "ubicacionDestino": "oeste",
           "obstaculo": "null"
         },
         {
           "direccion": "norte",
-          "ubicacionDestino": "habitacion",
+          "ubicacionDestino": "norte",
           "obstaculo": "null"
         },
         {
           "direccion": "sur",
+          "ubicacionDestino": "sur",
+          "obstaculo": "null"
+        },
+        {
+          "direccion": "living",
           "ubicacionDestino": "living",
           "obstaculo": "serpiente"
         }
@@ -416,16 +421,16 @@
       "conexiones": [
         {
           "direccion": "este",
-          "ubicacionDestino": "jardin",
+          "ubicacionDestino": "este",
           "obstaculo": "null"
         },
         {
-          "direccion": "sur",
+          "direccion": "baño",
           "ubicacionDestino": "baño",
           "obstaculo": "comadreja"
         },
         {
-          "direccion": "oeste",
+          "direccion": "habitacion",
           "ubicacionDestino": "habitacion",
           "obstaculo": "comadreja"
         }
@@ -477,12 +482,12 @@
       ],
       "conexiones": [
         {
-          "direccion": "norte",
+          "direccion": "living",
           "ubicacionDestino": "living",
           "obstaculo": "araña"
         },
         {
-          "direccion": "este",
+          "direccion": "habitacion",
           "ubicacionDestino": "habitacion",
           "obstaculo": "araña"
         }
@@ -534,12 +539,12 @@
       ],
       "conexiones": [
         {
-          "direccion": "este",
+          "direccion": "baño",
           "ubicacionDestino": "baño",
           "obstaculo": "lobo"
         },
         {
-          "direccion": "oeste",
+          "direccion": "living",
           "ubicacionDestino": "living",
           "obstaculo": "lobo"
         }

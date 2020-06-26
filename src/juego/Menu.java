@@ -9,35 +9,24 @@ import entidades.Aventura;
 public class Menu {
 
 	private static final String RUTA = "recursos/";
-	private static final String AVENTURA_1 = RUTA + "aventura.json";
-	private static final String AVENTURA_2 = RUTA + "aventura2.json";
-	private static final String AVENTURA_3 = RUTA + "aventura3.json";
+	public static final String AVENTURA_1 = RUTA + "aventura.json";
+	public static final String AVENTURA_2 = RUTA + "aventura2.json";
+	public static final String AVENTURA_3 = RUTA + "aventura3.json";
 	
 	private Scanner scanner;
 	private int opcion;
 	private Map<Integer,String> nombreAventura; //Variables
-	ManejoArchivos manejoArchivos;
-	
-	public static void main(String[] args) {
-		
-		Menu menu = new Menu();
-	
-		menu.cargarMapaAventuras();
-		menu.desplegarMenuOpciones();
-		
-		
-
-	}
+	private String pathAventuraElegida;
+	private String nombreJugador;
 	
 	public Menu() {
-	
 		this.scanner = new Scanner(System.in); 
 		this.opcion = -1; //opción elegida del usuario
 		this.nombreAventura = new HashMap<Integer,String>(); //Variables
-		
+		cargarMapaAventuras();
 	}
 	
-	private void desplegarMenuOpciones() {
+	void desplegarMenuOpciones() {
 		
 		do{
 			//Try catch para evitar que el programa termine si hay un error
@@ -53,15 +42,15 @@ public class Menu {
 			
 				switch(this.opcion){
 				case 1: 
-					manejoArchivos = new ManejoArchivos(AVENTURA_1);
+					pathAventuraElegida = AVENTURA_1;
 					System.out.println("selecciono la opcion 1");
 					break;
 				case 2: 
-					manejoArchivos = new ManejoArchivos(AVENTURA_2);
+					pathAventuraElegida = AVENTURA_2;
 					System.out.println("selecciono la opcion 2");
 					break;
 				case 3: 
-					manejoArchivos = new ManejoArchivos(AVENTURA_3);
+					pathAventuraElegida = AVENTURA_3;
 					System.out.println ("selecciono la opcion 3");
 					break;
 				case 0: 
@@ -80,21 +69,33 @@ public class Menu {
 		
 	}
 	
+	public void solicitarNombreDeJugador() {
+		do{
+				System.out.println("Nombre de jugador:\n");
+				nombreJugador = scanner.nextLine(); 
+				System.out.println("\n"); 
+			
+		}while(nombreJugador == null || nombreJugador.isEmpty());
+	}
 	
-	public static void cargarAventura(String patharchivo, String nombreaventura){
-		
-		System.out.println("Se cargo la aventura " + nombreaventura);
-		
-		
-		System.out.println("\n"); 
+	public static void cargarAventura(String patharchivo, String nombreAventura){
+		System.out.println("Se cargo la aventura " + nombreAventura + "\n");
 	}
 	
 	private void cargarMapaAventuras() {
 		
-		this.nombreAventura.put(1, "Taberna");
+		this.nombreAventura.put(1, "Aventura 1: La Isla Peligrosa");
 		this.nombreAventura.put(2, "Discoteca");
 		this.nombreAventura.put(3, "La isla");
 		this.nombreAventura.put(0, "Salir");
+	}
+
+	public String getPathAventuraElegida() {
+		return pathAventuraElegida;
+	}
+
+	public String getNombreJugador() {
+		return nombreJugador;
 	}
 	
 }
