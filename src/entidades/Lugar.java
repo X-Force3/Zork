@@ -10,10 +10,10 @@ public class Lugar {
 	private String segundoNombre;// Juani: Este atributo sólo lo tienen los lugares que actúan como obstáculos.
 	private List<Item> items;
 	private List<Trigger> triggers;
-	private String descripcion;// Juani: Idem. 
+	private String descripcion;// Juani: Idem.
 
-	public Lugar(String nombre, String segundoNombre, Genero genero, Numero numero, List<Item> items, List<Trigger> triggers,
-			String descripcion) {
+	public Lugar(String nombre, String segundoNombre, Genero genero, Numero numero, List<Item> items,
+			List<Trigger> triggers, String descripcion) {
 		super();
 		this.nombre = nombre;
 		this.genero = genero;
@@ -26,10 +26,10 @@ public class Lugar {
 
 	public String describirObjetosDisponibles() {
 		String queHay = "";
-		if(this.triggers != null && this.descripcion != null) {
+		if (this.triggers != null && this.descripcion != null) {
 			return "Hay " + this.conjugar() + ".";
 		}
-		
+
 		if (items == null || items.isEmpty())
 			queHay = "no hay nada";
 		else {
@@ -48,19 +48,18 @@ public class Lugar {
 
 	public String conjugar() {
 		String conjugacion = "";
-		if(this.triggers != null && this.descripcion != null) {
+		if (this.triggers != null && this.descripcion != null) {
 			if (this.genero == Genero.FEMALE) {
 				conjugacion = this.numero == Numero.SINGULAR ? "una" : "unas";
 			} else {
 				conjugacion = this.numero == Numero.SINGULAR ? "un" : "unos";
 			}
-		}
-		else {
+		} else {
 			if (this.genero == Genero.FEMALE) {
 				conjugacion = this.numero == Numero.SINGULAR ? "la" : "las";
 			} else {
 				conjugacion = this.numero == Numero.SINGULAR ? "el" : "los";
-			}	
+			}
 		}
 		return conjugacion + " " + this.nombre;
 	}
@@ -91,17 +90,18 @@ public class Lugar {
 		// el trigger podria cambiar el nombre del lugar talvez. asi, cuando el jugador
 		// quiera cambiar de ubicacion,
 		// el metodo de buscar obstaculo no lo encuentre y lo deje
-		if (trigger.getAfter_trigger() == "remove")
+		if (trigger.getAfter_trigger().equals("remove"))
 			this.nombre = "borrado";
-		if (trigger.getAfter_trigger() == "cambiar nombre") // ver lo del posible atributo de trigger "descripcion"
-			this.nombre = this.segundoNombre;// Juani: Reemplacé la línea que le asignaba "" por esta que le asigna el segundo nombre...
+		if (trigger.getAfter_trigger().equals("cambiar nombre")) // ver lo del posible atributo de trigger "descripcion"
+			this.nombre = this.segundoNombre;// Juani: Reemplacé la línea que le asignaba "" por esta que le asigna el
+												// segundo nombre...
 //		O sea, el nombre del lugar luego de ejecutar el Trigger.
 
 	}
 
 	public String verificarTrigger(Item item) {
 		for (Trigger elemento : this.triggers) {
-			if (elemento.getType() == "item" && item.getNombre() == elemento.getThing()) {
+			if (elemento.getType().equals("item") && (item.getNombre().equals(elemento.getThing()))) {
 				this.ejecutarTrigger(elemento);
 				return elemento.getOn_trigger();
 			}
@@ -139,5 +139,5 @@ public class Lugar {
 	public List<Trigger> getTriggers() {
 		return triggers;
 	}
-	
+
 }
