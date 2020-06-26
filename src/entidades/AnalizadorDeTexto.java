@@ -1,10 +1,21 @@
 package entidades;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class AnalizadorDeTexto {
 	private Scanner scanner;
+	private Map<String, Ubicacion> ubicacionesMap = new HashMap<String, Ubicacion>();
+	private Map<String, Item> itemsMap = new HashMap<String, Item>();
+	
+	public AnalizadorDeTexto(Map<String, Ubicacion> ubicacionesMap, Map<String, Item> itemsMap) {
+		super();
+		scanner = new Scanner(System.in); // Create a Scanner object
+		this.ubicacionesMap = ubicacionesMap;
+		this.itemsMap = itemsMap;
+	}
 
 	public AnalizadorDeTexto() {
 		scanner = new Scanner(System.in); // Create a Scanner object

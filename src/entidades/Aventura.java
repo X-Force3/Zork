@@ -1,34 +1,35 @@
 package entidades;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import juego.ManejoArchivos;
 
 public class Aventura {
 
 	private Configuracion configuracion;
-	private List<Ubicacion> ubicaciones;
+	private Map<String, Ubicacion> ubicaciones = new HashMap<String, Ubicacion>();//los mapas están cargados
+	private Map<String, Item> items = new HashMap<String, Item>();
 	private AnalizadorDeTexto analizador;
 	private Protagonista protagonista;
 	
-	public Aventura(Configuracion configuracion, List<Ubicacion> ubicaciones) {
-		super();
-		this.configuracion = configuracion;
-		this.ubicaciones = ubicaciones;
+	public Aventura(String pathAventura,String nombreJugador) {
+		cargarAventura(pathAventura, nombreJugador);
 	}
-	
-	public Aventura(Configuracion configuracion, List<Ubicacion> ubicaciones, String nombreJugador) {
-		super();
-		this.configuracion = configuracion;
-		this.ubicaciones = ubicaciones;
-		this.analizador = new AnalizadorDeTexto();
-		this.protagonista = new Protagonista(nombreJugador, ubicaciones.get(0));
+
+	private void cargarAventura(String pathAventura,String nombreJugador) {
+		ManejoArchivos manejoArchivos = new ManejoArchivos(pathAventura);
+		analizador = new AnalizadorDeTexto(manejoArchivos.getUbicacionesMap(),manejoArchivos.getItemsMap());
+		ubicaciones = manejoArchivos.getUbicacionesMap();
+		items = manejoArchivos.getItemsMap();
+		configuracion = manejoArchivos.getConfiguracion();
+		this.protagonista = new Protagonista(nombreJugador,manejoArchivos.getUbicaciones().get(0));
 	}
 
 	public Configuracion getConfiguracion() {
 		return configuracion;
-	}
-
-	public List<Ubicacion> getUbicaciones() {
-		return ubicaciones;
 	}
 
 	public AnalizadorDeTexto getAnalizador() {
@@ -46,42 +47,49 @@ public class Aventura {
 		Conexion conexion;
 		Item item;
 		boolean fin = false;
-		
+
+//		this.describirContexto(); Juani: Si hubiera un while desde la línea 45 hasta la 76.. //Luz: pienso lo mismo
+//		Cada vez que se ejecute el método "comenzar" el porgrama va a mostrar la descripción de la ubicación actual?
 		System.out.println(this.configuracion.getBienvenida());
-		this.describirUbicacion();
-		while(fin == false) {
-		entrada = analizador.recibirEntrada();
+		System.out.println(describirUbicacionActual()); //funciona
+		
+		while(!fin) {
+			entrada = analizador.recibirEntrada();
 
-		if (this.quiereAgarrarItem(entrada) == true) {
-			salida = this.protagonista.describirInventario();
-		}
+			if (this.quiereAgarrarItem(entrada) == true) {
+				salida = this.protagonista.describirInventario();
+				// habria que verificar condicion de endgame
+			}
 
-		else if ((conexion = this.quiereMoverseDeUbicacion(entrada)) != null) {
-			salida = this.tratarObstaculo(conexion);
-		}
+			else if ((conexion = this.quiereMoverseDeUbicacion(entrada)) != null) {
+				salida = this.tratarObstaculo(conexion);
+				// habria que verificar condicion de endgame
+			}
 
-		else if ((item = this.quiereRealizarAccionConItem(entrada)) != null) {
-			salida = this.realizarAccionConItem(entrada, item);
-		}
+			else if ((item = this.quiereRealizarAccionConItem(entrada)) != null) {
+				salida = this.realizarAccionConItem(entrada, item);
+				// no hace falta verificar condicion de endgame
+			}
 
-		else if (this.quiereVerAlrededor(entrada) == true) {
-			salida = this.describirUbicacion();
+			else if (this.quiereVerAlrededor(entrada) == true) {
+				salida = this.describirUbicacionActual();
 
-		} else {
-			salida = "No comprendí lo que quieres, intenta ser más preciso...";
-		}
+			} else {
+				salida = "No comprendí lo que quieres, intenta ser más preciso...";
+			}
 
-		descripcionEndgame = this.verificarEndgame(entrada);
+			descripcionEndgame = this.verificarEndgame(entrada);
 
-		if (descripcionEndgame != "") {
-			salida = descripcionEndgame;
-			fin = true;
-		}
-
-		System.out.println(salida);
+			if (descripcionEndgame != "") {
+				salida = descripcionEndgame;
+				fin = true;
+			}
+			
+			System.out.println(salida);
 		}
 	}
 	
+
 	public boolean quiereAgarrarItem(String entrada) {
 		boolean condicion = false;
 		Item objeto;
@@ -135,15 +143,15 @@ public class Aventura {
 				if (obstaculoLugar != null) {
 					salida = obstaculoLugar.getDescripcion();
 				} else {
-					this.protagonista.desplazarse(conexion.getUbicacionDestino(), this.ubicaciones);
+					this.protagonista.desplazarse(ubicaciones.get(conexion.getUbicacionDestino()));
 					// System.out.println(this.protagonista.getUbicacionActual().getNombre());
 					// salida = this.protagonista.getUbicacionActual().describirUbicacion();
-					salida = this.describirUbicacion();
+					salida = this.describirUbicacionActual();
 				}
 			}
 		} else {
-			this.protagonista.desplazarse(conexion.getUbicacionDestino(), this.ubicaciones);
-			salida = this.describirUbicacion();
+			this.protagonista.desplazarse(ubicaciones.get(conexion.getUbicacionDestino()));
+			salida = this.describirUbicacionActual();
 		}
 		return salida;
 	}
@@ -209,9 +217,16 @@ public class Aventura {
 		return "Aventura \n[" + configuracion + ", \n" + ubicaciones + "]";
 	}
 	
-	public String describirUbicacion() {
-		return this.protagonista.getUbicacionActual().describirUbicacion(this.ubicaciones);
-		
+	public String describirUbicacionActual() {
+		return this.protagonista.getUbicacionActual().describirUbicacion(getUbicacionesConectadas(protagonista.getUbicacionActual().getConexiones()));
+	}
+	
+	private List<Ubicacion> getUbicacionesConectadas(List<Conexion> conexiones) {
+		List<Ubicacion> ubicacionesConectadas = new ArrayList<>();
+		for(Conexion conexion : conexiones) {
+			ubicacionesConectadas.add(ubicaciones.get(conexion.getUbicacionDestino()));
+		}
+		return ubicacionesConectadas;
 	}
 	
 }

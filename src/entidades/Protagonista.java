@@ -82,9 +82,13 @@ public class Protagonista {
 //		return false;
 //	} No se utiliza en la clase Aventura el desplazarse según la Ubicacion, pero sí el desplazarse según la Conexion.
 
-	public void desplazarse(String nombreUbicacionDestino, List<Ubicacion> ubicaciones) {
+	/*public void desplazarse(String nombreUbicacionDestino, List<Ubicacion> ubicaciones) {
 		AnalizadorDeTexto analizador = new AnalizadorDeTexto();
 		Ubicacion ubicacionDestino = analizador.devolverObjetoUbicacion(nombreUbicacionDestino, ubicaciones);
+		this.ubicacionActual = ubicacionDestino;
+	}*/
+	
+	public void desplazarse(Ubicacion ubicacionDestino) {
 		this.ubicacionActual = ubicacionDestino;
 	}
 

@@ -30,10 +30,25 @@ public class Conexion {
 		return obstaculo;
 	}
 
-	public String conjugarConexion(List<Ubicacion> ubicaciones) {
+	//Luz: no entendi que ubicaciones trae. Creí que eran las ubicaciones conectadas pero luego llama a Analizador de texto
+	/*public String conjugarConexion(List<Ubicacion> ubicaciones) {
 		AnalizadorDeTexto analizador = new AnalizadorDeTexto();
 		Ubicacion ubicacion = analizador.devolverObjetoUbicacion(this.ubicacionDestino, ubicaciones);
 		return "Al " + this.direccion.getNombre() + " se puede ir hacia " + ubicacion.conjugarUbicacion()
+				+ ".";
+	}*/
+	
+	public String describirConexiones(List<Ubicacion> ubicaciones) {
+		String descripcion = "";
+		for (Ubicacion ubicacion : ubicaciones) {
+			descripcion += conjugarConexion(ubicacion) + "\n";
+		}
+		return descripcion;
+	}
+	
+	public String conjugarConexion(Ubicacion ubicacion) {
+		String dire = direccion == null? "[direccion]" : direccion.getNombre(); //parchecito, SACAR LUEGO
+		return "Al " + dire + " se puede ir hacia " + ubicacion.conjugarUbicacion()
 				+ ".";
 	}
 
