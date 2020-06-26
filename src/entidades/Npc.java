@@ -64,13 +64,13 @@ public class Npc {
 	}
 
 	public void ejecutarTrigger(Trigger trigger, Protagonista protagonista) {
-		if (trigger.getAfter_trigger() == "remove")
+		if (trigger.getAfter_trigger().equals("remove"))
 			this.nombre = "borrado";
 		// le quita el nombre al npc, para no mostrarlo mas, y para que, si era un
 		// obstaculo de una coneccion, ya no lo encuentr
 		// este else if, podria ser otra ejemplo de que accion puede realizar ese
 		// trigger
-		else if(trigger.getAfter_trigger() == "matar") {
+		else if(trigger.getAfter_trigger().equals("matar")) {
 			protagonista.morir();
 		}// Juani: Este trigger es el que deberían usar los animales que asesinan al Protagonista.
 // El "type" sería "matar", la "thing" sería "".
