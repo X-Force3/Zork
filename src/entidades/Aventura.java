@@ -51,7 +51,7 @@ public class Aventura {
 //		this.describirContexto(); Juani: Si hubiera un while desde la línea 45 hasta la 76.. //Luz: pienso lo mismo
 //		Cada vez que se ejecute el método "comenzar" el porgrama va a mostrar la descripción de la ubicación actual?
 		System.out.println(this.configuracion.getBienvenida());
-		System.out.println(describirUbicacionActual()); //funciona
+		System.out.println(describirUbicacion()); //funciona
 		
 		while(!fin) {
 			entrada = analizador.recibirEntrada();
@@ -72,7 +72,7 @@ public class Aventura {
 			}
 
 			else if (this.quiereVerAlrededor(entrada) == true) {
-				salida = this.describirUbicacionActual();
+				salida = this.describirUbicacion();
 
 			} else {
 				salida = "No comprendí lo que quieres, intenta ser más preciso...";
@@ -146,12 +146,12 @@ public class Aventura {
 					this.protagonista.desplazarse(ubicaciones.get(conexion.getUbicacionDestino()));
 					// System.out.println(this.protagonista.getUbicacionActual().getNombre());
 					// salida = this.protagonista.getUbicacionActual().describirUbicacion();
-					salida = this.describirUbicacionActual();
+					salida = this.describirUbicacion();
 				}
 			}
 		} else {
 			this.protagonista.desplazarse(ubicaciones.get(conexion.getUbicacionDestino()));
-			salida = this.describirUbicacionActual();
+			salida = this.describirUbicacion();
 		}
 		return salida;
 	}
@@ -217,7 +217,7 @@ public class Aventura {
 		return "Aventura \n[" + configuracion + ", \n" + ubicaciones + "]";
 	}
 	
-	public String describirUbicacionActual() {
+	public String describirUbicacion() {
 		return this.protagonista.getUbicacionActual().describirUbicacion(getUbicacionesConectadas(protagonista.getUbicacionActual().getConexiones()));
 	}
 	
