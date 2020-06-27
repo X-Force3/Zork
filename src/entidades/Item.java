@@ -60,6 +60,9 @@ public class Item {
 				+ ", efectosSobre=" + efectosSobre + "]";
 	}
 	
-	
+	public boolean esItemDeInventario() {
+		
+		return (this.acciones.contains("agarrar") || this.acciones.contains("agarrar") || this.acciones.contains("agarrar"));
+	}
 
 }

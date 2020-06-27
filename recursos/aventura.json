@@ -6,8 +6,8 @@
       {
         "condicion": "item",
         "accion": "encender",
-        "cosa": "Lancha",
-        "descripcion": "Â¡Felicidades! Pudiste encender la lancha y escapar de la isla peligrosa"
+        "cosa": "lancha",
+        "descripcion": "¡Felicidades! Pudiste encender la lancha y escapar de la isla peligrosa"
       },
       {
         "condicion": "accion",
@@ -190,7 +190,10 @@
       "acciones": [
         "tomar",
 		"agarrar",
-        "guardar"
+        "guardar", 
+        "tirar", 
+        "lanzar", 
+        "golpear"
       ],
       "efectosSobre": [
         "item",

@@ -94,8 +94,8 @@ public class Aventura {
 		boolean condicion = false;
 		Item objeto;
 		objeto = analizador.contieneItem(entrada, this.protagonista.getUbicacionActual().getItems());
-		if (objeto != null && (objeto.getAcciones().contains("agarrar")
-				|| objeto.getAcciones().contains("guardar") || objeto.getAcciones().contains("tomar"))) {
+		if (objeto != null && objeto.esItemDeInventario() && (entrada.contains("agarrar") ||
+				entrada.contains("tomar") || entrada.contains("guardar"))) {
 			this.protagonista.añadirItem(objeto); // se añade al inventario
 			this.protagonista.getUbicacionActual().eliminarItemUbicacion(objeto); // se quita del place
 			condicion = true;
