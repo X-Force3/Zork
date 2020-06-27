@@ -101,20 +101,6 @@
       ]
     },
     {
-      "nombre": "lancha",
-      "genero": "femenino",
-      "numero": "singular",
-      "acciones": [
-        "ver",
-        "encender",
-        "arrancar",
-        "escapar"
-      ],
-      "efectosSobre": [
-        "item"
-      ]
-    },
-    {
       "nombre": "chimenea",
       "genero": "femenino",
       "numero": "singular",
@@ -258,6 +244,16 @@
             "piedra"
           ]
         },
+	{
+          "nombre": "lancha",
+	  "segundoNombre" : "_____AQUI______",
+          "genero": "femenino",
+          "numero": "singular",
+	  "descripcion" : "___AQUI___",
+          "itemsNombre": [
+            
+          ]
+        },
         {
           "nombre": "costa",
 	  "segundoNombre" : "_____AQUI______",
@@ -265,7 +261,7 @@
           "numero": "singular",
 	  "descripcion" : "___AQUI___",
           "itemsNombre": [
-            "lancha"
+            
           ]
         }
       ],
