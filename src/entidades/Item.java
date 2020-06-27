@@ -9,7 +9,6 @@ public class Item {
 	private Numero numero;
 	private List<String> acciones;
 	private List<String> efectosSobre;
-	// private boolean usado;
 
 	public Item(String nombre, Genero genero, Numero numero, List<String> acciones, List<String> efectosSobre) {
 		super();
@@ -61,7 +60,6 @@ public class Item {
 	}
 	
 	public boolean esItemDeInventario() {
-		
 		return (this.acciones.contains("agarrar") || this.acciones.contains("agarrar") || this.acciones.contains("agarrar"));
 	}
 

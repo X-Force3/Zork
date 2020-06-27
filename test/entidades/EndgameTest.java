@@ -1,7 +1,9 @@
 package entidades;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -25,7 +27,7 @@ public class EndgameTest {
 	Ubicacion muelle;
 	Ubicacion taberna;
 	Ubicacion playa;
-	List<Ubicacion> ubicacionesAventura;
+	Map<String, Ubicacion> ubicaciones;
 
 	Lugar sueloMuelle;
 	List<Lugar> lugaresMuelle;
@@ -79,10 +81,10 @@ public class EndgameTest {
 		muelle = new Ubicacion("muelle", Genero.MALE, Numero.SINGULAR, "Estás en un muelle.", lugaresMuelle, null,
 				conexionesMuelle);
 		
-		ubicacionesAventura = new ArrayList<Ubicacion>();
-		ubicacionesAventura.add(muelle);
-		ubicacionesAventura.add(taberna);
-		ubicacionesAventura.add(playa);
+		ubicaciones = new HashMap<String, Ubicacion>();
+		ubicaciones.put(muelle.getNombre(), muelle);
+		ubicaciones.put(taberna.getNombre(), taberna);
+		ubicaciones.put(playa.getNombre(), playa);
 
 		itemEnUbicacion = new Endgame("itemEnUbicacion", "", barreta.getNombre(),
 				"Felicitaciones! Has ganado el juego, lograste llegar a la taberna con la barreta...",
@@ -104,7 +106,7 @@ public class EndgameTest {
 		endgamesAventura.add(muerte);
 		
 		configuracionAventura = new Configuracion(null, null, endgamesAventura);
-		aventura = new Aventura(configuracionAventura, ubicacionesAventura, "X-Force");
+		aventura = new Aventura(configuracionAventura, ubicaciones, new Protagonista("X-Force", muelle));
 	}
 
 	@Test

@@ -85,8 +85,8 @@ public class Menu {
 	private void cargarMapaAventuras() {
 		
 		this.nombreAventura.put(1, "Aventura 1: La Isla Peligrosa");
-		this.nombreAventura.put(2, "Discoteca");
-		this.nombreAventura.put(3, "La isla");
+		/*this.nombreAventura.put(2, "Discoteca");
+		this.nombreAventura.put(3, "La isla");*/
 		this.nombreAventura.put(0, "Salir");
 	}
 

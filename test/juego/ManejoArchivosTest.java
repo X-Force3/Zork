@@ -38,7 +38,7 @@ public class ManejoArchivosTest {
 		for (Endgame endgame : c.getEndgames()) {
 			Assert.assertNotNull(endgame);
 			Assert.assertFalse(endgame.getCondicion().isEmpty());
-			Assert.assertFalse(endgame.getAccion().isEmpty());
+			Assert.assertNotNull(endgame.getAccion().isEmpty());
 			Assert.assertFalse(endgame.getCosa().isEmpty());
 			Assert.assertFalse(endgame.getDescripcion().isEmpty());
 		}
@@ -54,8 +54,8 @@ public class ManejoArchivosTest {
 			Assert.assertFalse(u.getDescripcion().isEmpty());
 			Assert.assertNotNull(u.getGenero());
 			Assert.assertNotNull(u.getNumero());
-			Assert.assertFalse(u.getLugares().isEmpty());
-			Assert.assertFalse(u.getNpcs().isEmpty());
+			Assert.assertNotNull(u.getLugares());
+			Assert.assertNotNull(u.getNpcs());
 			Assert.assertFalse(u.getConexiones().isEmpty());
 			
 			for (Lugar l : u.getLugares()) {
@@ -64,8 +64,7 @@ public class ManejoArchivosTest {
 				Assert.assertFalse(l.getDescripcion().isEmpty());
 				Assert.assertNotNull(l.getGenero());
 				Assert.assertNotNull(l.getNumero());
-				Assert.assertNotNull(l.getItems()); //puede no tener items pero debe traer al menos una lista vacia
-				//Assert.assertNotNull(l.getTriggers()); {//NOTA: agregar triggers en Lugar-----------------------
+				Assert.assertNotNull(l.getItems());
 				
 				for (Item i : l.getItems()) {
 					Assert.assertFalse(i.getNombre().isEmpty());
@@ -74,14 +73,7 @@ public class ManejoArchivosTest {
 					Assert.assertFalse(i.getAcciones().isEmpty());
 					Assert.assertFalse(i.getEfectosSobre().isEmpty());
 				}
-				
-				/*for (Trigger t : l.getTriggers()) {
-					Assert.assertFalse(t.getType().isEmpty());
-					Assert.assertFalse(t.getThing().isEmpty());
-					Assert.assertFalse(t.getOn_trigger().isEmpty());
-					Assert.assertFalse(t.getAfter_trigger().isEmpty());
-				}*/
-				
+
 			}
 			
 			for (Npc npc : u.getNpcs()) {
@@ -101,7 +93,7 @@ public class ManejoArchivosTest {
 			
 			for (Conexion c : u.getConexiones()) {
 				System.out.println(u.getNombre() + " conexion " + c);
-				Assert.assertNotNull(c.getDireccion());  //NOTA: La direccion siempre debe ser Este, Sur, ... ----------------------
+				Assert.assertNotNull(c.getDireccion());
 				Assert.assertFalse(c.getUbicacionDestino().isEmpty());
 				Assert.assertNotNull(c.getObstaculo());
 			}

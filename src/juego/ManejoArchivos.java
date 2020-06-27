@@ -18,14 +18,6 @@ import com.google.gson.reflect.TypeToken;
 
 import entidades.*;
 
-/**
- * Ver: https://howtodoinjava.com/gson/custom-serialization-deserialization/
- * lista<T>
- * https://stackoverflow.com/questions/14673694/deserialize-json-string-with-gson/14673950#14673950
- * list<T> con custom deserializater
- * https://stackoverflow.com/questions/15522803/custom-serializer-deserializer-using-gson-for-a-list-of-basicnamevaluepairs
- */
-
 public class ManejoArchivos {
 
 	private Map<String, Ubicacion> ubicacionesMap = new HashMap<String, Ubicacion>();
@@ -78,13 +70,10 @@ public class ManejoArchivos {
 	public static JsonObject convertFileToJSON(String path) {
 		JsonObject jsonObject = new JsonObject();
 		try {
-			JsonParser parser = new JsonParser();
-			JsonElement jsonElement = parser.parse(new FileReader(path));
+			JsonElement jsonElement = JsonParser.parseReader(new FileReader(path)); 
 			jsonObject = jsonElement.getAsJsonObject();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-		} catch (IOException ioe) {
-			ioe.printStackTrace();
 		}
 		return jsonObject;
 	}

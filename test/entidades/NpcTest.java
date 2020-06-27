@@ -39,7 +39,7 @@ public class NpcTest {
 		efectosSobre.add("Clavo");
 		item = new Item("ociador con cerveza de raiz", Genero.MALE, Numero.SINGULAR, acciones, efectosSobre);
 		
-		protagonista = new Protagonista("Marcos", new Ubicacion());
+		protagonista = new Protagonista("Marcos", null);
 	}
 
 	@Test

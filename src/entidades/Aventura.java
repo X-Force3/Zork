@@ -11,7 +11,6 @@ public class Aventura {
 
 	private Configuracion configuracion;
 	private Map<String, Ubicacion> ubicaciones = new HashMap<String, Ubicacion>();//los mapas están cargados
-	private Map<String, Item> items = new HashMap<String, Item>();
 	private AnalizadorDeTexto analizador;
 	private Protagonista protagonista;
 	
@@ -19,11 +18,16 @@ public class Aventura {
 		cargarAventura(pathAventura, nombreJugador);
 	}
 
+	public Aventura(Configuracion configuracion, Map<String, Ubicacion> ubicaciones, Protagonista protagonista) {
+		this.configuracion = configuracion;
+		this.ubicaciones = ubicaciones;
+		this.protagonista = protagonista;
+	}
+
 	private void cargarAventura(String pathAventura,String nombreJugador) {
 		ManejoArchivos manejoArchivos = new ManejoArchivos(pathAventura);
-		analizador = new AnalizadorDeTexto(manejoArchivos.getUbicacionesMap(),manejoArchivos.getItemsMap());
+		analizador = new AnalizadorDeTexto();
 		ubicaciones = manejoArchivos.getUbicacionesMap();
-		items = manejoArchivos.getItemsMap();
 		configuracion = manejoArchivos.getConfiguracion();
 		this.protagonista = new Protagonista(nombreJugador,manejoArchivos.getUbicaciones().get(0));
 	}

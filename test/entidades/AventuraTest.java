@@ -1,7 +1,9 @@
 package entidades;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -14,7 +16,7 @@ public class AventuraTest {
 	 */
 	Protagonista protagonista;
 	Configuracion configuracion;
-	List<Ubicacion> ubicacionesAventura;
+	Map<String, Ubicacion> ubicaciones;
 	AnalizadorDeTexto analizador;
 	
 	/**
@@ -114,11 +116,12 @@ public class AventuraTest {
 		conexionesMuelle.add(surMuelle);
 		conexionesMuelle.add(esteMuelle);
 
-		ubicacionesAventura = new ArrayList<Ubicacion>();
-		ubicacionesAventura.add(muelle);	//ubicacion inicial
-		ubicacionesAventura.add(taberna);
-		ubicacionesAventura.add(playa);
-		aventura = new Aventura(null, ubicacionesAventura, "X-Force3");
+		ubicaciones = new HashMap<String, Ubicacion>();
+		ubicaciones.put(muelle.getNombre(), muelle);
+		ubicaciones.put(taberna.getNombre(), taberna);
+		ubicaciones.put(playa.getNombre(), playa);
+		
+		aventura = new Aventura(null, ubicaciones, new Protagonista("X-Force", muelle));
 	}
 
 	@Test

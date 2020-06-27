@@ -8,7 +8,7 @@ public class Npc {
 	private Genero genero;
 	private Numero numero;
 	private String descripcion;
-	private String dialogo;// private List<String> dialogos;
+	private String dialogo;
 	private List<Trigger> triggers;
 
 	public Npc(String nombre, Genero genero, Numero numero, String descripcion, String dialogo, List<Trigger> triggers) {

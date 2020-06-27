@@ -13,9 +13,6 @@ public class Ubicacion {
 	private List<Npc> npcs;
 	private List<Conexion> conexiones;
 
-	public Ubicacion() {
-	}
-
 	public Ubicacion(String nombre, Genero genero, Numero numero, String descripcion, List<Lugar> lugares,
 			List<Npc> npcs, List<Conexion> conexiones) {
 		this.nombre = nombre;
@@ -120,7 +117,6 @@ public class Ubicacion {
 	}
 
 	public boolean equals(Object obj) {
-
 		if (this == obj)
 			return true;
 		if (obj == null)
@@ -138,8 +134,5 @@ public class Ubicacion {
 		return "Ubi [nombre=" + nombre + ", gen=" + genero + ", num=" + numero + ", descripcion="
 				+ descripcion + ", lugares=" + lugares + ", conex=" + conexiones + "]";
 	}
-
-
-
 	
 }

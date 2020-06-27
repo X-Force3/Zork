@@ -56,7 +56,8 @@ public class UbicacionTest {
 		listaDeUbicaciones.add(taberna);
 
 		Assert.assertEquals(
-				"Estás en un muelle. En el suelo hay una barreta, un rociador con cerveza de raíz y un espejo. Hay un pirata fantasma. Al sur se puede ir hacia una taberna.",
+				"Estás en un muelle. En el suelo hay una barreta, un rociador con cerveza de raíz y un espejo. Hay un pirata fantasma.\n" + 
+				"Al sur se puede ir hacia un muelle.",
 				muelle.describirUbicacion(listaDeUbicaciones));
 		
 	}
@@ -109,7 +110,8 @@ public class UbicacionTest {
 		listaDeUbicaciones.add(pasillos);
 		listaDeUbicaciones.add(aulas);
 		Assert.assertEquals(
-				"Estás en las aulas de la UNLaM. En las mesas hay lapiceras, hojas y trabajos prácticos de Ingeniería. Hay profesoras universitarias. Al norte se puede ir hacia los pasillos.",
+				"Estás en las aulas de la UNLaM. En las mesas hay lapiceras, hojas y trabajos prácticos de Ingeniería. Hay profesoras universitarias.\n" + 
+				"Al norte se puede ir hacia los pasillos.",
 				aulas.describirUbicacion(listaDeUbicaciones));
 	}
 

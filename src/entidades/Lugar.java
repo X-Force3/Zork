@@ -10,7 +10,7 @@ public class Lugar {
 	private String segundoNombre;// Juani: Este atributo sólo lo tienen los lugares que actúan como obstáculos.
 	private List<Item> items;
 	private List<Trigger> triggers;
-	private String descripcion;// Juani: Idem.
+	private String descripcion;
 
 	public Lugar(String nombre, String segundoNombre, Genero genero, Numero numero, List<Item> items,
 			List<Trigger> triggers, String descripcion) {

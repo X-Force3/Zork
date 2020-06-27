@@ -1,25 +1,13 @@
 package entidades;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 
 public class AnalizadorDeTexto {
 	private Scanner scanner;
-	private Map<String, Ubicacion> ubicacionesMap = new HashMap<String, Ubicacion>();
-	private Map<String, Item> itemsMap = new HashMap<String, Item>();
-	
-	public AnalizadorDeTexto(Map<String, Ubicacion> ubicacionesMap, Map<String, Item> itemsMap) {
-		super();
-		scanner = new Scanner(System.in); // Create a Scanner object
-		this.ubicacionesMap = ubicacionesMap;
-		this.itemsMap = itemsMap;
-	}
 
 	public AnalizadorDeTexto() {
-		scanner = new Scanner(System.in); // Create a Scanner object
-//	    String userName = myObj.nextLine();  // Read user input
+		scanner = new Scanner(System.in);
 	}
 
 	public String recibirEntrada() {
@@ -48,8 +36,7 @@ public class AnalizadorDeTexto {
 		return null;
 	}
 
-	public Npc contieneObstaculoNpc(String entrada, List<Npc> npcs) { // deberia ser la lista de npcs de la ubicacion
-																		// actual
+	public Npc contieneObstaculoNpc(String entrada, List<Npc> npcs) { // deberia ser la lista de npcs de la ubicacion																	// actual
 		for (Npc elemento : npcs) {
 			if (entrada.contains(elemento.getNombre())) {
 				return elemento;

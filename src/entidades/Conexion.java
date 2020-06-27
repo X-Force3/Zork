@@ -8,9 +8,6 @@ public class Conexion {
 	private String ubicacionDestino;
 	private String obstaculo;
 
-	/// Podria haber un ID para asi diferenciar los puntos cardinales de una misma o
-	/// distinta ubicacion.
-
 	public Conexion(Direccion direccion, String locacionDestino, String obstaculo) {
 		super();
 		this.direccion = direccion;
@@ -29,14 +26,6 @@ public class Conexion {
 	public String getObstaculo() {
 		return obstaculo;
 	}
-
-	//Luz: no entendi que ubicaciones trae. Creí que eran las ubicaciones conectadas pero luego llama a Analizador de texto
-	/*public String conjugarConexion(List<Ubicacion> ubicaciones) {
-		AnalizadorDeTexto analizador = new AnalizadorDeTexto();
-		Ubicacion ubicacion = analizador.devolverObjetoUbicacion(this.ubicacionDestino, ubicaciones);
-		return "Al " + this.direccion.getNombre() + " se puede ir hacia " + ubicacion.conjugarUbicacion()
-				+ ".";
-	}*/
 	
 	public String describirConexiones(List<Ubicacion> ubicaciones) {
 		String descripcion = "";
@@ -47,8 +36,7 @@ public class Conexion {
 	}
 	
 	public String conjugarConexion(Ubicacion ubicacion) {
-		String dire = direccion == null? "[direccion]" : direccion.getNombre(); //parchecito, SACAR LUEGO
-		return "Al " + dire + " se puede ir hacia " + ubicacion.conjugarUbicacion()
+		return "Al " + direccion.getNombre() + " se puede ir hacia " + ubicacion.conjugarUbicacion()
 				+ ".";
 	}
 
