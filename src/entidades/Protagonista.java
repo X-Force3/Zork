@@ -119,4 +119,7 @@ public class Protagonista {
 		return "En tu inventario " + queHay + ".";
 	}
 
+	public String getNombre() {
+		return nombre;
+	}
 }

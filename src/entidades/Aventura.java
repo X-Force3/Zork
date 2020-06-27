@@ -54,7 +54,7 @@ public class Aventura {
 
 //		this.describirContexto(); Juani: Si hubiera un while desde la línea 45 hasta la 76.. //Luz: pienso lo mismo
 //		Cada vez que se ejecute el método "comenzar" el porgrama va a mostrar la descripción de la ubicación actual?
-		System.out.println(this.configuracion.getBienvenida());
+		System.out.println(this.configuracion.getBienvenida() +" " +  protagonista.getNombre());
 		System.out.println(describirUbicacion()); //funciona
 		
 		while(!fin) {

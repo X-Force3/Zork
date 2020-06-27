@@ -18,6 +18,7 @@ public class Menu {
 	private Map<Integer,String> nombreAventura; //Variables
 	private String pathAventuraElegida;
 	private String nombreJugador;
+	private boolean salio = false;
 	
 	public Menu() {
 		this.scanner = new Scanner(System.in); 
@@ -33,8 +34,8 @@ public class Menu {
 			try{
 				System.out.println("Seleccione la aventura:\n"
 						+ "1.- " + this.nombreAventura.get(1)
-						+ "\n2.- " + this.nombreAventura.get(2)
-						+ "\n3.- " + this.nombreAventura.get(3)
+						/*+ "\n2.- " + this.nombreAventura.get(2)
+						+ "\n3.- " + this.nombreAventura.get(3)*/
 						+ "\n0.- Salir\n");
 				
 				this.opcion = Integer.parseInt(this.scanner.nextLine()); 
@@ -45,15 +46,16 @@ public class Menu {
 					pathAventuraElegida = AVENTURA_1;
 					System.out.println("selecciono la opcion 1");
 					break;
-				case 2: 
+				/*case 2: 
 					pathAventuraElegida = AVENTURA_2;
 					System.out.println("selecciono la opcion 2");
 					break;
 				case 3: 
 					pathAventuraElegida = AVENTURA_3;
 					System.out.println ("selecciono la opcion 3");
-					break;
+					break;*/
 				case 0: 
+					salio = true;
 					System.out.println("Saliste del juego!");
 					break;
 				default:
@@ -70,6 +72,7 @@ public class Menu {
 	}
 	
 	public void solicitarNombreDeJugador() {
+		if(salio) return;
 		do{
 				System.out.println("Nombre de jugador:\n");
 				nombreJugador = scanner.nextLine(); 
