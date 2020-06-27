@@ -10,7 +10,7 @@ public class UbicacionTest {
 
 	@Test
 	public void mostrarDescripcionCompletaMuelle() {
-
+		
 		List<String> efectosItemsSuelo = new ArrayList<String>();
 		efectosItemsSuelo.add("npcs");
 		efectosItemsSuelo.add("item");
@@ -28,33 +28,38 @@ public class UbicacionTest {
 		itemsSuelo.add(rociadorCervezaRaiz);
 		itemsSuelo.add(espejo);
 
-		Lugar sueloMuelle = new Lugar("suelo", Genero.MALE, Numero.SINGULAR, itemsSuelo);
-		List<Lugar> lugaresMuelle = new ArrayList<Lugar>();
-		lugaresMuelle.add(sueloMuelle);
-
 		Trigger pirataFantasmaRociador = new Trigger("item", "rociador con cerveza de raíz", null, null);
 		List<Trigger> triggersMuelle = new ArrayList<Trigger>();
 		triggersMuelle.add(pirataFantasmaRociador);
 
+		Lugar sueloMuelle = new Lugar("suelo", null, Genero.MALE, Numero.SINGULAR, itemsSuelo, triggersMuelle, null);
+		List<Lugar> lugaresMuelle = new ArrayList<Lugar>();
+		lugaresMuelle.add(sueloMuelle);
+
 		Npc pirataFantasma = new Npc("pirata fantasma", Genero.MALE, Numero.SINGULAR,
 				"- '¡No puedes pasar!' El pirata fantasma no te dejará pasar",
-				"¡No hay nada que me digas que me haga cambiar de opinión!", triggersMuelle, true);
+				"¡No hay nada que me digas que me haga cambiar de opinión!", triggersMuelle);
 		List<Npc> npcsMuelle = new ArrayList<Npc>();
 		npcsMuelle.add(pirataFantasma);
 
 		Ubicacion taberna = new Ubicacion("taberna", Genero.FEMALE, Numero.SINGULAR, "Estás en una taberna. ", null,
 				null, null);
 
-		Conexion surMuelle = new Conexion(Direccion.SUR, taberna, pirataFantasma);
+		Conexion surMuelle = new Conexion(Direccion.SUR, "taberna", "pirata fantasma");
 		List<Conexion> conexionesMuelle = new ArrayList<Conexion>();
 		conexionesMuelle.add(surMuelle);
 
-		Ubicacion muelle = new Ubicacion("muelle", Genero.MALE, Numero.SINGULAR, "Estás en un muelle. ", lugaresMuelle,
+		Ubicacion muelle = new Ubicacion("muelle", Genero.MALE, Numero.SINGULAR, "Estás en un muelle.", lugaresMuelle,
 				npcsMuelle, conexionesMuelle);
+		List<Ubicacion> listaDeUbicaciones = new ArrayList<Ubicacion>();
+		listaDeUbicaciones.add(muelle);
+		listaDeUbicaciones.add(taberna);
 
 		Assert.assertEquals(
-				"Estás en un muelle. En el suelo hay una barreta, un rociador con cerveza de raíz y un espejo. Hay un pirata fantasma. Al sur se puede ir hacia una taberna.",
-				muelle.describirUbicacion());
+				"Estás en un muelle. En el suelo hay una barreta, un rociador con cerveza de raíz y un espejo. Hay un pirata fantasma.\n" + 
+				"Al sur se puede ir hacia un muelle.",
+				muelle.describirUbicacion(listaDeUbicaciones));
+		
 	}
 
 	@Test
@@ -77,32 +82,37 @@ public class UbicacionTest {
 		itemsMesas.add(hojas);
 		itemsMesas.add(trabajosPracticosIngenieria);
 
-		Lugar mesasAulas = new Lugar("mesas", Genero.FEMALE, Numero.PLURAL, itemsMesas);
-		List<Lugar> lugaresAulas = new ArrayList<Lugar>();
-		lugaresAulas.add(mesasAulas);
-
 		Trigger profesorasTrabajosPracticos = new Trigger("item", "apuntes de materias de Ingeniería", null, null);
 		List<Trigger> triggersAulas = new ArrayList<Trigger>();
 		triggersAulas.add(profesorasTrabajosPracticos);
 
+		Lugar mesasAulas = new Lugar("mesas", null, Genero.FEMALE, Numero.PLURAL, itemsMesas, triggersAulas, null);
+		List<Lugar> lugaresAulas = new ArrayList<Lugar>();
+		lugaresAulas.add(mesasAulas);
+
 		Npc profesorasUniversitarias = new Npc("profesoras universitarias", Genero.FEMALE, Numero.PLURAL,
 				"- '¡No puedes pasar!' Las profesoras no te aprobarán la materia si no entregas los trabajos prácticos",
-				"¡No hay nada que nos digas que nos haga cambiar de opinión!", triggersAulas, true);
+				"¡No hay nada que nos digas que nos haga cambiar de opinión!", triggersAulas);
 		List<Npc> npcsAulas = new ArrayList<Npc>();
 		npcsAulas.add(profesorasUniversitarias);
 
 		Ubicacion pasillos = new Ubicacion("pasillos", Genero.MALE, Numero.PLURAL,
-				"Estás en los pasillos de la UNLaM. ", null, null, null);
+				"Estás en los pasillos de la UNLaM.", null, null, null);
 
-		Conexion norteAulas = new Conexion(Direccion.NORTE, pasillos, profesorasUniversitarias);
+		Conexion norteAulas = new Conexion(Direccion.NORTE, "pasillos", "profesoras universitarias");
 		List<Conexion> conexionesAulas = new ArrayList<Conexion>();
 		conexionesAulas.add(norteAulas);
 
-		Ubicacion aulas = new Ubicacion("aulas", Genero.FEMALE, Numero.PLURAL, "Estás en las aulas de la UNLaM. ",
+		Ubicacion aulas = new Ubicacion("aulas", Genero.FEMALE, Numero.PLURAL, "Estás en las aulas de la UNLaM.",
 				lugaresAulas, npcsAulas, conexionesAulas);
 
+		List<Ubicacion> listaDeUbicaciones = new ArrayList<Ubicacion>();
+		listaDeUbicaciones.add(pasillos);
+		listaDeUbicaciones.add(aulas);
 		Assert.assertEquals(
-				"Estás en las aulas de la UNLaM. En las mesas hay lapiceras, hojas y trabajos prácticos de Ingeniería. Hay profesoras universitarias. Al norte se puede ir hacia los pasillos.",
-				aulas.describirUbicacion());
+				"Estás en las aulas de la UNLaM. En las mesas hay lapiceras, hojas y trabajos prácticos de Ingeniería. Hay profesoras universitarias.\n" + 
+				"Al norte se puede ir hacia los pasillos.",
+				aulas.describirUbicacion(listaDeUbicaciones));
 	}
+
 }

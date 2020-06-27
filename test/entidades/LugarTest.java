@@ -14,13 +14,13 @@ public class LugarTest {
 	@Before
 	public void setup() {
 		ArrayList<Item> items = new ArrayList<Item>();
-		lugar = new Lugar("muelle", Genero.MALE, Numero.SINGULAR, items);
+		lugar = new Lugar("muelle", null, Genero.MALE, Numero.SINGULAR, items, null, null);
 	}
 
 	@Test
 	public void queDescribaElLugarSinItems() {
 		System.out.println(lugar.describirObjetosDisponibles());
-		Assert.assertEquals("En el muelle no hay nada. Prueba en otro lugar.", lugar.describirObjetosDisponibles());
+		Assert.assertEquals("En el muelle no hay nada.", lugar.describirObjetosDisponibles());
 	}
 
 	@Test
@@ -52,6 +52,22 @@ public class LugarTest {
 		System.out.println(lugar.describirObjetosDisponibles());
 		Assert.assertEquals("En el muelle hay un espejo, un martillo y una linterna.",
 				lugar.describirObjetosDisponibles());
+	}
+
+	/// Se probara que un objeto disponible en el place, no siga disponible una vez
+	/// haya sido recogido
+	@Test
+	public void queNoEsteDisponibleUnObjetoAlAgarrarlo() {
+
+		Item piedras = new Item("piedras", Genero.FEMALE, Numero.PLURAL, Arrays.asList("usar"), Arrays.asList("npc"));
+
+		lugar.getItems().add(piedras);
+		lugar.getItems()
+				.add(new Item("linterna", Genero.FEMALE, Numero.SINGULAR, Arrays.asList("usar"), Arrays.asList("npc")));
+
+		lugar.eliminarItemLugar(piedras);
+
+		Assert.assertEquals("En el muelle hay una linterna.", lugar.describirObjetosDisponibles());
 	}
 
 }

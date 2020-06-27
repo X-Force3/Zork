@@ -1,12 +1,14 @@
 package entidades;
 
+import java.util.List;
+
 public class Conexion {
 
 	private Direccion direccion;
-	private Ubicacion ubicacionDestino;
-	private Npc obstaculo;
+	private String ubicacionDestino;
+	private String obstaculo;
 
-	public Conexion(Direccion direccion, Ubicacion locacionDestino, Npc obstaculo) {
+	public Conexion(Direccion direccion, String locacionDestino, String obstaculo) {
 		super();
 		this.direccion = direccion;
 		this.ubicacionDestino = locacionDestino;
@@ -17,53 +19,31 @@ public class Conexion {
 		return direccion;
 	}
 
-	public Ubicacion getUbicacionDestino() {
+	public String getUbicacionDestino() {
 		return ubicacionDestino;
 	}
 
-	public Npc getObstaculo() {
+	public String getObstaculo() {
 		return obstaculo;
 	}
-
-	@Override
-	public String toString() {
-		return this.direccion + " :" + " locacionDestino ";
+	
+	public String describirConexiones(List<Ubicacion> ubicaciones) {
+		String descripcion = "";
+		for (Ubicacion ubicacion : ubicaciones) {
+			descripcion += conjugarConexion(ubicacion) + "\n";
+		}
+		return descripcion;
 	}
-
-	public Ubicacion irHaciaDestino() {
-		if (obstaculo.getCondicionDeObstaculo()) {
-			return this.ubicacionDestino;
-		} else
-			return null;
-	}
-
-	public String conjugarConexion() {
-		return "Al " + this.direccion.getNombre() + " se puede ir hacia " + this.ubicacionDestino.conjugarUbicacion()
+	
+	public String conjugarConexion(Ubicacion ubicacion) {
+		return "Al " + direccion.getNombre() + " se puede ir hacia " + ubicacion.conjugarUbicacion()
 				+ ".";
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Conexion other = (Conexion) obj;
-		if (direccion != other.direccion)
-			return false;
-		if (obstaculo == null) {
-			if (other.obstaculo != null)
-				return false;
-		} else if (!obstaculo.equals(other.obstaculo))
-			return false;
-		if (ubicacionDestino == null) {
-			if (other.ubicacionDestino != null)
-				return false;
-		} else if (!ubicacionDestino.equals(other.ubicacionDestino))
-			return false;
-		return true;
+	public String toString() {
+		return "Conexion [dir=" + direccion + ", ubiDestino=" + ubicacionDestino + ", obstaculo="
+				+ obstaculo + "]";
 	}
 
 }

@@ -1,13 +1,10 @@
 package entidades;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Before;
-import org.junit.Test;
+//import org.junit.Test;
 
 public class ItemTest {
 
@@ -30,40 +27,41 @@ public class ItemTest {
 
 	}
 
-	@Test
-	public void seUtilizaCorrectamenteSobreNpc() {
-		npc = new Npc("Thanos", Genero.MALE, Numero.SINGULAR, "Thanos, monstruo malvado", "Hola, soy Thanos", null,
-				false);
-		assertTrue(item.realizarAccion(npc, "Usar"));
-	}
-
-	@Test
-	public void seIntentaUtilizarEnNpcIncorrecto() {
-		npc = new Npc("Messi", Genero.MALE, Numero.SINGULAR, "Messi, futbolista", "Hola, soy messi", null, false);
-		assertFalse(item.realizarAccion(npc, "Usar"));
-	}
-
-	@Test
-	public void seIntentaUtilizarEnNpcCorrectoPeroConAccionIncorrecta() {
-		npc = new Npc("Roberta", Genero.FEMALE, Numero.SINGULAR, "Roberta,   ", "Hola, soy Roberta", null, false);
-		assertFalse(item.realizarAccion(npc, "Derretir"));
-	}
-
-	@Test
-	public void seUtilizaCorrectamenteSobreLugar() {
-		lugar = new Lugar("Suelo", Genero.MALE, Numero.SINGULAR, null);
-		assertTrue(item.realizarAccion(lugar, "Usar"));
-	}
-
-	@Test
-	public void seIntentaUtilizarEnLugarIncorrecto() {
-		lugar = new Lugar("Mesa", Genero.FEMALE, Numero.SINGULAR, null);
-		assertFalse(item.realizarAccion(lugar, "Usar"));
-	}
-
-	@Test
-	public void seIntentaUtilizarEnLugarCorrectoPeroConAccionIncorrecta() {
-		lugar = new Lugar("Suelo", Genero.MALE, Numero.SINGULAR, null);
-		assertFalse(item.realizarAccion(lugar, "Derretir"));
-	}
+//	@Test
+//	public void seUtilizaCorrectamenteSobreNpc() {
+//		npc = new Npc("Thanos", Genero.MALE, Numero.SINGULAR, "Thanos, monstruo malvado", "Hola, soy Thanos. ", null);
+//		assertTrue(item.realizarAccion(npc, "Usar"));
+//	}
+//
+//	@Test
+//	public void seIntentaUtilizarEnNpcIncorrecto() {
+//		npc = new Npc("Messi", Genero.MALE, Numero.SINGULAR, "Messi, futbolista", "Hola, soy Messi. ", null);
+//		assertFalse(item.realizarAccion(npc, "Usar"));
+//	}
+//
+//	@Test
+//	public void seIntentaUtilizarEnNpcCorrectoPeroConAccionIncorrecta() {
+//		npc = new Npc("Thanos", Genero.MALE, Numero.SINGULAR, "Thanos, monstruo malvado", "Hola, soy Thanos. ", null);
+//		assertFalse(item.realizarAccion(npc, "Derretir"));
+//	}
+//
+//	@Test
+//	public void seUtilizaCorrectamenteSobreLugar() {
+//		lugar = new Lugar("Suelo", Genero.MALE, Numero.SINGULAR, null, null, null);
+//		assertTrue(item.realizarAccion(lugar, "Usar"));
+//	}
+//
+//	@Test
+//	public void seIntentaUtilizarEnLugarIncorrecto() {
+//		lugar = new Lugar("Mesa", Genero.FEMALE, Numero.SINGULAR, null, null, null);
+//		assertFalse(item.realizarAccion(lugar, "Usar"));
+//	}
+//
+//	@Test
+//	public void seIntentaUtilizarEnLugarCorrectoPeroConAccionIncorrecta() {
+//		lugar = new Lugar("Suelo", Genero.MALE, Numero.SINGULAR, null, null, null);
+//		assertFalse(item.realizarAccion(lugar, "Derretir"));
+//	}
+//	
+// Juani: Los tests de Item quedan sin efecto porque el método "realizarAccion" es reemplazado por un método de la clase Aventura.
 }

@@ -9,8 +9,6 @@ public class Item {
 	private Numero numero;
 	private List<String> acciones;
 	private List<String> efectosSobre;
-	// private boolean usado;
-	// Luz: puede ser que las acciones y los efectos sean enums?
 
 	public Item(String nombre, Genero genero, Numero numero, List<String> acciones, List<String> efectosSobre) {
 		super();
@@ -45,48 +43,6 @@ public class Item {
 		this.nombre = nombre;
 	}
 
-	public boolean realizarAccion(Npc npc, String accion) {
-
-		boolean res = false;
-		for (String elemento : this.efectosSobre) {
-
-			if (elemento.equals(npc.getNombre())) {
-				for (String elemento2 : this.acciones) {
-
-					if (elemento2.contentEquals(accion)) {
-						res = true;
-					}
-				}
-			}
-		}
-
-		return res;
-	}
-
-	public boolean realizarAccion(Lugar lugar, String accion) {
-
-		boolean res = false;
-		for (String elemento : efectosSobre) {
-
-			if (elemento.equals(lugar.getNombre())) {
-				for (String elemento2 : this.acciones) {
-
-					if (elemento2.contentEquals(accion)) {
-						res = true;
-					}
-				}
-			}
-		}
-
-		return res;
-	}
-
-	@Override
-	public String toString() {
-		return "Item [nombre=" + nombre + ", genero=" + genero + ", numero=" + numero + ", acciones=" + acciones
-				+ ", efectosSobre=" + efectosSobre + "]";
-	}
-
 	public String conjugarItem() {
 		String conjugacion = "";
 		if (this.genero == Genero.FEMALE) {
@@ -95,6 +51,16 @@ public class Item {
 			conjugacion = this.numero == Numero.SINGULAR ? "un " : "";
 		}
 		return conjugacion + this.nombre;
+	}
+
+	@Override
+	public String toString() {
+		return "Item [nombre=" + nombre + ", gen=" + genero + ", num=" + numero + ", acciones=" + acciones
+				+ ", efectosSobre=" + efectosSobre + "]";
+	}
+	
+	public boolean esItemDeInventario() {
+		return (this.acciones.contains("agarrar") || this.acciones.contains("agarrar") || this.acciones.contains("agarrar"));
 	}
 
 }

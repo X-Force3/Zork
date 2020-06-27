@@ -8,20 +8,17 @@ public class Npc {
 	private Genero genero;
 	private Numero numero;
 	private String descripcion;
-	private String dialogo;// private List<String> dialogos;
-	private List<Trigger> trigger;
-	private boolean condicionDeObstaculo;
+	private String dialogo;
+	private List<Trigger> triggers;
 
-	public Npc(String nombre, Genero genero, Numero numero, String descripcion, String dialogo, List<Trigger> trigger,
-			boolean condicionDeObstaculo) {
+	public Npc(String nombre, Genero genero, Numero numero, String descripcion, String dialogo, List<Trigger> triggers) {
 		super();
 		this.nombre = nombre;
 		this.genero = genero;
 		this.numero = numero;
 		this.descripcion = descripcion;
 		this.dialogo = dialogo;
-		this.trigger = trigger;
-		this.condicionDeObstaculo = condicionDeObstaculo;
+		this.triggers = triggers;
 	}
 
 	public String getNombre() {
@@ -45,11 +42,7 @@ public class Npc {
 	}
 
 	public List<Trigger> getTrigger() {
-		return trigger;
-	}
-
-	public boolean getCondicionDeObstaculo() {
-		return this.condicionDeObstaculo;
+		return triggers;
 	}
 
 	public String presentarse() { // cambiar diag de clase
@@ -60,42 +53,41 @@ public class Npc {
 		return this.dialogo;
 	}
 
-	public String verificarTrigger(Item item) {
-		for (Trigger elemento : this.trigger) {
-			if (elemento.getType() == "item" && item.getNombre() == elemento.getThing()) {
-				this.ejecutarTrigger(elemento);
+	public String verificarTrigger(Item item, Protagonista protagonista) {
+		for (Trigger elemento : this.triggers) {
+			if ( elemento.getType().equals("item") && ( item.getNombre().equals( elemento.getThing() ) ) ) {
+				this.ejecutarTrigger(elemento, protagonista);
 				return elemento.getOn_trigger();
 			}
 		}
-		return "";
+		return "Eso no ha servido de nada...";
 	}
 
-	public void ejecutarTrigger(Trigger trigger) {
-		if (trigger.getAfter_trigger() == "remove")
-			this.nombre = "";
+	public void ejecutarTrigger(Trigger trigger, Protagonista protagonista) {
+		if (trigger.getAfter_trigger().equals("remove"))
+			this.nombre = "borrado";
 		// le quita el nombre al npc, para no mostrarlo mas, y para que, si era un
 		// obstaculo de una coneccion, ya no lo encuentr
 		// este else if, podria ser otra ejemplo de que accion puede realizar ese
 		// trigger
-//		else if(trigger.getAfter_trigger() == "bajar vida") {
-//			this.vida -=50;
-//		}
-	}
-
-	@Override
-	public String toString() {
-		return "Npc [nombre=" + nombre + ", genero=" + genero + ", numero=" + numero + ", descripcion=" + descripcion
-				+ ", dialogo=" + dialogo + ", trigger=" + trigger + "]";
+		else if(trigger.getAfter_trigger().equals("matar")) {
+			protagonista.morir();
+		}// Juani: Este trigger es el que deberían usar los animales que asesinan al Protagonista.
+// El "type" sería "matar", la "thing" sería "".
 	}
 
 	public String conjugarNpc() {
 		String articulo = "";
-		if (this.genero == Genero.FEMALE) {
-			articulo = this.numero == Numero.SINGULAR ? " una" : "";
-		} else {
-			articulo = this.numero == Numero.SINGULAR ? " un" : "";
+		if(this.nombre != "borrado") {
+			if (this.genero == Genero.FEMALE) {
+				articulo = this.numero == Numero.SINGULAR ? " una" : "";
+			} else {
+				articulo = this.numero == Numero.SINGULAR ? " un" : "";
+			}
+			return "Hay" + articulo + " " + this.nombre + ".";
 		}
-		return "Hay" + articulo + " " + this.nombre + ". ";
+		else
+			return "";
 	}
 
 }

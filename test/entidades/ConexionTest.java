@@ -16,9 +16,9 @@ public class ConexionTest {
 
 	@Before
 	public void setup() {
-		npc = new Npc("Saku", Genero.FEMALE, Numero.SINGULAR, "Una señorita con un tapado rojo", " ", null, false);
-		ubicacionDestino = new Ubicacion("Tienda electronica", Genero.MALE, Numero.SINGULAR, null, null, null, null);
-		conexion = new Conexion(Direccion.NORTE, ubicacionDestino, npc);
+		npc = new Npc("Saku", Genero.FEMALE, Numero.SINGULAR, "Una señorita con un tapado rojo. ", " ", null);
+		ubicacionDestino = new Ubicacion("Tienda electrónica", Genero.MALE, Numero.SINGULAR, null, null, null, null);
+		conexion = new Conexion(Direccion.NORTE, "Tienda electrónica", "Saku");
 
 		List<Npc> listaNpc = new ArrayList<Npc>();
 		listaNpc.add(npc);
@@ -32,7 +32,7 @@ public class ConexionTest {
 	@Test
 	public void queConectaCorrectamenteHaciaOtraUbicacion() {
 
-		Assert.assertEquals(conexion.getUbicacionDestino(), ubicacionDestino);
+		Assert.assertEquals(conexion.getUbicacionDestino(), ubicacionDestino.getNombre());
 
 	}
 
@@ -40,12 +40,6 @@ public class ConexionTest {
 	public void queEsUnaConexionDeUnaUbicacionOriginaria() {
 
 		Assert.assertTrue(ubicacionInicial.getConexiones().contains(conexion));
-	}
-
-	@Test
-	public void queSeDesplazaCorrectamenteSegunObstaculo() {
-		/// El Npc esta obstaculizando la conexion
-		Assert.assertEquals(conexion.irHaciaDestino(), null);
 	}
 
 }

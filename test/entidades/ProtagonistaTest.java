@@ -9,8 +9,8 @@ import org.junit.Test;
 
 public class ProtagonistaTest {
 
-	Protagonista protagonista = new Protagonista("Nahuel");
-
+	Protagonista protagonista;
+	Aventura aventura;
 	Ubicacion ubicacion;
 	Ubicacion taberna;
 	Item item;
@@ -37,13 +37,12 @@ public class ProtagonistaTest {
 		itemsSuelo.add(rociadorCervezaRaiz);
 		itemsSuelo.add(espejo);
 		/// creado lista de items, se crea el lugar
-		lugares.add(new Lugar("Casa", Genero.FEMALE, Numero.SINGULAR, itemsSuelo));
+		lugares.add(new Lugar("Casa", null, Genero.FEMALE, Numero.SINGULAR, itemsSuelo, null, null));
 		/// lugares HECHO - Falta conexiones
 
 		// Para crear una conexion -->
 		taberna = new Ubicacion("taberna", Genero.FEMALE, Numero.SINGULAR, "Taberna", lugares, null, null);
-		Conexion surMuelle = new Conexion(Direccion.SUR, taberna,
-				new Npc("Messi", Genero.MALE, Numero.SINGULAR, "Messi, futbolista", "Hola, soy messi", null, false));
+		Conexion surMuelle = new Conexion(Direccion.SUR, "taberna", "Messi");
 		List<Conexion> conexionesMuelle = new ArrayList<Conexion>();
 		conexionesMuelle.add(surMuelle);
 		/// se creo una lista de conexiones donde tiene una ubicacion destino a
@@ -63,13 +62,16 @@ public class ProtagonistaTest {
 		List<Trigger> triggersMuelle = new ArrayList<Trigger>();
 		triggersMuelle.add(pirataFantasmaRociador);
 
+		protagonista = new Protagonista("Nahuel", ubicacion);
+
 		pirata = new Npc("pirata fantasma", Genero.MALE, Numero.SINGULAR,
 				"- '¡No puedes pasar!' El pirata fantasma no te dejará pasar",
-				"¡No hay nada que me digas que me haga cambiar de opinión!", triggersMuelle, false);
+				"¡No hay nada que me digas que me haga cambiar de opinión!", triggersMuelle);
+
 	}
 
 	@Test
-	public void queRecogeCorrectamenteUnItem() {
+	public void queNoRecogeUnItemDosVeces() {
 
 		List<String> acciones = new ArrayList<String>();
 		List<String> efectosSobre = new ArrayList<String>();
@@ -80,22 +82,20 @@ public class ProtagonistaTest {
 
 		protagonista.añadirItem(item);
 
-		Assert.assertEquals(false, protagonista.añadirItem(item));/// si devuelve falso, quiere decir que ya lo tiene en
-																	/// el inventario
-
+		Assert.assertFalse(protagonista.añadirItem(item));
 	}
-	/*
-	 * @Test public void queSeDesplazaCorrectamenteHaciaUnaConexion() {
-	 * 
-	 * Conexion c = new Conexion(Direccion.SUR, taberna, new Npc("Messi",
-	 * Genero.MALE, Numero.SINGULAR, "Messi, futbolista", "Hola, soy messi",
-	 * null,false));
-	 * 
-	 * Assert.assertEquals(protagonista.desplazarse(c), true); }
-	 */
+
+//	@Test
+//	public void queSeDesplazaCorrectamenteHaciaUnaConexion() {
+//
+//		Conexion c = new Conexion(Direccion.SUR, taberna, "Messi");
+//
+//		Assert.assertEquals(protagonista.getUbicacionActual(), c.getUbicacionDestino());
+//	} 
+// Juani: El test reemplazado por "cambiaDeUbicacionCorrectamente" de la clase AventuraTest.
 
 	@Test
-	public void queUtilizaCorrectamenteUnItem() {
+	public void queRecogeUnItemDeManeraCorrecta() {
 
 		List<String> acciones = new ArrayList<String>();
 		List<String> efectosSobre = new ArrayList<String>();
@@ -104,18 +104,14 @@ public class ProtagonistaTest {
 
 		Item item = new Item("Espejo", Genero.MALE, Numero.SINGULAR, acciones, efectosSobre);
 
-		protagonista.añadirItem(item);
-		protagonista.utilizarItem(item, pirata, item.getAcciones().get(0));/// si lo uso, el item queda descartado de su
-																			/// inventario
-		Assert.assertEquals(true, protagonista.añadirItem(item)); /// si lo añadio, quiere decir que no lo tenia en su
-																	/// inventario
+		Assert.assertTrue(protagonista.añadirItem(item));
 	}
 
 	@Test
 	public void queHableSegunElDiagologoCorrespondiente() {
-		Npc messi = new Npc("Messi", Genero.MALE, Numero.SINGULAR, "Messi, futbolista", "Hola, soy messi", null, false);
+		Npc messi = new Npc("Messi", Genero.MALE, Numero.SINGULAR, "Messi, futbolista. ", "Hola, soy Messi. ", null);
 
-		Assert.assertEquals(protagonista.hablar(messi.getDialogo()), "Hola messi!");
+		Assert.assertEquals(protagonista.hablar(messi.getDialogo()), "Hola Messi!");
 	}
 
 }

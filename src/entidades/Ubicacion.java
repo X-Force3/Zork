@@ -1,5 +1,6 @@
 package entidades;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Ubicacion {
@@ -11,9 +12,6 @@ public class Ubicacion {
 	private List<Lugar> lugares;
 	private List<Npc> npcs;
 	private List<Conexion> conexiones;
-
-	public Ubicacion() {
-	}
 
 	public Ubicacion(String nombre, Genero genero, Numero numero, String descripcion, List<Lugar> lugares,
 			List<Npc> npcs, List<Conexion> conexiones) {
@@ -53,18 +51,43 @@ public class Ubicacion {
 	public List<Conexion> getConexiones() {
 		return conexiones;
 	}
+	
+	public String getDescripcion() {
+		return descripcion;
+	}
 
-	// Estás en un muelle. En el suelo hay una barreta, un rociador con cerveza de
-	// raiz y un espejo.
-	// Hay un pirata fantasma.
-	// Al sur se puede ir hacia una taberna.
+	/**
+	 
 	public String describirUbicacion() {
-
 		String cadena = this.descripcion + this.lugares.get(0).describirObjetosDisponibles() + " "
 				+ this.npcs.get(0).conjugarNpc() + this.conexiones.get(0).conjugarConexion();
-
+		// arreglar como mostrar si la ubicacion no tiene items o lugares o conexiones
 		return cadena;
 	}
+	 */
+	
+	public String describirUbicacion(List<Ubicacion> ubicacionesConectadas) {
+		String cadena = this.descripcion;
+
+		if (this.lugares != null)
+			for (Lugar lugar : this.lugares) {
+				if (lugar.getNombre() != "borrado")
+					cadena += " " + lugar.describirObjetosDisponibles();
+			}
+
+		if (this.npcs != null)
+			for (Npc npc : this.npcs) {
+				if (npc.getNombre() != "borrado")
+					cadena += " " + npc.conjugarNpc();
+			}
+		
+		if (this.conexiones != null)
+			for (int i = 0; i < conexiones.size(); i++) {
+				cadena +=  "\n" + conexiones.get(i).conjugarConexion(ubicacionesConectadas.get(i) );
+			}
+		return cadena;
+	}
+	
 
 	public String conjugarUbicacion() {
 		String articulo = "";
@@ -76,13 +99,23 @@ public class Ubicacion {
 		return articulo + " " + this.nombre;
 	}
 
-	@Override
-	public String toString() {
-		return "Ubicacion [nombre=" + nombre + ", genero=" + genero + ", numero=" + numero + ", lugares=" + lugares
-				+ ", npcs=" + npcs + ", conexiones=" + conexiones + "]";
+	public List<Item> getItems() {
+		List<Item> itemsUbicacion = new ArrayList<Item>();
+
+		for (Lugar lugar : this.lugares) {
+			if(lugar.getItems() != null)
+			for (Item item : lugar.getItems())
+				itemsUbicacion.add(item);
+		}
+		return itemsUbicacion;
 	}
 
-	@Override
+	public void eliminarItemUbicacion(Item item) {
+		for (Lugar lugar : this.lugares) {
+			lugar.eliminarItemLugar(item);
+		}
+	}
+
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
@@ -91,38 +124,15 @@ public class Ubicacion {
 		if (getClass() != obj.getClass())
 			return false;
 		Ubicacion other = (Ubicacion) obj;
-		if (conexiones == null) {
-			if (other.conexiones != null)
-				return false;
-		} else if (!conexiones.equals(other.conexiones))
-			return false;
-		if (descripcion == null) {
-			if (other.descripcion != null)
-				return false;
-		} else if (!descripcion.equals(other.descripcion))
-			return false;
-		if (genero != other.genero)
-			return false;
-		if (lugares == null) {
-			if (other.lugares != null)
-				return false;
-		} else if (!lugares.equals(other.lugares))
-			return false;
-		if (nombre == null) {
-			if (other.nombre != null)
-				return false;
-		} else if (!nombre.equals(other.nombre))
-			return false;
-		if (npcs == null) {
-			if (other.npcs != null)
-				return false;
-		} else if (!npcs.equals(other.npcs))
-			return false;
-		if (numero != other.numero)
-			return false;
-		return true;
+		if (other.nombre.equals(this.nombre))
+			return true;
+		return false;
 	}
 
+	@Override
+	public String toString() {
+		return "Ubi [nombre=" + nombre + ", gen=" + genero + ", num=" + numero + ", descripcion="
+				+ descripcion + ", lugares=" + lugares + ", conex=" + conexiones + "]";
+	}
 	
-
 }

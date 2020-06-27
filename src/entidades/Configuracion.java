@@ -6,22 +6,30 @@ public class Configuracion {
 
 	private String bienvenida;
 	private String titulo;
-	private List<Endgame> endgame;
-	//la ubicacion inicia es el primero de la lista
+	private List<Endgame> endgames;
 
-	public Configuracion(String bienvenida,String titulo, List<Endgame> endgame) {
+	public Configuracion(String bienvenida,String titulo, List<Endgame> endgames) {
 		super();
 		this.bienvenida = bienvenida;
 		this.titulo = titulo;
-		this.endgame = endgame;
-	}
-
-	public void ejecutarAventura() {
-
+		this.endgames = endgames;
 	}
 
 	public String getBienvenida() {
 		return bienvenida;
 	}
 
+	public String getTitulo() {
+		return titulo;
+	}
+
+	public List<Endgame> getEndgames() {
+		return endgames;
+	}
+
+	@Override
+	public String toString() {
+		return "Configuracion [bienvenida=" + bienvenida + ", titulo=" + titulo + ", endgames=" + endgames + "]";
+	}
+	
 }
