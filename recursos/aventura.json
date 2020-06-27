@@ -496,6 +496,25 @@
         }
       ]
     },
+	{
+      "nombre": "lancha",
+      "genero": "femenino",
+      "numero": "singular",
+      "descripcion": "Estas arriba de la lancha, debes encontrar la llave para poder escapar",
+      "lugares": [
+       
+      ],
+      "npcs": [
+        
+      ],
+      "conexiones": [
+        {
+          "direccion": "oeste",
+          "ubicacionDestino": "bosque",
+          "obstaculo": "null"
+        }
+      ]
+    },
     {
       "nombre": "habitacion",
       "genero": "femenino",
