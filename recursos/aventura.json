@@ -354,7 +354,7 @@
               "type": "item",
               "thing": "navaja",
               "on_trigger": "Has eliminado a la serpiente, no pudiste recuperar tu navaja, vas camino al interior de la casa, accedes por la chimenea",
-              "after_trigger": "remove"
+              "after_trigger": "remover"
             }
           ]
         }
@@ -417,7 +417,7 @@
               "type": "item",
               "thing": "hacha",
               "on_trigger": "Has eliminado a la comadreja, tienes el camino liberado",
-              "after_trigger": "remove"
+              "after_trigger": "remover"
             }
           ]
         }
@@ -479,7 +479,7 @@
               "type": "item",
               "thing": "frasco de vidrio",
               "on_trigger": "Has eliminado a la araña, ya pudiste salir del baño",
-              "after_trigger": "remove"
+              "after_trigger": "remover"
             }
           ]
         }
@@ -536,7 +536,7 @@
               "type": "item",
               "thing": "barrote",
               "on_trigger": "Has eliminado al lobo, ya puedes salir de la habitacion",
-              "after_trigger": "remove"
+              "after_trigger": "remover"
             }
           ]
         }
