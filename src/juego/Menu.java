@@ -19,6 +19,19 @@ public class Menu {
 	private String pathAventuraElegida;
 	private String nombreJugador;
 	
+	public static void main(String[] args) {
+
+		Menu menu = new Menu();
+		menu.desplegarMenuOpciones();
+		menu.solicitarNombreDeJugador();
+		
+		//Aventura aventura = new Aventura(menu.getPathAventuraElegida(), menu.getNombreJugador());*/
+		
+		Aventura aventura = new Aventura(Menu.AVENTURA_1, "Messi"); //Linea para ejecutar rápido
+		aventura.comenzar();
+		
+	}
+	
 	public Menu() {
 		this.scanner = new Scanner(System.in); 
 		this.opcion = -1; //opción elegida del usuario
@@ -43,7 +56,9 @@ public class Menu {
 				switch(this.opcion){
 				case 1: 
 					pathAventuraElegida = AVENTURA_1;
-					System.out.println("selecciono la opcion 1");
+					System.out.println("selecciono la opcion 1\n");
+					Aventura aventura = new Aventura(Menu.AVENTURA_1, "Messi"); //Linea para ejecutar rápido
+					aventura.comenzar();
 					break;
 				case 2: 
 					pathAventuraElegida = AVENTURA_2;
@@ -85,8 +100,8 @@ public class Menu {
 	private void cargarMapaAventuras() {
 		
 		this.nombreAventura.put(1, "Aventura 1: La Isla Peligrosa");
-		/*this.nombreAventura.put(2, "Discoteca");
-		this.nombreAventura.put(3, "La isla");*/
+		this.nombreAventura.put(2, "No disponible");
+		this.nombreAventura.put(3, "No disponible");
 		this.nombreAventura.put(0, "Salir");
 	}
 
