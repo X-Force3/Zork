@@ -3,12 +3,13 @@
     "bienvenida": "Bienvenido",
     "titulo": "Aventura 1: La Isla Peligrosa",
     "endgames": [
-      {
-        "condicion": "item",
-        "accion": "encender",
-        "cosa": "lancha",
+       {
+        "condicion": "itemEnUbicacion",
+        "accion": "",
+        "cosa": "llave",
+        "ubicacion": "lancha",
         "descripcion": "¡Felicidades! Pudiste encender la lancha y escapar de la isla peligrosa"
-      },
+       },
       {
         "condicion": "accion",
         "accion": "atrapar",
@@ -300,6 +301,11 @@
           "direccion": "sur",
           "ubicacionDestino": "living",
           "obstaculo": "loro"
+        },
+        {
+          "direccion": "oeste",
+          "ubicacionDestino": "lancha",
+          "obstaculo": "null"
         }
       ]
     },
