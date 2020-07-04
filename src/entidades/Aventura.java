@@ -10,7 +10,7 @@ import juego.ManejoArchivos;
 public class Aventura {
 
 	private Configuracion configuracion;
-	private Map<String, Ubicacion> ubicaciones = new HashMap<String, Ubicacion>();//los mapas están cargados
+	private Map<String, Ubicacion> ubicaciones = new HashMap<String, Ubicacion>();//los mapas estï¿½n cargados
 	private AnalizadorDeTexto analizador;
 	private Protagonista protagonista;
 	
@@ -52,8 +52,8 @@ public class Aventura {
 		Item item;
 		boolean fin = false;
 
-//		this.describirContexto(); Juani: Si hubiera un while desde la línea 45 hasta la 76.. //Luz: pienso lo mismo
-//		Cada vez que se ejecute el método "comenzar" el porgrama va a mostrar la descripción de la ubicación actual?
+//		this.describirContexto(); Juani: Si hubiera un while desde la lï¿½nea 45 hasta la 76.. //Luz: pienso lo mismo
+//		Cada vez que se ejecute el mï¿½todo "comenzar" el porgrama va a mostrar la descripciï¿½n de la ubicaciï¿½n actual?
 		System.out.println(this.configuracion.getBienvenida() +" " +  protagonista.getNombre());
 		System.out.println(describirUbicacion()); //funciona
 		
@@ -79,7 +79,7 @@ public class Aventura {
 				salida = this.describirUbicacion();
 
 			} else {
-				salida = "No comprendí lo que quieres, intenta ser más preciso...";
+				salida = "No comprendï¿½ lo que quieres, intenta ser mï¿½s preciso...";
 			}
 
 			descripcionEndgame = this.verificarEndgame(entrada);
@@ -100,7 +100,7 @@ public class Aventura {
 		objeto = analizador.contieneItem(entrada, this.protagonista.getUbicacionActual().getItems());
 		if (objeto != null && objeto.esItemDeInventario() && (entrada.contains("agarrar") ||
 				entrada.contains("tomar") || entrada.contains("guardar"))) {
-			this.protagonista.añadirItem(objeto); // se añade al inventario
+			this.protagonista.aÃ±adirItem(objeto); // se aï¿½ade al inventario
 			this.protagonista.getUbicacionActual().eliminarItemUbicacion(objeto); // se quita del place
 			condicion = true;
 		}
@@ -174,21 +174,21 @@ public class Aventura {
 			npc = analizador.contieneObstaculoNpc(entrada, this.protagonista.getUbicacionActual().getNpcs());
 			if (npc != null) {
 				salida = npc.verificarTrigger(item, this.protagonista);
-				this.protagonista.eliminarItem(item);// Luego de que el protagonista utiliza el ítem, se elimina de su
+				this.protagonista.eliminarItem(item);// Luego de que el protagonista utiliza el ï¿½tem, se elimina de su
 														// inventario.
 			} else {
 				lugar = analizador.contieneObstaculoLugar(entrada, this.protagonista.getUbicacionActual().getLugares());
 				if (lugar != null) {
 					salida = lugar.verificarTrigger(item);
-					this.protagonista.eliminarItem(item);// Luego de que el protagonista utiliza el ítem, se elimina de
+					this.protagonista.eliminarItem(item);// Luego de que el protagonista utiliza el ï¿½tem, se elimina de
 															// su inventario.
 				} else {
-					salida = "No entiendo por qué quieres realizar eso..."; // Juani: Lo modifiqué porque me pareció mas
+					salida = "No entiendo por quï¿½ quieres realizar eso..."; // Juani: Lo modifiquï¿½ porque me pareciï¿½ mas
 																			// preciso esto.
 				}
 			}
 		} else {
-			salida = "No entiendo qué acción quieres realizar con ese ítem...";// Juani: Idem.
+			salida = "No entiendo quï¿½ acciï¿½n quieres realizar con ese ï¿½tem...";// Juani: Idem.
 		}
 		return salida;
 	}
@@ -206,7 +206,7 @@ public class Aventura {
 					|| (endgame.getCondicion().contentEquals("itemEnUbicacion")// Endgame de obtener un Item y llegar a una Ubicacion.
 							&& endgame.verificarItemEndgame(this.analizador, this.protagonista)
 							&& endgame.verificarUbicacionEndgame(this.protagonista))
-					|| endgame.getCondicion().contentEquals("accion")// Endgame de realizar una acción con un Item.
+					|| endgame.getCondicion().contentEquals("accion")// Endgame de realizar una acciï¿½n con un Item.
 							&& endgame.verificarItemEndgame(this.analizador, this.protagonista)
 							&& endgame.verificarAccionEndgame(entrada)
 					|| endgame.getCondicion().contentEquals("muerte")// Endgame de muerte del Protagonista.

@@ -30,7 +30,7 @@ public class ProtagonistaTest {
 
 		Item barreta = new Item("barreta", Genero.FEMALE, Numero.SINGULAR, accionItemsSuelo, efectosItemsSuelo);
 		Item espejo = new Item("espejo", Genero.MALE, Numero.SINGULAR, accionItemsSuelo, efectosItemsSuelo);
-		Item rociadorCervezaRaiz = new Item("rociador con cerveza de raíz", Genero.MALE, Numero.SINGULAR,
+		Item rociadorCervezaRaiz = new Item("rociador con cerveza de raï¿½z", Genero.MALE, Numero.SINGULAR,
 				accionItemsSuelo, efectosItemsSuelo);
 		List<Item> itemsSuelo = new ArrayList<Item>();
 		itemsSuelo.add(barreta);
@@ -58,15 +58,15 @@ public class ProtagonistaTest {
 
 		item = new Item("Espejo", Genero.MALE, Numero.SINGULAR, acciones, efectosSobre);
 		/// inicializo pirata
-		Trigger pirataFantasmaRociador = new Trigger("item", "rociador con cerveza de raíz", null, null);
+		Trigger pirataFantasmaRociador = new Trigger("item", "rociador con cerveza de raï¿½z", null, null);
 		List<Trigger> triggersMuelle = new ArrayList<Trigger>();
 		triggersMuelle.add(pirataFantasmaRociador);
 
 		protagonista = new Protagonista("Nahuel", ubicacion);
 
 		pirata = new Npc("pirata fantasma", Genero.MALE, Numero.SINGULAR,
-				"- '¡No puedes pasar!' El pirata fantasma no te dejará pasar",
-				"¡No hay nada que me digas que me haga cambiar de opinión!", triggersMuelle);
+				"- 'ï¿½No puedes pasar!' El pirata fantasma no te dejarï¿½ pasar",
+				"ï¿½No hay nada que me digas que me haga cambiar de opiniï¿½n!", triggersMuelle);
 
 	}
 
@@ -80,9 +80,9 @@ public class ProtagonistaTest {
 
 		Item item = new Item("Espejo", Genero.MALE, Numero.SINGULAR, acciones, efectosSobre);
 
-		protagonista.añadirItem(item);
+		protagonista.aÃ±adirItem(item);
 
-		Assert.assertFalse(protagonista.añadirItem(item));
+		Assert.assertFalse(protagonista.aÃ±adirItem(item));
 	}
 
 //	@Test
@@ -104,7 +104,7 @@ public class ProtagonistaTest {
 
 		Item item = new Item("Espejo", Genero.MALE, Numero.SINGULAR, acciones, efectosSobre);
 
-		Assert.assertTrue(protagonista.añadirItem(item));
+		Assert.assertTrue(protagonista.aÃ±adirItem(item));
 	}
 
 	@Test
