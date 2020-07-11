@@ -22,7 +22,7 @@ public class Menu {
 	
 	public Menu() {
 		this.scanner = new Scanner(System.in); 
-		this.opcion = -1; //opción elegida del usuario
+		this.opcion = -1; //opciï¿½n elegida del usuario
 		this.nombreAventura = new HashMap<Integer,String>(); //Variables
 		cargarMapaAventuras();
 	}
@@ -34,8 +34,8 @@ public class Menu {
 			try{
 				System.out.println("Seleccione la aventura:\n"
 						+ "1.- " + this.nombreAventura.get(1)
-						/*+ "\n2.- " + this.nombreAventura.get(2)
-						+ "\n3.- " + this.nombreAventura.get(3)*/
+						+ "\n2.- " + this.nombreAventura.get(2)
+						/*+ "\n3.- " + this.nombreAventura.get(3)*/
 						+ "\n0.- Salir\n");
 				
 				this.opcion = Integer.parseInt(this.scanner.nextLine()); 
@@ -46,11 +46,11 @@ public class Menu {
 					pathAventuraElegida = AVENTURA_1;
 					System.out.println("selecciono la opcion 1");
 					break;
-				/*case 2: 
+				case 2: 
 					pathAventuraElegida = AVENTURA_2;
 					System.out.println("selecciono la opcion 2");
 					break;
-				case 3: 
+				/*case 3: 
 					pathAventuraElegida = AVENTURA_3;
 					System.out.println ("selecciono la opcion 3");
 					break;*/
@@ -88,8 +88,8 @@ public class Menu {
 	private void cargarMapaAventuras() {
 		
 		this.nombreAventura.put(1, "Aventura 1: La Isla Peligrosa");
-		/*this.nombreAventura.put(2, "Discoteca");
-		this.nombreAventura.put(3, "La isla");*/
+		this.nombreAventura.put(2, "Prueba taller programacion");
+		/*this.nombreAventura.put(3, "La isla");*/
 		this.nombreAventura.put(0, "Salir");
 	}
 
