@@ -74,6 +74,10 @@ public class Aventura {
 				salida = this.realizarAccionConItem(entrada, item);
 				// no hace falta verificar condicion de endgame
 			}
+			
+			else if(this.quiereVerInventario(entrada)) {
+				salida = this.mostrarInventario();
+			}
 
 			else if (this.quiereVerAlrededor(entrada) == true) {
 				salida = this.describirUbicacion();
@@ -93,6 +97,21 @@ public class Aventura {
 		}
 	}
 	
+
+	private String mostrarInventario() {
+		String salida = "En tu inventario hay:";
+		
+		if(protagonista.getInventario().size() == 0) {
+			salida = "No hay ningun item en tu inventario";
+			
+		} else {
+			for(Item item : protagonista.getInventario()) {
+				salida += "\n--> " + item.conjugarItem();
+			}
+		}
+		
+		return salida;
+	}
 
 	public boolean quiereAgarrarItem(String entrada) {
 		boolean condicion = false;
@@ -127,6 +146,14 @@ public class Aventura {
 		return condicion;
 	}
 
+	public boolean quiereVerInventario(String entrada) {
+		boolean condicion = false;
+		if(entrada.equalsIgnoreCase("ver inventario") || entrada.equalsIgnoreCase("mirar inventario")) {
+			condicion = true;
+		}
+		return condicion;
+	}
+	
 	/**
 	 * se fija que la conexion tenga obstaculo, si no lo tiene desplaza al
 	 * protagonista si tiene, devuelve la descripcion del objeto que actua como
@@ -141,7 +168,7 @@ public class Aventura {
 		if (obstaculo != null) {
 			obstaculoNpc = analizador.contieneObstaculoNpc(obstaculo, this.protagonista.getUbicacionActual().getNpcs());
 			if (obstaculoNpc != null) {
-				salida = obstaculoNpc.getDescripcion();
+				salida = obstaculoNpc.getDescripcion() + "\n<" +obstaculoNpc.getNombre().toUpperCase() +">: " + obstaculoNpc.getDialogo();
 			} else {
 				obstaculoLugar = analizador.contieneObstaculoLugar(obstaculo,
 						this.protagonista.getUbicacionActual().getLugares());

@@ -275,7 +275,7 @@
           "genero": "masculino",
           "numero": "singular",
           "descripcion": "Aparece un loro volando en lo alto",
-          "dialogo": "Huye de aqui, huye de aqui! Grita el loro",
+          "dialogo": "Huye de aqui, huye de aqui!",
           "triggers": [
             {
               "type": "item",
