@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import componentes.JuegoJFrame;
 import juego.ManejoArchivos;
 
 public class Aventura {
@@ -13,6 +14,8 @@ public class Aventura {
 	private Map<String, Ubicacion> ubicaciones = new HashMap<String, Ubicacion>();//los mapas están cargados
 	private AnalizadorDeTexto analizador;
 	private Protagonista protagonista;
+	
+	private JuegoJFrame ventanaJuego;
 	
 	public Aventura(String pathAventura,String nombreJugador) {
 		cargarAventura(pathAventura, nombreJugador);
@@ -30,6 +33,8 @@ public class Aventura {
 		ubicaciones = manejoArchivos.getUbicacionesMap();
 		configuracion = manejoArchivos.getConfiguracion();
 		this.protagonista = new Protagonista(nombreJugador,manejoArchivos.getUbicaciones().get(0));
+		
+		ventanaJuego = new JuegoJFrame();
 	}
 
 	public Configuracion getConfiguracion() {
@@ -54,8 +59,13 @@ public class Aventura {
 
 //		this.describirContexto(); Juani: Si hubiera un while desde la línea 45 hasta la 76.. //Luz: pienso lo mismo
 //		Cada vez que se ejecute el método "comenzar" el porgrama va a mostrar la descripción de la ubicación actual?
-		System.out.println(this.configuracion.getBienvenida() +" " +  protagonista.getNombre());
-		System.out.println(describirUbicacion()); //funciona
+		
+		//System.out.println(this.configuracion.getBienvenida() +" " +  protagonista.getNombre());
+		//System.out.println(describirUbicacion()); //funciona
+		
+		String ini = this.configuracion.getBienvenida() +" " +  protagonista.getNombre() + "\n" + describirUbicacion();
+		ventanaJuego.setText(ini);
+		ventanaJuego.run();
 		
 		while(!fin) {
 			entrada = analizador.recibirEntrada();
