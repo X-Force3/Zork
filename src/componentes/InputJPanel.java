@@ -35,19 +35,24 @@ public class InputJPanel extends JPanel {
 	private static final long serialVersionUID = -3843632241514733050L;
 	private int ancho;
 	private int alto;
+	
+	InputTextListener inputTextListener;
+	private JTextArea textArea;
 
-	private JTextArea messageText;
-
-	public InputJPanel(int ancho, int alto) {
-		setLayout(new BorderLayout());
-		setBorder(new EmptyBorder(15, 15, 15, 15));
+	public InputJPanel(int ancho, int alto,InputTextListener inputTextListener) {
 		this.ancho = ancho;
 		this.alto = alto;
+		this.inputTextListener = inputTextListener;
+		
+		setLayout(new BorderLayout());
+		setBorder(new EmptyBorder(15, 15, 15, 15));
 
-		messageText = new JTextArea("> ");
-		messageText.setCaretPosition(messageText.getText().length() - 1);
-		messageText.setLineWrap(true);
-		messageText.setWrapStyleWord(true);
+		textArea = new JTextArea("> ");
+		textArea.setCaretPosition(textArea.getText().length() - 1);
+		
+		//"multilineal": mientras el usuario va escribiendo, si se pasa del ancho de la ventana, sigue en una nueva linea.
+		textArea.setLineWrap(true);
+		textArea.setWrapStyleWord(true);
 
 		
 		//En lugar de KeyListener, porque agrega el salto de linea igual
@@ -55,23 +60,24 @@ public class InputJPanel extends JPanel {
 		Action enter = new AbstractAction() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				messageText.setText("> ");
-				messageText.setCaretPosition(messageText.getText().length());
+				inputTextListener.inputText(textArea.getText());
+				textArea.setText("> ");
+				textArea.setCaretPosition(textArea.getText().length());
 			}
 		};
-		messageText.getActionMap().put("insert-break", enter);
+		textArea.getActionMap().put("insert-break", enter);
 
 		try {
 			Font customFont = Font.createFont(Font.TRUETYPE_FONT, new File(JuegoJFrame.PATH_RESOURCES + "dogicapixel.ttf")).deriveFont(14f);
-			messageText.setFont(customFont);
+			textArea.setFont(customFont);
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (FontFormatException e) {
 			e.printStackTrace();
 		}
 		
-		messageText.setCaretColor(Color.RED);
-		add(messageText, BorderLayout.CENTER);
+		textArea.setCaretColor(Color.RED);
+		add(textArea, BorderLayout.CENTER);
 		setSize(ancho, alto);
 	}
 
@@ -84,7 +90,13 @@ public class InputJPanel extends JPanel {
 
 	public static void main(String[] args) {
 		JFrame frame = new JFrame();
-		JPanel panel = new InputJPanel(300, 200);
+		InputJPanel panel = new InputJPanel(300, 200, new InputTextListener() {
+			
+			@Override
+			public void inputText(String newText) {
+				
+			}
+		});
 		frame.add(panel);
 		frame.setSize(300, 200);
 		frame.setLocationRelativeTo(null);

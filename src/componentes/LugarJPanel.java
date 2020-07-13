@@ -39,7 +39,7 @@ public class LugarJPanel extends JPanel {
 		try {
 			customFont = Font.createFont(Font.TRUETYPE_FONT, new File(JuegoJFrame.PATH_RESOURCES + "dogicapixel.ttf")).deriveFont(8f);
 		} catch (FontFormatException | IOException e) {
-			customFont = new Font("TimesRoman", Font.PLAIN, 20);
+			customFont = new Font("TimesRoman", Font.PLAIN, 15);
 			e.printStackTrace();
 		}
 
@@ -66,7 +66,7 @@ public class LugarJPanel extends JPanel {
 
 		g2d.setColor(Color.BLACK);
 		g2d.setFont(customFont);
-		drawStringMultiLine(g2d, text, ancho - 40, 20, 30);
+		drawStringMultiLine(g2d, text, ancho - 45, 20, 30);
 		
 		//add items
 		int anchoItem = 50;
@@ -93,11 +93,11 @@ public class LugarJPanel extends JPanel {
 			String[] words = text.split(" ");
 			String currentLine = words[0];
 			for (int i = 1; i < words.length; i++) {
-				if (m.stringWidth(currentLine + words[i]) < lineWidth) {
+				if (m.stringWidth(currentLine + words[i]) < lineWidth /*&& !words[i].contains("\n")*/) {
 					currentLine += " " + words[i];
 				} else {
 					g.drawString(currentLine, x, y);
-					y += m.getHeight() + 10;// +10 added
+					y += m.getHeight() + 7;// +9 added
 					currentLine = words[i];
 				}
 			}

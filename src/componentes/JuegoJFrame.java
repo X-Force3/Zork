@@ -6,7 +6,9 @@ import java.util.Arrays;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 
-public class JuegoJFrame extends JFrame implements Runnable {
+public class JuegoJFrame extends JFrame implements Runnable{
+	
+	//link: https://www.youtube.com/watch?v=2A7pjyXtXr8
 
 	private static final long serialVersionUID = -8659850278449602685L;
 	
@@ -24,8 +26,9 @@ public class JuegoJFrame extends JFrame implements Runnable {
 	private LugarJPanel juegoPanel;
 	private InputJPanel inputPanel;
 
-	public JuegoJFrame() {
-		setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+	public JuegoJFrame(InputTextListener inputTextListener) {
+		setTitle("Juego probandooo");
+		setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));//layout que me permite agregar componentes linealmente, Y_AXIS = modo vertical
 		
 		juegoPanel = new LugarJPanel(WIDTH_WINDOW, HEIGHT_GAME);
 		juegoPanel.bg = Toolkit.getDefaultToolkit().getImage(PATH_SPRITES + "background.png");
@@ -34,10 +37,11 @@ public class JuegoJFrame extends JFrame implements Runnable {
 				Toolkit.getDefaultToolkit().getImage(PATH_SPRITES + "cartel.png")
 		);
 		add(juegoPanel);
+		
 		hilo = new Thread();
 		hilo.start();
 
-		inputPanel = new InputJPanel(WIDTH_WINDOW,HEIGHT_INPUT);
+		inputPanel = new InputJPanel(WIDTH_WINDOW,HEIGHT_INPUT, inputTextListener);
 		add(inputPanel);
 		
 		pack();
@@ -62,10 +66,6 @@ public class JuegoJFrame extends JFrame implements Runnable {
 				e.printStackTrace();
 			}
 		}
-	}
-
-	public static void main(String[] args) {
-		new JuegoJFrame().run();
 	}
 	
 }

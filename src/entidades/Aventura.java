@@ -5,10 +5,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import componentes.InputTextListener;
 import componentes.JuegoJFrame;
 import juego.ManejoArchivos;
 
-public class Aventura {
+public class Aventura implements InputTextListener{
 
 	private Configuracion configuracion;
 	private Map<String, Ubicacion> ubicaciones = new HashMap<String, Ubicacion>();//los mapas están cargados
@@ -34,7 +35,7 @@ public class Aventura {
 		configuracion = manejoArchivos.getConfiguracion();
 		this.protagonista = new Protagonista(nombreJugador,manejoArchivos.getUbicaciones().get(0));
 		
-		ventanaJuego = new JuegoJFrame();
+		ventanaJuego = new JuegoJFrame(this);
 	}
 
 	public Configuracion getConfiguracion() {
@@ -63,11 +64,11 @@ public class Aventura {
 		//System.out.println(this.configuracion.getBienvenida() +" " +  protagonista.getNombre());
 		//System.out.println(describirUbicacion()); //funciona
 		
-		String ini = this.configuracion.getBienvenida() +" " +  protagonista.getNombre() + "\n" + describirUbicacion();
+		String ini = this.configuracion.getBienvenida() +" " +  protagonista.getNombre() + " \n" + describirUbicacion();
 		ventanaJuego.setText(ini);
 		ventanaJuego.run();
 		
-		while(!fin) {
+		/*while(!fin) {
 			entrada = analizador.recibirEntrada();
 
 			if (this.quiereAgarrarItem(entrada) == true) {
@@ -100,7 +101,7 @@ public class Aventura {
 			}
 			
 			System.out.println(salida);
-		}
+		}*/
 	}
 	
 
@@ -242,6 +243,46 @@ public class Aventura {
 			ubicacionesConectadas.add(ubicaciones.get(conexion.getUbicacionDestino()));
 		}
 		return ubicacionesConectadas;
+	}
+
+	
+	@Override
+	public void inputText(String newText) {
+		String salida;
+		String descripcionEndgame;
+		Conexion conexion;
+		Item item;
+
+		if (this.quiereAgarrarItem(newText) == true) {
+			salida = this.protagonista.describirInventario();
+			// habria que verificar condicion de endgame
+		}
+
+		else if ((conexion = this.quiereMoverseDeUbicacion(newText)) != null) {
+			salida = this.tratarObstaculo(conexion);
+			// habria que verificar condicion de endgame
+		}
+
+		else if ((item = this.quiereRealizarAccionConItem(newText)) != null) {
+			salida = this.realizarAccionConItem(newText, item);
+			// no hace falta verificar condicion de endgame
+		}
+
+		else if (this.quiereVerAlrededor(newText) == true) {
+			salida = this.describirUbicacion();
+
+		} else {
+			salida = "No comprendí lo que quieres, intenta ser más preciso...";
+		}
+
+		descripcionEndgame = this.verificarEndgame(newText);
+
+		if (descripcionEndgame != "") {
+			salida = descripcionEndgame;
+			//fin = true;
+		}
+		
+		ventanaJuego.setText(salida);
 	}
 	
 }
