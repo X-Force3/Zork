@@ -138,6 +138,7 @@ public class Aventura {
 		String obstaculo = conexion.getObstaculo();
 		Npc obstaculoNpc;
 		Lugar obstaculoLugar;
+		
 		if (obstaculo != null) {
 			obstaculoNpc = analizador.contieneObstaculoNpc(obstaculo, this.protagonista.getUbicacionActual().getNpcs());
 			if (obstaculoNpc != null) {
