@@ -1,0 +1,528 @@
+{
+  "configuracion": {
+    "bienvenida": "Bienvenido",
+    "titulo": "Aventura 1: La Isla Peligrosa",
+    "endgames": [
+       {
+        "condicion": "itemEnUbicacion",
+        "accion": "",
+        "cosa": "llave",
+        "ubicacion": "lancha",
+        "descripcion": "¡Felicidades! Pudiste encender la lancha y escapar de la isla peligrosa"
+       },
+      {
+        "condicion": "accion",
+        "accion": "atrapar",
+        "cosa": "serpiente",
+        "descripcion": "Has sido mordido y envenenado por la serpiente, estas fuera de juego"
+      },
+      {
+        "condicion": "accion",
+        "accion": "atrapar",
+        "cosa": "lobo",
+        "descripcion": "Has sido mordido por el lobo, estas fuera de juego"
+      }
+    ]
+  },
+  "items": [
+    {
+      "nombre": "cartel",
+      "genero": "masculino",
+      "numero": "singular",
+      "acciones": [
+        "ver"
+      ],
+      "efectosSobre": [
+        "item"
+      ]
+    },
+    {
+      "nombre": "buzon",
+      "genero": "masculino",
+      "numero": "singular",
+      "acciones": [
+        "abrir",
+        "ver",
+        "cerrar"
+      ],
+      "efectosSobre": [
+        "item"
+      ]
+    },
+    {
+      "nombre": "piedra",
+      "genero": "femenino",
+      "numero": "singular",
+      "acciones": [
+        "agarrar",
+        "ver",
+        "tirar", 
+        "guardar"
+      ],
+      "efectosSobre": [
+        "item",
+        "npcs"
+      ]
+    },
+    {
+      "nombre": "casa",
+      "genero": "femenino",
+      "numero": "singular",
+      "acciones": [
+        "ver"
+      ],
+      "efectosSobre": [
+        "item"
+      ]
+    },
+    {
+      "nombre": "puerta",
+      "genero": "femenino",
+      "numero": "singular",
+      "acciones": [
+        "ver",
+        "gopear",
+        "romper"
+      ],
+      "efectosSobre": [
+        "item"
+      ]
+    },
+    {
+      "nombre": "ventana",
+      "genero": "femenino",
+      "numero": "singular",
+      "acciones": [
+        "ver",
+        "gopear",
+        "romper"
+      ],
+      "efectosSobre": [
+        "item"
+      ]
+    },
+    {
+      "nombre": "chimenea",
+      "genero": "femenino",
+      "numero": "singular",
+      "acciones": [
+        "ver",
+        "acceder",
+        "entrar",
+        "salir"
+      ],
+      "efectosSobre": [
+        "item"
+      ]
+    },
+    {
+      "nombre": "navaja",
+      "genero": "femenino",
+      "numero": "singular",
+      "acciones": [
+        "tomar",
+        "guardar",
+        "atacar",
+        "tirar",
+        "agarrar"
+      ],
+      "efectosSobre": [
+        "item",
+        "npcs"
+      ]
+    },
+    {
+      "nombre": "botella",
+      "genero": "femenino",
+      "numero": "singular",
+      "acciones": [
+        "tomar",
+        "agarrar",
+        "guardar",
+        "romper",
+        "tirar"
+      ],
+      "efectosSobre": [
+        "item"
+      ]
+    },
+    {
+      "nombre": "hacha",
+      "genero": "masculino",
+      "numero": "singular",
+      "acciones": [
+        "tomar",
+        "guardar",
+        "agarrar",
+        "tirar",
+	"atacar"
+      ],
+      "efectosSobre": [
+        "item"
+      ]
+    },
+    {
+      "nombre": "caja",
+      "genero": "femenino",
+      "numero": "singular",
+      "acciones": [
+        "abrir",
+        "ver"
+      ],
+      "efectosSobre": [
+        "item"
+      ]
+    },
+    {
+      "nombre": "inodoro",
+      "genero": "masculino",
+      "numero": "singular",
+      "acciones": [
+        "hacer",
+        "utilizar"
+      ],
+      "efectosSobre": [
+        "item"
+      ]
+    },
+    {
+      "nombre": "frasco de vidrio",
+      "genero": "masculino",
+      "numero": "singular",
+      "acciones": [
+        "tomar",
+		"agarrar",
+        "guardar", 
+        "tirar", 
+        "lanzar", 
+        "golpear",
+	"atacar"
+      ],
+      "efectosSobre": [
+        "item",
+        "npcs"
+      ]
+    },
+    {
+      "nombre": "llave",
+      "genero": "femenino",
+      "numero": "singular",
+      "acciones": [
+        "tomar",
+        "agarrar",
+        "guardar"
+      ],
+      "efectosSobre": [
+        "item"
+      ]
+    },
+    {
+      "nombre": "barrote",
+      "genero": "masculino",
+      "numero": "singular",
+      "acciones": [
+        "tomar",
+        "agarrar",
+        "guardar",
+        "golpear"
+      ],
+      "efectosSobre": [
+        "item",
+        "npcs"
+      ]
+    }
+  ],
+  "ubicaciones": [
+    {
+      "nombre": "bosque",
+      "genero": "masculino",
+      "numero": "singular",
+      "descripcion": "Estas en una isla pequena donde habitan algunos animales muy peligrosos. Precisamente estas ubicado en el bosque,\nal lado oeste de una casa con puerta delantera a la vista. Un Cartel en la puerta dice ¡Prohibido Pasar!.\n",
+      "lugares": [
+        {
+          "nombre": "entrada",
+	  "segundoNombre" : "_____AQUI______",
+          "genero": "femenino",
+          "numero": "singular",
+	  "descripcion" : "___AQUI___",
+          "itemsNombre": [
+            "buzon",
+            "piedra"
+          ]
+        }
+      ],
+      "npcs": [
+        {
+          "nombre": "loro",
+          "genero": "masculino",
+          "numero": "singular",
+          "descripcion": "Aparece un loro volando en lo alto, se para frente a ti y dice: Huye de aqui!. Esta estorbando tu camino. \nPuedes usar la piedra que habia en el piso y liberarte de el",
+          "dialogo": "Huye de aqui, huye de aqui! Grita el loro",
+          "triggers": [
+            {
+              "type": "item",
+              "thing": "piedra",
+              "on_trigger": "El loro cae al piso luego de ser impactado por la piedra, el loro ya no molestará, la piedra cae al mar \ny no puedes recuperarla. Ya puedes moverte hacia el jardin!",
+              "after_trigger": "remove"
+            }
+          ]
+        }
+      ],
+      "conexiones": [
+        {
+          "direccion": "este",
+          "ubicacionDestino": "jardin",
+          "obstaculo": "loro"
+        },
+        {
+          "direccion": "oeste",
+          "ubicacionDestino": "lancha",
+          "obstaculo": "null"
+        }
+      ]
+    },
+    {
+      "nombre": "jardin",
+      "genero": "masculino",
+      "numero": "singular",
+      "descripcion": "Estas en jardin de la casa. Se puede observar una ventana y otra puerta totalmente blindadas y cerradas. \nEn el techo, al sur de la casa, se llega a ver una linda chimenea por la que puedes acceder al living de la casa.\n",
+      "lugares": [
+        {
+          "nombre": "suelo del patio trasero",
+	  "segundoNombre" : "_____AQUI______",
+          "genero": "masculino",
+          "numero": "singular",
+	  "descripcion" : "___AQUI___",
+          "itemsNombre": [
+            "navaja"
+          ]
+        }
+      ],
+      "npcs": [
+        {
+          "nombre": "serpiente",
+          "genero": "femenino",
+          "numero": "singular",
+          "descripcion": "Cuando intentas moverte notas que en el pasto hay una peligrosa serpiente que viene en tu direccion, \nno dejes que te muerda, utiliza una navaja para acabar con ella",
+          "dialogo": "Zsssssss",
+          "triggers": [
+            {
+              "type": "item",
+              "thing": "navaja",
+              "on_trigger": "Has eliminado a la serpiente, no pudiste recuperar tu navaja, \nahora puedes moverte al sur por la chimenea, para acceder al living de la casa.",
+              "after_trigger": "remove"
+            }
+          ]
+        }
+      ],
+      "conexiones": [
+        {
+          "direccion": "oeste",
+          "ubicacionDestino": "bosque",
+          "obstaculo": "null"
+        },
+        {
+          "direccion": "sur",
+          "ubicacionDestino": "living",
+          "obstaculo": "serpiente"
+        }
+      ]
+    },
+    {
+      "nombre": "living",
+      "genero": "masculino",
+      "numero": "singular",
+      "descripcion": "Estas en el living de la casa. Tiene aspecto haber sido abandonada. \nPuedes ver un banio hacia el sur de la casa y una habitacion hacia el norte.\n",
+      "lugares": [
+        {
+          "nombre": "mesa",
+	  "segundoNombre" : "_____AQUI______",
+          "genero": "femenino",
+          "numero": "singular",
+	  "descripcion" : "___AQUI___",
+          "itemsNombre": [
+            "caja"
+          ]
+        },
+        {
+          "nombre": "suelo",
+	  "segundoNombre" : "_____AQUI______",
+          "genero": "masculino",
+          "numero": "singular",
+	  "descripcion" : "___AQUI___",
+          "itemsNombre": [
+            "botella",
+            "hacha"
+          ]
+        }
+      ],
+      "npcs": [
+        {
+          "nombre": "comadreja",
+          "genero": "femenino",
+          "numero": "singular",
+          "descripcion": "Una fea comadreja aparece frente a ti, parece estar rabiosa y hambrienta, \nusa el hacha vieja y acaba con ella o sera tarde",
+          "dialogo": "Grrrrrr",
+          "triggers": [
+            {
+              "type": "item",
+              "thing": "hacha",
+              "on_trigger": "Has eliminado a la comadreja, el hacha queda destrozada no puedes recuperarla. \nAhora tienes el camino liberado",
+              "after_trigger": "remove"
+            }
+          ]
+        }
+      ],
+      "conexiones": [
+        {
+          "direccion": "este",
+          "ubicacionDestino": "jardin",
+          "obstaculo": "null"
+        },
+        {
+          "direccion": "sur",
+          "ubicacionDestino": "banio",
+          "obstaculo": "comadreja"
+        },
+        {
+          "direccion": "oeste",
+          "ubicacionDestino": "habitacion",
+          "obstaculo": "comadreja"
+        }
+      ]
+    },
+    {
+      "nombre": "banio",
+      "genero": "masculino",
+      "numero": "singular",
+      "descripcion": "Estas en el Banio de la casa. Esta completamente destruido.\n",
+      "lugares": [
+        {
+          "nombre": "pared",
+	  "segundoNombre" : "_____AQUI______",
+          "genero": "masculino",
+          "numero": "singular",
+	  "descripcion" : "___AQUI___",
+          "itemsNombre": [
+            "frasco de vidrio"
+          ]
+        },
+        {
+          "nombre": "rincon",
+	  "segundoNombre" : "_____AQUI______",
+          "genero": "masculino",
+          "numero": "singular",
+	  "descripcion" : "___AQUI___",
+          "itemsNombre": [
+            "inodoro"
+          ]
+        }
+      ],
+      "npcs": [
+        {
+          "nombre": "arania",
+          "genero": "femenino",
+          "numero": "singular",
+          "descripcion": "Una arania venenosa enorme camina sobre la pared y complica tu salida del banio, \npuedes usar el frasco de vidrio y golpearla",
+          "dialogo": "psssss",
+          "triggers": [
+            {
+              "type": "item",
+              "thing": "frasco de vidrio",
+              "on_trigger": "Has eliminado a la arania, ya puedes salir del banio",
+              "after_trigger": "remove"
+            }
+          ]
+        }
+      ],
+      "conexiones": [
+        {
+          "direccion": "norte",
+          "ubicacionDestino": "living",
+          "obstaculo": "arania"
+        },
+        {
+          "direccion": "este",
+          "ubicacionDestino": "habitacion",
+          "obstaculo": "arania"
+        }
+      ]
+    },
+	{
+      "nombre": "lancha",
+      "genero": "femenino",
+      "numero": "singular",
+      "descripcion": "Estas arriba de la lancha, debes encontrar la llave para poder escapar",
+      "lugares": [
+       
+      ],
+      "npcs": [
+        
+      ],
+      "conexiones": [
+        {
+          "direccion": "oeste",
+          "ubicacionDestino": "bosque",
+          "obstaculo": "null"
+        }
+      ]
+    },
+    {
+      "nombre": "habitacion",
+      "genero": "femenino",
+      "numero": "singular",
+      "descripcion": "Estas en la habitacion de la casa.\n",
+      "lugares": [
+        {
+          "nombre": "colchon",
+	  "segundoNombre" : "_____AQUI______",
+          "genero": "masculino",
+          "numero": "singular",
+	  "descripcion" : "___AQUI___",
+          "itemsNombre": [
+            "llave"
+          ]
+        },
+        {
+          "nombre": "piso",
+	  "segundoNombre" : "_____AQUI______",
+          "genero": "masculino",
+          "numero": "singular",
+	  "descripcion" : "___AQUI___",
+          "itemsNombre": [
+            "barrote"
+          ]
+        }
+      ],
+      "npcs": [
+        {
+          "nombre": "lobo",
+          "genero": "masculino",
+          "numero": "singular",
+          "descripcion": "Cuidado! hay un lobo durmiendo sobre el colchon, usa el barrote que hay en el piso para eliminarlo",
+          "dialogo": "Grrrrr",
+          "triggers": [
+            {
+              "type": "item",
+              "thing": "barrote",
+              "on_trigger": "Has eliminado al lobo, ya puedes salir de la habitacion",
+              "after_trigger": "remove"
+            }
+          ]
+        }
+      ],
+      "conexiones": [
+        {
+          "direccion": "este",
+          "ubicacionDestino": "banio",
+          "obstaculo": "lobo"
+        },
+        {
+          "direccion": "oeste",
+          "ubicacionDestino": "living",
+          "obstaculo": "lobo"
+        }
+      ]
+    }
+  ]
+}
