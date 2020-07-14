@@ -6,13 +6,13 @@
 		{
 		  "condicion": "itemEnUbicacion",
 		  "accion": "",
-		  "cosa": "",
+		  "cosa": "rociador con cerveza de raiz",
 		  "ubicacion": "taberna",
 		  "descripcion": "¡Enhorabuena! Llegaste a la taberna, donde te espera una noche de borrachera con Grog y otros colegas piratas."
 		},
 		{
 		  "condicion": "accion",
-		  "accion": "mirar",
+		  "accion": "usar",
 		  "cosa": "espejo",
 		  "descripcion": "¡Oh, no! Acabas de descubrir que tú también eres un pirata fantasma... ¡el horror!"
 		}
@@ -23,14 +23,14 @@
       "nombre": "muelle",
       "genero": "masculino",
       "numero": "singular",
-      "descripcion": "Estás en un muelle",
+      "descripcion": "EstÃ¡s en un muelle",
       "lugares": [
         {
           "nombre": "suelo",
-		  "segundoNombre": "",
+		  "segundoNombre": "___AQUI___",
           "genero": "masculino",
           "numero": "singular",
-		  "descripcion": ""
+		  "descripcion": "___AQUI___",
           "itemsNombre": [
             "barreta",
             "rociador con cerveza de raiz",
@@ -38,25 +38,26 @@
           ]
         }
       ],
-      "npcs": 
-	  {
-		  "nombre": "pirata fantasma",
-		  "genero": "masculino",
-		  "numero": "singular",
-		  "descripcion": "- '¡No puedes pasar!' El pirata fantasma no te dejará pasar",
-		  "dialogo": "¡No hay nada que me digas que me haga cambiar de opinión!",
-		  "triggers": [
-			{
-			  "type": "item",
-			  "thing": "rociador con cerveza de raiz",
-			  "on_trigger": "- '¡Me encanta la cerveza de raiz!' El pirata fantasma se veía entusiasmado por tu ofrecimiento... sin embargo, cuando lo rociaste comenzó a desintegrarse. La mitad de arriba de su cuerpo se desvaneció, y las piernas inmediatamente echaron a correr.",
-			  "after_trigger": "remove"
-			}
-		  ]
-	  },
+      "npcs": [
+		  {
+			  "nombre": "pirata fantasma",
+			  "genero": "masculino",
+			  "numero": "singular",
+			  "descripcion": "- '¡No puedes pasar!' El pirata fantasma no te dejará pasar",
+			  "dialogo": "¡No hay nada que me digas que me haga cambiar de opinión!",
+			  "triggers": [
+				{
+				  "type": "item",
+				  "thing": "rociador con cerveza de raiz",
+				  "on_trigger": "- '¡Me encanta la cerveza de raiz!' El pirata fantasma se veía entusiasmado por tu ofrecimiento... sin embargo, cuando lo rociaste comenzó a desintegrarse. La mitad de arriba de su cuerpo se desvaneció, y las piernas inmediatamente echaron a correr.",
+				  "after_trigger": "remove"
+				}
+			  ]
+		  }
+	  ],
       "conexiones": [
         {
-          "direccion": "south",
+          "direccion": "sur",
           "ubicacionDestino": "taberna",
           "obstaculo": "pirata fantasma"
         }
@@ -67,6 +68,37 @@
       "genero": "femenino",
       "numero": "singular",
       "descripcion": "Estás en una sucia taberna",
+	  "lugares": [
+        {
+          "nombre": "suelo",
+		  "segundoNombre": " ",
+          "genero": "masculino",
+          "numero": "singular",
+		  "descripcion": "___AQUI___",
+          "itemsNombre": [
+            "barreta",
+            "rociador con cerveza de raiz",
+            "espejo"
+          ]
+        }
+      ],
+      "npcs": [
+		  {
+			  "nombre": "pirata fantasma",
+			  "genero": "masculino",
+			  "numero": "singular",
+			  "descripcion": "- '¡No puedes pasar!' El pirata fantasma no te dejará pasar",
+			  "dialogo": "¡No hay nada que me digas que me haga cambiar de opinión!",
+			  "triggers": [
+				{
+				  "type": "item",
+				  "thing": "rociador con cerveza de raiz",
+				  "on_trigger": "- '¡Me encanta la cerveza de raiz!' El pirata fantasma se veía entusiasmado por tu ofrecimiento... sin embargo, cuando lo rociaste comenzó a desintegrarse. La mitad de arriba de su cuerpo se desvaneció, y las piernas inmediatamente echaron a correr.",
+				  "after_trigger": "remove"
+				}
+			  ]
+		  }
+	  ],
       "conexiones": [
         {
           "direccion": "norte",
@@ -82,6 +114,7 @@
       "genero": "femenino",
       "numero": "singular",
       "acciones": [
+		"recoger",
         "usar"
       ],
       "efectosSobre": [
@@ -95,6 +128,7 @@
       "genero": "masculino",
       "numero": "singular",
       "acciones": [
+	  "recoger",
         "usar"
       ],
       "efectosSobre": [
@@ -108,6 +142,7 @@
       "genero": "masculino",
       "numero": "singular",
       "acciones": [
+		"recoger",
         "usar"
       ],
       "efectosSobre": [
