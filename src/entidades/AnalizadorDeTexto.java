@@ -28,8 +28,7 @@ public class AnalizadorDeTexto {
 	// cadena
 	public Conexion contieneConexion(String entrada, List<Conexion> conexiones) {
 		for (Conexion elemento : conexiones) {
-			if ( (entrada.contains("ir al") || entrada.contains("ir a la")) &&
-					(entrada.contains(elemento.getUbicacionDestino()) || entrada.contains("ir al" + elemento.getDireccion().getNombre()))) {
+			if (entrada.contains(elemento.getUbicacionDestino()) || entrada.contains("ir al" + elemento.getDireccion().getNombre())) {
 				return elemento;
 			}
 		}

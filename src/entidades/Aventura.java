@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import chainOfResponsability.MoverseDeUbicacion;
 import juego.ManejoArchivos;
 
 public class Aventura {
@@ -48,8 +49,9 @@ public class Aventura {
 		String entrada;
 		String salida;
 		String descripcionEndgame;
-		Conexion conexion;
-		Item item;
+		///patron chain of Responsability
+		MoverseDeUbicacion accion = new MoverseDeUbicacion(analizador, protagonista, ubicaciones);
+		
 		boolean fin = false;
 
 //		this.describirContexto(); Juani: Si hubiera un while desde la l�nea 45 hasta la 76.. //Luz: pienso lo mismo
@@ -60,31 +62,7 @@ public class Aventura {
 		while(!fin) {
 			entrada = analizador.recibirEntrada();
 
-			if (this.quiereAgarrarItem(entrada) == true) {
-				salida = this.protagonista.describirInventario();
-				// habria que verificar condicion de endgame
-			}
-
-			else if ((conexion = this.quiereMoverseDeUbicacion(entrada)) != null) {
-				salida = this.tratarObstaculo(conexion);
-				// habria que verificar condicion de endgame
-			}
-
-			else if ((item = this.quiereRealizarAccionConItem(entrada)) != null) {
-				salida = this.realizarAccionConItem(entrada, item);
-				// no hace falta verificar condicion de endgame
-			}
-			
-			else if(this.quiereVerInventario(entrada)) {
-				salida = this.mostrarInventario();
-			}
-
-			else if (this.quiereVerAlrededor(entrada) == true) {
-				salida = this.describirUbicacion();
-
-			} else {
-				salida = "No comprend� lo que quieres, intenta ser m�s preciso...";
-			}
+			salida = accion.realizarAccion(entrada);
 
 			descripcionEndgame = this.verificarEndgame(entrada);
 
@@ -95,129 +73,6 @@ public class Aventura {
 			
 			System.out.println(salida);
 		}
-	}
-	
-
-	private String mostrarInventario() {
-		String salida = "En tu inventario hay:";
-		
-		if(protagonista.getInventario().size() == 0) {
-			salida = "No hay ningun item en tu inventario";
-			
-		} else {
-			for(Item item : protagonista.getInventario()) {
-				salida += "\n--> " + item.conjugarItem();
-			}
-		}
-		
-		return salida;
-	}
-
-	public boolean quiereAgarrarItem(String entrada) {
-		boolean condicion = false;
-		Item objeto;
-		objeto = analizador.contieneItem(entrada, this.protagonista.getUbicacionActual().getItems());
-		if (objeto != null && objeto.esItemDeInventario() && (entrada.contains("agarrar") ||
-				entrada.contains("tomar") || entrada.contains("guardar"))) {
-			this.protagonista.añadirItem(objeto); // se a�ade al inventario
-			this.protagonista.getUbicacionActual().eliminarItemUbicacion(objeto); // se quita del place
-			condicion = true;
-		}
-		return condicion;
-	}
-
-	public Conexion quiereMoverseDeUbicacion(String entrada) {
-		Conexion conexionDestino = analizador.contieneConexion(entrada,
-				this.protagonista.getUbicacionActual().getConexiones());
-		return conexionDestino;
-	}
-
-	public Item quiereRealizarAccionConItem(String entrada) {
-		Item item = analizador.contieneItem(entrada, this.protagonista.getInventario());
-		return item;
-	}
-
-	public boolean quiereVerAlrededor(String entrada) {
-		boolean condicion = false;
-		if (entrada.contains("ver alrededor") || entrada.contains("mirar alrededor")
-				|| entrada.contains("describir lugar")) {
-			condicion = true;
-		}
-		return condicion;
-	}
-
-	public boolean quiereVerInventario(String entrada) {
-		boolean condicion = false;
-		if(entrada.equalsIgnoreCase("ver inventario") || entrada.equalsIgnoreCase("mirar inventario")) {
-			condicion = true;
-		}
-		return condicion;
-	}
-	
-	/**
-	 * se fija que la conexion tenga obstaculo, si no lo tiene desplaza al
-	 * protagonista si tiene, devuelve la descripcion del objeto que actua como
-	 * obstaculo (lugar o npc) en caso que el obstaculo ya haya sido removido,
-	 * desplaza al protagonista
-	 */
-	public String tratarObstaculo(Conexion conexion) {
-		String salida;
-		String obstaculo = conexion.getObstaculo();
-		Npc obstaculoNpc;
-		Lugar obstaculoLugar;
-		if (obstaculo != null) {
-			obstaculoNpc = analizador.contieneObstaculoNpc(obstaculo, this.protagonista.getUbicacionActual().getNpcs());
-			if (obstaculoNpc != null) {
-				salida = obstaculoNpc.getDescripcion() + "\n<" +obstaculoNpc.getNombre().toUpperCase() +">: " + obstaculoNpc.getDialogo();
-			} else {
-				obstaculoLugar = analizador.contieneObstaculoLugar(obstaculo,
-						this.protagonista.getUbicacionActual().getLugares());
-				if (obstaculoLugar != null) {
-					salida = obstaculoLugar.getDescripcion();
-				} else {
-					this.protagonista.desplazarse(ubicaciones.get(conexion.getUbicacionDestino()));
-					// System.out.println(this.protagonista.getUbicacionActual().getNombre());
-					// salida = this.protagonista.getUbicacionActual().describirUbicacion();
-					salida = this.describirUbicacion();
-				}
-			}
-		} else {
-			this.protagonista.desplazarse(ubicaciones.get(conexion.getUbicacionDestino()));
-			salida = this.describirUbicacion();
-		}
-		return salida;
-	}
-
-	/**
-	 * se fija si hay una accion con ese item, y si la hay busca si hay un NPC o un
-	 * LUGAR en la entrada si encuentra, verifica y ejecuta el trigger
-	 */
-	public String realizarAccionConItem(String entrada, Item item) {
-		Npc npc;
-		Lugar lugar;
-		String salida;
-		String accion = analizador.contieneAccion(entrada, item.getAcciones());
-		if (accion != null) {
-			npc = analizador.contieneObstaculoNpc(entrada, this.protagonista.getUbicacionActual().getNpcs());
-			if (npc != null) {
-				salida = npc.verificarTrigger(item, this.protagonista);
-				this.protagonista.eliminarItem(item);// Luego de que el protagonista utiliza el �tem, se elimina de su
-														// inventario.
-			} else {
-				lugar = analizador.contieneObstaculoLugar(entrada, this.protagonista.getUbicacionActual().getLugares());
-				if (lugar != null) {
-					salida = lugar.verificarTrigger(item);
-					this.protagonista.eliminarItem(item);// Luego de que el protagonista utiliza el �tem, se elimina de
-															// su inventario.
-				} else {
-					salida = "No entiendo por qu� quieres realizar eso..."; // Juani: Lo modifiqu� porque me pareci� mas
-																			// preciso esto.
-				}
-			}
-		} else {
-			salida = "No entiendo qu� acci�n quieres realizar con ese �tem...";// Juani: Idem.
-		}
-		return salida;
 	}
 
 	public String verificarEndgame(String entrada) {
