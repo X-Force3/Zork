@@ -74,13 +74,13 @@ public class Ubicacion {
 				if (lugar.getNombre() != "borrado")
 					cadena += " " + lugar.describirObjetosDisponibles();
 			}
-
+		/*
 		if (this.npcs != null)
 			for (Npc npc : this.npcs) {
 				if (npc.getNombre() != "borrado")
 					cadena += " " + npc.conjugarNpc();
 			}
-		
+		*/
 		if (this.conexiones != null)
 			for (int i = 0; i < conexiones.size(); i++) {
 				cadena +=  "\n" + conexiones.get(i).conjugarConexion(ubicacionesConectadas.get(i) );
