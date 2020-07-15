@@ -35,7 +35,7 @@ public class Aventura implements InputTextListener{
 		configuracion = manejoArchivos.getConfiguracion();
 		this.protagonista = new Protagonista(nombreJugador,manejoArchivos.getUbicaciones().get(0));
 		
-		ventanaJuego = new JuegoJFrame(this);
+		ventanaJuego = new JuegoJFrame(this,configuracion.getTitulo());
 	}
 
 	public Configuracion getConfiguracion() {
@@ -66,6 +66,7 @@ public class Aventura implements InputTextListener{
 		
 		String ini = this.configuracion.getBienvenida() +" " +  protagonista.getNombre() + " \n" + describirUbicacion();
 		ventanaJuego.setText(ini);
+		ventanaJuego.setUbicacion(protagonista.getUbicacionActual().getNombre());
 		ventanaJuego.run();
 		
 		/*while(!fin) {
@@ -260,6 +261,7 @@ public class Aventura implements InputTextListener{
 
 		else if ((conexion = this.quiereMoverseDeUbicacion(newText)) != null) {
 			salida = this.tratarObstaculo(conexion);
+			ventanaJuego.setUbicacion(protagonista.getUbicacionActual().getNombre());
 			// habria que verificar condicion de endgame
 		}
 

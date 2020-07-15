@@ -21,8 +21,6 @@ public class LugarJPanel extends JPanel {
 	private int ancho;
 	private int alto;
 
-	Font customFont;
-	String text = "";
 	
 	private Sprite character;
 
@@ -34,14 +32,6 @@ public class LugarJPanel extends JPanel {
 	public LugarJPanel(int ancho, int alto) {
 		this.ancho = ancho;
 		this.alto = alto;
-
-		customFont = null;
-		try {
-			customFont = Font.createFont(Font.TRUETYPE_FONT, new File(JuegoJFrame.PATH_RESOURCES + "dogicapixel.ttf")).deriveFont(8f);
-		} catch (FontFormatException | IOException e) {
-			customFont = new Font("TimesRoman", Font.PLAIN, 15);
-			e.printStackTrace();
-		}
 
 		character = new Sprite(850, 639, 4, 3, JuegoJFrame.PATH_SPRITES + "character1.png");
 		character.setCantTotal(9);
@@ -61,12 +51,12 @@ public class LugarJPanel extends JPanel {
 		g2d.drawImage(character.getImagen(), positionChX, positionChY, positionChX + character.ancho/2, positionChY + character.alto/2, mx,
 				my, mx + character.ancho, my + character.alto, this);
 
-		g2d.setColor(Color.WHITE);
+		/*g2d.setColor(Color.WHITE);
 		g2d.fillRoundRect(10, 10, ancho -25, 130, 20, 30);
 
 		g2d.setColor(Color.BLACK);
 		g2d.setFont(customFont);
-		drawStringMultiLine(g2d, text, ancho - 45, 20, 30);
+		drawStringMultiLine(g2d, text, ancho - 45, 20, 30);*/
 		
 		//add items
 		int anchoItem = 50;
