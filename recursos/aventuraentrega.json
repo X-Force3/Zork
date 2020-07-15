@@ -1,6 +1,6 @@
 {
   "configuracion": {
-    "bienvenida": "Bienvenido",
+    "bienvenida": "Bienvenido, ",
     "titulo": "Aventura 1: La Isla Peligrosa",
     "endgames": [
        {
@@ -8,19 +8,19 @@
         "accion": "",
         "cosa": "llave",
         "ubicacion": "lancha",
-        "descripcion": "¡Felicidades! Pudiste encender la lancha y escapar de la isla peligrosa"
+        "descripcion": "¡Felicidades! Lograste encender la lancha y escapar de la isla peligrosa. No regreses jamás, "
        },
       {
         "condicion": "accion",
         "accion": "atrapar",
         "cosa": "serpiente",
-        "descripcion": "Has sido mordido y envenenado por la serpiente, estas fuera de juego"
+        "descripcion": "Has sido mordido por la serpiente y estás envenenado. Estás fuera de juego, "
       },
       {
         "condicion": "accion",
         "accion": "atrapar",
         "cosa": "lobo",
-        "descripcion": "Has sido mordido por el lobo, estas fuera de juego"
+        "descripcion": "Has sido mordido por el lobo y estás herido. Estás fuera de juego, "
       }
     ]
   },
@@ -215,7 +215,7 @@
       ]
     },
     {
-      "nombre": "barrote",
+      "nombre": "garrote",
       "genero": "masculino",
       "numero": "singular",
       "acciones": [
@@ -544,7 +544,7 @@
           "numero": "singular",
 	  "descripcion" : "___AQUI___",
           "itemsNombre": [
-            "barrote"
+            "garrote"
           ]
         }
       ],
@@ -558,7 +558,7 @@
           "triggers": [
             {
               "type": "item",
-              "thing": "barrote",
+              "thing": "garrote",
               "on_trigger": "Has eliminado al lobo, ya puedes salir de la habitacion",
               "after_trigger": "remove"
             }

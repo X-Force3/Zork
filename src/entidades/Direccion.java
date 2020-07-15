@@ -14,8 +14,14 @@ public enum Direccion {
 	ESTE("este"),
 
 	@SerializedName("oeste")
-	OESTE("oeste");
+	OESTE("oeste"),
 
+	@SerializedName("sureste")
+	SURESTE("sureste"),
+
+	@SerializedName("noreste")
+	NORESTE("noreste");
+	
 	private final String nombre;
 
 	Direccion(String nom) {
