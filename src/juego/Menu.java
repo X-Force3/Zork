@@ -12,6 +12,7 @@ public class Menu {
 	public static final String AVENTURA_1 = RUTA + "aventura.json";
 	public static final String AVENTURA_2 = RUTA + "aventura2.json";
 	public static final String AVENTURA_3 = RUTA + "aventura3.json";
+	public static final String AVENTURA_PROFE = RUTA + "aventuraProfe.json";
 	
 	private Scanner scanner;
 	private int opcion;
@@ -35,7 +36,8 @@ public class Menu {
 				System.out.println("Seleccione la aventura:\n"
 						+ "1.- " + this.nombreAventura.get(1)
 						/*+ "\n2.- " + this.nombreAventura.get(2)
-						+ "\n3.- " + this.nombreAventura.get(3)*/
+						+ "\n3.- " + this.nombreAventura.get(3)
+						+ "\n3.- " + this.nombreAventura.get(4)*/
 						+ "\n0.- Salir\n");
 				
 				this.opcion = Integer.parseInt(this.scanner.nextLine()); 
@@ -53,7 +55,12 @@ public class Menu {
 				case 3: 
 					pathAventuraElegida = AVENTURA_3;
 					System.out.println ("selecciono la opcion 3");
-					break;*/
+					break;
+				case 4: 
+					pathAventuraElegida = AVENTURA_PROFE;
+					System.out.println ("selecciono la opcion 4");
+					break;	
+					*/
 				case 0: 
 					salio = true;
 					System.out.println("Saliste del juego!");
@@ -89,7 +96,8 @@ public class Menu {
 		
 		this.nombreAventura.put(1, "Aventura 1: La Isla Peligrosa");
 		/*this.nombreAventura.put(2, "Discoteca");
-		this.nombreAventura.put(3, "La isla");*/
+		this.nombreAventura.put(3, "La isla");
+		this.nombreAventura.put(4, "Aventura Taller");*/
 		this.nombreAventura.put(0, "Salir");
 	}
 

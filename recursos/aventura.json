@@ -1,6 +1,6 @@
 {
   "configuracion": {
-    "bienvenida": "Bienvenido",
+    "bienvenida": "Bienvenido, ",
     "titulo": "Aventura 1: La Isla Peligrosa",
     "endgames": [
        {
@@ -8,19 +8,19 @@
         "accion": "",
         "cosa": "llave",
         "ubicacion": "lancha",
-        "descripcion": "�Felicidades! Pudiste encender la lancha y escapar de la isla peligrosa"
+        "descripcion": "¡Felicidades! Pudiste encender la lancha y escapar de la isla peligrosa. Ahora comprendiste la advertencia del loro: No regreses aquí, "
        },
       {
         "condicion": "accion",
         "accion": "atrapar",
         "cosa": "serpiente",
-        "descripcion": "Has sido mordido y envenenado por la serpiente, estas fuera de juego"
+        "descripcion": "Has sido mordido por la serpiente y estás envenenado. Estás fuera de juego, "
       },
       {
         "condicion": "accion",
         "accion": "atrapar",
         "cosa": "lobo",
-        "descripcion": "Has sido mordido por el lobo, estas fuera de juego"
+        "descripcion": "Has sido mordido por el lobo y estás herido. Estás fuera de juego, "
       }
     ]
   },
@@ -154,7 +154,8 @@
         "tomar",
         "guardar",
         "agarrar",
-        "tirar"
+        "tirar",
+	"atacar"
       ],
       "efectosSobre": [
         "item"
@@ -194,7 +195,8 @@
         "guardar", 
         "tirar", 
         "lanzar", 
-        "golpear"
+        "golpear",
+	"atacar"
       ],
       "efectosSobre": [
         "item",
@@ -215,7 +217,7 @@
       ]
     },
     {
-      "nombre": "barrote",
+      "nombre": "garrote",
       "genero": "masculino",
       "numero": "singular",
       "acciones": [
@@ -235,7 +237,8 @@
       "nombre": "bosque",
       "genero": "masculino",
       "numero": "singular",
-      "descripcion": "Est�s en una isla peque�a donde habitan algunos animales muy peligrosos. Precisamente estas ubicado al lado oeste de una casa con puerta delantera a la vista. Un Cartel en la puerta dice �Prohibido Pasar!. Hay un buz�n en la entrada y una piedra. En la Costa de esta parte de la isla se puede ver una lancha",
+      "descripcion": "Estás en una isla pequeña donde habitan algunos animales muy peligrosos. Deberías intentar escapar antes que uno de ellos te haga daño...
+Precisamente, estás ubicado en el bosque, en el frente de una casa con una puerta delantera a la vista. Está cerrada y un cartel en ella dice: ¡Prohibido pasar!",
       "lugares": [
         {
           "nombre": "entrada",
@@ -247,26 +250,6 @@
             "buzon",
             "piedra"
           ]
-        },
-	{
-          "nombre": "lancha",
-	  "segundoNombre" : "_____AQUI______",
-          "genero": "femenino",
-          "numero": "singular",
-	  "descripcion" : "___AQUI___",
-          "itemsNombre": [
-            
-          ]
-        },
-        {
-          "nombre": "costa",
-	  "segundoNombre" : "_____AQUI______",
-          "genero": "femenino",
-          "numero": "singular",
-	  "descripcion" : "___AQUI___",
-          "itemsNombre": [
-            
-          ]
         }
       ],
       "npcs": [
@@ -274,13 +257,13 @@
           "nombre": "loro",
           "genero": "masculino",
           "numero": "singular",
-          "descripcion": "Aparece un loro volando en lo alto",
-          "dialogo": "Huye de aqui, huye de aqui! Grita el loro",
+          "descripcion": "Aparece un loro volando en lo alto. Se para frente a tí y te dice: ¡Huye de aqui!. Está estorbando tu camino. Puedes usar la piedra que había en el suelo para librarte de él...",
+          "dialogo": "El loro grita: '¡Huye de aquí, huye de aquí!'",
           "triggers": [
             {
               "type": "item",
               "thing": "piedra",
-              "on_trigger": "El loro repite siempre la misma frase, no sabe decir otra cosa, Peligro!!!",
+              "on_trigger": "El loro cae al suelo luego de ser impactado por la piedra. Ya no molestará. La piedra cae al mar, no puedes recuperarla... ¡Ya puedes moverte hacia el jardín!",
               "after_trigger": "remove"
             }
           ]
@@ -290,16 +273,6 @@
         {
           "direccion": "este",
           "ubicacionDestino": "jardin",
-          "obstaculo": "loro"
-        },
-        {
-          "direccion": "norte",
-          "ubicacionDestino": "habitacion",
-          "obstaculo": "loro"
-        },
-        {
-          "direccion": "sur",
-          "ubicacionDestino": "living",
           "obstaculo": "loro"
         },
         {
@@ -313,31 +286,10 @@
       "nombre": "jardin",
       "genero": "masculino",
       "numero": "singular",
-      "descripcion": "Est�s en jard�n de la casa. Se puede observar una ventana y otra puerta totalmente blindadas y cerradas. En el techo se llega a ver una linda chimenea por la que puedes acceder al living de la casa",
+      "descripcion": "Estas en jardín de la casa. Se puede observar una ventana y otra puerta, ambas totalmente blindadas y cerradas. En el techo, en el sur de la casa, se llega a ver una linda chimenea por la que puedes acceder a un living.",
       "lugares": [
         {
-          "nombre": "patio",
-	  "segundoNombre" : "_____AQUI______",
-          "genero": "femenino",
-          "numero": "singular",
-	  "descripcion" : "___AQUI___",
-          "itemsNombre": [
-            "puerta",
-            "ventana"
-          ]
-        },
-        {
-          "nombre": "techo",
-	  "segundoNombre" : "_____AQUI______",
-          "genero": "masculino",
-          "numero": "singular",
-	  "descripcion" : "___AQUI___",
-          "itemsNombre": [
-            "chimenea"
-          ]
-        },
-        {
-          "nombre": "suelo",
+          "nombre": "suelo del patio trasero",
 	  "segundoNombre" : "_____AQUI______",
           "genero": "masculino",
           "numero": "singular",
@@ -352,13 +304,13 @@
           "nombre": "serpiente",
           "genero": "femenino",
           "numero": "singular",
-          "descripcion": "En el pasto hay una peligrosa serpiente que viene en tu dirección",
-          "dialogo": "Zsssssss",
+          "descripcion": "Cuando intentas moverte notas que en el césped hay una peligrosa serpiente que viene en tu dirección. No dejes que te muerda, utiliza una navaja para acabar con ella...",
+          "dialogo": "La serpiente hace un sonido extraño: 'Zsssss'.",
           "triggers": [
             {
               "type": "item",
               "thing": "navaja",
-              "on_trigger": "Has eliminado a la serpiente, no pudiste recuperar tu navaja, vas camino al interior de la casa, accedes por la chimenea",
+              "on_trigger": "Has eliminado a la serpiente, pero no pudiste recuperar tu navaja. Ahora puedes moverte al sur, para acceder al living de la casa por la chimenea...",
               "after_trigger": "remove"
             }
           ]
@@ -368,11 +320,6 @@
         {
           "direccion": "oeste",
           "ubicacionDestino": "bosque",
-          "obstaculo": "null"
-        },
-        {
-          "direccion": "norte",
-          "ubicacionDestino": "habitacion",
           "obstaculo": "null"
         },
         {
@@ -386,7 +333,7 @@
       "nombre": "living",
       "genero": "masculino",
       "numero": "singular",
-      "descripcion": "Est�s en el living de la casa. La misma tiene aspecto haber sido abandonada. Hay una botella con agua y en el suelo. Puedes ver un ba�o y una habitaci�n. Te das cuenta que tambi�n que hay una caja sobre una mesa",
+      "descripcion": "Estás en el living de la casa. Ésta tiene aspecto haber sido abandonada. Puedes ver un baño hacia el sur y una habitación hacia el norte.",
       "lugares": [
         {
           "nombre": "mesa",
@@ -415,13 +362,13 @@
           "nombre": "comadreja",
           "genero": "femenino",
           "numero": "singular",
-          "descripcion": "Una fea comadreja esta frente a ti, parece estar rabiosa y hambrienta,usa el hacha vieja y acaba con ella o ser� tarde",
-          "dialogo": "Grrrrrr",
+          "descripcion": "Una fea comadreja aparece frente a tí, parece estar rabiosa y hambrienta. Usa la antigua hacha y acaba con ella antes de que sea tarde...",
+          "dialogo": "La comadreja gruñe: 'Grrrrrr'.",
           "triggers": [
             {
               "type": "item",
               "thing": "hacha",
-              "on_trigger": "Has eliminado a la comadreja, tienes el camino liberado",
+              "on_trigger": "Has eliminado a la comadreja, pero el hacha quedó destrozada. No puedes recuperarla. Ahora tienes el camino liberado...",
               "after_trigger": "remove"
             }
           ]
@@ -429,7 +376,7 @@
       ],
       "conexiones": [
         {
-          "direccion": "este",
+          "direccion": "norte",
           "ubicacionDestino": "jardin",
           "obstaculo": "null"
         },
@@ -449,12 +396,12 @@
       "nombre": "baño",
       "genero": "masculino",
       "numero": "singular",
-      "descripcion": "Estás en el Baño de la casa. Esta completamente destruido. Se puede observar un inodoro en el rincón y un frasco de vidrio apoyado en la pared.",
+      "descripcion": "Estas en el baño de la casa. Está completamente destruido.",
       "lugares": [
         {
           "nombre": "pared",
 	  "segundoNombre" : "_____AQUI______",
-          "genero": "masculino",
+          "genero": "femenino",
           "numero": "singular",
 	  "descripcion" : "___AQUI___",
           "itemsNombre": [
@@ -477,13 +424,13 @@
           "nombre": "araña",
           "genero": "femenino",
           "numero": "singular",
-          "descripcion": "Una araña enorme camina sobre la pared y complica tu salida del baño, puedes usar el frasco de vidrio y golpearla",
-          "dialogo": "psssss",
+          "descripcion": "Una enorme araña venenosa camina sobre la pared y complica tu salida del baño. Puedes usar el frasco de vidrio para golpearla...",
+          "dialogo": "La araña hace un sonido extraño: 'Psssss'.",
           "triggers": [
             {
               "type": "item",
               "thing": "frasco de vidrio",
-              "on_trigger": "Has eliminado a la araña, ya pudiste salir del baño",
+              "on_trigger": "Has eliminado a la araña, pero el frasco se hizo añicos. Ya puedes salir del baño...",
               "after_trigger": "remove"
             }
           ]
@@ -496,7 +443,7 @@
           "obstaculo": "araña"
         },
         {
-          "direccion": "este",
+          "direccion": "oeste",
           "ubicacionDestino": "habitacion",
           "obstaculo": "araña"
         }
@@ -506,7 +453,7 @@
       "nombre": "lancha",
       "genero": "femenino",
       "numero": "singular",
-      "descripcion": "Estas arriba de la lancha, debes encontrar la llave para poder escapar",
+      "descripcion": "Estás arriba de la lancha. Deberías encontrar la llave para poder encenderla y escapar de la isla.",
       "lugares": [
        
       ],
@@ -525,7 +472,7 @@
       "nombre": "habitacion",
       "genero": "femenino",
       "numero": "singular",
-      "descripcion": "Estás en la habitaci�n de la casa. Se puede observar una llave en el colchon",
+      "descripcion": "Estás en la habitación de la casa. En el centro de ésta se ve una gran cama, y en ella un colchón.",
       "lugares": [
         {
           "nombre": "colchon",
@@ -538,13 +485,13 @@
           ]
         },
         {
-          "nombre": "piso",
+          "nombre": "suelo",
 	  "segundoNombre" : "_____AQUI______",
           "genero": "masculino",
           "numero": "singular",
 	  "descripcion" : "___AQUI___",
           "itemsNombre": [
-            "barrote"
+            "garrote"
           ]
         }
       ],
@@ -553,13 +500,13 @@
           "nombre": "lobo",
           "genero": "masculino",
           "numero": "singular",
-          "descripcion": "Cuidado! hay un lobo durmiendo sobre el colchon, usa el barrote que hay en el piso para eliminarlo",
-          "dialogo": "Grrrrr",
+          "descripcion": "¡Cuidado! No te habías percatado de él, pero hay un lobo durmiendo sobre el colchón. Usa el garrote que había en el suelo para eliminarlo...",
+          "dialogo": "El lobo gruñe: 'Grrrrr'.",
           "triggers": [
             {
               "type": "item",
-              "thing": "barrote",
-              "on_trigger": "Has eliminado al lobo, ya puedes salir de la habitacion",
+              "thing": "garrote",
+              "on_trigger": "Has eliminado al lobo, pero no podrás volver a utilizar el garrote. Ya puedes salir de la habitación...",
               "after_trigger": "remove"
             }
           ]
@@ -567,12 +514,12 @@
       ],
       "conexiones": [
         {
-          "direccion": "este",
+          "direccion": "sureste",
           "ubicacionDestino": "baño",
           "obstaculo": "lobo"
         },
         {
-          "direccion": "oeste",
+          "direccion": "noreste",
           "ubicacionDestino": "living",
           "obstaculo": "lobo"
         }
