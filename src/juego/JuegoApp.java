@@ -16,7 +16,7 @@ public class JuegoApp {
 		}*/
 
 		//borrar luego
-		Aventura a = new Aventura("recursos/aventura.json", "Pepe");
+		Aventura a = new Aventura("recursos/aventuraentrega.json", "Pepe");
 		a.comenzar();
 	}
 

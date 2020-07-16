@@ -235,7 +235,7 @@
       "nombre": "bosque",
       "genero": "masculino",
       "numero": "singular",
-      "descripcion": "Estás en una isla pequeña donde habitan algunos animales muy peligrosos. Precisamente estas ubicado al lado oeste de una casa con puerta delantera a la vista. Un Cartel en la puerta dice ¡Prohibido Pasar!. Hay un buzón en la entrada y una piedra. En la Costa de esta parte de la isla se puede ver una lancha",
+      "descripcion": "Est�s en una isla peque�a donde habitan algunos animales muy peligrosos. Precisamente estas ubicado al lado oeste de una casa con puerta delantera a la vista. Un Cartel en la puerta dice �Prohibido Pasar! Hay un buz�n en la entrada y una piedra. En la Costa de esta parte de la isla se puede ver una lancha",
       "lugares": [
         {
           "nombre": "entrada",
@@ -386,7 +386,7 @@
       "nombre": "living",
       "genero": "masculino",
       "numero": "singular",
-      "descripcion": "Estás en el living de la casa. La misma tiene aspecto haber sido abandonada. Hay una botella con agua y en el suelo. Puedes ver un baño y una habitación. Te das cuenta que también que hay una caja sobre una mesa",
+      "descripcion": "Est�s en el living de la casa. La misma tiene aspecto haber sido abandonada. Hay una botella con agua y en el suelo. Puedes ver un ba�o y una habitacion. Te das cuenta que tambi�n que hay una caja sobre una mesa",
       "lugares": [
         {
           "nombre": "mesa",
@@ -446,10 +446,10 @@
       ]
     },
     {
-      "nombre": "baño",
+      "nombre": "ba�o",
       "genero": "masculino",
       "numero": "singular",
-      "descripcion": "Estás en el Baño de la casa. Esta completamente destruido. Se puede observar un inodoro en el rincón y un frasco de vidrio apoyado en la pared.",
+      "descripcion": "Est�s en el Baño de la casa. Esta completamente destruido. Se puede observar un inodoro en el rincón y un frasco de vidrio apoyado en la pared.",
       "lugares": [
         {
           "nombre": "pared",
@@ -474,7 +474,7 @@
       ],
       "npcs": [
         {
-          "nombre": "araña",
+          "nombre": "ara�a",
           "genero": "femenino",
           "numero": "singular",
           "descripcion": "Una araña enorme camina sobre la pared y complica tu salida del baño, puedes usar el frasco de vidrio y golpearla",
@@ -483,7 +483,7 @@
             {
               "type": "item",
               "thing": "frasco de vidrio",
-              "on_trigger": "Has eliminado a la araña, ya pudiste salir del baño",
+              "on_trigger": "Has eliminado a la ara�a, ya pudiste salir del baño",
               "after_trigger": "remove"
             }
           ]
@@ -493,12 +493,12 @@
         {
           "direccion": "norte",
           "ubicacionDestino": "living",
-          "obstaculo": "araña"
+          "obstaculo": "ara�a"
         },
         {
           "direccion": "este",
           "ubicacionDestino": "habitacion",
-          "obstaculo": "araña"
+          "obstaculo": "ara�a"
         }
       ]
     },
@@ -525,7 +525,7 @@
       "nombre": "habitacion",
       "genero": "femenino",
       "numero": "singular",
-      "descripcion": "Estás en la habitación de la casa. Se puede observar una llave en el colchon",
+      "descripcion": "Est�s en la habitacion de la casa. Se puede observar una llave en el colchon",
       "lugares": [
         {
           "nombre": "colchon",

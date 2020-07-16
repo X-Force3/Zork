@@ -1,5 +1,6 @@
 package componentes;
 
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.io.File;
 import java.io.IOException;
@@ -13,6 +14,8 @@ import javax.swing.JFrame;
 
 import entidades.Item;
 import entidades.Lugar;
+import entidades.Npc;
+import entidades.Ubicacion;
 
 public class JuegoJFrame extends JFrame implements Runnable{
 	
@@ -38,15 +41,12 @@ public class JuegoJFrame extends JFrame implements Runnable{
 
 	public JuegoJFrame(InputTextListener inputTextListener, String titulo) {
 		setTitle(titulo);
+		setIconImage(Toolkit.getDefaultToolkit().getImage(PATH_RESOURCES + "logo.jpg"));
 		setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));//layout que me permite agregar componentes linealmente, Y_AXIS = modo vertical
 		
 		
 		juegoPanel = new LugarJPanel(WIDTH_WINDOW, HEIGHT_GAME);
 		juegoPanel.bg = Toolkit.getDefaultToolkit().getImage(PATH_SPRITES + "background.png");
-		juegoPanel.items = Arrays.asList(
-				Toolkit.getDefaultToolkit().getImage(PATH_SPRITES + "piedra.png"),
-				Toolkit.getDefaultToolkit().getImage(PATH_SPRITES + "cartel.png")
-		);
 		add(juegoPanel);
 		
 		hilo = new Thread();
@@ -70,21 +70,15 @@ public class JuegoJFrame extends JFrame implements Runnable{
 		textoPanel.updateText( "> " + text);//"> Estás en jardín de la casa. Se puede observar una ventana y otra puerta totalmente blindadas y cerradas. En el techo se llega a ver una linda chimenea por la que puedes acceder al living de la casa.";
 	}
 	
-	public void setUbicacion(String ubicacion) {
-		juegoPanel.bg = Toolkit.getDefaultToolkit().getImage(PATH_SPRITES + ubicacion + ".png");
+	public void setUbicacion(Ubicacion ubicacion) {
+		Toolkit tool = Toolkit.getDefaultToolkit();
+		juegoPanel.bg = tool.getImage(PATH_SPRITES + ubicacion.getNombre() + ".png");
+		
+		juegoPanel.agregarImagenes(ubicacion.getItems(), ubicacion.getNpcs());
 	}
-	
-	public void setLugar(Lugar lugar) {
-		/*try {
-			juegoPanel.bg = ImageIO.read(new File(PATH_SPRITES + lugar.getNombre() + ".png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}*/
-		//juegoPanel.bg = Toolkit.getDefaultToolkit().getImage(PATH_SPRITES + lugar.getNombre() + ".png");
-		//List<Item> itemsImg = new ArrayList<>();
-		//for (Item item : lugar.getItems()) {
-		//	itemsImg.add()
-		//}
+
+	public void eliminarItem(String nombre) {
+		juegoPanel.eliminarImagenUbicacion(nombre);
 	}
 	
 
