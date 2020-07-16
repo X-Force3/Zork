@@ -46,19 +46,19 @@ public class Protagonista {
 
 		switch (dialogo) {
 		case "Presentacion":
-			respuesta = "Hola! Mi nombre es " + nombre;
+			respuesta = "¡Hola! Mi nombre es " + nombre + ".";
 			break;
 
-		case "�No hay nada que me digas que me haga cambiar de opini�n!":
+		case "¡No hay nada que me digas que me haga cambiar de opinión!":
 			respuesta = "Tengo que ir por otro camino";
 			break;
 
-		case "Es la segunda ves que ven�s. Es hora de hablar sobre tus inquietudes...":
+		case "Es la segunda ves que venís. Es hora de hablar sobre tus inquietudes...":
 			respuesta = "Estoy buscando...";
 			break;
 
-		case "Hola, soy Messi. ":
-			respuesta = "Hola Messi!";
+		case "Hola, soy Messi.":
+			respuesta = "¡Hola Messi!";
 			break;
 
 		default:

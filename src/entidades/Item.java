@@ -10,12 +10,18 @@ public class Item {
 	private List<String> acciones;
 	private List<String> efectosSobre;
 
-	public Item(String nombre, Genero genero, Numero numero, List<String> acciones, List<String> efectosSobre) {
+	public Item(String nombre, Genero genero, Numero numero) {
 		super();
 		this.nombre = nombre;
 		this.genero = genero;
 		this.numero = numero;
+	}
+
+	public void setAcciones(List<String> acciones) {
 		this.acciones = acciones;
+	}
+
+	public void setEfectosSobre(List<String> efectosSobre) {
 		this.efectosSobre = efectosSobre;
 	}
 
@@ -60,7 +66,7 @@ public class Item {
 	}
 	
 	public boolean esItemDeInventario() {
-		return (this.acciones.contains("agarrar") || this.acciones.contains("agarrar") || this.acciones.contains("agarrar"));
+		return (this.acciones.contains("agarrar") || this.acciones.contains("tomar") || this.acciones.contains("guardar"));
 	}
 
 }

@@ -11,13 +11,19 @@ public class Npc {
 	private String dialogo;
 	private List<Trigger> triggers;
 
-	public Npc(String nombre, Genero genero, Numero numero, String descripcion, String dialogo, List<Trigger> triggers) {
+	public Npc(String nombre, Genero genero, Numero numero, String descripcion) {
 		super();
 		this.nombre = nombre;
 		this.genero = genero;
 		this.numero = numero;
 		this.descripcion = descripcion;
+	}
+
+	public void setDialogo(String dialogo) {
 		this.dialogo = dialogo;
+	}
+
+	public void setTriggers(List<Trigger> triggers) {
 		this.triggers = triggers;
 	}
 
@@ -72,8 +78,8 @@ public class Npc {
 		// trigger
 		else if(trigger.getAfter_trigger().equals("matar")) {
 			protagonista.morir();
-		}// Juani: Este trigger es el que deberían usar los animales que asesinan al Protagonista.
-// El "type" sería "matar", la "thing" sería "".
+		}// Juani: Este trigger es el que deberï¿½an usar los animales que asesinan al Protagonista.
+// El "type" serï¿½a "matar", la "thing" serï¿½a "".
 	}
 
 	public String conjugarNpc() {

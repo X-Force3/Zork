@@ -28,6 +28,10 @@ public class Aventura implements InputTextListener{
 		this.protagonista = protagonista;
 	}
 
+	public void setAnalizador(AnalizadorDeTexto analizador) {
+		this.analizador = analizador;
+	}
+
 	private void cargarAventura(String pathAventura,String nombreJugador) {
 		ManejoArchivos manejoArchivos = new ManejoArchivos(pathAventura);
 		analizador = new AnalizadorDeTexto();
@@ -245,7 +249,6 @@ public class Aventura implements InputTextListener{
 		}
 		return ubicacionesConectadas;
 	}
-
 	
 	@Override
 	public void inputText(String newText) {
