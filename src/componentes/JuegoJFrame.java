@@ -78,7 +78,7 @@ public class JuegoJFrame extends JFrame implements Runnable{
 	}
 
 	public void eliminarItem(String nombre) {
-		juegoPanel.eliminarItem(nombre);
+		juegoPanel.eliminarImagenUbicacion(nombre);
 	}
 	
 

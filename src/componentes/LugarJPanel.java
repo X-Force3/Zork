@@ -130,7 +130,7 @@ public class LugarJPanel extends JPanel {
 				img = ImageIO.read(new File(JuegoJFrame.PATH_SPRITES + item.getNombre() + ".png"));
 				imagenes.add(new ImagenUbicacion(item.getNombre(), img));
 			} catch (IOException e) {
-				e.printStackTrace();
+				//e.printStackTrace();
 			}
 		}
 		for (Npc npc : npcs) {
@@ -140,14 +140,14 @@ public class LugarJPanel extends JPanel {
 				img = ImageIO.read(new File(JuegoJFrame.PATH_SPRITES + npc.getNombre() + ".png"));
 				imagenes.add(new ImagenUbicacion(npc.getNombre(), img));
 			} catch (IOException e) {
-				e.printStackTrace();
+				//e.printStackTrace();
 			}
 		}
 		definirPosicionesImagenes();
 	}
 
 	private void definirPosicionesImagenes() {
-		int ini = 100;
+		int ini = 101;
 		int anchoGuia = (ancho - ini) / imagenes.size();
 		for (int i = 0; i < imagenes.size(); i++) {
 			imagenes.get(i).x = ini + i * anchoGuia;
@@ -155,7 +155,7 @@ public class LugarJPanel extends JPanel {
 		// System.out.println(imagenes);
 	}
 
-	public void eliminarItem(String nombre) {
+	public void eliminarImagenUbicacion(String nombre) {
 		int index = 0;
 		while (index < imagenes.size()) {
 			if (imagenes.get(index).nombre.equals(nombre)) {
