@@ -8,6 +8,10 @@ public class Conexion {
 	private String ubicacionDestino;
 	private String obstaculo;
 
+	public Conexion() {
+		this.ubicacionDestino = " ";
+	}
+	
 	public Conexion(Direccion direccion, String locacionDestino, String obstaculo) {
 		super();
 		this.direccion = direccion;

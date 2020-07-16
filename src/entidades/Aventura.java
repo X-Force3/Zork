@@ -114,7 +114,7 @@ public class Aventura implements InputTextListener{
 		boolean condicion = false;
 		Item objeto;
 		objeto = analizador.contieneItem(entrada, this.protagonista.getUbicacionActual().getItems());
-		if (objeto != null && objeto.esItemDeInventario() && (entrada.contains("agarrar") ||
+		if (objeto.getNombre() != " " && objeto.esItemDeInventario() && (entrada.contains("agarrar") ||
 				entrada.contains("tomar") || entrada.contains("guardar"))) {
 			ventanaJuego.eliminarItem(objeto.getNombre());
 			this.protagonista.anadirItem(objeto); // se añade al inventario
@@ -157,12 +157,12 @@ public class Aventura implements InputTextListener{
 		Lugar obstaculoLugar;
 		if (obstaculo != null) {
 			obstaculoNpc = analizador.contieneObstaculoNpc(obstaculo, this.protagonista.getUbicacionActual().getNpcs());
-			if (obstaculoNpc != null) {
+			if (obstaculoNpc.getNombre() != " ") {
 				salida = obstaculoNpc.getDescripcion();
 			} else {
 				obstaculoLugar = analizador.contieneObstaculoLugar(obstaculo,
 						this.protagonista.getUbicacionActual().getLugares());
-				if (obstaculoLugar != null) {
+				if (obstaculoLugar.getNombre() != " ") {
 					salida = obstaculoLugar.getDescripcion();
 				} else {
 					this.protagonista.desplazarse(ubicaciones.get(conexion.getUbicacionDestino()));
@@ -187,15 +187,15 @@ public class Aventura implements InputTextListener{
 		Lugar lugar;
 		String salida;
 		String accion = analizador.contieneAccion(entrada, item.getAcciones());
-		if (accion != null) {
+		if (accion != " ") {
 			npc = analizador.contieneObstaculoNpc(entrada, this.protagonista.getUbicacionActual().getNpcs());
-			if (npc != null) {
+			if (npc.getNombre() != " ") {
 				salida = npc.verificarTrigger(item, this.protagonista);
 				this.protagonista.eliminarItem(item);// Luego de que el protagonista utiliza el ï¿½tem, se elimina de su
 														// inventario.
 			} else {
 				lugar = analizador.contieneObstaculoLugar(entrada, this.protagonista.getUbicacionActual().getLugares());
-				if (lugar != null) {
+				if (lugar.getNombre() != " ") {
 					salida = lugar.verificarTrigger(item);
 					this.protagonista.eliminarItem(item);// Luego de que el protagonista utiliza el ï¿½tem, se elimina de
 															// su inventario.
@@ -263,13 +263,13 @@ public class Aventura implements InputTextListener{
 			// habria que verificar condicion de endgame
 		}
 
-		else if ((conexion = this.quiereMoverseDeUbicacion(newText)) != null) {
+		else if ((conexion = this.quiereMoverseDeUbicacion(newText)).getUbicacionDestino() != " ") {
 			salida = this.tratarObstaculo(conexion);
 			ventanaJuego.setUbicacion(protagonista.getUbicacionActual());
 			// habria que verificar condicion de endgame
 		}
 
-		else if ((item = this.quiereRealizarAccionConItem(newText)) != null) {
+		else if ((item = this.quiereRealizarAccionConItem(newText)).getNombre() != " ") {
 			salida = this.realizarAccionConItem(newText, item);
 			// no hace falta verificar condicion de endgame
 		}

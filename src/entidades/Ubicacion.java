@@ -13,6 +13,10 @@ public class Ubicacion {
 	private List<Npc> npcs;
 	private List<Conexion> conexiones;
 
+	public Ubicacion() {
+		this.nombre = " ";
+	}
+	
 	public Ubicacion(String nombre, Genero genero, Numero numero, String descripcion) {
 		this.nombre = nombre;
 		this.genero = genero;
