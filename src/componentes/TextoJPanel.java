@@ -41,7 +41,7 @@ public class TextoJPanel extends JPanel{
 		label.setBorder(new EmptyBorder(5,10,10,10));
 		
 		SimpleAttributeSet set = new SimpleAttributeSet();
-		StyleConstants.setLineSpacing(set, 0.5f);
+		StyleConstants.setLineSpacing(set, 0.2f);
 		label.setParagraphAttributes(set, true);
 		
 		//label.setLineWrap(true);
@@ -52,7 +52,7 @@ public class TextoJPanel extends JPanel{
 		
 		customFont = null;
 		try {
-			customFont = Font.createFont(Font.TRUETYPE_FONT, new File(JuegoJFrame.PATH_RESOURCES + "learners.ttf")).deriveFont(22f);
+			customFont = Font.createFont(Font.TRUETYPE_FONT, new File(JuegoJFrame.PATH_RESOURCES + "fafers.ttf")).deriveFont(22f);
 		} catch (FontFormatException | IOException e) {
 			customFont = new Font("TimesRoman", Font.PLAIN, 24);
 			e.printStackTrace();

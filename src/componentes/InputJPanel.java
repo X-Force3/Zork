@@ -58,8 +58,8 @@ public class InputJPanel extends JPanel {
 		textArea.setCaretPosition(textArea.getText().length() - 1);
 		
 		//"multilineal": mientras el usuario va escribiendo, si se pasa del ancho de la ventana, sigue en una nueva linea.
-		//textArea.setLineWrap(true);
-		//textArea.setWrapStyleWord(true);
+		textArea.setLineWrap(true);
+		textArea.setWrapStyleWord(true);
 		
 
 		
@@ -78,7 +78,7 @@ public class InputJPanel extends JPanel {
 		try {
 			//Font customFont = Font.createFont(Font.TRUETYPE_FONT, new File(JuegoJFrame.PATH_RESOURCES + "dogicapixel.ttf")).deriveFont(Font.PLAIN,14f);
 
-			Font font = Font.createFont(Font.TRUETYPE_FONT, new File(JuegoJFrame.PATH_RESOURCES + "learners.ttf"));
+			Font font = Font.createFont(Font.TRUETYPE_FONT, new File(JuegoJFrame.PATH_RESOURCES + "fafers.ttf"));
 	        font = font.deriveFont(Font.PLAIN,22);
 	        GraphicsEnvironment ge =
 	            GraphicsEnvironment.getLocalGraphicsEnvironment();

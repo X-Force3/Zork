@@ -66,7 +66,7 @@ public class Aventura implements InputTextListener{
 		
 		String ini = this.configuracion.getBienvenida() +" " +  protagonista.getNombre() + " \n" + describirUbicacion();
 		ventanaJuego.setText(ini);
-		ventanaJuego.setUbicacion(protagonista.getUbicacionActual().getNombre());
+		ventanaJuego.setUbicacion(protagonista.getUbicacionActual());
 		ventanaJuego.run();
 		
 		/*while(!fin) {
@@ -112,6 +112,7 @@ public class Aventura implements InputTextListener{
 		objeto = analizador.contieneItem(entrada, this.protagonista.getUbicacionActual().getItems());
 		if (objeto != null && objeto.esItemDeInventario() && (entrada.contains("agarrar") ||
 				entrada.contains("tomar") || entrada.contains("guardar"))) {
+			ventanaJuego.eliminarItem(objeto.getNombre());
 			this.protagonista.añadirItem(objeto); // se añade al inventario
 			this.protagonista.getUbicacionActual().eliminarItemUbicacion(objeto); // se quita del place
 			condicion = true;
@@ -261,7 +262,7 @@ public class Aventura implements InputTextListener{
 
 		else if ((conexion = this.quiereMoverseDeUbicacion(newText)) != null) {
 			salida = this.tratarObstaculo(conexion);
-			ventanaJuego.setUbicacion(protagonista.getUbicacionActual().getNombre());
+			ventanaJuego.setUbicacion(protagonista.getUbicacionActual());
 			// habria que verificar condicion de endgame
 		}
 
