@@ -29,7 +29,7 @@ public class MenuJFrame extends JFrame {
 	public static final String AVENTURA_1 = RUTA + "aventuraentrega.json";
 	public static final String AVENTURA_PROFE = RUTA + "aventuraProfe.json";
 
-	private PanelConFondo p;
+	private PanelConFondo panel;
 
 	private JTextField txtNameField;
 	private JComboBox<String> comboBox;
@@ -37,19 +37,17 @@ public class MenuJFrame extends JFrame {
 	private JButton btnBoton;
 	private JLabel lblNameLabel;
 
-	private Image img;
-
 	public MenuJFrame() {
 		setTitle("Menu");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 425, 217);
+		setBounds(100, 100, 425, 220);
 		setResizable(false);
 		setLocationRelativeTo(null);
 
-		p = new PanelConFondo();
-		setContentPane(p);
-		p.setBorder(new EmptyBorder(5, 5, 5, 5));
-		p.setLayout(null);
+		panel = new PanelConFondo();
+		setContentPane(panel);
+		panel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		panel.setLayout(null);
 		init();
 
 	}
@@ -64,13 +62,13 @@ public class MenuJFrame extends JFrame {
 		comboBox.setModel(new DefaultComboBoxModel<String>(
 				new String[] { "Aventura 1: La Isla Peligrosa ", "Aventura 2: Ejemplo del Profe" }));
 
-		p.add(comboBox);
+		panel.add(comboBox);
 
 		lblAventuraLabel = new JLabel("Seleccione la Aventura a Ejecutar:\r\n");
 		lblAventuraLabel.setFont(new Font("Arial", Font.PLAIN, 14));
 		lblAventuraLabel.setForeground(Color.WHITE);
 		lblAventuraLabel.setBounds(34, 25, 244, 14);
-		p.add(lblAventuraLabel);
+		panel.add(lblAventuraLabel);
 
 		btnBoton = new JButton("Jugar !");
 		btnBoton.setEnabled(false);
@@ -91,13 +89,13 @@ public class MenuJFrame extends JFrame {
 		});
 
 		btnBoton.setBounds(285, 145, 114, 23);
-		p.add(btnBoton);
+		panel.add(btnBoton);
 
 		lblNameLabel = new JLabel("Escriba su Nombre:");
 		lblNameLabel.setFont(new Font("Arial", Font.PLAIN, 14));
 		lblNameLabel.setForeground(Color.WHITE);
 		lblNameLabel.setBounds(31, 95, 182, 14);
-		p.add(lblNameLabel);
+		panel.add(lblNameLabel);
 
 		txtNameField = new JTextField();
 		txtNameField.setFont(new Font("Tahoma", Font.PLAIN, 11));
@@ -113,7 +111,7 @@ public class MenuJFrame extends JFrame {
 		});
 		txtNameField.setBounds(41, 118, 172, 20);
 		txtNameField.setColumns(10);
-		p.add(txtNameField);
+		panel.add(txtNameField);
 	}
 
 	private void desaparecer() {
@@ -121,8 +119,9 @@ public class MenuJFrame extends JFrame {
 		this.dispose();
 	}
 
-	class PanelConFondo extends JPanel {
+	private class PanelConFondo extends JPanel {
 
+		private static final long serialVersionUID = -4626362023408501339L;
 		private Image img;
 
 		@Override
