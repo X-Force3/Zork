@@ -117,7 +117,7 @@ public class Aventura implements InputTextListener{
 		if (objeto.getNombre() != " " && objeto.esItemDeInventario() && (entrada.contains("agarrar") ||
 				entrada.contains("tomar") || entrada.contains("guardar"))) {
 			ventanaJuego.actualizarItem(objeto.getNombre());
-			this.protagonista.anadirItem(objeto); // se añade al inventario
+			this.protagonista.anadirItem(objeto); // se aï¿½ade al inventario
 			this.protagonista.getUbicacionActual().eliminarItemUbicacion(objeto); // se quita del place
 			condicion = true;
 		}
@@ -203,12 +203,12 @@ public class Aventura implements InputTextListener{
 					this.protagonista.eliminarItem(item);// Luego de que el protagonista utiliza el ï¿½tem, se elimina de
 															// su inventario.
 				} else {
-					salida = "No entiendo por qué quieres realizar eso..."; // Juani: Lo modifiquï¿½ porque me pareciï¿½ mas
+					salida = "No entiendo por quï¿½ quieres realizar eso..."; // Juani: Lo modifiquï¿½ porque me pareciï¿½ mas
 																			// preciso esto.
 				}
 			}
 		} else {
-			salida = "No entiendo qué acción quieres realizar con ese ítem...";// Juani: Idem.
+			salida = "No entiendo quï¿½ acciï¿½n quieres realizar con ese ï¿½tem...";// Juani: Idem.
 		}
 		return salida;
 	}
@@ -230,8 +230,8 @@ public class Aventura implements InputTextListener{
 							&& endgame.verificarItemEndgame(this.analizador, this.protagonista)
 							&& endgame.verificarAccionEndgame(entrada)
 					|| endgame.getCondicion().contentEquals("muerte")// Endgame de muerte del Protagonista.
-							&& endgame.verificarVidaEndgame(this.protagonista))
-				salida = endgame.ejecutarFinal();
+							&& endgame.verificarVidaEndgame(this.protagonista, entrada))
+				salida = endgame.ejecutarFinal(this.protagonista);
 		}
 
 		return salida;
@@ -285,7 +285,7 @@ public class Aventura implements InputTextListener{
 		}
 		
 		else {
-			salida = "No comprendo lo que quieres, intenta ser más preciso...";
+			salida = "No comprendo lo que quieres, intenta ser mï¿½s preciso...";
 		}
 
 		descripcionEndgame = this.verificarEndgame(newText);
