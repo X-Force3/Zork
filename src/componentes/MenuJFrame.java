@@ -3,12 +3,15 @@ package componentes;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -26,13 +29,15 @@ public class MenuJFrame extends JFrame {
 	public static final String AVENTURA_1 = RUTA + "aventuraentrega.json";
 	public static final String AVENTURA_PROFE = RUTA + "aventuraProfe.json";
 
-	private JPanel contentPaneMenu;
+	private PanelConFondo p;
 
 	private JTextField txtNameField;
 	private JComboBox<String> comboBox;
 	private JLabel lblAventuraLabel;
 	private JButton btnBoton;
 	private JLabel lblNameLabel;
+
+	private Image img;
 
 	public MenuJFrame() {
 		setTitle("Menu");
@@ -41,11 +46,10 @@ public class MenuJFrame extends JFrame {
 		setResizable(false);
 		setLocationRelativeTo(null);
 
-		contentPaneMenu = new JPanel();
-		setContentPane(contentPaneMenu);
-		contentPaneMenu.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPaneMenu.setLayout(null);
-
+		p = new PanelConFondo();
+		setContentPane(p);
+		p.setBorder(new EmptyBorder(5, 5, 5, 5));
+		p.setLayout(null);
 		init();
 
 	}
@@ -60,12 +64,13 @@ public class MenuJFrame extends JFrame {
 		comboBox.setModel(new DefaultComboBoxModel<String>(
 				new String[] { "Aventura 1: La Isla Peligrosa ", "Aventura 2: Ejemplo del Profe" }));
 
-		contentPaneMenu.add(comboBox);
+		p.add(comboBox);
 
 		lblAventuraLabel = new JLabel("Seleccione la Aventura a Ejecutar:\r\n");
 		lblAventuraLabel.setFont(new Font("Arial", Font.PLAIN, 14));
+		lblAventuraLabel.setForeground(Color.WHITE);
 		lblAventuraLabel.setBounds(34, 25, 244, 14);
-		contentPaneMenu.add(lblAventuraLabel);
+		p.add(lblAventuraLabel);
 
 		btnBoton = new JButton("Jugar !");
 		btnBoton.setEnabled(false);
@@ -86,12 +91,13 @@ public class MenuJFrame extends JFrame {
 		});
 
 		btnBoton.setBounds(285, 145, 114, 23);
-		contentPaneMenu.add(btnBoton);
+		p.add(btnBoton);
 
 		lblNameLabel = new JLabel("Escriba su Nombre:");
 		lblNameLabel.setFont(new Font("Arial", Font.PLAIN, 14));
+		lblNameLabel.setForeground(Color.WHITE);
 		lblNameLabel.setBounds(31, 95, 182, 14);
-		contentPaneMenu.add(lblNameLabel);
+		p.add(lblNameLabel);
 
 		txtNameField = new JTextField();
 		txtNameField.setFont(new Font("Tahoma", Font.PLAIN, 11));
@@ -107,12 +113,28 @@ public class MenuJFrame extends JFrame {
 		});
 		txtNameField.setBounds(41, 118, 172, 20);
 		txtNameField.setColumns(10);
-		contentPaneMenu.add(txtNameField);
+		p.add(txtNameField);
 	}
 
 	private void desaparecer() {
 		// this.setVisible(false);
 		this.dispose();
+	}
+
+	class PanelConFondo extends JPanel {
+
+		private Image img;
+
+		@Override
+		public void paint(Graphics g) {
+			img = new ImageIcon("recursos/menu/bg.jpg").getImage();
+
+			g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
+
+			setOpaque(false);
+
+			super.paint(g);
+		}
 	}
 
 	public static void main(String[] args) {
