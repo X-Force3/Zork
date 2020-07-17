@@ -147,7 +147,8 @@ public class LugarJPanel extends JPanel {
 	}
 
 	private void definirPosicionesImagenes() {
-		int ini = 101;
+		if(imagenes.size() == 0) return;
+		int ini = 100;
 		int anchoGuia = (ancho - ini) / imagenes.size();
 		for (int i = 0; i < imagenes.size(); i++) {
 			imagenes.get(i).x = ini + i * anchoGuia;
