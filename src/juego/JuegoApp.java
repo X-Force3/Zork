@@ -1,23 +1,24 @@
 package juego;
 
-import entidades.Aventura;
+import componentes.MenuJFrame;
 
 public class JuegoApp {
 
 	public static void main(String[] args) {
 
-		/*Menu menu = new Menu();
-		menu.desplegarMenuOpciones();
-		menu.solicitarNombreDeJugador();
+		/*
+		 * Menu menu = new Menu(); menu.desplegarMenuOpciones();
+		 * menu.solicitarNombreDeJugador();
+		 * 
+		 * if (menu.getPathAventuraElegida() != null) { Aventura aventura = new
+		 * Aventura(menu.getPathAventuraElegida(), menu.getNombreJugador());
+		 * aventura.comenzar(); }
+		 */
 
-		if (menu.getPathAventuraElegida() != null) {
-			Aventura aventura = new Aventura(menu.getPathAventuraElegida(), menu.getNombreJugador());
-			aventura.comenzar();
-		}*/
-
-		//borrar luego
-		Aventura a = new Aventura("recursos/aventuraentrega.json", "Pepe");
-		a.comenzar();
+		// borrar luego
+//		Aventura a = new Aventura("recursos/aventuraProfe.json", "Pepe");
+//		a.comenzar();
+		MenuJFrame ventanaJuego = new MenuJFrame();
 	}
 
 }

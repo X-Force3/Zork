@@ -1,7 +1,6 @@
 package componentes;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -49,6 +48,7 @@ public class MenuJFrame extends JFrame {
 		panel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		panel.setLayout(null);
 		init();
+		setVisible(true);
 
 	}
 
@@ -60,7 +60,7 @@ public class MenuJFrame extends JFrame {
 		comboBox.setFont(new Font("Century", Font.PLAIN, 12));
 		comboBox.setBounds(44, 51, 256, 33);
 		comboBox.setModel(new DefaultComboBoxModel<String>(
-				new String[] { "Aventura 1: La Isla Peligrosa ", "Aventura 2: Ejemplo del Profe" }));
+				new String[] { "Aventura: La Isla Peligrosa ", "Micro-aventura de pruebas" }));
 
 		panel.add(comboBox);
 
@@ -134,18 +134,5 @@ public class MenuJFrame extends JFrame {
 
 			super.paint(g);
 		}
-	}
-
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MenuJFrame frame = new MenuJFrame();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
 	}
 }
