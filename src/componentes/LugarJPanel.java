@@ -1,5 +1,6 @@
 package componentes;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -40,7 +41,12 @@ public class LugarJPanel extends JPanel {
 		Graphics2D g2d = (Graphics2D) g.create();
 
 		// dibuja la ubicacion
-		g2d.drawImage(bg, 0, 0, ancho, alto, this);
+		if(bg != null) {
+			g2d.drawImage(bg, 0, 0, ancho, alto, this);
+		}else{
+			g2d.setColor(Color.WHITE);
+			g2d.fillRect(0, 0, ancho, alto);
+		}
 
 		// dibuja items y npcs
 		for (ImagenUbicacion img : imagenes) {
@@ -71,7 +77,9 @@ public class LugarJPanel extends JPanel {
 	 * */
 	public void setUbicacion(Ubicacion ubicacion) {
 		try {
-			bg = ImageIO.read(new File(JuegoJFrame.PATH_SPRITES + ubicacion.getNombre() + ".png"));
+			File fileBg = new File(JuegoJFrame.PATH_SPRITES + ubicacion.getNombre() + ".png");
+			if(fileBg.exists())
+				bg = ImageIO.read(fileBg);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
