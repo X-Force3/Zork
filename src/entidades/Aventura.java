@@ -116,7 +116,7 @@ public class Aventura implements InputTextListener{
 		objeto = analizador.contieneItem(entrada, this.protagonista.getUbicacionActual().getItems());
 		if (objeto.getNombre() != " " && objeto.esItemDeInventario() && (entrada.contains("agarrar") ||
 				entrada.contains("tomar") || entrada.contains("guardar"))) {
-			ventanaJuego.eliminarItem(objeto.getNombre());
+			ventanaJuego.actualizarItem(objeto.getNombre());
 			this.protagonista.anadirItem(objeto); // se añade al inventario
 			this.protagonista.getUbicacionActual().eliminarItemUbicacion(objeto); // se quita del place
 			condicion = true;
@@ -166,6 +166,7 @@ public class Aventura implements InputTextListener{
 					salida = obstaculoLugar.getDescripcion();
 				} else {
 					this.protagonista.desplazarse(ubicaciones.get(conexion.getUbicacionDestino()));
+					ventanaJuego.setUbicacion(protagonista.getUbicacionActual());
 					// System.out.println(this.protagonista.getUbicacionActual().getNombre());
 					// salida = this.protagonista.getUbicacionActual().describirUbicacion();
 					salida = this.describirUbicacion();
@@ -173,6 +174,7 @@ public class Aventura implements InputTextListener{
 			}
 		} else {
 			this.protagonista.desplazarse(ubicaciones.get(conexion.getUbicacionDestino()));
+			ventanaJuego.setUbicacion(protagonista.getUbicacionActual());
 			salida = this.describirUbicacion();
 		}
 		return salida;
@@ -190,6 +192,7 @@ public class Aventura implements InputTextListener{
 		if (accion != " ") {
 			npc = analizador.contieneObstaculoNpc(entrada, this.protagonista.getUbicacionActual().getNpcs());
 			if (npc.getNombre() != " ") {
+				ventanaJuego.actualizarNpc(npc.getNombre());
 				salida = npc.verificarTrigger(item, this.protagonista);
 				this.protagonista.eliminarItem(item);// Luego de que el protagonista utiliza el ï¿½tem, se elimina de su
 														// inventario.
@@ -265,7 +268,6 @@ public class Aventura implements InputTextListener{
 
 		else if ((conexion = this.quiereMoverseDeUbicacion(newText)).getUbicacionDestino() != " ") {
 			salida = this.tratarObstaculo(conexion);
-			ventanaJuego.setUbicacion(protagonista.getUbicacionActual());
 			// habria que verificar condicion de endgame
 		}
 

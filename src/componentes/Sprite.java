@@ -2,6 +2,10 @@ package componentes;
 
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 public class Sprite {
 
@@ -10,6 +14,7 @@ public class Sprite {
 	
 	private int cantHorizontal;
 	private int cantVertical;
+	private int posicion;
 	
 	int cantTotal;
 	
@@ -20,10 +25,13 @@ public class Sprite {
 		this.alto = altoTotalPx / cantVertical;
 		this.cantHorizontal = cantHorizontal;
 		this.cantVertical = cantVertical;
-		Toolkit herramienta = Toolkit.getDefaultToolkit();
-		imagen = herramienta.getImage(spriteImagen);
-		//bi = new BufferedImage(ancho, alto, BufferedImage.TYPE_INT_RGB);
+		try {
+			imagen = ImageIO.read(new File(spriteImagen));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		this.cantTotal = cantHorizontal * cantVertical;
+		this.posicion = 0;
 	}
 
 	public Sprite(int ancho, int alto, String spriteImagen) {
@@ -35,17 +43,26 @@ public class Sprite {
 		imagen = Toolkit.getDefaultToolkit().getImage(spriteImagen);
 		//bi = new BufferedImage(ancho, alto, BufferedImage.TYPE_INT_RGB);
 	}
+	
+	/**
+	 * Actualiza la cuadrícula siguiente a dibujar
+	 * */
+	public void actualizar() {
+		posicion++;
+		if (posicion > cantTotal)
+			posicion = 0;
+	}
 
 	public void setCantTotal(int cantTotal) {
 		this.cantTotal = cantTotal;
 	}
 	
-	public int getMX(int pos) {
-		return (pos % cantHorizontal)*ancho;
+	public int getMX() {
+		return (posicion % cantHorizontal)*ancho;
 	}
 
-	public int getMY(int pos) {
-		return (pos / (cantVertical+1))*alto;
+	public int getMY() {
+		return (posicion / (cantVertical+1))*alto;
 	}
 
 	public Image getImagen() {
