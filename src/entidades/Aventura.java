@@ -228,6 +228,7 @@ public class Aventura implements InputTextListener{
 							&& endgame.verificarUbicacionEndgame(this.protagonista))
 					|| endgame.getCondicion().contentEquals("accion")// Endgame de realizar una acci�n con un Item.
 							&& endgame.verificarItemEndgame(this.analizador, this.protagonista)
+					
 							&& endgame.verificarAccionEndgame(entrada)
 					|| endgame.getCondicion().contentEquals("muerte")// Endgame de muerte del Protagonista.
 							&& endgame.verificarVidaEndgame(this.protagonista, entrada))
