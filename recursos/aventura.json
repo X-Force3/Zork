@@ -150,7 +150,8 @@
         "usar"
       ],
       "efectosSobre": [
-        "item"
+        "item",
+	"self"
       ], 
       "descripcion": ""
     },

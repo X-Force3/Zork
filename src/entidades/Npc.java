@@ -64,13 +64,17 @@ public class Npc {
 	}
 
 	public String verificarTrigger(Item item, Protagonista protagonista) {
+		Trigger lastimar = new Trigger("item", " ", "el ataque salio mal y te lastimo", "lastimar");
+		
 		for (Trigger elemento : this.triggers) {
 			if ( elemento.getType().equals("item") && ( item.getNombre().equals( elemento.getThing() ) ) ) {
 				this.ejecutarTrigger(elemento, protagonista);
 				return elemento.getOn_trigger();
 			}
 		}
-		return "Eso no ha servido de nada...";
+		
+		this.ejecutarTrigger(lastimar, protagonista);
+		return lastimar.getOn_trigger();
 	}
 
 	public void ejecutarTrigger(Trigger trigger, Protagonista protagonista) {
@@ -82,8 +86,10 @@ public class Npc {
 		// trigger
 		else if(trigger.getAfter_trigger().equals("matar")) {
 			protagonista.morir();
-		}// Juani: Este trigger es el que deber�an usar los animales que asesinan al Protagonista.
-// El "type" ser�a "matar", la "thing" ser�a "".
+		}
+		else if(trigger.getAfter_trigger().equals("lastimar")) {
+			protagonista.lastimar();	// donde el metodo lastimar le quita X cantidad de vida
+		}
 	}
 
 	public String conjugarNpc() {
