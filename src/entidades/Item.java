@@ -10,6 +10,11 @@ public class Item {
 	private List<String> acciones;
 	private List<String> efectosSobre;
 
+	public Item() {
+		
+		this.nombre = " ";
+	}
+	
 	public Item(String nombre, Genero genero, Numero numero) {
 		super();
 		this.nombre = nombre;

@@ -21,7 +21,9 @@ public class AnalizadorDeTexto {
 				return elemento;
 			}
 		}
-		return null;
+		Item itemVacio = new Item();
+		
+		return itemVacio;
 	}
 
 	// devuelve la conexion si la ubicacion dentro de la misma esta dentro de la
@@ -33,7 +35,9 @@ public class AnalizadorDeTexto {
 				return elemento;
 			}
 		}
-		return null;
+		Conexion conexionVacia = new Conexion();
+		
+		return conexionVacia;
 	}
 
 	public Npc contieneObstaculoNpc(String entrada, List<Npc> npcs) { // deberia ser la lista de npcs de la ubicacion																	// actual
@@ -42,7 +46,9 @@ public class AnalizadorDeTexto {
 				return elemento;
 			}
 		}
-		return null;
+		Npc npcVacio = new Npc();
+		
+		return npcVacio;
 	}
 
 	public String contieneAccion(String entrada, List<String> acciones) {
@@ -51,7 +57,8 @@ public class AnalizadorDeTexto {
 				return accion;
 			}
 		}
-		return null;
+		String accionVacia = " ";
+		return accionVacia;
 	}
 
 	public Lugar contieneObstaculoLugar(String entrada, List<Lugar> lugares) {
@@ -60,7 +67,9 @@ public class AnalizadorDeTexto {
 				return elemento;
 			}
 		}
-		return null;
+		Lugar lugarVacio = new Lugar();
+		
+		return lugarVacio;
 	}
 	
 	public Ubicacion devolverObjetoUbicacion(String entrada, List<Ubicacion> ubicaciones) {
@@ -69,7 +78,9 @@ public class AnalizadorDeTexto {
 				return elemento;
 			}
 		}
-		return null;
+		Ubicacion ubicacionVacia = new Ubicacion();
+		
+		return ubicacionVacia;
 	}
 
 }

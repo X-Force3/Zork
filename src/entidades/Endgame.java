@@ -19,7 +19,7 @@ public class Endgame {
 	public boolean verificarItemEndgame(AnalizadorDeTexto analizador, Protagonista protagonista) {
 
 		Item item = analizador.contieneItem(this.getCosa(), protagonista.getInventario());
-		if (item != null)
+		if (item.getNombre() != " ")
 			return true;
 		return false;
 	}

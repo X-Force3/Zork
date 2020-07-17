@@ -12,6 +12,10 @@ public class Lugar {
 	private List<Trigger> triggers;
 	private String descripcion;
 
+	public Lugar() {
+		this.nombre = " ";
+	}
+	
 	public Lugar(String nombre, Genero genero, Numero numero, String descripcion) {
 		super();
 		this.nombre = nombre;
