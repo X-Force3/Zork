@@ -231,8 +231,11 @@ public class Aventura implements InputTextListener{
 					
 							&& endgame.verificarAccionEndgame(entrada)
 					|| endgame.getCondicion().contentEquals("muerte")// Endgame de muerte del Protagonista.
-							&& endgame.verificarVidaEndgame(this.protagonista, entrada))
+							&& endgame.verificarVidaEndgame(this.protagonista, entrada)) {
 				salida = endgame.ejecutarFinal(this.protagonista);
+				ventanaJuego.finalizar(protagonista.getNombre());
+			}
+		
 		}
 
 		return salida;
@@ -297,6 +300,8 @@ public class Aventura implements InputTextListener{
 		}
 		
 		ventanaJuego.setText(salida);
+
+		ventanaJuego.finalizar(protagonista.getNombre());
 	}
 
 	private boolean quiereVerInventario(String entrada) {

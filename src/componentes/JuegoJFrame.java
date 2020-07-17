@@ -30,6 +30,8 @@ public class JuegoJFrame extends JFrame implements Runnable {
 	private TextoJPanel textoPanel;
 	private LugarJPanel juegoPanel;
 	private InputJPanel inputPanel;
+	
+	private boolean finDeJuego = false;
 
 	public JuegoJFrame(InputTextListener inputTextListener, String titulo) {
 		setTitle(titulo);
@@ -59,7 +61,7 @@ public class JuegoJFrame extends JFrame implements Runnable {
 
 	@Override
 	public void run() {
-		while (true) {
+		while (!finDeJuego) {
 			try {
 				juegoPanel.actualizar();
 				Thread.sleep(TIME_TO_UPDATE);
@@ -83,6 +85,12 @@ public class JuegoJFrame extends JFrame implements Runnable {
 
 	public void actualizarNpc(String nombre) {
 		juegoPanel.actualizarImagenUbicacion(nombre);
+	}
+	
+	public void finalizar(String nombre) {
+		juegoPanel.finalizar(nombre);
+		finDeJuego = true;
+		juegoPanel.repaint();
 	}
 
 }
