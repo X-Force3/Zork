@@ -3,6 +3,8 @@ package entidades;
 import java.util.List;
 import java.util.Scanner;
 
+import nullObjects.NullConexion;
+
 public class AnalizadorDeTexto {
 	private Scanner scanner;
 
@@ -33,7 +35,7 @@ public class AnalizadorDeTexto {
 				return elemento;
 			}
 		}
-		return null;
+		return new NullConexion();
 	}
 
 	public Npc contieneObstaculoNpc(String entrada, List<Npc> npcs) { // deberia ser la lista de npcs de la ubicacion																	// actual

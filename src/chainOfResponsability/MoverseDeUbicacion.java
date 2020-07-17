@@ -10,6 +10,7 @@ import entidades.Lugar;
 import entidades.Npc;
 import entidades.Protagonista;
 import entidades.Ubicacion;
+import nullObjects.NullConexion;
 
 public class MoverseDeUbicacion implements RealizarAccion{
 
@@ -32,7 +33,7 @@ public class MoverseDeUbicacion implements RealizarAccion{
 		Conexion conexionDestino = analizador.contieneConexion(entrada,
 				this.protagonista.getUbicacionActual().getConexiones());
 		
-		if(conexionDestino == null) {
+		if(conexionDestino.getObstaculo() == NullConexion.valor) {
 			salida = r.realizarAccion(entrada);
 		} else {
 			String obstaculo = conexionDestino.getObstaculo();
