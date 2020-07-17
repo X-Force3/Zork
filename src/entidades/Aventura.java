@@ -323,8 +323,6 @@ public class Aventura implements InputTextListener{
 		}
 		
 		ventanaJuego.setText(salida);
-
-		ventanaJuego.finalizar(protagonista.getNombre());
 	}
 
 	private boolean quiereVerInventario(String entrada) {

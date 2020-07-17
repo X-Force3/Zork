@@ -105,6 +105,10 @@ public class InputJPanel extends JPanel {
 		add(btn,BorderLayout.EAST);
 		setSize(ancho, alto);
 	}
+	
+	public void deshabilitar() {
+		textArea.setEditable(false);
+	}
 
 	@Override
 	protected void paintComponent(Graphics g) {

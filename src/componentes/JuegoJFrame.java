@@ -91,6 +91,7 @@ public class JuegoJFrame extends JFrame implements Runnable {
 		juegoPanel.finalizar(nombre);
 		finDeJuego = true;
 		juegoPanel.repaint();
+		inputPanel.deshabilitar();
 	}
 
 }
