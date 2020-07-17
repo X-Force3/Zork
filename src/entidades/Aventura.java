@@ -134,7 +134,12 @@ public class Aventura implements InputTextListener{
 		Item item = analizador.contieneItem(entrada, this.protagonista.getInventario());
 		return item;
 	}
-
+	
+	public Item quiereVerItem(String entrada) {
+		Item item = analizador.contieneItem(entrada, this.getProtagonista().getUbicacionActual().getItems());
+		return item;
+	}
+	
 	public boolean quiereVerAlrededor(String entrada) {
 		boolean condicion = false;
 		if (entrada.contains("ver alrededor") || entrada.contains("mirar alrededor")
@@ -189,7 +194,7 @@ public class Aventura implements InputTextListener{
 		Lugar lugar;
 		String salida;
 		String accion = analizador.contieneAccion(entrada, item.getAcciones());
-		if (accion != " ") {
+		if (!accion.equals(" ") && !accion.equals("agarrar") && !accion.equals("tomar") && !accion.equals("guardar")) {
 			npc = analizador.contieneObstaculoNpc(entrada, this.protagonista.getUbicacionActual().getNpcs());
 			if (npc.getNombre() != " ") {
 				ventanaJuego.actualizarNpc(npc.getNombre());
@@ -208,8 +213,21 @@ public class Aventura implements InputTextListener{
 				}
 			}
 		} else {
-			salida = "No entiendo qu� acci�n quieres realizar con ese �tem...";// Juani: Idem.
+			salida = "No entiendo qu� acci�n quieres realizar con ese �tem...";// Juani: Idem
 		}
+		
+		return salida;
+	}
+	
+	public String verItem(String entrada, Item item) {
+		String salida;
+		String accion = analizador.contieneAccion(entrada, item.getAcciones());
+		
+		if(!accion.equals(" ") && (accion.equals("mirar") || accion.equals("observar") || accion.equals("ver")))
+			salida = item.getDescricpion();
+		else
+			salida = "No entiendo qu� acci�n quieres realizar con ese �tem...";
+		
 		return salida;
 	}
 
@@ -228,7 +246,6 @@ public class Aventura implements InputTextListener{
 							&& endgame.verificarUbicacionEndgame(this.protagonista))
 					|| endgame.getCondicion().contentEquals("accion")// Endgame de realizar una acci�n con un Item.
 							&& endgame.verificarItemEndgame(this.analizador, this.protagonista)
-					
 							&& endgame.verificarAccionEndgame(entrada)
 					|| endgame.getCondicion().contentEquals("muerte")// Endgame de muerte del Protagonista.
 							&& endgame.verificarVidaEndgame(this.protagonista, entrada)) {
@@ -279,6 +296,12 @@ public class Aventura implements InputTextListener{
 			salida = this.realizarAccionConItem(newText, item);
 			// no hace falta verificar condicion de endgame
 		}
+		
+		else if ((item = this.quiereVerItem(newText)).getNombre() != " ") {
+			salida = this.verItem(newText, item);
+		}
+			// no hace falta verificar condicion de endgame
+		
 
 		else if (this.quiereVerInventario(newText) == true) {
 			salida = this.protagonista.describirInventario();

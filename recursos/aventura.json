@@ -34,20 +34,24 @@
       ],
       "efectosSobre": [
         "item"
-      ]
+      ], 
+      "descripcion": ""
     },
     {
       "nombre": "buzon",
       "genero": "masculino",
       "numero": "singular",
       "acciones": [
-        "abrir",
         "ver",
+        "mirar",
+        "observar",
+        "abrir",
         "cerrar"
       ],
       "efectosSobre": [
         "item"
-      ]
+      ], 
+      "descripcion": "El buzon parece estar cerrado hace muchos años. No es probable que logres abrirlo..."
     },
     {
       "nombre": "piedra",
@@ -55,14 +59,17 @@
       "numero": "singular",
       "acciones": [
         "agarrar",
-        "ver",
-        "tirar", 
-        "guardar"
+        "arrojar",
+        "tirar",
+        "lanzar", 
+        "guardar",
+        "tomar"
       ],
       "efectosSobre": [
         "item",
         "npcs"
-      ]
+      ], 
+      "descripcion": ""
     },
     {
       "nombre": "casa",
@@ -73,47 +80,44 @@
       ],
       "efectosSobre": [
         "item"
-      ]
+      ], 
+      "descripcion": ""
     },
     {
       "nombre": "puerta",
       "genero": "femenino",
       "numero": "singular",
       "acciones": [
-        "ver",
-        "gopear",
-        "romper"
+        "ver"
       ],
       "efectosSobre": [
         "item"
-      ]
+      ], 
+      "descripcion": ""
     },
     {
       "nombre": "ventana",
       "genero": "femenino",
       "numero": "singular",
       "acciones": [
-        "ver",
-        "gopear",
-        "romper"
+        "ver"
       ],
       "efectosSobre": [
         "item"
-      ]
+      ], 
+      "descripcion": ""
     },
     {
       "nombre": "chimenea",
       "genero": "femenino",
       "numero": "singular",
       "acciones": [
-        "ver",
-        "acceder",
-        "entrar",
-        "salir"
+        "ver"
       ],
       "efectosSobre": [
         "item"
-      ]
+      ], 
+      "descripcion": ""
     },
     {
       "nombre": "navaja",
@@ -123,13 +127,15 @@
         "tomar",
         "guardar",
         "atacar",
-        "tirar",
+        "matar",
+        "eliminar",
         "agarrar"
       ],
       "efectosSobre": [
         "item",
         "npcs"
-      ]
+      ], 
+      "descripcion": ""
     },
     {
       "nombre": "botella",
@@ -139,12 +145,14 @@
         "tomar",
         "agarrar",
         "guardar",
-        "romper",
-        "tirar"
+        "consumir",
+        "beber", 
+        "usar"
       ],
       "efectosSobre": [
         "item"
-      ]
+      ], 
+      "descripcion": ""
     },
     {
       "nombre": "hacha",
@@ -154,12 +162,14 @@
         "tomar",
         "guardar",
         "agarrar",
-        "tirar",
-	"atacar"
+        "matar",
+        "atacar",
+        "eliminar"
       ],
       "efectosSobre": [
         "item"
-      ]
+      ], 
+      "descripcion": ""
     },
     {
       "nombre": "caja",
@@ -171,19 +181,24 @@
       ],
       "efectosSobre": [
         "item"
-      ]
+      ], 
+      "descripcion": ""
     },
     {
       "nombre": "inodoro",
       "genero": "masculino",
       "numero": "singular",
       "acciones": [
+        "ver",
+        "observar",
+        "mirar",
         "hacer",
-        "utilizar"
+        "usar"
       ],
       "efectosSobre": [
         "item"
-      ]
+      ], 
+      "descripcion": "El inodoro fue utilizado por alguien. Sería recomendable que cambies de ambiente..."
     },
     {
       "nombre": "frasco de vidrio",
@@ -195,13 +210,14 @@
         "guardar", 
         "tirar", 
         "lanzar", 
-        "golpear",
+        "arrojar",
 	"atacar"
       ],
       "efectosSobre": [
         "item",
         "npcs"
-      ]
+      ], 
+      "descripcion": ""
     },
     {
       "nombre": "llave",
@@ -214,7 +230,8 @@
       ],
       "efectosSobre": [
         "item"
-      ]
+      ], 
+      "descripcion": ""
     },
     {
       "nombre": "garrote",
@@ -224,12 +241,15 @@
         "tomar",
         "agarrar",
         "guardar",
-        "golpear"
+        "golpear",
+        "matar",
+        "eliminar"
       ],
       "efectosSobre": [
         "item",
         "npcs"
-      ]
+      ], 
+      "descripcion": ""
     }
   ],
   "ubicaciones": [
@@ -382,7 +402,7 @@ Precisamente, est�s ubicado en el bosque, en el frente de una casa con una pue
         },
         {
           "direccion": "sur",
-          "ubicacionDestino": "ba�o",
+          "ubicacionDestino": "banio",
           "obstaculo": "comadreja"
         },
         {
@@ -393,7 +413,7 @@ Precisamente, est�s ubicado en el bosque, en el frente de una casa con una pue
       ]
     },
     {
-      "nombre": "ba�o",
+      "nombre": "banio",
       "genero": "masculino",
       "numero": "singular",
       "descripcion": "Estas en el ba�o de la casa. Est� completamente destruido.",
@@ -421,7 +441,7 @@ Precisamente, est�s ubicado en el bosque, en el frente de una casa con una pue
       ],
       "npcs": [
         {
-          "nombre": "ara�a",
+          "nombre": "arania",
           "genero": "femenino",
           "numero": "singular",
           "descripcion": "Una enorme ara�a venenosa camina sobre la pared y complica tu salida del ba�o. Puedes usar el frasco de vidrio para golpearla...",
@@ -440,12 +460,12 @@ Precisamente, est�s ubicado en el bosque, en el frente de una casa con una pue
         {
           "direccion": "norte",
           "ubicacionDestino": "living",
-          "obstaculo": "ara�a"
+          "obstaculo": "arania"
         },
         {
           "direccion": "oeste",
           "ubicacionDestino": "habitacion",
-          "obstaculo": "ara�a"
+          "obstaculo": "arania"
         }
       ]
     },
@@ -515,7 +535,7 @@ Precisamente, est�s ubicado en el bosque, en el frente de una casa con una pue
       "conexiones": [
         {
           "direccion": "sureste",
-          "ubicacionDestino": "ba�o",
+          "ubicacionDestino": "banio",
           "obstaculo": "lobo"
         },
         {
