@@ -209,13 +209,13 @@ public class Aventura implements InputTextListener{
 					ventanaJuego.actualizarNpc(nombreAntes);
 				}
 				ventanaJuego.setVida(protagonista.getVida());
-				this.protagonista.eliminarItem(item);// Luego de que el protagonista utiliza el �tem, se elimina de su
+				
 														// inventario.
 			} else {
 				lugar = analizador.contieneObstaculoLugar(entrada, this.protagonista.getUbicacionActual().getLugares());
 				if (lugar.getNombre() != " ") {
 					salida = lugar.verificarTrigger(item);
-					
+					this.protagonista.eliminarItem(item);
 				}
 				else if(analizador.afectaASiMismo(item.getEfectosSobre()) == true) {
 					this.protagonista.aniadirVida();
