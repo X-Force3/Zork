@@ -28,6 +28,7 @@ import javax.swing.border.EmptyBorder;
 public class InputJPanel extends JPanel {
 
 	private static final long serialVersionUID = -3843632241514733050L;
+	private static final String INIT_TEXT = "> ";
 	private int ancho;
 	private int alto;
 
@@ -99,11 +100,11 @@ public class InputJPanel extends JPanel {
 	}
 
 	public void notificar() {
-		if (textArea.getText().isEmpty())
-			return;
-		inputTextListener.inputText(textArea.getText());
-		textArea.setText("> ");
-		textArea.setCaretPosition(textArea.getText().length());
+		if (!textArea.getText().isEmpty() && !textArea.getText().equals(INIT_TEXT)) {
+			inputTextListener.inputText(textArea.getText());
+			textArea.setText(INIT_TEXT);
+			textArea.setCaretPosition(textArea.getText().length());
+		}
 	}
 
 	public void deshabilitar() {

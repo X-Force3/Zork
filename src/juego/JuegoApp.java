@@ -1,35 +1,38 @@
 package juego;
 
-import java.awt.event.WindowEvent;
+import java.awt.EventQueue;
+import java.util.Timer;
+import java.util.TimerTask;
 
-import componentes.CompletarDatos;
 import componentes.MenuJFrame;
 import entidades.Aventura;
 
 public class JuegoApp {
-
+	
 	public static void main(String[] args) {
 
-		/*
-		 * Menu menu = new Menu(); menu.desplegarMenuOpciones();
-		 * menu.solicitarNombreDeJugador();
-		 * 
-		 * if (menu.getPathAventuraElegida() != null) { Aventura aventura = new
-		 * Aventura(menu.getPathAventuraElegida(), menu.getNombreJugador());
-		 * aventura.comenzar(); }
-		 */
-
-		// borrar luego
-//		Aventura a = new Aventura("recursos/aventuraProfe.json", "Pepe");
-//		a.comenzar();
-		new MenuJFrame(new CompletarDatos() {
-
-			@Override
-			public void datosCompletados(String pathAventura, String nombreJugador) {
-				new Aventura(pathAventura,nombreJugador).comenzar();
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					new MenuJFrame();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
-			
 		});
+		
+	}
+
+	public static void comenzarAventura(String pathAventura, String nombreJugador) {
+		new Timer().schedule( 
+		        new TimerTask() {
+		            @Override
+		            public void run() {
+		            	new Aventura(pathAventura, nombreJugador).comenzar();
+		            }
+		        }, 
+		        2000
+		);
 	}
 
 }

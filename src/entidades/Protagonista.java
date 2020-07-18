@@ -3,13 +3,17 @@ package entidades;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.sun.org.apache.bcel.internal.Const;
+
 public class Protagonista {
+	
+	public static final int VIDA_INICIAL = 6;
 
 	private String nombre;
 	private List<Item> inventario;
 	private Ubicacion ubicacionActual;
 	private boolean estaVivo;
-	private int vida = 10;
+	private int vida = VIDA_INICIAL;
 
 	public Protagonista(String nombreJugador, Ubicacion ubicacionInicial) {
 		nombre = nombreJugador;

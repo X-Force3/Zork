@@ -160,6 +160,8 @@ public class Aventura implements InputTextListener {
 					ventanaJuego.actualizarNpc(nombreAntes);
 				}
 				ventanaJuego.setVida(protagonista.getVida());
+				if(!protagonista.isEstaVivo())
+					salida = salida.concat(" No tienes mas vida.");
 
 				// inventario.
 			} else {

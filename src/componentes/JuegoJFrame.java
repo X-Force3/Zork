@@ -51,11 +51,11 @@ public class JuegoJFrame extends JFrame implements Runnable {
 		inputPanel = new InputJPanel(WIDTH_WINDOW, HEIGHT_INPUT, inputTextListener);
 		add(inputPanel);
 
-		pack();
 		setSize(WIDTH_WINDOW, HEIGHT_WINDOW);
 		setResizable(false);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		pack();
 		setVisible(true);
 	}
 
@@ -73,11 +73,10 @@ public class JuegoJFrame extends JFrame implements Runnable {
 	
 	public void setVida(int vidaActual) {
 		juegoPanel.vida = vidaActual;
-		if(vidaActual == 0) {
+		if(vidaActual <= 0) {
 			finDeJuego = true;
 			juegoPanel.mostrarFinDeJuego();
 			inputPanel.deshabilitar();
-			textoPanel.updateText("No tienes mas vida.");
 		}
 	}
 

@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 
 import entidades.Item;
 import entidades.Npc;
+import entidades.Protagonista;
 import entidades.Ubicacion;
 
 public class LugarJPanel extends JPanel {
@@ -27,7 +28,7 @@ public class LugarJPanel extends JPanel {
 	private Sprite personajeSprite;
 	
 	int vida = 0;
-	private static final int ANCHO_VIDA = 120;
+	private static final int ANCHO_BARRA_VIDA = 120;
 
 	BufferedImage bg;
 	List<ImagenUbicacion> imagenes = new ArrayList<ImagenUbicacion>();
@@ -59,8 +60,8 @@ public class LugarJPanel extends JPanel {
 			g2d.setFont(new Font("Dialog", Font.BOLD, 12));
 			g2d.drawString("VIDA", 20, 25);
 			g2d.setColor(Color.GREEN);
-			g2d.drawRect(55, 15, ANCHO_VIDA, 15);
-			g2d.fillRect(55, 15,  (int)(ANCHO_VIDA *((float)vida / 10)), 15);
+			g2d.drawRect(55, 15, ANCHO_BARRA_VIDA, 15);
+			g2d.fillRect(55, 15,  (int)(ANCHO_BARRA_VIDA *((float)vida / Protagonista.VIDA_INICIAL)), 15);
 			
 			// dibuja items y npcs
 			for(int i=0; i < imagenes.size(); i++) {

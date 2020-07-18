@@ -1,6 +1,7 @@
 package componentes;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -22,13 +23,13 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-import entidades.Aventura;
+import juego.JuegoApp;
 
 public class MenuJFrame extends JFrame {
 
 	private static final long serialVersionUID = 296339043406758110L;
 	private static final String RUTA = "recursos/";
-	public static final String AVENTURA_1 = RUTA + "aventuraentrega.json";
+	public static final String AVENTURA_1 = RUTA + "aventura.json";
 	public static final String AVENTURA_PROFE = RUTA + "aventuraProfe.json";
 
 	private PanelConFondo panel;
@@ -38,24 +39,26 @@ public class MenuJFrame extends JFrame {
 	private JLabel lblAventuraLabel;
 	private JButton btnBoton;
 	private JLabel lblNameLabel;
-	
-	private CompletarDatos completarDatos;
 
-	public MenuJFrame(CompletarDatos completarDatos) {
-		this.completarDatos = completarDatos;
+
+	public MenuJFrame() {
 		setTitle("Menu");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 425, 220);
-		setResizable(false);
-		setLocationRelativeTo(null);
 
 		panel = new PanelConFondo();
+		panel.setOpaque(false);
 		setContentPane(panel);
 		panel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		panel.setLayout(null);
 		init();
+		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 425, 220);
+		setSize(425,220);
+		setPreferredSize(new Dimension(425,220));
+		setResizable(false);
+		setLocationRelativeTo(null);
+		pack();
 		setVisible(true);
-
 	}
 
 	private void init() {
@@ -82,9 +85,10 @@ public class MenuJFrame extends JFrame {
 		btnBoton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String nombreJugador = txtNameField.getText();
-				String pathAventura = comboBox.getSelectedIndex() == 0? AVENTURA_1 : AVENTURA_PROFE;
-				completarDatos.datosCompletados(pathAventura, nombreJugador);
+				String pathAventura = comboBox.getSelectedIndex() == 0 ? AVENTURA_1 : AVENTURA_PROFE;
+
 				desaparecer();
+				JuegoApp.comenzarAventura(pathAventura, nombreJugador);
 			}
 		});
 
@@ -102,30 +106,31 @@ public class MenuJFrame extends JFrame {
 		txtNameField.setText("");
 
 		txtNameField.getDocument().addDocumentListener(new DocumentListener() {
-			  public void changedUpdate(DocumentEvent e) {
-				    warn();
-				  }
-				  public void removeUpdate(DocumentEvent e) {
-				    warn();
-				  }
-				  public void insertUpdate(DocumentEvent e) {
-				    warn();
-				  }
+			public void changedUpdate(DocumentEvent e) {
+				warn();
+			}
 
-				  public void warn() {
-						if (!txtNameField.getText().equals("")) {
-							btnBoton.setEnabled(true);
-						}
-				  }
-				});
-		
+			public void removeUpdate(DocumentEvent e) {
+				warn();
+			}
+
+			public void insertUpdate(DocumentEvent e) {
+				warn();
+			}
+
+			public void warn() {
+				btnBoton.setEnabled(!txtNameField.getText().equals(""));
+			}
+		});
+
 		txtNameField.setBounds(41, 118, 172, 20);
 		txtNameField.setColumns(10);
 		panel.add(txtNameField);
 	}
 
 	private void desaparecer() {
-		dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+		setVisible(false);
+		dispose();
 	}
 
 	private class PanelConFondo extends JPanel {
@@ -138,8 +143,6 @@ public class MenuJFrame extends JFrame {
 			img = new ImageIcon("recursos/menu/bg.jpg").getImage();
 
 			g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
-
-			setOpaque(false);
 
 			super.paint(g);
 		}
