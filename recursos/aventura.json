@@ -51,7 +51,7 @@
       "efectosSobre": [
         "item"
       ], 
-      "descripcion": "El buzon parece estar cerrado hace muchos años. No es probable que logres abrirlo..."
+      "descripcion": "El buzón parece haber estado cerrado durante muchos años. No es probable que logres abrirlo..."
     },
     {
       "nombre": "piedra",
@@ -147,7 +147,10 @@
         "guardar",
         "consumir",
         "beber", 
-        "usar"
+        "usar",
+        "atacar",
+        "matar",
+        "eliminar"
       ],
       "efectosSobre": [
         "item",
@@ -178,12 +181,18 @@
       "numero": "singular",
       "acciones": [
         "abrir",
-        "ver"
+        "ver",
+        "cerrar",
+        "observar",
+        "mirar",
+        "guardar",
+        "agarrar",
+        "tomar"
       ],
       "efectosSobre": [
         "item"
       ], 
-      "descripcion": ""
+      "descripcion": "La caja está cerrada, pero no valdría la pena abrirla. Por su peso parece estar vacía..."
     },
     {
       "nombre": "inodoro",
