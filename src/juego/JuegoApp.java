@@ -6,18 +6,18 @@ public class JuegoApp {
 
 	public static void main(String[] args) {
 
-		/*Menu menu = new Menu();
+		Menu menu = new Menu();
 		menu.desplegarMenuOpciones();
 		menu.solicitarNombreDeJugador();
 
 		if (menu.getPathAventuraElegida() != null) {
 			Aventura aventura = new Aventura(menu.getPathAventuraElegida(), menu.getNombreJugador());
 			aventura.comenzar();
-		}*/
+		}
 
 		//borrar luego
-		Aventura a = new Aventura("recursos/aventura.json", "Pepe");
-		a.comenzar();
+		//Aventura a = new Aventura("recursos/aventura.json", "Pepe");
+		//a.comenzar();
 	}
 
 }

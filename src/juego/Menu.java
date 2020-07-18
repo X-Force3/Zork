@@ -4,15 +4,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-import entidades.Aventura;
-
 public class Menu {
 
 	private static final String RUTA = "recursos/";
 	public static final String AVENTURA_1 = RUTA + "aventura.json";
-	public static final String AVENTURA_2 = RUTA + "aventura2.json";
-	public static final String AVENTURA_3 = RUTA + "aventura3.json";
-	public static final String AVENTURA_PROFE = RUTA + "aventuraProfe.json";
+	public static final String AVENTURA_2 = RUTA + "aventuraProfe.json";
+	//public static final String AVENTURA_3 = RUTA + "aventura3.json";
+	//public static final String AVENTURA_PROFE = RUTA + "aventuraProfe.json";
 	
 	private Scanner scanner;
 	private int opcion;
@@ -35,9 +33,7 @@ public class Menu {
 			try{
 				System.out.println("Seleccione la aventura:\n"
 						+ "1.- " + this.nombreAventura.get(1)
-						/*+ "\n2.- " + this.nombreAventura.get(2)
-						+ "\n3.- " + this.nombreAventura.get(3)
-						+ "\n3.- " + this.nombreAventura.get(4)*/
+						+ "\n2.- " + this.nombreAventura.get(2)
 						+ "\n0.- Salir\n");
 				
 				this.opcion = Integer.parseInt(this.scanner.nextLine()); 
@@ -48,19 +44,10 @@ public class Menu {
 					pathAventuraElegida = AVENTURA_1;
 					System.out.println("selecciono la opcion 1");
 					break;
-				/*case 2: 
+				case 2: 
 					pathAventuraElegida = AVENTURA_2;
 					System.out.println("selecciono la opcion 2");
 					break;
-				case 3: 
-					pathAventuraElegida = AVENTURA_3;
-					System.out.println ("selecciono la opcion 3");
-					break;
-				case 4: 
-					pathAventuraElegida = AVENTURA_PROFE;
-					System.out.println ("selecciono la opcion 4");
-					break;	
-					*/
 				case 0: 
 					salio = true;
 					System.out.println("Saliste del juego!");
@@ -95,9 +82,7 @@ public class Menu {
 	private void cargarMapaAventuras() {
 		
 		this.nombreAventura.put(1, "Aventura 1: La Isla Peligrosa");
-		/*this.nombreAventura.put(2, "Discoteca");
-		this.nombreAventura.put(3, "La isla");
-		this.nombreAventura.put(4, "Aventura Taller");*/
+		this.nombreAventura.put(2, "Aventura 2: Pirata fantasma");
 		this.nombreAventura.put(0, "Salir");
 	}
 
