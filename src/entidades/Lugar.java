@@ -84,16 +84,6 @@ public class Lugar {
 		return items;
 	}
 
-	public void eliminarTrigger(Trigger trigger) {
-		// codigo
-
-	}
-
-	public void agregarTrigger(Trigger trigger) {
-		// codigo
-
-	}
-
 	public void ejecutarTrigger(Trigger trigger) {
 		if (trigger.getAfter_trigger().equals("remove"))
 			this.nombre = "borrado";
