@@ -222,7 +222,7 @@ public class Aventura implements InputTextListener{
 					this.protagonista.aniadirVida();
 					ventanaJuego.setVida(protagonista.getVida());
 					this.protagonista.eliminarItem(item);
-					salida = "En la botella había agua. Te ayudó a recuperarte, pero ten cuidado con lo que estás haciendo...";
+					salida = "Esto te ayudó a recuperarte, pero ten cuidado con lo que estás haciendo...";
 				}
 				else {
 					salida = "No entiendo por qu� quieres realizar eso...";
