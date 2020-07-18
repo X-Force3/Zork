@@ -7,18 +7,21 @@ import java.util.Map;
 
 import componentes.InputTextListener;
 import componentes.JuegoJFrame;
+import javafx.util.Pair;
+import juego.ArchivoTexto;
 import juego.ManejoArchivos;
 
-public class Aventura implements InputTextListener{
+public class Aventura implements InputTextListener {
 
 	private Configuracion configuracion;
-	private Map<String, Ubicacion> ubicaciones = new HashMap<String, Ubicacion>();//los mapas estï¿½n cargados
+	private Map<String, Ubicacion> ubicaciones = new HashMap<String, Ubicacion>();// los mapas estï¿½n cargados
 	private AnalizadorDeTexto analizador;
 	private Protagonista protagonista;
-	
+
 	private JuegoJFrame ventanaJuego;
-	
-	public Aventura(String pathAventura,String nombreJugador) {
+	private ArchivoTexto archivo;
+
+	public Aventura(String pathAventura, String nombreJugador) {
 		cargarAventura(pathAventura, nombreJugador);
 	}
 
@@ -32,14 +35,15 @@ public class Aventura implements InputTextListener{
 		this.analizador = analizador;
 	}
 
-	private void cargarAventura(String pathAventura,String nombreJugador) {
+	private void cargarAventura(String pathAventura, String nombreJugador) {
 		ManejoArchivos manejoArchivos = new ManejoArchivos(pathAventura);
 		analizador = new AnalizadorDeTexto();
 		ubicaciones = manejoArchivos.getUbicacionesMap();
 		configuracion = manejoArchivos.getConfiguracion();
-		this.protagonista = new Protagonista(nombreJugador,manejoArchivos.getUbicaciones().get(0));
-		
-		ventanaJuego = new JuegoJFrame(this,configuracion.getTitulo());
+		this.protagonista = new Protagonista(nombreJugador, manejoArchivos.getUbicaciones().get(0));
+		this.archivo = new ArchivoTexto("Historial.txt");
+
+		ventanaJuego = new JuegoJFrame(this, configuracion.getTitulo());
 	}
 
 	public Configuracion getConfiguracion() {
@@ -55,69 +59,23 @@ public class Aventura implements InputTextListener{
 	}
 
 	public void comenzar() {
-		String entrada;
-		String salida;
-		String descripcionEndgame;
-		Conexion conexion;
-		Item item;
-		boolean fin = false;
 
-//		this.describirContexto(); Juani: Si hubiera un while desde la lï¿½nea 45 hasta la 76.. //Luz: pienso lo mismo
-//		Cada vez que se ejecute el mï¿½todo "comenzar" el porgrama va a mostrar la descripciï¿½n de la ubicaciï¿½n actual?
-		
-		//System.out.println(this.configuracion.getBienvenida() +" " +  protagonista.getNombre());
-		//System.out.println(describirUbicacion()); //funciona
-		
-		String ini = this.configuracion.getBienvenida() +" " +  protagonista.getNombre() + ".\n" + describirUbicacion();
+		String ini = this.configuracion.getBienvenida() + " " + protagonista.getNombre() + ".\n" + describirUbicacion();
 		ventanaJuego.setText(ini);
 		ventanaJuego.setUbicacion(protagonista.getUbicacionActual());
+		ventanaJuego.setVida(protagonista.getVida());
 		ventanaJuego.run();
-		
-		/*while(!fin) {
-			entrada = analizador.recibirEntrada();
 
-			if (this.quiereAgarrarItem(entrada) == true) {
-				salida = this.protagonista.describirInventario();
-				// habria que verificar condicion de endgame
-			}
-
-			else if ((conexion = this.quiereMoverseDeUbicacion(entrada)) != null) {
-				salida = this.tratarObstaculo(conexion);
-				// habria que verificar condicion de endgame
-			}
-
-			else if ((item = this.quiereRealizarAccionConItem(entrada)) != null) {
-				salida = this.realizarAccionConItem(entrada, item);
-				// no hace falta verificar condicion de endgame
-			}
-
-			else if (this.quiereVerAlrededor(entrada) == true) {
-				salida = this.describirUbicacion();
-
-			} else {
-				salida = "No comprendï¿½ lo que quieres, intenta ser mï¿½s preciso...";
-			}
-
-			descripcionEndgame = this.verificarEndgame(entrada);
-
-			if (descripcionEndgame != "") {
-				salida = descripcionEndgame;
-				fin = true;
-			}
-			
-			System.out.println(salida);
-		}*/
 	}
-	
 
 	public boolean quiereAgarrarItem(String entrada) {
 		boolean condicion = false;
 		Item objeto;
 		objeto = analizador.contieneItem(entrada, this.protagonista.getUbicacionActual().getItems());
-		if (objeto != null && objeto.esItemDeInventario() && (entrada.contains("agarrar") ||
-				entrada.contains("tomar") || entrada.contains("guardar"))) {
-			ventanaJuego.eliminarItem(objeto.getNombre());
-			this.protagonista.anadirItem(objeto); // se añade al inventario
+		if (objeto.getNombre() != " " && objeto.esItemDeInventario()
+				&& (entrada.contains("agarrar") || entrada.contains("tomar") || entrada.contains("guardar"))) {
+			ventanaJuego.actualizarItem(objeto.getNombre());
+			this.protagonista.anadirItem(objeto); // se aï¿½ade al inventario
 			this.protagonista.getUbicacionActual().eliminarItemUbicacion(objeto); // se quita del place
 			condicion = true;
 		}
@@ -132,6 +90,11 @@ public class Aventura implements InputTextListener{
 
 	public Item quiereRealizarAccionConItem(String entrada) {
 		Item item = analizador.contieneItem(entrada, this.protagonista.getInventario());
+		return item;
+	}
+
+	public Item quiereVerItem(String entrada) {
+		Item item = analizador.contieneItem(entrada, this.getProtagonista().getUbicacionActual().getItems());
 		return item;
 	}
 
@@ -157,22 +120,22 @@ public class Aventura implements InputTextListener{
 		Lugar obstaculoLugar;
 		if (obstaculo != null) {
 			obstaculoNpc = analizador.contieneObstaculoNpc(obstaculo, this.protagonista.getUbicacionActual().getNpcs());
-			if (obstaculoNpc != null) {
+			if (obstaculoNpc.getNombre() != " ") {
 				salida = obstaculoNpc.getDescripcion();
 			} else {
 				obstaculoLugar = analizador.contieneObstaculoLugar(obstaculo,
 						this.protagonista.getUbicacionActual().getLugares());
-				if (obstaculoLugar != null) {
+				if (obstaculoLugar.getNombre() != " ") {
 					salida = obstaculoLugar.getDescripcion();
 				} else {
 					this.protagonista.desplazarse(ubicaciones.get(conexion.getUbicacionDestino()));
-					// System.out.println(this.protagonista.getUbicacionActual().getNombre());
-					// salida = this.protagonista.getUbicacionActual().describirUbicacion();
+					ventanaJuego.setUbicacion(protagonista.getUbicacionActual());
 					salida = this.describirUbicacion();
 				}
 			}
 		} else {
 			this.protagonista.desplazarse(ubicaciones.get(conexion.getUbicacionDestino()));
+			ventanaJuego.setUbicacion(protagonista.getUbicacionActual());
 			salida = this.describirUbicacion();
 		}
 		return salida;
@@ -187,26 +150,49 @@ public class Aventura implements InputTextListener{
 		Lugar lugar;
 		String salida;
 		String accion = analizador.contieneAccion(entrada, item.getAcciones());
-		if (accion != null) {
+		if (!accion.equals(" ") && !accion.equals("agarrar") && !accion.equals("tomar") && !accion.equals("guardar")) {
 			npc = analizador.contieneObstaculoNpc(entrada, this.protagonista.getUbicacionActual().getNpcs());
-			if (npc != null) {
-				salida = npc.verificarTrigger(item, this.protagonista);
-				this.protagonista.eliminarItem(item);// Luego de que el protagonista utiliza el ï¿½tem, se elimina de su
-														// inventario.
+			if (npc.getNombre() != " ") {
+				String nombreAntes = npc.getNombre();
+				Pair<String, Boolean> salidaYefecto = npc.verificarTrigger(item, this.protagonista);
+				salida = salidaYefecto.getKey();
+				if (salidaYefecto.getValue()) {
+					ventanaJuego.actualizarNpc(nombreAntes);
+				}
+				ventanaJuego.setVida(protagonista.getVida());
+
+				// inventario.
 			} else {
 				lugar = analizador.contieneObstaculoLugar(entrada, this.protagonista.getUbicacionActual().getLugares());
-				if (lugar != null) {
+				if (lugar.getNombre() != " ") {
 					salida = lugar.verificarTrigger(item);
-					this.protagonista.eliminarItem(item);// Luego de que el protagonista utiliza el ï¿½tem, se elimina de
-															// su inventario.
+					this.protagonista.eliminarItem(item);
+				} else if (analizador.afectaASiMismo(item.getEfectosSobre()) == true
+						&& (accion.equals("beber") || accion.equals("consumir") || accion.equals("usar"))) {
+					this.protagonista.aniadirVida();
+					ventanaJuego.setVida(protagonista.getVida());
+					this.protagonista.eliminarItem(item);
+					salida = "Esto te ayudÃ³ a recuperarte, pero ten cuidado con lo que estÃ¡s haciendo...";
 				} else {
-					salida = "No entiendo por qué quieres realizar eso..."; // Juani: Lo modifiquï¿½ porque me pareciï¿½ mas
-																			// preciso esto.
+					salida = "No entiendo por quï¿½ quieres realizar eso...";
 				}
 			}
 		} else {
-			salida = "No entiendo qué acción quieres realizar con ese ítem...";// Juani: Idem.
+			salida = "No entiendo quï¿½ acciï¿½n quieres realizar con ese ï¿½tem...";
 		}
+
+		return salida;
+	}
+
+	public String verItem(String entrada, Item item) {
+		String salida;
+		String accion = analizador.contieneAccion(entrada, item.getAcciones());
+
+		if (!accion.equals(" ") && (accion.equals("mirar") || accion.equals("observar") || accion.equals("ver")))
+			salida = item.getDescricpion();
+		else
+			salida = "No entiendo quï¿½ acciï¿½n quieres realizar con ese ï¿½tem...";
+
 		return salida;
 	}
 
@@ -220,15 +206,20 @@ public class Aventura implements InputTextListener{
 					&& endgame.verificarItemEndgame(this.analizador, this.protagonista))
 					|| (endgame.getCondicion().contentEquals("ubicacion")// Endgame de llegar a una Ubicacion.
 							&& endgame.verificarUbicacionEndgame(this.protagonista))
-					|| (endgame.getCondicion().contentEquals("itemEnUbicacion")// Endgame de obtener un Item y llegar a una Ubicacion.
+					|| (endgame.getCondicion().contentEquals("itemEnUbicacion")// Endgame de obtener un Item y llegar a
+																				// una Ubicacion.
 							&& endgame.verificarItemEndgame(this.analizador, this.protagonista)
 							&& endgame.verificarUbicacionEndgame(this.protagonista))
 					|| endgame.getCondicion().contentEquals("accion")// Endgame de realizar una acciï¿½n con un Item.
 							&& endgame.verificarItemEndgame(this.analizador, this.protagonista)
 							&& endgame.verificarAccionEndgame(entrada)
 					|| endgame.getCondicion().contentEquals("muerte")// Endgame de muerte del Protagonista.
-							&& endgame.verificarVidaEndgame(this.protagonista))
-				salida = endgame.ejecutarFinal();
+							&& endgame.verificarVidaEndgame(this.protagonista, entrada)) {
+				salida = endgame.ejecutarFinal(this.protagonista);
+				ventanaJuego.finalizar(protagonista.getNombre());
+
+			}
+
 		}
 
 		return salida;
@@ -238,19 +229,20 @@ public class Aventura implements InputTextListener{
 	public String toString() {
 		return "Aventura \n[" + configuracion + ", \n" + ubicaciones + "]";
 	}
-	
+
 	public String describirUbicacion() {
-		return this.protagonista.getUbicacionActual().describirUbicacion(getUbicacionesConectadas(protagonista.getUbicacionActual().getConexiones()));
+		return this.protagonista.getUbicacionActual()
+				.describirUbicacion(getUbicacionesConectadas(protagonista.getUbicacionActual().getConexiones()));
 	}
-	
+
 	private List<Ubicacion> getUbicacionesConectadas(List<Conexion> conexiones) {
 		List<Ubicacion> ubicacionesConectadas = new ArrayList<>();
-		for(Conexion conexion : conexiones) {
+		for (Conexion conexion : conexiones) {
 			ubicacionesConectadas.add(ubicaciones.get(conexion.getUbicacionDestino()));
 		}
 		return ubicacionesConectadas;
 	}
-	
+
 	@Override
 	public void inputText(String newText) {
 		String salida;
@@ -263,36 +255,40 @@ public class Aventura implements InputTextListener{
 			// habria que verificar condicion de endgame
 		}
 
-		else if ((conexion = this.quiereMoverseDeUbicacion(newText)) != null) {
+		else if ((conexion = this.quiereMoverseDeUbicacion(newText)).getUbicacionDestino() != " ") {
 			salida = this.tratarObstaculo(conexion);
-			ventanaJuego.setUbicacion(protagonista.getUbicacionActual());
 			// habria que verificar condicion de endgame
 		}
 
-		else if ((item = this.quiereRealizarAccionConItem(newText)) != null) {
+		else if ((item = this.quiereRealizarAccionConItem(newText)).getNombre() != " ") {
 			salida = this.realizarAccionConItem(newText, item);
 			// no hace falta verificar condicion de endgame
 		}
 
+		else if ((item = this.quiereVerItem(newText)).getNombre() != " ") {
+			salida = this.verItem(newText, item);
+		}
+		// no hace falta verificar condicion de endgame
+
 		else if (this.quiereVerInventario(newText) == true) {
 			salida = this.protagonista.describirInventario();
 		}
-			
+
 		else if (this.quiereVerAlrededor(newText) == true) {
 			salida = this.describirUbicacion();
 		}
-		
+
 		else {
-			salida = "No comprendo lo que quieres, intenta ser más preciso...";
+			salida = "No comprendo lo que quieres, intenta ser mï¿½s preciso...";
 		}
 
 		descripcionEndgame = this.verificarEndgame(newText);
 
 		if (descripcionEndgame != "") {
 			salida = descripcionEndgame + this.protagonista.getNombre() + "...";
-			//fin = true;
 		}
-		
+
+		this.archivo.escribirArchivoOut(newText, salida);
 		ventanaJuego.setText(salida);
 	}
 
@@ -304,5 +300,5 @@ public class Aventura implements InputTextListener{
 		}
 		return condicion;
 	}
-	
+
 }

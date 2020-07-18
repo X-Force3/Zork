@@ -9,6 +9,7 @@ public class Protagonista {
 	private List<Item> inventario;
 	private Ubicacion ubicacionActual;
 	private boolean estaVivo;
+	private int vida = 10;
 
 	public Protagonista(String nombreJugador, Ubicacion ubicacionInicial) {
 		nombre = nombreJugador;
@@ -22,9 +23,10 @@ public class Protagonista {
 	}
 
 	public void morir() {
+		vida = 0;
 		this.estaVivo = false;
 	}
-	
+
 	public Ubicacion getUbicacionActual() {
 		return this.ubicacionActual;
 	}
@@ -68,31 +70,11 @@ public class Protagonista {
 		return respuesta;
 	}
 
-	/// El protagonista pide si puede desplazarse a un place, o a una conexion
-	/// dentro de la ubicacion
-//	public boolean desplazarse(Ubicacion ubicacionDestino) {
-//
-//		for (Conexion conexion : this.getUbicacionActual().getConexiones()) {
-//			if (conexion.getUbicacionDestino().equals(ubicacionDestino)) {
-//				this.ubicacionActual = ubicacionDestino;
-//				return true;
-//			}
-//		}
-//
-//		return false;
-//	} No se utiliza en la clase Aventura el desplazarse seg�n la Ubicacion, pero s� el desplazarse seg�n la Conexion.
-
-	/*public void desplazarse(String nombreUbicacionDestino, List<Ubicacion> ubicaciones) {
-		AnalizadorDeTexto analizador = new AnalizadorDeTexto();
-		Ubicacion ubicacionDestino = analizador.devolverObjetoUbicacion(nombreUbicacionDestino, ubicaciones);
-		this.ubicacionActual = ubicacionDestino;
-	}*/
-	
 	public void desplazarse(Ubicacion ubicacionDestino) {
 		this.ubicacionActual = ubicacionDestino;
 	}
 
-	public void eliminarItem(Item item) { // al accionar el trigger, deberiamos eliminar el item del inventario
+	public void eliminarItem(Item item) {
 		this.inventario.remove(item);
 	}
 
@@ -122,4 +104,19 @@ public class Protagonista {
 	public String getNombre() {
 		return nombre;
 	}
+
+	public void lastimar() {
+		this.vida -= 2;
+		if (this.vida <= 0)
+			this.estaVivo = false;
+	}
+
+	public void aniadirVida() {
+		this.vida += 2;
+	}
+
+	public int getVida() {
+		return vida;
+	}
+
 }

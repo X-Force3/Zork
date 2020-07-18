@@ -9,6 +9,20 @@ public class Item {
 	private Numero numero;
 	private List<String> acciones;
 	private List<String> efectosSobre;
+	private String descripcion;
+
+	public Item() {
+		
+		this.nombre = " ";
+	}
+	
+	public String getDescricpion() {
+		return descripcion;
+	}
+
+	public void setDescricpion(String descricpion) {
+		this.descripcion = descricpion;
+	}
 
 	public Item(String nombre, Genero genero, Numero numero) {
 		super();

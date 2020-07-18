@@ -1,6 +1,5 @@
 package componentes;
 
-import java.awt.Image;
 import java.awt.image.BufferedImage;
 
 public class ImagenUbicacion {
@@ -15,13 +14,12 @@ public class ImagenUbicacion {
 	public ImagenUbicacion( String nombre,BufferedImage img) {
 		this.img = img;
 		this.nombre = nombre;
-		this.y = JuegoJFrame.HEIGHT_GAME * 3/4 - img.getHeight();
+		this.y = JuegoJFrame.HEIGHT_GAME * 4/5 - img.getHeight();
 	}
 
 	@Override
 	public String toString() {
 		return "IU [n=" + nombre + ", x=" + x + ", y=" + y + "]";
 	}
-
 	
 }
