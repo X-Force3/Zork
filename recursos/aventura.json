@@ -302,14 +302,14 @@ Precisamente, est�s ubicado en el bosque, en el frente de una casa con una pue
       ],
       "conexiones": [
         {
-          "direccion": "este",
-          "ubicacionDestino": "jardin",
-          "obstaculo": "loro"
-        },
-        {
           "direccion": "oeste",
           "ubicacionDestino": "lancha",
           "obstaculo": "null"
+        },
+        {
+          "direccion": "este",
+          "ubicacionDestino": "jardin",
+          "obstaculo": "loro"
         }
       ]
     },
@@ -493,7 +493,7 @@ Precisamente, est�s ubicado en el bosque, en el frente de una casa con una pue
       ],
       "conexiones": [
         {
-          "direccion": "oeste",
+          "direccion": "este",
           "ubicacionDestino": "bosque",
           "obstaculo": "null"
         }
