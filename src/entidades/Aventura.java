@@ -8,6 +8,7 @@ import java.util.Map;
 import componentes.InputTextListener;
 import componentes.JuegoJFrame;
 import juego.ManejoArchivos;
+import juego.ArchivoTexto;
 
 public class Aventura implements InputTextListener{
 
@@ -17,6 +18,7 @@ public class Aventura implements InputTextListener{
 	private Protagonista protagonista;
 	
 	private JuegoJFrame ventanaJuego;
+	private ArchivoTexto archivo;
 	
 	public Aventura(String pathAventura,String nombreJugador) {
 		cargarAventura(pathAventura, nombreJugador);
@@ -38,6 +40,7 @@ public class Aventura implements InputTextListener{
 		ubicaciones = manejoArchivos.getUbicacionesMap();
 		configuracion = manejoArchivos.getConfiguracion();
 		this.protagonista = new Protagonista(nombreJugador,manejoArchivos.getUbicaciones().get(0));
+		this.archivo =  new ArchivoTexto("Historial.txt");
 		
 		ventanaJuego = new JuegoJFrame(this,configuracion.getTitulo());
 	}
@@ -251,6 +254,7 @@ public class Aventura implements InputTextListener{
 							&& endgame.verificarVidaEndgame(this.protagonista, entrada)) {
 				salida = endgame.ejecutarFinal(this.protagonista);
 				ventanaJuego.finalizar(protagonista.getNombre());
+				
 			}
 		
 		}
@@ -322,6 +326,7 @@ public class Aventura implements InputTextListener{
 			//fin = true;
 		}
 		
+		this.archivo.escribirArchivoOut(newText, salida);
 		ventanaJuego.setText(salida);
 	}
 
