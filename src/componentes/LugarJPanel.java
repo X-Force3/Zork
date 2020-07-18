@@ -60,7 +60,7 @@ public class LugarJPanel extends JPanel {
 			g2d.drawString("VIDA", 20, 25);
 			g2d.setColor(Color.GREEN);
 			g2d.drawRect(55, 15, ANCHO_VIDA, 15);
-			g2d.fillRect(55, 15,(ANCHO_VIDA * (vida / 10)), 15);
+			g2d.fillRect(55, 15,  (int)(ANCHO_VIDA *((float)vida / 10)), 15);
 			
 			// dibuja items y npcs
 			for(int i=0; i < imagenes.size(); i++) {

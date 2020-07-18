@@ -77,6 +77,7 @@ public class JuegoJFrame extends JFrame implements Runnable {
 			finDeJuego = true;
 			juegoPanel.mostrarFinDeJuego();
 			inputPanel.deshabilitar();
+			textoPanel.updateText("No tienes mas vida.");
 		}
 	}
 
