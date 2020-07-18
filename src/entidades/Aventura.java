@@ -215,7 +215,7 @@ public class Aventura implements InputTextListener{
 				lugar = analizador.contieneObstaculoLugar(entrada, this.protagonista.getUbicacionActual().getLugares());
 				if (lugar.getNombre() != " ") {
 					salida = lugar.verificarTrigger(item);
-					this.protagonista.eliminarItem(item);
+					
 				}
 				else if(analizador.afectaASiMismo(item.getEfectosSobre()) == true) {
 					this.protagonista.aniadirVida();
