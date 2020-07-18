@@ -11,13 +11,13 @@ public class Sprite {
 
 	int ancho;
 	int alto;
-	
+
 	private int cantHorizontal;
 	private int cantVertical;
 	private int posicion;
-	
+
 	int cantTotal;
-	
+
 	private Image imagen;
 
 	public Sprite(int anchoTotalPx, int altoTotalPx, int cantHorizontal, int cantVertical, String spriteImagen) {
@@ -41,12 +41,11 @@ public class Sprite {
 		this.cantVertical = 1;
 		this.cantTotal = 1;
 		imagen = Toolkit.getDefaultToolkit().getImage(spriteImagen);
-		//bi = new BufferedImage(ancho, alto, BufferedImage.TYPE_INT_RGB);
 	}
-	
+
 	/**
 	 * Actualiza la cuadrícula siguiente a dibujar
-	 * */
+	 */
 	public void actualizar() {
 		posicion++;
 		if (posicion > cantTotal)
@@ -56,18 +55,17 @@ public class Sprite {
 	public void setCantTotal(int cantTotal) {
 		this.cantTotal = cantTotal;
 	}
-	
+
 	public int getMX() {
-		return (posicion % cantHorizontal)*ancho;
+		return (posicion % cantHorizontal) * ancho;
 	}
 
 	public int getMY() {
-		return (posicion / (cantVertical+1))*alto;
+		return (posicion / (cantVertical + 1)) * alto;
 	}
 
 	public Image getImagen() {
 		return imagen;
 	}
-	
-	
+
 }

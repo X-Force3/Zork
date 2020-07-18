@@ -16,7 +16,7 @@ public class Npc {
 	public Npc() {
 		this.nombre = " ";
 	}
-	
+
 	public Npc(String nombre, Genero genero, Numero numero, String descripcion) {
 		super();
 		this.nombre = nombre;
@@ -57,31 +57,33 @@ public class Npc {
 		return triggers;
 	}
 
-	public String presentarse() { // cambiar diag de clase
+	public String presentarse() {
 		return this.descripcion;
 	}
 
-	public String hablar() { // cambiar diag de clase
+	public String hablar() {
 		return this.dialogo;
 	}
 
 	/**
-	 * @return pair.second true si se efectu� el trigger
-	 * false si no se pudo, item equivocado.
-	 * */
-	public Pair<String,Boolean> verificarTrigger(Item item, Protagonista protagonista) {
-		Trigger lastimar = new Trigger("item", " ", "No realizaste el ataque de manera correcta, esto te lastimó. Ahora tienes menos puntos de vida...", "lastimar");
-		
+	 * @return pair.second true si se efectu� el trigger false si no se pudo, item
+	 *         equivocado.
+	 */
+	public Pair<String, Boolean> verificarTrigger(Item item, Protagonista protagonista) {
+		Trigger lastimar = new Trigger("item", " ",
+				"No realizaste el ataque de manera correcta, esto te lastimó. Ahora tienes menos puntos de vida...",
+				"lastimar");
+
 		for (Trigger elemento : this.triggers) {
-			if ( elemento.getType().equals("item") && ( item.getNombre().equals( elemento.getThing() ) ) ) {
+			if (elemento.getType().equals("item") && (item.getNombre().equals(elemento.getThing()))) {
 				this.ejecutarTrigger(elemento, protagonista);
 				protagonista.eliminarItem(item);
-				return new Pair<String,Boolean>(elemento.getOn_trigger(),true);
+				return new Pair<String, Boolean>(elemento.getOn_trigger(), true);
 			}
 		}
-		
+
 		this.ejecutarTrigger(lastimar, protagonista);
-		return new Pair<String,Boolean>(lastimar.getOn_trigger(),false);
+		return new Pair<String, Boolean>(lastimar.getOn_trigger(), false);
 	}
 
 	public void ejecutarTrigger(Trigger trigger, Protagonista protagonista) {
@@ -91,25 +93,23 @@ public class Npc {
 		// obstaculo de una coneccion, ya no lo encuentr
 		// este else if, podria ser otra ejemplo de que accion puede realizar ese
 		// trigger
-		else if(trigger.getAfter_trigger().equals("matar")) {
+		else if (trigger.getAfter_trigger().equals("matar")) {
 			protagonista.morir();
-		}
-		else if(trigger.getAfter_trigger().equals("lastimar")) {
-			protagonista.lastimar();	// donde el metodo lastimar le quita X cantidad de vida
+		} else if (trigger.getAfter_trigger().equals("lastimar")) {
+			protagonista.lastimar(); // donde el metodo lastimar le quita X cantidad de vida
 		}
 	}
 
 	public String conjugarNpc() {
 		String articulo = "";
-		if(this.nombre != "borrado") {
+		if (this.nombre != "borrado") {
 			if (this.genero == Genero.FEMALE) {
 				articulo = this.numero == Numero.SINGULAR ? " una" : "";
 			} else {
 				articulo = this.numero == Numero.SINGULAR ? " un" : "";
 			}
 			return "Hay" + articulo + " " + this.nombre + ".";
-		}
-		else
+		} else
 			return "";
 	}
 

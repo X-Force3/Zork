@@ -7,7 +7,7 @@ public class Lugar {
 	private String nombre;
 	private Genero genero;
 	private Numero numero;
-	private String segundoNombre;// Juani: Este atributo s�lo lo tienen los lugares que act�an como obst�culos.
+	private String segundoNombre;
 	private List<Item> items;
 	private List<Trigger> triggers;
 	private String descripcion;
@@ -15,7 +15,7 @@ public class Lugar {
 	public Lugar() {
 		this.nombre = " ";
 	}
-	
+
 	public Lugar(String nombre, Genero genero, Numero numero, String descripcion) {
 		super();
 		this.nombre = nombre;
@@ -95,15 +95,10 @@ public class Lugar {
 	}
 
 	public void ejecutarTrigger(Trigger trigger) {
-		// el trigger podria cambiar el nombre del lugar talvez. asi, cuando el jugador
-		// quiera cambiar de ubicacion,
-		// el metodo de buscar obstaculo no lo encuentre y lo deje
 		if (trigger.getAfter_trigger().equals("remove"))
 			this.nombre = "borrado";
-		if (trigger.getAfter_trigger().equals("cambiar nombre")) // ver lo del posible atributo de trigger "descripcion"
-			this.nombre = this.segundoNombre;// Juani: Reemplac� la l�nea que le asignaba "" por esta que le asigna el
-												// segundo nombre...
-//		O sea, el nombre del lugar luego de ejecutar el Trigger.
+		if (trigger.getAfter_trigger().equals("cambiar nombre"))
+			this.nombre = this.segundoNombre;
 
 	}
 
