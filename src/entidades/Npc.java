@@ -2,6 +2,8 @@ package entidades;
 
 import java.util.List;
 
+import javafx.util.Pair;
+
 public class Npc {
 
 	private String nombre;
@@ -63,18 +65,22 @@ public class Npc {
 		return this.dialogo;
 	}
 
-	public String verificarTrigger(Item item, Protagonista protagonista) {
+	/**
+	 * @return pair.second true si se efectuó el trigger
+	 * false si no se pudo, item equivocado.
+	 * */
+	public Pair<String,Boolean> verificarTrigger(Item item, Protagonista protagonista) {
 		Trigger lastimar = new Trigger("item", " ", "el ataque salio mal y te lastimo", "lastimar");
 		
 		for (Trigger elemento : this.triggers) {
 			if ( elemento.getType().equals("item") && ( item.getNombre().equals( elemento.getThing() ) ) ) {
 				this.ejecutarTrigger(elemento, protagonista);
-				return elemento.getOn_trigger();
+				return new Pair<String,Boolean>(elemento.getOn_trigger(),true);
 			}
 		}
 		
 		this.ejecutarTrigger(lastimar, protagonista);
-		return lastimar.getOn_trigger();
+		return new Pair<String,Boolean>(lastimar.getOn_trigger(),false);
 	}
 
 	public void ejecutarTrigger(Trigger trigger, Protagonista protagonista) {

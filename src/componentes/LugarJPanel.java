@@ -51,8 +51,8 @@ public class LugarJPanel extends JPanel {
 
 		if (endgameMensaje == null) {
 			// dibuja items y npcs
-			for (ImagenUbicacion img : imagenes) {
-				g2d.drawImage(img.img, img.x, img.y, this);
+			for(int i=0; i < imagenes.size(); i++) {
+				g2d.drawImage(imagenes.get(i).img, imagenes.get(i).x, imagenes.get(i).y, this);
 			}
 
 			// dibuja el personaje

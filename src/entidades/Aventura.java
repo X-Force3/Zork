@@ -7,6 +7,7 @@ import java.util.Map;
 
 import componentes.InputTextListener;
 import componentes.JuegoJFrame;
+import javafx.util.Pair;
 import juego.ManejoArchivos;
 
 public class Aventura implements InputTextListener{
@@ -197,8 +198,12 @@ public class Aventura implements InputTextListener{
 		if (!accion.equals(" ") && !accion.equals("agarrar") && !accion.equals("tomar") && !accion.equals("guardar")) {
 			npc = analizador.contieneObstaculoNpc(entrada, this.protagonista.getUbicacionActual().getNpcs());
 			if (npc.getNombre() != " ") {
-				ventanaJuego.actualizarNpc(npc.getNombre());
-				salida = npc.verificarTrigger(item, this.protagonista);
+				String nombreAntes = npc.getNombre();
+				Pair<String,Boolean> salidaYefecto = npc.verificarTrigger(item, this.protagonista);
+				salida = salidaYefecto.getKey();
+				if(salidaYefecto.getValue()) {
+					ventanaJuego.actualizarNpc(nombreAntes);
+				}
 				this.protagonista.eliminarItem(item);// Luego de que el protagonista utiliza el �tem, se elimina de su
 														// inventario.
 			} else {
