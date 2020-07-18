@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.awt.event.WindowEvent;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
@@ -18,6 +19,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import entidades.Aventura;
 
@@ -35,8 +38,11 @@ public class MenuJFrame extends JFrame {
 	private JLabel lblAventuraLabel;
 	private JButton btnBoton;
 	private JLabel lblNameLabel;
+	
+	private CompletarDatos completarDatos;
 
-	public MenuJFrame() {
+	public MenuJFrame(CompletarDatos completarDatos) {
+		this.completarDatos = completarDatos;
 		setTitle("Menu");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 425, 220);
@@ -76,15 +82,9 @@ public class MenuJFrame extends JFrame {
 		btnBoton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String nombreJugador = txtNameField.getText();
-				Aventura aventura;
-				if (comboBox.getSelectedIndex() == 0) {
-					aventura = new Aventura(AVENTURA_1, nombreJugador);
-				} else {
-					aventura = new Aventura(AVENTURA_PROFE, nombreJugador);
-				}
+				String pathAventura = comboBox.getSelectedIndex() == 0? AVENTURA_1 : AVENTURA_PROFE;
+				completarDatos.datosCompletados(pathAventura, nombreJugador);
 				desaparecer();
-				aventura.comenzar();
-
 			}
 		});
 
@@ -101,22 +101,31 @@ public class MenuJFrame extends JFrame {
 		txtNameField.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		txtNameField.setText("");
 
-		txtNameField.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusLost(FocusEvent e) {
-				if (!txtNameField.getText().equals("")) {
-					btnBoton.setEnabled(true);
-				}
-			}
-		});
+		txtNameField.getDocument().addDocumentListener(new DocumentListener() {
+			  public void changedUpdate(DocumentEvent e) {
+				    warn();
+				  }
+				  public void removeUpdate(DocumentEvent e) {
+				    warn();
+				  }
+				  public void insertUpdate(DocumentEvent e) {
+				    warn();
+				  }
+
+				  public void warn() {
+						if (!txtNameField.getText().equals("")) {
+							btnBoton.setEnabled(true);
+						}
+				  }
+				});
+		
 		txtNameField.setBounds(41, 118, 172, 20);
 		txtNameField.setColumns(10);
 		panel.add(txtNameField);
 	}
 
 	private void desaparecer() {
-		// this.setVisible(false);
-		this.dispose();
+		dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
 	}
 
 	private class PanelConFondo extends JPanel {

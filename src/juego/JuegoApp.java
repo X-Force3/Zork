@@ -1,6 +1,10 @@
 package juego;
 
+import java.awt.event.WindowEvent;
+
+import componentes.CompletarDatos;
 import componentes.MenuJFrame;
+import entidades.Aventura;
 
 public class JuegoApp {
 
@@ -18,7 +22,14 @@ public class JuegoApp {
 		// borrar luego
 //		Aventura a = new Aventura("recursos/aventuraProfe.json", "Pepe");
 //		a.comenzar();
-		MenuJFrame ventanaJuego = new MenuJFrame();
+		new MenuJFrame(new CompletarDatos() {
+
+			@Override
+			public void datosCompletados(String pathAventura, String nombreJugador) {
+				new Aventura(pathAventura,nombreJugador).comenzar();
+			}
+			
+		});
 	}
 
 }
