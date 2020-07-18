@@ -66,7 +66,7 @@ public class Npc {
 	}
 
 	/**
-	 * @return pair.second true si se efectuó el trigger
+	 * @return pair.second true si se efectuï¿½ el trigger
 	 * false si no se pudo, item equivocado.
 	 * */
 	public Pair<String,Boolean> verificarTrigger(Item item, Protagonista protagonista) {
@@ -75,6 +75,7 @@ public class Npc {
 		for (Trigger elemento : this.triggers) {
 			if ( elemento.getType().equals("item") && ( item.getNombre().equals( elemento.getThing() ) ) ) {
 				this.ejecutarTrigger(elemento, protagonista);
+				protagonista.eliminarItem(item);
 				return new Pair<String,Boolean>(elemento.getOn_trigger(),true);
 			}
 		}

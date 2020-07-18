@@ -147,7 +147,9 @@
         "guardar",
         "consumir",
         "beber", 
-        "usar"
+        "usar",
+	"atacar",
+	"tirar"
       ],
       "efectosSobre": [
         "item",
@@ -178,12 +180,14 @@
       "numero": "singular",
       "acciones": [
         "abrir",
-        "ver"
+        "ver",
+	"observar",
+	"mirar"
       ],
       "efectosSobre": [
         "item"
       ], 
-      "descripcion": ""
+      "descripcion": "No hay nada, la caja esta vacia"
     },
     {
       "nombre": "inodoro",
@@ -227,7 +231,8 @@
       "acciones": [
         "tomar",
         "agarrar",
-        "guardar"
+        "guardar",
+	"atacar"
       ],
       "efectosSobre": [
         "item"
