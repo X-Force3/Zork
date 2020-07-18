@@ -217,7 +217,8 @@ public class Aventura implements InputTextListener{
 					salida = lugar.verificarTrigger(item);
 					this.protagonista.eliminarItem(item);
 				}
-				else if(analizador.afectaASiMismo(item.getEfectosSobre()) == true) {
+				else if(analizador.afectaASiMismo(item.getEfectosSobre()) == true &&
+						(accion.equals("beber") || accion.equals("consumir") || accion.equals("usar"))) {
 					this.protagonista.aniadirVida();
 					ventanaJuego.setVida(protagonista.getVida());
 					this.protagonista.eliminarItem(item);

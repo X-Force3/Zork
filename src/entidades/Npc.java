@@ -70,7 +70,7 @@ public class Npc {
 	 * false si no se pudo, item equivocado.
 	 * */
 	public Pair<String,Boolean> verificarTrigger(Item item, Protagonista protagonista) {
-		Trigger lastimar = new Trigger("item", " ", "el ataque salio mal y te lastimo", "lastimar");
+		Trigger lastimar = new Trigger("item", " ", "No realizaste el ataque de manera correcta, el animal te lastimó. Ahora tienes menos puntos de vida...", "lastimar");
 		
 		for (Trigger elemento : this.triggers) {
 			if ( elemento.getType().equals("item") && ( item.getNombre().equals( elemento.getThing() ) ) ) {
