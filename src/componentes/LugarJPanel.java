@@ -48,7 +48,7 @@ public class LugarJPanel extends JPanel {
 		if (bg != null) {
 			g2d.drawImage(bg, 0, 0, ancho, alto, this);
 		} else {
-			g2d.setColor(Color.WHITE);
+			g2d.setColor(vida > 0? Color.WHITE : Color.BLACK);
 			g2d.fillRect(0, 0, ancho, alto);
 		}
 
@@ -59,7 +59,8 @@ public class LugarJPanel extends JPanel {
 			g2d.setFont(new Font("Dialog", Font.BOLD, 12));
 			g2d.drawString("VIDA", 20, 25);
 			g2d.setColor(Color.GREEN);
-			g2d.fillRect(55, 15,(ANCHO_VIDA * vida / 10) - (40 + 15), 15);
+			g2d.drawRect(55, 15, ANCHO_VIDA, 15);
+			g2d.fillRect(55, 15,(ANCHO_VIDA * (vida / 10)), 15);
 			
 			// dibuja items y npcs
 			for(int i=0; i < imagenes.size(); i++) {
@@ -75,6 +76,8 @@ public class LugarJPanel extends JPanel {
 					positionChX + personajeSprite.ancho / 2, positionChY + personajeSprite.alto / 2, mx, my,
 					mx + personajeSprite.ancho, my + personajeSprite.alto, this);
 		} else {
+			//endgame
+			g2d.setColor(g2d.getColor() == Color.BLACK?Color.WHITE:Color.BLACK);
 			g2d.setFont(new Font("Dialog", Font.BOLD, 24));
 			g2d.drawString(String.format("%15s", endgameMensaje), ancho*1/3, alto*4/6);
 		}
@@ -191,6 +194,12 @@ public class LugarJPanel extends JPanel {
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	public void mostrarFinDeJuego() {
+		bg = null;
+		endgameMensaje = "¡Perdiste!";
+		repaint();
 	}
 
 	@Override

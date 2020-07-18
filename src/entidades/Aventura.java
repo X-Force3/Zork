@@ -219,6 +219,7 @@ public class Aventura implements InputTextListener{
 				}
 				else if(analizador.afectaASiMismo(item.getEfectosSobre()) == true) {
 					this.protagonista.aniadirVida();
+					ventanaJuego.setVida(protagonista.getVida());
 					this.protagonista.eliminarItem(item);
 					salida = "Te curaste";
 				}
