@@ -1,4 +1,4 @@
-package entidades;
+package interacciones;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,6 +8,8 @@ import java.util.Map;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import entidades.*;
 
 public class EndgameTest {
 
@@ -52,24 +54,30 @@ public class EndgameTest {
 
 		accionesItemsSuelo = new ArrayList<String>();
 		accionesItemsSuelo.add("usar");
+		accionesItemsSuelo.add("agarrar");
 
-		barreta = new Item("barreta", Genero.FEMALE, Numero.SINGULAR, accionesItemsSuelo, efectosItemsSuelo);
-		espejo = new Item("espejo", Genero.MALE, Numero.SINGULAR, accionesItemsSuelo, efectosItemsSuelo);
-		rociadorCervezaRaiz = new Item("rociador con cerveza de raiz", Genero.MALE, Numero.SINGULAR, accionesItemsSuelo,
-				efectosItemsSuelo);
+		barreta = new Item("barreta", Genero.FEMALE, Numero.SINGULAR);
+		espejo = new Item("espejo", Genero.MALE, Numero.SINGULAR);
+		rociadorCervezaRaiz = new Item("rociador con cerveza de raiz", Genero.MALE, Numero.SINGULAR);
+		barreta.setAcciones(accionesItemsSuelo);
+		espejo.setAcciones(accionesItemsSuelo);
+		rociadorCervezaRaiz.setAcciones(accionesItemsSuelo);
 
 		itemsSuelo = new ArrayList<Item>();
 		itemsSuelo.add(barreta);
 		itemsSuelo.add(rociadorCervezaRaiz);
 		itemsSuelo.add(espejo);
 
-		sueloMuelle = new Lugar("suelo", null, Genero.MALE, Numero.SINGULAR, itemsSuelo, null, null);
-
+		sueloMuelle = new Lugar("suelo", Genero.MALE, Numero.SINGULAR, null);
+		sueloMuelle.setItems(itemsSuelo);
+		
 		lugaresMuelle = new ArrayList<Lugar>();
 		lugaresMuelle.add(sueloMuelle);
 
-		taberna = new Ubicacion("taberna", Genero.FEMALE, Numero.SINGULAR, "Estás en una taberna.", null, null, null);
-		playa = new Ubicacion("playa", Genero.FEMALE, Numero.SINGULAR, "Estás en la playa.", null, null, null);
+		taberna = new Ubicacion("taberna", Genero.FEMALE, Numero.SINGULAR, "EstÃ¡s en una taberna.");
+		playa = new Ubicacion("playa", Genero.FEMALE, Numero.SINGULAR, "EstÃ¡s en la playa.");
+		taberna.setConexiones(new ArrayList<Conexion>());
+		playa.setConexiones(new ArrayList<Conexion>());
 
 		surMuelle = new Conexion(Direccion.SUR, "taberna", null);
 		esteMuelle = new Conexion(Direccion.ESTE, "playa", null);
@@ -78,8 +86,9 @@ public class EndgameTest {
 		conexionesMuelle.add(surMuelle);
 		conexionesMuelle.add(esteMuelle);
 		
-		muelle = new Ubicacion("muelle", Genero.MALE, Numero.SINGULAR, "Estás en un muelle.", lugaresMuelle, null,
-				conexionesMuelle);
+		muelle = new Ubicacion("muelle", Genero.MALE, Numero.SINGULAR, "EstÃ¡s en un muelle.");
+		muelle.setConexiones(conexionesMuelle);
+		muelle.setLugares(lugaresMuelle);
 		
 		ubicaciones = new HashMap<String, Ubicacion>();
 		ubicaciones.put(muelle.getNombre(), muelle);
@@ -87,16 +96,16 @@ public class EndgameTest {
 		ubicaciones.put(playa.getNombre(), playa);
 
 		itemEnUbicacion = new Endgame("itemEnUbicacion", "", barreta.getNombre(),
-				"Felicitaciones! Has ganado el juego, lograste llegar a la taberna con la barreta...",
+				"Â¡Felicitaciones! Has ganado el juego, lograste llegar a la taberna con la barreta...",
 				taberna.getNombre());
 		item = new Endgame("item", "", espejo.getNombre(),
-				"Felicitaciones! Has ganado el juego, lograste conseguir el espejo...", "");
+				"Â¡Felicitaciones! Has ganado el juego, lograste conseguir el espejo...", "");
 		ubicacion = new Endgame("ubicacion", "", "",
-				"Felicitaciones! Has ganado el juego, lograste llegar a la playa...", playa.getNombre());
+				"Â¡Felicitaciones! Has ganado el juego, lograste llegar a la playa...", playa.getNombre());
 		accion = new Endgame("accion", "beber", rociadorCervezaRaiz.getNombre(),
-				"Felicitaciones! Has ganado el juego, bebiste la cerveza de raíz...", "");
+				"Â¡Felicitaciones! Has ganado el juego, bebiste la cerveza de raÃ­z...", "");
 		muerte = new Endgame("muerte", "", "",
-				"El animal te atacó causándote heridas mortales. Has muerto...", "");
+				"El animal te atacÃ³ causÃ¡ndote heridas mortales. Has muerto...", "");
 
 		endgamesAventura = new ArrayList<Endgame>();
 		endgamesAventura.add(item);
@@ -107,16 +116,17 @@ public class EndgameTest {
 		
 		configuracionAventura = new Configuracion(null, null, endgamesAventura);
 		aventura = new Aventura(configuracionAventura, ubicaciones, new Protagonista("X-Force", muelle));
+		aventura.setAnalizador(new AnalizadorDeTexto());
 	}
 
 	@Test
 	public void ejecutarEndgameItem() {
-
+		
 		String entrada = "agarrar el espejo";
 
 		aventura.quiereAgarrarItem(entrada);
 
-		Assert.assertEquals("Felicitaciones! Has ganado el juego, lograste conseguir el espejo...",
+		Assert.assertEquals("Â¡Felicitaciones! Has ganado el juego, lograste conseguir el espejo...",
 				aventura.verificarEndgame(entrada));
 	}
 	
@@ -129,7 +139,7 @@ public class EndgameTest {
 		entrada = "ir a la taberna";
 		aventura.tratarObstaculo(aventura.quiereMoverseDeUbicacion(entrada));
 
-		Assert.assertEquals("Felicitaciones! Has ganado el juego, lograste llegar a la taberna con la barreta...",
+		Assert.assertEquals("Â¡Felicitaciones! Has ganado el juego, lograste llegar a la taberna con la barreta...",
 				aventura.verificarEndgame(entrada));
 	}
 	
@@ -139,7 +149,7 @@ public class EndgameTest {
 		String entrada = "ir a la playa";
 		aventura.tratarObstaculo(aventura.quiereMoverseDeUbicacion(entrada));
 
-		Assert.assertEquals("Felicitaciones! Has ganado el juego, lograste llegar a la playa...",
+		Assert.assertEquals("Â¡Felicitaciones! Has ganado el juego, lograste llegar a la playa...",
 				aventura.verificarEndgame(entrada));
 	}
 	
@@ -152,7 +162,7 @@ public class EndgameTest {
 		entrada = "beber el rociador con cerveza de raiz";
 		aventura.realizarAccionConItem(entrada, aventura.quiereRealizarAccionConItem(entrada));
 
-		Assert.assertEquals("Felicitaciones! Has ganado el juego, bebiste la cerveza de raíz...",
+		Assert.assertEquals("Â¡Felicitaciones! Has ganado el juego, bebiste la cerveza de raÃ­z...",
 				aventura.verificarEndgame(entrada));
 	}
 	
@@ -162,7 +172,8 @@ public class EndgameTest {
 		String entrada = "random";
 		aventura.getProtagonista().morir();
 
-		Assert.assertEquals("El animal te atacó causándote heridas mortales. Has muerto...",
+		Assert.assertEquals("El animal te atacÃ³ causÃ¡ndote heridas mortales. Has muerto...",
 				aventura.verificarEndgame(entrada));
 	}
 }
+

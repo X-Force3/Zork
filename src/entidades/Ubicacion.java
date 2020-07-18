@@ -13,14 +13,26 @@ public class Ubicacion {
 	private List<Npc> npcs;
 	private List<Conexion> conexiones;
 
-	public Ubicacion(String nombre, Genero genero, Numero numero, String descripcion, List<Lugar> lugares,
-			List<Npc> npcs, List<Conexion> conexiones) {
+	public Ubicacion() {
+		this.nombre = " ";
+	}
+	
+	public Ubicacion(String nombre, Genero genero, Numero numero, String descripcion) {
 		this.nombre = nombre;
 		this.genero = genero;
 		this.numero = numero;
 		this.descripcion = descripcion;
+	}
+
+	public void setLugares(List<Lugar> lugares) {
 		this.lugares = lugares;
+	}
+
+	public void setNpcs(List<Npc> npcs) {
 		this.npcs = npcs;
+	}
+
+	public void setConexiones(List<Conexion> conexiones) {
 		this.conexiones = conexiones;
 	}
 
@@ -74,7 +86,7 @@ public class Ubicacion {
 				if (lugar.getNombre() != "borrado")
 					cadena += " " + lugar.describirObjetosDisponibles();
 			}
-
+		
 		if (this.npcs != null)
 			for (Npc npc : this.npcs) {
 				if (npc.getNombre() != "borrado")
@@ -85,6 +97,7 @@ public class Ubicacion {
 			for (int i = 0; i < conexiones.size(); i++) {
 				cadena +=  "\n" + conexiones.get(i).conjugarConexion(ubicacionesConectadas.get(i) );
 			}
+		
 		return cadena;
 	}
 	

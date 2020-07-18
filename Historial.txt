@@ -1,0 +1,8 @@
+> tomar piedra
+En tu inventario hay una piedra.
+> arrojar piedra loro
+El loro cae al suelo luego de ser impactado por la piedra. Ya no molestar�. La piedra cae al mar, no puedes recuperarla... �Ya puedes moverte hacia el jard�n!
+> ir jardin
+Estas en jard�n de la casa. Se puede observar una ventana y otra puerta, ambas totalmente blindadas y cerradas. En el techo, en el sur de la casa, se llega a ver una linda chimenea por la que puedes acceder a un living. En el suelo del patio trasero hay una navaja. Hay una serpiente.
+Al oeste se puede ir hacia un bosque.
+Al sur se puede ir hacia un living.

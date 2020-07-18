@@ -14,7 +14,6 @@ public class JuegoApp {
 			Aventura aventura = new Aventura(menu.getPathAventuraElegida(), menu.getNombreJugador());
 			aventura.comenzar();
 		}
-
 	}
 
 }

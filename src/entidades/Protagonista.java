@@ -9,6 +9,7 @@ public class Protagonista {
 	private List<Item> inventario;
 	private Ubicacion ubicacionActual;
 	private boolean estaVivo;
+	private int vida = 10;
 
 	public Protagonista(String nombreJugador, Ubicacion ubicacionInicial) {
 		nombre = nombreJugador;
@@ -22,22 +23,23 @@ public class Protagonista {
 	}
 
 	public void morir() {
+		vida = 0;
 		this.estaVivo = false;
 	}
-	
+
 	public Ubicacion getUbicacionActual() {
 		return this.ubicacionActual;
 	}
 
-	public boolean añadirItem(Item item) {
-		boolean itemAñadido = false;
+	public boolean anadirItem(Item item) {
+		boolean itemAnadido = false;
 
 		if (inventario.contains(item) == false) {
 			inventario.add(item);
-			itemAñadido = true;
+			itemAnadido = true;
 		}
 
-		return itemAñadido;
+		return itemAnadido;
 	}
 
 	public String hablar(String dialogo) {
@@ -46,19 +48,19 @@ public class Protagonista {
 
 		switch (dialogo) {
 		case "Presentacion":
-			respuesta = "Hola! Mi nombre es " + nombre;
+			respuesta = "Â¡Hola! Mi nombre es " + nombre + ".";
 			break;
 
-		case "¡No hay nada que me digas que me haga cambiar de opinión!":
+		case "Â¡No hay nada que me digas que me haga cambiar de opiniÃ³n!":
 			respuesta = "Tengo que ir por otro camino";
 			break;
 
-		case "Es la segunda ves que venís. Es hora de hablar sobre tus inquietudes...":
+		case "Es la segunda ves que venÃ­s. Es hora de hablar sobre tus inquietudes...":
 			respuesta = "Estoy buscando...";
 			break;
 
-		case "Hola, soy Messi. ":
-			respuesta = "Hola Messi!";
+		case "Hola, soy Messi.":
+			respuesta = "Â¡Hola Messi!";
 			break;
 
 		default:
@@ -68,31 +70,11 @@ public class Protagonista {
 		return respuesta;
 	}
 
-	/// El protagonista pide si puede desplazarse a un place, o a una conexion
-	/// dentro de la ubicacion
-//	public boolean desplazarse(Ubicacion ubicacionDestino) {
-//
-//		for (Conexion conexion : this.getUbicacionActual().getConexiones()) {
-//			if (conexion.getUbicacionDestino().equals(ubicacionDestino)) {
-//				this.ubicacionActual = ubicacionDestino;
-//				return true;
-//			}
-//		}
-//
-//		return false;
-//	} No se utiliza en la clase Aventura el desplazarse según la Ubicacion, pero sí el desplazarse según la Conexion.
-
-	/*public void desplazarse(String nombreUbicacionDestino, List<Ubicacion> ubicaciones) {
-		AnalizadorDeTexto analizador = new AnalizadorDeTexto();
-		Ubicacion ubicacionDestino = analizador.devolverObjetoUbicacion(nombreUbicacionDestino, ubicaciones);
-		this.ubicacionActual = ubicacionDestino;
-	}*/
-	
 	public void desplazarse(Ubicacion ubicacionDestino) {
 		this.ubicacionActual = ubicacionDestino;
 	}
 
-	public void eliminarItem(Item item) { // al accionar el trigger, deberiamos eliminar el item del inventario
+	public void eliminarItem(Item item) {
 		this.inventario.remove(item);
 	}
 
@@ -104,7 +86,7 @@ public class Protagonista {
 
 		String queHay = "";
 		if (inventario.isEmpty())
-			queHay = "no hay nada. Está vacío...";
+			queHay = "no hay nada. Estï¿½ vacï¿½o...";
 		else {
 			if (inventario.size() == 1) {
 				queHay = "hay " + inventario.get(0).conjugarItem();
@@ -122,4 +104,19 @@ public class Protagonista {
 	public String getNombre() {
 		return nombre;
 	}
+
+	public void lastimar() {
+		this.vida -= 2;
+		if (this.vida <= 0)
+			this.estaVivo = false;
+	}
+
+	public void aniadirVida() {
+		this.vida += 2;
+	}
+
+	public int getVida() {
+		return vida;
+	}
+
 }

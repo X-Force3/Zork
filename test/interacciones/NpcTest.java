@@ -1,4 +1,4 @@
-package entidades;
+package interacciones;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,6 +6,13 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import entidades.Genero;
+import entidades.Item;
+import entidades.Npc;
+import entidades.Numero;
+import entidades.Protagonista;
+import entidades.Trigger;
 
 public class NpcTest {
 
@@ -20,15 +27,16 @@ public class NpcTest {
 	@Before
 	public void setup() {
 		this.triggers = new ArrayList<Trigger>();
-		this.trigger = new Trigger("item", "ociador con cerveza de raiz",
-				"- '¡Me encanta la cerveza de raiz!' El pirata fantasma se veía entusiasmado por tu ofrecimiento... sin embargo,"
-						+ " cuando lo rociaste comenzó a desintegrarse. La mitad de arriba de su cuerpo se desvaneció, y las piernas inmediatamente echaron a correr.",
+		this.trigger = new Trigger("item", "rociador con cerveza de raiz",
+				"- 'Â¡Me encanta la cerveza de raiz!' El pirata fantasma se veÃ­a entusiasmado por tu ofrecimiento... sin embargo,"
+						+ " cuando lo rociaste comenzÃ³ a desintegrarse. La mitad de arriba de su cuerpo se desvaneciÃ³, y las piernas inmediatamente echaron a correr.",
 				"remove");
 		this.triggers.add(this.trigger);
 
 		this.npc = new Npc("pirata fantasma", Genero.MALE, Numero.SINGULAR,
-				"- '¡No puedes pasar!' El pirata fantasma no te dejará pasar",
-				"¡No hay nada que me digas que me haga cambiar de opinión!", this.triggers);
+				"- 'Â¡No puedes pasar!' El pirata fantasma no te dejarÃ¡ pasar");
+		this.npc.setDialogo("Â¡No hay nada que me digas que me haga cambiar de opinÃ³n!");
+		this.npc.setTriggers(triggers);
 
 		acciones = new ArrayList<String>();
 		efectosSobre = new ArrayList<String>();
@@ -37,25 +45,22 @@ public class NpcTest {
 		efectosSobre.add("Thanos");
 		efectosSobre.add("Suelo");
 		efectosSobre.add("Clavo");
-		item = new Item("ociador con cerveza de raiz", Genero.MALE, Numero.SINGULAR, acciones, efectosSobre);
+		item = new Item("rociador con cerveza de raiz", Genero.MALE, Numero.SINGULAR);
+		item.setAcciones(acciones);
+		item.setEfectosSobre(efectosSobre);
 		
 		protagonista = new Protagonista("Marcos", null);
 	}
-
+	
 	@Test
 	public void queRespondeCorrectamente() {
-		Assert.assertEquals(this.npc.hablar(), "¡No hay nada que me digas que me haga cambiar de opinión!");
-	}
-
-	@Test
-	public void queSePresenteCorrectamente() {
-		Assert.assertEquals(this.npc.presentarse(), "- '¡No puedes pasar!' El pirata fantasma no te dejará pasar");
+		Assert.assertEquals(this.npc.hablar(), "Â¡No hay nada que me digas que me haga cambiar de opinÃ³n!");
 	}
 
 	@Test
 	public void queEsAfectadoPorUnItem() {
-		String respuestaEsperada = "- '¡Me encanta la cerveza de raiz!' El pirata fantasma se veía entusiasmado por tu ofrecimiento... "
-				+ "sin embargo, cuando lo rociaste comenzó a desintegrarse. La mitad de arriba de su cuerpo se desvaneció, y las piernas "
+		String respuestaEsperada = "- 'Â¡Me encanta la cerveza de raiz!' El pirata fantasma se veÃ­a entusiasmado por tu ofrecimiento... "
+				+ "sin embargo, cuando lo rociaste comenzÃ³ a desintegrarse. La mitad de arriba de su cuerpo se desvaneciÃ³, y las piernas "
 				+ "inmediatamente echaron a correr.";
 		Assert.assertEquals(respuestaEsperada, this.npc.verificarTrigger(this.item, protagonista));
 		Assert.assertEquals("borrado", this.npc.getNombre());
@@ -68,4 +73,5 @@ public class NpcTest {
 		Assert.assertEquals(respuestaEsperada, this.npc.verificarTrigger(this.item, protagonista));
 		Assert.assertEquals("pirata fantasma", this.npc.getNombre());
 	}
+	
 }
