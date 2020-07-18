@@ -23,6 +23,7 @@ public class Protagonista {
 	}
 
 	public void morir() {
+		vida = 0;
 		this.estaVivo = false;
 	}
 	
@@ -133,4 +134,9 @@ public class Protagonista {
 	public void aniadirVida() {
 		this.vida += 2;
 	}
+
+	public int getVida() {
+		return vida;
+	}
+	
 }

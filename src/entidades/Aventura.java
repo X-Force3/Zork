@@ -75,6 +75,7 @@ public class Aventura implements InputTextListener{
 		String ini = this.configuracion.getBienvenida() +" " +  protagonista.getNombre() + ".\n" + describirUbicacion();
 		ventanaJuego.setText(ini);
 		ventanaJuego.setUbicacion(protagonista.getUbicacionActual());
+		ventanaJuego.setVida(protagonista.getVida());
 		ventanaJuego.run();
 		
 		/*while(!fin) {
@@ -207,6 +208,7 @@ public class Aventura implements InputTextListener{
 				if(salidaYefecto.getValue()) {
 					ventanaJuego.actualizarNpc(nombreAntes);
 				}
+				ventanaJuego.setVida(protagonista.getVida());
 				this.protagonista.eliminarItem(item);// Luego de que el protagonista utiliza el �tem, se elimina de su
 														// inventario.
 			} else {
@@ -218,7 +220,7 @@ public class Aventura implements InputTextListener{
 				else if(analizador.afectaASiMismo(item.getEfectosSobre()) == true) {
 					this.protagonista.aniadirVida();
 					this.protagonista.eliminarItem(item);
-					salida = "te curaste";
+					salida = "Te curaste";
 				}
 				else {
 					salida = "No entiendo por qu� quieres realizar eso...";

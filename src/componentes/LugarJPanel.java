@@ -25,6 +25,9 @@ public class LugarJPanel extends JPanel {
 	private int alto;
 
 	private Sprite personajeSprite;
+	
+	int vida = 0;
+	private static final int ANCHO_VIDA = 120;
 
 	BufferedImage bg;
 	List<ImagenUbicacion> imagenes = new ArrayList<ImagenUbicacion>();
@@ -50,6 +53,14 @@ public class LugarJPanel extends JPanel {
 		}
 
 		if (endgameMensaje == null) {
+			
+			// dibujo la barra de vida
+			g2d.setColor(Color.BLACK);
+			g2d.setFont(new Font("Dialog", Font.BOLD, 12));
+			g2d.drawString("VIDA", 20, 25);
+			g2d.setColor(Color.GREEN);
+			g2d.fillRect(55, 15,(ANCHO_VIDA * vida / 10) - (40 + 15), 15);
+			
 			// dibuja items y npcs
 			for(int i=0; i < imagenes.size(); i++) {
 				g2d.drawImage(imagenes.get(i).img, imagenes.get(i).x, imagenes.get(i).y, this);

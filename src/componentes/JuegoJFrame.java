@@ -70,6 +70,10 @@ public class JuegoJFrame extends JFrame implements Runnable {
 			}
 		}
 	}
+	
+	public void setVida(int vidaActual) {
+		juegoPanel.vida = vidaActual;
+	}
 
 	public void setText(String text) {
 		textoPanel.updateText("> " + text);// "> Estás en jardín de la casa.";
