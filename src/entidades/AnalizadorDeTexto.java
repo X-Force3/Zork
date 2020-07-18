@@ -82,5 +82,12 @@ public class AnalizadorDeTexto {
 		
 		return ubicacionVacia;
 	}
-
+	
+	public boolean afectaASiMismo(List<String> efectosSobre) {
+		for(String elemento : efectosSobre) {
+			if(elemento.equals("self"))
+				return true;			
+		}
+		return false;
+	}
 }

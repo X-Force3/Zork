@@ -9,6 +9,7 @@ public class Protagonista {
 	private List<Item> inventario;
 	private Ubicacion ubicacionActual;
 	private boolean estaVivo;
+	private int vida = 10;
 
 	public Protagonista(String nombreJugador, Ubicacion ubicacionInicial) {
 		nombre = nombreJugador;
@@ -121,5 +122,15 @@ public class Protagonista {
 
 	public String getNombre() {
 		return nombre;
+	}
+	
+	public void lastimar() {
+		this.vida -= 2;
+		if(this.vida <= 0)
+			this.estaVivo = false;
+	}
+	
+	public void aniadirVida() {
+		this.vida += 2;
 	}
 }

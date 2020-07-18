@@ -208,11 +208,15 @@ public class Aventura implements InputTextListener{
 				lugar = analizador.contieneObstaculoLugar(entrada, this.protagonista.getUbicacionActual().getLugares());
 				if (lugar.getNombre() != " ") {
 					salida = lugar.verificarTrigger(item);
-					this.protagonista.eliminarItem(item);// Luego de que el protagonista utiliza el �tem, se elimina de
-															// su inventario.
-				} else {
-					salida = "No entiendo por qu� quieres realizar eso..."; // Juani: Lo modifiqu� porque me pareci� mas
-																			// preciso esto.
+					this.protagonista.eliminarItem(item);
+				}
+				else if(analizador.afectaASiMismo(item.getEfectosSobre()) == true) {
+					this.protagonista.aniadirVida();
+					this.protagonista.eliminarItem(item);
+					salida = "te curaste";
+				}
+				else {
+					salida = "No entiendo por qu� quieres realizar eso...";
 				}
 			}
 		} else {
