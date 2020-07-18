@@ -3,10 +3,8 @@ package entidades;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sun.org.apache.bcel.internal.Const;
-
 public class Protagonista {
-	
+
 	public static final int VIDA_INICIAL = 6;
 
 	private String nombre;
