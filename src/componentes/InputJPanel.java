@@ -11,6 +11,7 @@ import java.awt.GraphicsEnvironment;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyAdapter;
@@ -35,7 +36,7 @@ import javax.swing.text.MutableAttributeSet;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 
-public class InputJPanel extends JPanel {
+public class InputJPanel extends JPanel  {
 	
 	private static final long serialVersionUID = -3843632241514733050L;
 	private int ancho;
@@ -61,16 +62,14 @@ public class InputJPanel extends JPanel {
 		textArea.setLineWrap(true);
 		textArea.setWrapStyleWord(true);
 		
-
+		
 		
 		//En lugar de KeyListener, porque agrega el salto de linea igual
 		@SuppressWarnings("serial")
 		Action enter = new AbstractAction() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				inputTextListener.inputText(textArea.getText());
-				textArea.setText("> ");
-				textArea.setCaretPosition(textArea.getText().length());
+				notificar();
 			}
 		};
 		textArea.getActionMap().put("insert-break", enter);
@@ -98,12 +97,27 @@ public class InputJPanel extends JPanel {
 		JButton btn = new JButton();
 		btn.setBorder(BorderFactory.createEmptyBorder());
 		btn.setContentAreaFilled(false);
+		btn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				notificar();
+			}
+			
+		});
 		Image img = Toolkit.getDefaultToolkit().getImage(JuegoJFrame.PATH_SPRITES + "next" + ".png");
 		Image newimg = img.getScaledInstance(45, 45,  java.awt.Image.SCALE_SMOOTH);
 		btn.setIcon(new ImageIcon(newimg));
 		btn.setPreferredSize(new Dimension(50,50));
 		add(btn,BorderLayout.EAST);
 		setSize(ancho, alto);
+	}
+	
+	public void notificar() {
+		if(textArea.getText().isEmpty()) return;
+		inputTextListener.inputText(textArea.getText());
+		textArea.setText("> ");
+		textArea.setCaretPosition(textArea.getText().length());
 	}
 	
 	public void deshabilitar() {

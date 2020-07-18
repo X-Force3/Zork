@@ -236,7 +236,8 @@
       "acciones": [
         "tomar",
         "agarrar",
-        "guardar"
+        "guardar",
+	"atacar"
       ],
       "efectosSobre": [
         "item"
